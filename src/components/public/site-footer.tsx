@@ -1,0 +1,69 @@
+import Link from "next/link";
+import { MapPin } from "lucide-react";
+import { FOOTER_NAV, CLIENTS_AREA_URL } from "@/lib/nav";
+
+const CONTACT_EMAIL = "info@omniamarketing.it";
+const PIVA = "09553001216";
+
+export function SiteFooter() {
+  const year = new Date().getFullYear();
+
+  return (
+    <footer id="contatti" className="relative pt-40 pb-20 px-6 md:px-12 border-t border-[#1a1a1a] bg-[#050505]">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-16">
+        <div className="flex-1">
+          <h2 className="text-[13vw] md:text-[8vw] leading-[0.85] font-black tracking-tighter text-white mb-12 select-none font-display">
+            PARLIAMO
+            <br />
+            NE.
+          </h2>
+          <div className="flex flex-col gap-6">
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="text-2xl md:text-3xl font-semibold hover:text-[#ff6b50] transition-colors w-fit"
+            >
+              {CONTACT_EMAIL}
+            </a>
+            <p className="text-[#666666] flex items-center gap-2">
+              <MapPin className="size-4" aria-hidden="true" />
+              Viale Alfa Romeo, 17 — 80038 Pomigliano d&apos;Arco (NA)
+            </p>
+          </div>
+        </div>
+
+        <div className="md:mb-6">
+          <a
+            href={CLIENTS_AREA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-6 py-3 border border-[#333333] rounded-full text-sm font-semibold hover:bg-white hover:text-black transition-all"
+          >
+            Area Clienti
+          </a>
+        </div>
+      </div>
+
+      <nav aria-label="Link footer" className="max-w-7xl mx-auto mt-24 flex flex-wrap gap-x-8 gap-y-3 text-sm text-[#888888]">
+        {FOOTER_NAV.map((item) => (
+          <Link key={item.href} href={item.href} className="hover:text-white transition-colors">
+            {item.label}
+          </Link>
+        ))}
+      </nav>
+
+      <div className="max-w-7xl mx-auto mt-16 pt-10 border-t border-[#111111] flex flex-col md:flex-row justify-between text-[#444444] text-[10px] font-bold uppercase tracking-widest gap-4">
+        <p>
+          &copy; {year} Omnia Marketing — Omniaweb S.r.l.s — P.IVA {PIVA}
+        </p>
+        <div className="flex gap-10">
+          <Link href="/privacy-policy" className="hover:text-[#888888] transition-colors">
+            Privacy Policy
+          </Link>
+          <Link href="/cookie-policy" className="hover:text-[#888888] transition-colors">
+            Cookie Policy
+          </Link>
+        </div>
+      </div>
+    </footer>
+  );
+}

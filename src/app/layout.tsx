@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Alfa_Slab_One, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const alfaSlabOne = Alfa_Slab_One({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: "400",
   display: "swap",
 });
 
@@ -35,9 +28,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="it"
-      className={`${inter.variable} ${alfaSlabOne.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
