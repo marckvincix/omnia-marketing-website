@@ -1,0 +1,290 @@
+// Prisma schema — Omnia Marketing website
+// Vedi knowledge-base/00-KNOWLEDGE-BASE-SITO-ATTUALE.md per il contesto dei contenuti
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+}
+
+enum AdminRole {
+  ADMIN
+  EDITOR
+}
+
+// --- Auth --------------------------------------------------------------
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String
+  role         AdminRole @default(ADMIN)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+// --- Impostazioni sito / Homepage --------------------------------------
+
+model SiteSettings {
+  id                 Int      @id @default(1)
+  heroTitle          String
+  heroSubtitle       String?
+  heroCtaLabel       String?
+  heroCtaUrl         String?
+  heroMediaUrl       String?
+  companyName        String
+  piva               String
+  legalAddress       String
+  operationalAddress String
+  contactEmail       String
+  contactPhone       String?
+  footerText         String?
+  clientsAreaUrl      String   @default("https://hub.omniamarketing.it")
+  updatedAt          DateTime @updatedAt
+}
+
+model SocialLink {
+  id       String @id @default(cuid())
+  platform String // instagram | linkedin | facebook | tiktok | youtube ...
+  url      String
+  order    Int    @default(0)
+}
+
+model Stat {
+  id     String @id @default(cuid())
+  label  String
+  value  String
+  order  Int    @default(0)
+}
+
+model ClientLogo {
+  id        String  @id @default(cuid())
+  name      String
+  logoUrl   String
+  url       String?
+  order     Int     @default(0)
+  published Boolean @default(true)
+}
+
+// --- Servizi -------------------------------------------------------------
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  description String
+  heroImage   String?
+  heroVideo   String?
+  ctaLabel    String   @default("Contattaci")
+  ctaUrl      String   @default("/contatti")
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+
+  seoTitle       String?
+  seoDescription String?
+  ogImage        String?
+
+  benefits ServiceBenefit[]
+  faqs     Faq[]
+  projects ProjectService[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ServiceBenefit {
+  id          String  @id @default(cuid())
+  serviceId   String
+  service     Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  title       String
+  description String
+  icon        String?
+  order       Int     @default(0)
+}
+
+// --- Portfolio -------------------------------------------------------------
+
+model Project {
+  id          String  @id @default(cuid())
+  title       String
+  slug        String  @unique
+  client      String
+  description String
+  category    String
+  year        Int?
+  externalUrl String?
+
+  resultsText        String?
+  testimonialAuthor   String?
+  testimonialRole     String?
+  testimonialQuote    String?
+
+  order     Int     @default(0)
+  published Boolean @default(true)
+
+  seoTitle       String?
+  seoDescription String?
+  ogImage        String?
+
+  media       ProjectMedia[]
+  services    ProjectService[]
+  testimonials Testimonial[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ProjectMedia {
+  id        String    @id @default(cuid())
+  projectId String
+  project   Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  url       String
+  type      MediaType @default(IMAGE)
+  alt       String
+  order     Int       @default(0)
+}
+
+// join esplicito Project <-> Service ("servizi svolti" per progetto)
+model ProjectService {
+  projectId String
+  serviceId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, serviceId])
+}
+
+// --- Testimonianze / FAQ / Team --------------------------------------------
+
+model Testimonial {
+  id         String   @id @default(cuid())
+  authorName String
+  authorRole String?
+  company    String?
+  quote      String
+  avatarUrl  String?
+  projectId  String?
+  project    Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  published  Boolean  @default(true)
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+}
+
+model Faq {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  serviceId String?
+  service   Service? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  order     Int      @default(0)
+  published Boolean  @default(true)
+}
+
+model TeamMember {
+  id          String  @id @default(cuid())
+  name        String
+  role        String
+  bio         String?
+  photoUrl    String?
+  linkedinUrl String?
+  order       Int     @default(0)
+  published   Boolean @default(true)
+
+  posts BlogPost[]
+}
+
+// --- Blog --------------------------------------------------------------
+
+model BlogCategory {
+  id    String @id @default(cuid())
+  name  String
+  slug  String @unique
+  posts BlogPost[]
+}
+
+model BlogTag {
+  id    String       @id @default(cuid())
+  name  String
+  slug  String       @unique
+  posts BlogPostTag[]
+}
+
+model BlogPost {
+  id      String @id @default(cuid())
+  title   String
+  slug    String @unique
+  excerpt String
+  content String
+
+  coverImage        String?
+  categoryId         String?
+  category           BlogCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  authorId           String?
+  author             TeamMember?   @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  readingTimeMinutes Int           @default(1)
+
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+
+  seoTitle       String?
+  seoDescription String?
+  ogImage        String?
+
+  tags BlogPostTag[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BlogPostTag {
+  postId String
+  tagId  String
+  post   BlogPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag    BlogTag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+}
+
+// --- Media library -------------------------------------------------------
+
+model Media {
+  id        String    @id @default(cuid())
+  url       String
+  type      MediaType @default(IMAGE)
+  altText   String    @default("")
+  width     Int?
+  height    Int?
+  sizeBytes Int?
+  folder    String?
+  createdAt DateTime  @default(now())
+}
+
+// --- Contatti / Pagine legali ---------------------------------------------
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  handled   Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model LegalPage {
+  id        String   @id @default(cuid())
+  slug      String   @unique // "privacy-policy" | "cookie-policy"
+  title     String
+  content   String
+  updatedAt DateTime @updatedAt
+}
