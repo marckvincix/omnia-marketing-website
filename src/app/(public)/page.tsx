@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { Hero } from "@/components/public/hero";
 import { HorizontalTicker } from "@/components/public/horizontal-ticker";
 import { ServicesIndex } from "@/components/public/services-index";
-import { WorkGallery } from "@/components/public/work-gallery";
+import { ProjectBentoGrid } from "@/components/public/project-bento-grid";
 
 export const metadata: Metadata = {
   title: "Omnia Marketing — Agenzia web, branding e social a Napoli",
@@ -19,7 +19,7 @@ export default async function HomePage() {
       <Hero title={settings?.heroTitle} />
       <HorizontalTicker />
       <ServicesIndex />
-      <WorkGallery />
+      <ProjectBentoGrid />
     </>
   );
 }
