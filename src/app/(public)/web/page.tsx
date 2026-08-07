@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PageHero } from "@/components/public/page-hero";
+import { ScrollWordReveal } from "@/components/public/scroll-word-reveal";
 import { ServiceSubGrid } from "@/components/public/service-sub-grid";
 import { RelatedProjects } from "@/components/public/related-projects";
 import { FaqSection } from "@/components/public/faq-section";
@@ -25,7 +25,7 @@ export default async function WebPage() {
   return (
     <>
       <ServiceJsonLd name={service.title} description={service.intro} url="/web" />
-      <PageHero eyebrow={service.eyebrow} title={service.title} description={service.intro} />
+      <ScrollWordReveal text="Siti web studiati nel dettaglio: realizziamo design moderni, curiamo ogni elemento visivo e creiamo esperienze digitali uniche per il tuo brand." />
       <ServiceSubGrid items={service.subservices} />
       <RelatedProjects serviceSlug="web" />
       <FaqSection items={faqs} />
