@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { Hero } from "@/components/public/hero";
 import { ValueProps } from "@/components/public/value-props";
+import { ServicesIndex } from "@/components/public/services-index";
 import { WorkGallery } from "@/components/public/work-gallery";
 
 export const metadata: Metadata = {
@@ -39,6 +40,7 @@ export default async function HomePage() {
         recentClients={recentProjects.map((p) => ({ initials: initialsFor(p.client), name: p.client }))}
       />
       <ValueProps />
+      <ServicesIndex />
       <WorkGallery />
     </>
   );
