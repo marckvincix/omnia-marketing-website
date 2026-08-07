@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { TOP_NAV, SERVICES_NAV, CLIENTS_AREA_URL } from "@/lib/nav";
+import { LightBeamButton } from "./light-beam-button";
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
@@ -63,12 +64,9 @@ export function SiteNav() {
         >
           Area Clienti
         </a>
-        <Link
-          href="/contatti"
-          className="px-5 py-2.5 bg-[#1a1a1a] hover:bg-white hover:text-black border border-[#333333] rounded-lg transition-all duration-300"
-        >
+        <LightBeamButton href="/contatti" className="px-5 py-2.5 text-sm">
           Contattaci
-        </Link>
+        </LightBeamButton>
       </div>
 
       <button
@@ -96,13 +94,9 @@ export function SiteNav() {
               </li>
             ))}
             <li>
-              <Link
-                href="/contatti"
-                onClick={() => setOpen(false)}
-                className="inline-block mt-2 px-5 py-2.5 bg-white text-black rounded-lg font-semibold"
-              >
+              <LightBeamButton href="/contatti" onClick={() => setOpen(false)} className="mt-2 w-full">
                 Contattaci
-              </Link>
+              </LightBeamButton>
             </li>
             <li>
               <a href={CLIENTS_AREA_URL} target="_blank" rel="noopener noreferrer" className="text-[#888888]">

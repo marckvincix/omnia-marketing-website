@@ -2,6 +2,7 @@ import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { FOOTER_NAV, CLIENTS_AREA_URL } from "@/lib/nav";
+import { LightBeamButton } from "./light-beam-button";
 
 const DEFAULT_EMAIL = "info@omniamarketing.it";
 const DEFAULT_ADDRESS = "Viale Alfa Romeo, 17 — 80038 Pomigliano d'Arco (NA)";
@@ -41,14 +42,9 @@ export async function SiteFooter() {
         </div>
 
         <div className="md:mb-6">
-          <a
-            href={CLIENTS_AREA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-6 py-3 border border-[#333333] rounded-full text-sm font-semibold hover:bg-white hover:text-black transition-all"
-          >
+          <LightBeamButton href={CLIENTS_AREA_URL} target="_blank" rel="noopener noreferrer">
             Area Clienti
-          </a>
+          </LightBeamButton>
         </div>
       </div>
 

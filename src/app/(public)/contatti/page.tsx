@@ -3,6 +3,7 @@ import { MapPin, Mail } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { PageHero } from "@/components/public/page-hero";
 import { ContactForm } from "@/components/public/contact-form";
+import { LightBeamButton } from "@/components/public/light-beam-button";
 import { CLIENTS_AREA_URL } from "@/lib/nav";
 
 export const metadata: Metadata = {
@@ -57,14 +58,9 @@ export default async function ContattiPage() {
             <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#ff6b50] mb-4">
               Sei già nostro cliente?
             </h2>
-            <a
-              href={CLIENTS_AREA_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block rounded-full border border-[#333333] px-6 py-3 text-sm font-semibold text-white hover:bg-white hover:text-black transition-all"
-            >
+            <LightBeamButton href={CLIENTS_AREA_URL} target="_blank" rel="noopener noreferrer">
               Accedi all&apos;Area Clienti →
-            </a>
+            </LightBeamButton>
           </div>
         </div>
       </section>

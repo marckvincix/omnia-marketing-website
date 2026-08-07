@@ -3,19 +3,16 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { submitContact, type ContactActionState } from "@/app/(public)/contatti/actions";
+import { LightBeamButton } from "./light-beam-button";
 
 const initialState: ContactActionState = {};
 
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="w-full rounded-xl bg-[#ff6b50] hover:bg-[#e55a40] disabled:opacity-60 text-black font-bold py-4 transition-colors"
-    >
+    <LightBeamButton type="submit" disabled={pending} className="w-full py-4">
       {pending ? "Invio in corso…" : "Invia messaggio"}
-    </button>
+    </LightBeamButton>
   );
 }
 

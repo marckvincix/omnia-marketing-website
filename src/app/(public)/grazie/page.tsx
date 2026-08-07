@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { LightBeamButton } from "@/components/public/light-beam-button";
 
 export const metadata: Metadata = {
   title: "Grazie",
@@ -18,18 +18,8 @@ export default function GraziePage() {
         risponderà il prima possibile.
       </p>
       <div className="mt-10 flex flex-wrap justify-center gap-4">
-        <Link
-          href="/progetti"
-          className="rounded-full border border-[#333333] px-6 py-3 text-sm font-semibold text-white hover:bg-white hover:text-black transition-all"
-        >
-          Guarda i nostri progetti
-        </Link>
-        <Link
-          href="/"
-          className="rounded-full bg-[#ff6b50] hover:bg-[#e55a40] px-6 py-3 text-sm font-semibold text-black transition-colors"
-        >
-          Torna alla home
-        </Link>
+        <LightBeamButton href="/progetti">Guarda i nostri progetti</LightBeamButton>
+        <LightBeamButton href="/">Torna alla home</LightBeamButton>
       </div>
     </section>
   );

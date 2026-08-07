@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DOCK_ITEMS } from "@/lib/nav";
 import { Mail } from "lucide-react";
+import { LightBeamButton } from "./light-beam-button";
 
 export function FloatingDock() {
   const items = DOCK_ITEMS.filter((item) => item.label !== "Contatti");
@@ -20,13 +21,10 @@ export function FloatingDock() {
           </Link>
         ))}
       </div>
-      <Link
-        href="/contatti"
-        className="flex items-center gap-2 px-6 py-3 bg-[#ff6b50] hover:bg-[#e55a40] text-black font-bold text-sm tracking-wide uppercase rounded-xl transition-all"
-      >
+      <LightBeamButton href="/contatti" className="px-6 py-3 text-sm font-bold tracking-wide uppercase">
         <Mail className="size-4" aria-hidden="true" />
         Contatti
-      </Link>
+      </LightBeamButton>
     </div>
   );
 }

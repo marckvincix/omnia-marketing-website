@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { LightBeamButton } from "./light-beam-button";
 
 interface CtaBandProps {
   title: string;
@@ -20,12 +20,7 @@ export function CtaBand({
         {description && (
           <p className="max-w-lg text-[#999999]">{description}</p>
         )}
-        <Link
-          href="/contatti"
-          className="inline-block rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-opacity hover:opacity-80"
-        >
-          {ctaLabel}
-        </Link>
+        <LightBeamButton href="/contatti">{ctaLabel}</LightBeamButton>
       </div>
     </section>
   );
