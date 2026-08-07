@@ -16,12 +16,12 @@ export async function ProjectBentoGrid() {
   return (
     <section id="progetti" className="py-32 px-6 md:px-12 max-w-7xl mx-auto">
       <div className="flex justify-between items-end mb-20 border-b border-[#222222] pb-10">
-        <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6]">
+        <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6]">
           Progetti Selezionati
         </h2>
         <Link
           href="/progetti"
-          className="hidden md:block text-[#666666] hover:text-white text-xs font-medium uppercase tracking-widest transition-colors"
+          className="hidden md:block text-[#666666] hover:text-white text-xs font-medium uppercase tracking-normal transition-colors"
         >
           Vedi tutto il portfolio →
         </Link>
@@ -31,7 +31,7 @@ export async function ProjectBentoGrid() {
         {projects.map((project, i) => (
           <TiltCard key={project.slug} className={SPAN_PATTERN[i % SPAN_PATTERN.length]}>
             <Link href={`/progetti/${project.slug}`} className="group block h-full">
-              <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0a] transition-colors duration-300 group-hover:border-white/25">
+              <article className="card-hover-glow relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0a]">
                 <div
                   className={`relative flex-1 min-h-[160px] overflow-hidden bg-gradient-to-br ${project.gradient} flex items-center justify-center`}
                 >
@@ -44,7 +44,7 @@ export async function ProjectBentoGrid() {
                       {project.servicesRendered.slice(0, 3).map((service) => (
                         <span
                           key={service}
-                          className="rounded-full border border-white/15 bg-black/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-white backdrop-blur-sm"
+                          className="rounded-full border border-white/15 bg-black/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-normal text-white backdrop-blur-sm"
                         >
                           {service}
                         </span>

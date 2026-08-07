@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/public/page-hero";
 import { CtaBand } from "@/components/public/cta-band";
+import { TiltCard } from "@/components/public/tilt-card";
 import { getPublishedServices } from "@/lib/data/services";
 import Link from "next/link";
 
@@ -26,34 +27,35 @@ export default async function ChiSiamoPage() {
           &ldquo;Il design non è solo come appare, ma{" "}
           <span className="text-[#666666]">come funziona.</span>&rdquo;
         </blockquote>
-        <p className="mt-4 text-sm text-[#666666] uppercase tracking-widest">— Steve Jobs</p>
+        <p className="mt-4 text-sm text-[#666666] uppercase tracking-normal">— Steve Jobs</p>
       </section>
 
       <section className="px-6 md:px-12 py-20 max-w-7xl mx-auto border-t border-[#1a1a1a]">
-        <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-12">
+        <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-12">
           Cosa facciamo
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((service) => (
-            <Link
-              key={service.slug}
-              href={`/${service.slug}`}
-              className="group flex flex-col justify-between rounded-[2rem] border border-[#1f1f1f] bg-[#111111] p-10 hover:border-[#333333] transition-colors"
-            >
-              <div>
-                <h3 className="font-display text-2xl text-white">{service.title}</h3>
-                <p className="mt-3 text-sm text-[#999999]">{service.intro}</p>
-              </div>
-              <span className="mt-8 text-sm font-semibold text-[#888888] group-hover:text-[#2e9bd6] transition-colors">
-                Scopri di più →
-              </span>
-            </Link>
+            <TiltCard key={service.slug}>
+              <Link
+                href={`/${service.slug}`}
+                className="card-hover-glow group flex h-full flex-col justify-between rounded-[2rem] border border-[#1f1f1f] bg-[#111111] p-10"
+              >
+                <div>
+                  <h3 className="font-display text-2xl text-white">{service.title}</h3>
+                  <p className="mt-3 text-sm text-[#999999]">{service.intro}</p>
+                </div>
+                <span className="mt-8 text-sm font-semibold text-[#888888] group-hover:text-[#2e9bd6] transition-colors">
+                  Scopri di più →
+                </span>
+              </Link>
+            </TiltCard>
           ))}
         </div>
       </section>
 
       <section className="px-6 md:px-12 py-20 max-w-7xl mx-auto border-t border-[#1a1a1a]">
-        <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-8">
+        <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-8">
           Un unico partner
         </h2>
         <p className="max-w-3xl text-lg md:text-2xl text-[#cccccc] leading-relaxed font-display">

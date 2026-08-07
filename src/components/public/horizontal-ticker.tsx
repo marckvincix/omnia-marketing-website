@@ -79,7 +79,7 @@ export function HorizontalTicker() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-screen overflow-hidden bg-[#050505] text-white">
+    <section ref={sectionRef} className="relative h-screen overflow-hidden bg-[#000000] text-white">
       <div
         ref={trackRef}
         className="absolute top-1/2 left-0 flex -translate-y-1/2 items-center whitespace-nowrap will-change-transform"

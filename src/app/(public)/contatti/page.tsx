@@ -32,7 +32,7 @@ export default async function ContattiPage() {
 
         <div className="flex flex-col gap-8">
           <div>
-            <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-4">
+            <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-4">
               Scrivici
             </h2>
             <a
@@ -45,7 +45,7 @@ export default async function ContattiPage() {
           </div>
 
           <div>
-            <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-4">
+            <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-4">
               Sede operativa
             </h2>
             <p className="flex items-start gap-3 text-[#cccccc]">
@@ -55,7 +55,7 @@ export default async function ContattiPage() {
           </div>
 
           <div>
-            <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-4">
+            <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-4">
               Sei già nostro cliente?
             </h2>
             <LightBeamButton href={CLIENTS_AREA_URL} target="_blank" rel="noopener noreferrer">

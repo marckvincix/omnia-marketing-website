@@ -19,7 +19,7 @@ export async function SiteFooter() {
   const companyName = settings?.companyName || DEFAULT_COMPANY;
 
   return (
-    <footer id="contatti" className="relative pt-40 pb-20 px-6 md:px-12 border-t border-[#1a1a1a] bg-[#050505]">
+    <footer id="contatti" className="relative pt-40 pb-20 px-6 md:px-12 border-t border-[#1a1a1a] bg-[#000000]">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-16">
         <div className="flex-1">
           <h2 className="text-[13vw] md:text-[8vw] leading-[0.85] font-black tracking-tighter text-white mb-12 select-none font-display">
@@ -56,7 +56,7 @@ export async function SiteFooter() {
         ))}
       </nav>
 
-      <div className="max-w-7xl mx-auto mt-16 pt-10 border-t border-[#111111] flex flex-col md:flex-row justify-between text-[#444444] text-[10px] font-bold uppercase tracking-widest gap-4">
+      <div className="max-w-7xl mx-auto mt-16 pt-10 border-t border-[#111111] flex flex-col md:flex-row justify-between text-[#444444] text-[10px] font-bold uppercase tracking-normal gap-4">
         <p>
           &copy; {year} {companyName} — Omniaweb S.r.l.s — P.IVA {piva}
         </p>

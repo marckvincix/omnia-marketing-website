@@ -11,7 +11,7 @@ export function FaqSection({ items }: { items: FaqItem[] }) {
   return (
     <section className="px-6 md:px-12 py-20 max-w-4xl mx-auto border-t border-[#1a1a1a]">
       <FaqJsonLd items={items} />
-      <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-10">
+      <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-10">
         Domande frequenti
       </h2>
       <div className="flex flex-col divide-y divide-[#1a1a1a]">

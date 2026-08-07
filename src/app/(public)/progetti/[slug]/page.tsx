@@ -59,14 +59,14 @@ export default async function ProjectDetailPage({
       <header className="px-6 md:px-12 pt-20 pb-16 max-w-7xl mx-auto">
         <Link
           href="/progetti"
-          className="text-xs font-bold tracking-[0.3em] uppercase text-[#666666] hover:text-white transition-colors"
+          className="text-xs font-bold tracking-normal uppercase text-[#666666] hover:text-white transition-colors"
         >
           ← Portfolio
         </Link>
         <h1 className="mt-8 font-display font-black text-white text-5xl md:text-7xl leading-[0.95] tracking-tight">
           {project.client}
         </h1>
-        <p className="mt-4 text-sm font-bold tracking-[0.2em] uppercase text-[#2e9bd6]">
+        <p className="mt-4 text-sm font-bold tracking-normal uppercase text-[#2e9bd6]">
           {project.category}
         </p>
         <p className="mt-8 max-w-2xl text-lg text-[#999999]">{project.description}</p>
@@ -94,7 +94,7 @@ export default async function ProjectDetailPage({
 
       <section className="px-6 md:px-12 py-20 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
         <div>
-          <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-6">
+          <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-6">
             Servizi svolti
           </h2>
           <ul className="flex flex-wrap gap-3">
@@ -111,7 +111,7 @@ export default async function ProjectDetailPage({
 
         {project.results.length > 0 && (
           <div>
-            <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-6">
+            <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-6">
               Risultati
             </h2>
             <ul className="flex flex-col gap-3">
@@ -131,7 +131,7 @@ export default async function ProjectDetailPage({
           <blockquote className="font-display text-2xl md:text-4xl text-white max-w-3xl leading-tight">
             &ldquo;{project.testimonialQuote}&rdquo;
           </blockquote>
-          <p className="mt-4 text-sm text-[#666666] uppercase tracking-widest">
+          <p className="mt-4 text-sm text-[#666666] uppercase tracking-normal">
             — {project.client}
           </p>
         </section>

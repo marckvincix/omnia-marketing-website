@@ -4,7 +4,7 @@ import { OrganizationJsonLd } from "@/components/shared/json-ld";
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#050505] text-[#ebebeb] selection-coral overflow-x-hidden">
+    <div className="min-h-screen bg-[#000000] text-[#ebebeb] selection-coral overflow-x-hidden">
       <OrganizationJsonLd />
       <a
         href="#main-content"

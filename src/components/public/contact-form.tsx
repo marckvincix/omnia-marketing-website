@@ -31,7 +31,7 @@ export function ContactForm() {
       />
 
       <div>
-        <label htmlFor="name" className="block text-xs font-bold uppercase tracking-widest text-[#888888] mb-2">
+        <label htmlFor="name" className="block text-xs font-bold uppercase tracking-normal text-[#888888] mb-2">
           Nome
         </label>
         <input
@@ -47,7 +47,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-xs font-bold uppercase tracking-widest text-[#888888] mb-2">
+        <label htmlFor="email" className="block text-xs font-bold uppercase tracking-normal text-[#888888] mb-2">
           Email
         </label>
         <input
@@ -63,7 +63,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="phone" className="block text-xs font-bold uppercase tracking-widest text-[#888888] mb-2">
+        <label htmlFor="phone" className="block text-xs font-bold uppercase tracking-normal text-[#888888] mb-2">
           Telefono <span className="text-[#555555] normal-case">(facoltativo)</span>
         </label>
         <input
@@ -75,7 +75,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-xs font-bold uppercase tracking-widest text-[#888888] mb-2">
+        <label htmlFor="message" className="block text-xs font-bold uppercase tracking-normal text-[#888888] mb-2">
           Messaggio
         </label>
         <textarea

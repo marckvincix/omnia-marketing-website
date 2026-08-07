@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { getProjectsByServiceSlug } from "@/lib/data/projects";
+import { TiltCard } from "./tilt-card";
 
 export async function RelatedProjects({ serviceSlug }: { serviceSlug: string }) {
   const projects = await getProjectsByServiceSlug(serviceSlug);
@@ -8,33 +9,35 @@ export async function RelatedProjects({ serviceSlug }: { serviceSlug: string }) 
 
   return (
     <section className="px-6 md:px-12 py-20 max-w-7xl mx-auto border-t border-[#1a1a1a]">
-      <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-12">
+      <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-12">
         Progetti correlati
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project) => (
-          <Link key={project.slug} href={`/progetti/${project.slug}`} className="group">
-            <div
-              className={`aspect-[16/9] rounded-sm bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden transition-transform duration-700 group-hover:scale-[1.02]`}
-            >
-              <span className="font-display text-3xl text-white/20 group-hover:text-white/40 transition-colors">
-                {project.client}
-              </span>
-            </div>
-            <div className="mt-6 flex justify-between items-start">
-              <div>
-                <h3 className="font-display text-2xl group-hover:text-[#2e9bd6] transition-colors">
-                  {project.client}
-                </h3>
-                <p className="text-[#666666] text-[10px] font-bold uppercase tracking-[0.2em] mt-1">
-                  {project.category}
-                </p>
-              </div>
-              <div className="p-2.5 rounded-full border border-[#333333] group-hover:bg-[#2e9bd6] group-hover:text-black group-hover:border-transparent transition-all">
-                <ArrowUpRight className="size-5" aria-hidden="true" />
-              </div>
-            </div>
-          </Link>
+          <TiltCard key={project.slug}>
+            <Link href={`/progetti/${project.slug}`} className="group block h-full">
+              <article className="card-hover-glow relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0a]">
+                <div
+                  className={`relative aspect-[16/9] overflow-hidden bg-gradient-to-br ${project.gradient} flex items-center justify-center`}
+                >
+                  <span className="font-display text-3xl text-white/15 group-hover:text-white/25 transition-colors">
+                    {project.client}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between gap-4 px-6 py-5">
+                  <div>
+                    <h3 className="font-display text-xl text-white">{project.client}</h3>
+                    <p className="text-[#666666] text-[10px] font-bold uppercase tracking-normal mt-1">
+                      {project.category}
+                    </p>
+                  </div>
+                  <span className="shrink-0 inline-flex items-center justify-center rounded-full border border-white/20 p-2.5 text-white transition-all group-hover:bg-[#2e9bd6] group-hover:border-transparent group-hover:text-black">
+                    <ArrowUpRight className="size-5" aria-hidden="true" />
+                  </span>
+                </div>
+              </article>
+            </Link>
+          </TiltCard>
         ))}
       </div>
     </section>

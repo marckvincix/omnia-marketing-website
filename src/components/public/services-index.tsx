@@ -7,7 +7,7 @@ export async function ServicesIndex() {
   if (services.length === 0) return null;
 
   return (
-    <section className="bg-[#050505] text-white">
+    <section className="bg-[#000000] text-white">
       <div className="max-w-7xl mx-auto border-y border-white/20 divide-y divide-white/20">
         {services.map((service, i) => (
           <Link
@@ -16,7 +16,7 @@ export async function ServicesIndex() {
             className="group flex items-center gap-6 md:gap-10 px-6 md:px-12 py-10 md:py-14"
           >
             <span
-              className="shrink-0 text-base md:text-lg text-[#ff4d00]"
+              className="shrink-0 text-base md:text-lg text-[#2e9bd6]"
               style={{ fontFamily: "var(--font-space-mono)" }}
             >
               {String(i + 1).padStart(2, "0")}
@@ -33,7 +33,7 @@ export async function ServicesIndex() {
                 {service.subservices.map((sub) => (
                   <span
                     key={sub.title}
-                    className="rounded-full border border-white/20 px-3 py-1 text-[11px] md:text-xs uppercase tracking-wide text-white/60"
+                    className="rounded-full border border-white/20 px-3 py-1 text-[11px] md:text-xs uppercase tracking-normal text-white/60"
                   >
                     {sub.title}
                   </span>
@@ -42,7 +42,7 @@ export async function ServicesIndex() {
             </div>
 
             <ArrowUpRight
-              className="size-10 md:size-16 shrink-0 text-[#ff4d00] opacity-0 -translate-x-4 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0"
+              className="size-10 md:size-16 shrink-0 text-[#2e9bd6] opacity-0 -translate-x-4 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0"
               aria-hidden="true"
             />
           </Link>

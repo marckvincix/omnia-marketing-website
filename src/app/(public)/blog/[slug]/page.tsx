@@ -54,11 +54,11 @@ export default async function BlogPostPage({
       />
 
       <header className="px-6 md:px-12 pt-20 pb-12 max-w-3xl mx-auto">
-        <Link href="/blog" className="text-xs font-bold tracking-[0.3em] uppercase text-[#666666] hover:text-white transition-colors">
+        <Link href="/blog" className="text-xs font-bold tracking-normal uppercase text-[#666666] hover:text-white transition-colors">
           ← Blog
         </Link>
         {post.category && (
-          <p className="mt-6 text-[10px] font-bold uppercase tracking-[0.2em] text-[#2e9bd6]">
+          <p className="mt-6 text-[10px] font-bold uppercase tracking-normal text-[#2e9bd6]">
             {post.category.name}
           </p>
         )}

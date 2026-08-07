@@ -73,7 +73,7 @@ export function TubesBackground({
   }
 
   return (
-    <div className={`relative w-full overflow-hidden bg-[#050505] ${className}`} onClick={handleClick}>
+    <div className={`relative w-full overflow-hidden bg-[#000000] ${className}`} onClick={handleClick}>
       <canvas ref={canvasRef} className={`absolute inset-0 block h-full w-full transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`} />
       <div className="relative z-10 h-full w-full pointer-events-none">{children}</div>
     </div>
