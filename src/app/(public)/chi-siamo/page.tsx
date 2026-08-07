@@ -2,24 +2,42 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/public/page-hero";
 import { CtaBand } from "@/components/public/cta-band";
 import { TiltCard } from "@/components/public/tilt-card";
-import { getPublishedServices } from "@/lib/data/services";
 import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Chi Siamo",
   description:
-    "Omnia Marketing è un'entità creativa e tecnologica che trasforma visioni in esperienze digitali uniche e brand memorabili. Web, branding e social sotto lo stesso tetto.",
+    "Omnia Marketing è lo studio creativo e tecnologico che trasforma visioni in esperienze digitali uniche e brand memorabili.",
 };
 
-export default async function ChiSiamoPage() {
-  const services = await getPublishedServices();
+const SERVICE_AREAS = [
+  {
+    slug: "web",
+    title: "Web & Digital experiences",
+    description:
+      "Realizziamo siti web studiati nel dettaglio e soluzioni digitali su misura, curando ogni elemento per creare esperienze digitali uniche e altamente performanti per il tuo brand.",
+  },
+  {
+    slug: "branding",
+    title: "Branding & Identità visiva",
+    description:
+      "Diamo forma alla tua identità visiva con un design studiato per emozionare e distinguerti. Dalla strategia al logo, creiamo brand capaci di comunicare autenticità e lasciare un segno duraturo.",
+  },
+  {
+    slug: "social",
+    title: "Social & Content production",
+    description:
+      "La tua presenza digitale merita di essere curata al dettaglio. Gestiamo contenuti, realizziamo foto e video unici e produciamo spot per valorizzare e amplificare la tua voce nel panorama digitale.",
+  },
+] as const;
 
+export default function ChiSiamoPage() {
   return (
     <>
       <PageHero
         eyebrow="Chi siamo"
         title="Crediamo nel design come strumento di lavoro, non come decorazione."
-        description="Siamo un'entità creativa e tecnologica che trasforma visioni in esperienze digitali uniche e brand memorabili. Curiamo ogni progetto nei dettagli, dal primo naming al pixel finale."
+        description="Siamo lo studio creativo e tecnologico che trasforma visioni in esperienze digitali uniche e brand memorabili. Il nostro approccio è meticoloso: ogni progetto è studiato nel dettaglio, dal primo elemento visivo alla soluzione tecnologica finale. Realizziamo design moderni che emozionano, creando identità e piattaforme digitali all'avanguardia, pronte a lasciare un segno indelebile nel tuo settore."
       />
 
       <section className="px-6 md:px-12 py-20 max-w-7xl mx-auto">
@@ -35,7 +53,7 @@ export default async function ChiSiamoPage() {
           Cosa facciamo
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map((service) => (
+          {SERVICE_AREAS.map((service) => (
             <TiltCard key={service.slug}>
               <Link
                 href={`/${service.slug}`}
@@ -43,7 +61,7 @@ export default async function ChiSiamoPage() {
               >
                 <div>
                   <h3 className="font-display text-2xl text-white">{service.title}</h3>
-                  <p className="mt-3 text-sm text-[#999999]">{service.intro}</p>
+                  <p className="mt-3 text-sm text-[#999999]">{service.description}</p>
                 </div>
                 <span className="mt-8 text-sm font-semibold text-[#888888] group-hover:text-[#2e9bd6] transition-colors">
                   Scopri di più →
