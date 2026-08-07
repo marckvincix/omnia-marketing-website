@@ -2,12 +2,17 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
-import { PROJECTS, getProjectBySlug } from "@/lib/content/projects";
+import { prisma } from "@/lib/prisma";
+import { getProjectBySlug } from "@/lib/data/projects";
 import { CtaBand } from "@/components/public/cta-band";
-import { BreadcrumbJsonLd } from "@/components/shared/json-ld";
+import { BreadcrumbJsonLd, CreativeWorkJsonLd } from "@/components/shared/json-ld";
 
-export function generateStaticParams() {
-  return PROJECTS.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  const projects = await prisma.project.findMany({
+    where: { published: true },
+    select: { slug: true },
+  });
+  return projects.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -16,12 +21,14 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
   if (!project) return {};
 
   return {
-    title: `${project.client} — Case Study`,
-    description: project.description,
+    title: project.seoTitle,
+    description: project.seoDescription,
+    alternates: { canonical: `/progetti/${project.slug}` },
+    openGraph: { title: project.seoTitle, description: project.seoDescription, type: "article" },
   };
 }
 
@@ -31,7 +38,7 @@ export default async function ProjectDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
   if (!project) notFound();
 
   return (
@@ -41,6 +48,12 @@ export default async function ProjectDetailPage({
           { name: "Portfolio", url: "/progetti" },
           { name: project.client, url: `/progetti/${project.slug}` },
         ]}
+      />
+      <CreativeWorkJsonLd
+        name={project.client}
+        description={project.description}
+        url={`/progetti/${project.slug}`}
+        client={project.client}
       />
 
       <header className="px-6 md:px-12 pt-40 pb-16 max-w-7xl mx-auto">
@@ -58,15 +71,17 @@ export default async function ProjectDetailPage({
         </p>
         <p className="mt-8 max-w-2xl text-lg text-[#999999]">{project.description}</p>
 
-        <a
-          href={project.externalUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-8 inline-flex items-center gap-2 text-white border-b-2 border-white hover:border-[#ff6b50] hover:text-[#ff6b50] transition-colors pb-1 w-fit"
-        >
-          Visita il sito
-          <ArrowUpRight className="size-4" aria-hidden="true" />
-        </a>
+        {project.externalUrl !== "#" && (
+          <a
+            href={project.externalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center gap-2 text-white border-b-2 border-white hover:border-[#ff6b50] hover:text-[#ff6b50] transition-colors pb-1 w-fit"
+          >
+            Visita il sito
+            <ArrowUpRight className="size-4" aria-hidden="true" />
+          </a>
+        )}
       </header>
 
       <div
@@ -94,29 +109,33 @@ export default async function ProjectDetailPage({
           </ul>
         </div>
 
-        <div>
-          <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#ff6b50] mb-6">
-            Risultati
-          </h2>
-          <ul className="flex flex-col gap-3">
-            {project.results.map((r) => (
-              <li key={r} className="flex items-start gap-3 text-[#cccccc]">
-                <Check className="size-5 text-[#ff6b50] shrink-0 mt-0.5" aria-hidden="true" />
-                {r}
-              </li>
-            ))}
-          </ul>
-        </div>
+        {project.results.length > 0 && (
+          <div>
+            <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#ff6b50] mb-6">
+              Risultati
+            </h2>
+            <ul className="flex flex-col gap-3">
+              {project.results.map((r) => (
+                <li key={r} className="flex items-start gap-3 text-[#cccccc]">
+                  <Check className="size-5 text-[#ff6b50] shrink-0 mt-0.5" aria-hidden="true" />
+                  {r}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
 
-      <section className="px-6 md:px-12 py-20 max-w-7xl mx-auto border-t border-[#1a1a1a]">
-        <blockquote className="font-display text-2xl md:text-4xl text-white max-w-3xl leading-tight">
-          &ldquo;{project.testimonialQuote}&rdquo;
-        </blockquote>
-        <p className="mt-4 text-sm text-[#666666] uppercase tracking-widest">
-          — {project.client}
-        </p>
-      </section>
+      {project.testimonialQuote && (
+        <section className="px-6 md:px-12 py-20 max-w-7xl mx-auto border-t border-[#1a1a1a]">
+          <blockquote className="font-display text-2xl md:text-4xl text-white max-w-3xl leading-tight">
+            &ldquo;{project.testimonialQuote}&rdquo;
+          </blockquote>
+          <p className="mt-4 text-sm text-[#666666] uppercase tracking-widest">
+            — {project.client}
+          </p>
+        </section>
+      )}
 
       <CtaBand
         title="Vuoi un progetto come questo?"

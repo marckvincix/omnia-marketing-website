@@ -1,12 +1,21 @@
 import Link from "next/link";
 import { MapPin } from "lucide-react";
+import { prisma } from "@/lib/prisma";
 import { FOOTER_NAV, CLIENTS_AREA_URL } from "@/lib/nav";
 
-const CONTACT_EMAIL = "info@omniamarketing.it";
-const PIVA = "09553001216";
+const DEFAULT_EMAIL = "info@omniamarketing.it";
+const DEFAULT_ADDRESS = "Viale Alfa Romeo, 17 — 80038 Pomigliano d'Arco (NA)";
+const DEFAULT_PIVA = "09553001216";
+const DEFAULT_COMPANY = "Omnia Marketing";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const settings = await prisma.siteSettings.findUnique({ where: { id: 1 } });
   const year = new Date().getFullYear();
+
+  const email = settings?.contactEmail || DEFAULT_EMAIL;
+  const address = settings?.operationalAddress || DEFAULT_ADDRESS;
+  const piva = settings?.piva || DEFAULT_PIVA;
+  const companyName = settings?.companyName || DEFAULT_COMPANY;
 
   return (
     <footer id="contatti" className="relative pt-40 pb-20 px-6 md:px-12 border-t border-[#1a1a1a] bg-[#050505]">
@@ -19,14 +28,14 @@ export function SiteFooter() {
           </h2>
           <div className="flex flex-col gap-6">
             <a
-              href={`mailto:${CONTACT_EMAIL}`}
+              href={`mailto:${email}`}
               className="text-2xl md:text-3xl font-semibold hover:text-[#ff6b50] transition-colors w-fit"
             >
-              {CONTACT_EMAIL}
+              {email}
             </a>
             <p className="text-[#666666] flex items-center gap-2">
               <MapPin className="size-4" aria-hidden="true" />
-              Viale Alfa Romeo, 17 — 80038 Pomigliano d&apos;Arco (NA)
+              {address}
             </p>
           </div>
         </div>
@@ -53,7 +62,7 @@ export function SiteFooter() {
 
       <div className="max-w-7xl mx-auto mt-16 pt-10 border-t border-[#111111] flex flex-col md:flex-row justify-between text-[#444444] text-[10px] font-bold uppercase tracking-widest gap-4">
         <p>
-          &copy; {year} Omnia Marketing — Omniaweb S.r.l.s — P.IVA {PIVA}
+          &copy; {year} {companyName} — Omniaweb S.r.l.s — P.IVA {piva}
         </p>
         <div className="flex gap-10">
           <Link href="/privacy-policy" className="hover:text-[#888888] transition-colors">

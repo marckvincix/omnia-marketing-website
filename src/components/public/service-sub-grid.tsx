@@ -1,4 +1,4 @@
-import type { ServiceSub } from "@/lib/content/services";
+import type { ServiceSub } from "@/lib/data/services";
 
 export function ServiceSubGrid({ items }: { items: ServiceSub[] }) {
   return (

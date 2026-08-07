@@ -57,6 +57,110 @@ export function BreadcrumbJsonLd({
   );
 }
 
+export function ServiceJsonLd({
+  name,
+  description,
+  url,
+}: {
+  name: string;
+  description: string;
+  url: string;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: name,
+    name,
+    description,
+    url: `${SITE_URL}${url}`,
+    provider: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    areaServed: {
+      "@type": "City",
+      name: "Napoli",
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+export function CreativeWorkJsonLd({
+  name,
+  description,
+  url,
+  client,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  client: string;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name,
+    description,
+    url: `${SITE_URL}${url}`,
+    creator: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    about: client,
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+export function ArticleJsonLd({
+  title,
+  description,
+  url,
+  datePublished,
+  dateModified,
+  image,
+}: {
+  title: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  dateModified: string;
+  image?: string;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    url: `${SITE_URL}${url}`,
+    datePublished,
+    dateModified,
+    ...(image ? { image } : {}),
+    author: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    publisher: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
 export function FaqJsonLd({
   items,
 }: {

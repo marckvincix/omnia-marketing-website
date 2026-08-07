@@ -13,7 +13,7 @@ async function main() {
     where: { id: 1 },
     create: {
       id: 1,
-      heroTitle: "crediamo nel design",
+      heroTitle: "crediamo\nnel design",
       heroSubtitle: "Siti web, branding e social per aziende che vogliono distinguersi.",
       heroCtaLabel: "Contattaci",
       heroCtaUrl: "/contatti",
@@ -92,12 +92,8 @@ async function main() {
       },
     });
 
-    for (const serviceLabel of project.servicesRendered) {
-      const match = SERVICES_LIST.find(
-        (s) => s.title.toLowerCase() === serviceLabel.toLowerCase(),
-      );
-      if (!match) continue;
-      const service = await prisma.service.findUnique({ where: { slug: match.slug } });
+    for (const serviceSlug of project.serviceSlugs) {
+      const service = await prisma.service.findUnique({ where: { slug: serviceSlug } });
       if (!service) continue;
       await prisma.projectService.upsert({
         where: { projectId_serviceId: { projectId: created.id, serviceId: service.id } },

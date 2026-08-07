@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { CtaBand } from "@/components/public/cta-band";
-import { BreadcrumbJsonLd } from "@/components/shared/json-ld";
+import { BreadcrumbJsonLd, ArticleJsonLd } from "@/components/shared/json-ld";
 
 export async function generateMetadata({
   params,
@@ -17,6 +17,13 @@ export async function generateMetadata({
   return {
     title: post.seoTitle || post.title,
     description: post.seoDescription || post.excerpt,
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: {
+      title: post.seoTitle || post.title,
+      description: post.seoDescription || post.excerpt,
+      type: "article",
+      images: post.coverImage ? [post.coverImage] : undefined,
+    },
   };
 }
 
@@ -36,6 +43,14 @@ export default async function BlogPostPage({
   return (
     <article>
       <BreadcrumbJsonLd items={[{ name: "Blog", url: "/blog" }, { name: post.title, url: `/blog/${post.slug}` }]} />
+      <ArticleJsonLd
+        title={post.title}
+        description={post.seoDescription || post.excerpt}
+        url={`/blog/${post.slug}`}
+        datePublished={(post.publishedAt ?? post.createdAt).toISOString()}
+        dateModified={post.updatedAt.toISOString()}
+        image={post.coverImage ?? undefined}
+      />
 
       <header className="px-6 md:px-12 pt-40 pb-12 max-w-3xl mx-auto">
         <Link href="/blog" className="text-xs font-bold tracking-[0.3em] uppercase text-[#666666] hover:text-white transition-colors">

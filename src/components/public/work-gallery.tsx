@@ -1,16 +1,19 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { PROJECTS } from "@/lib/content/projects";
+import { getPublishedProjects } from "@/lib/data/projects";
 
 interface WorkGalleryProps {
   heading?: string;
   showViewAllLink?: boolean;
 }
 
-export function WorkGallery({
+export async function WorkGallery({
   heading = "Progetti Selezionati",
   showViewAllLink = true,
 }: WorkGalleryProps) {
+  const projects = await getPublishedProjects();
+  if (projects.length === 0) return null;
+
   return (
     <section id="progetti" className="py-32 px-6 md:px-12 max-w-7xl mx-auto">
       <div className="flex justify-between items-end mb-20 border-b border-[#222222] pb-10">
@@ -28,7 +31,7 @@ export function WorkGallery({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24">
-        {PROJECTS.map((project, i) => (
+        {projects.map((project, i) => (
           <article key={project.slug} className={`group ${i % 2 === 1 ? "md:mt-24" : ""}`}>
             <Link href={`/progetti/${project.slug}`}>
               <div

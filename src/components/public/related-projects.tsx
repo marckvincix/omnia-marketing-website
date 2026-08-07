@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { PROJECTS } from "@/lib/content/projects";
+import { getProjectsByServiceSlug } from "@/lib/data/projects";
 
-export function RelatedProjects({ slugs }: { slugs: string[] }) {
-  const projects = PROJECTS.filter((p) => slugs.includes(p.slug));
+export async function RelatedProjects({ serviceSlug }: { serviceSlug: string }) {
+  const projects = await getProjectsByServiceSlug(serviceSlug);
   if (projects.length === 0) return null;
 
   return (

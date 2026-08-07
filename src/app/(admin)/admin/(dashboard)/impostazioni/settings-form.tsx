@@ -35,7 +35,13 @@ export function SettingsForm({ initial }: { initial: SiteSettingsInput }) {
         <div className="flex flex-col gap-4">
           <div>
             <Label htmlFor="s-heroTitle">Titolo hero</Label>
-            <Input id="s-heroTitle" value={form.heroTitle} onChange={(e) => setForm({ ...form, heroTitle: e.target.value })} />
+            <Textarea
+              id="s-heroTitle"
+              rows={2}
+              value={form.heroTitle}
+              onChange={(e) => setForm({ ...form, heroTitle: e.target.value })}
+            />
+            <p className="mt-1 text-xs text-muted-foreground">Vai a capo per controllare dove si spezza il titolo.</p>
           </div>
           <div>
             <Label htmlFor="s-heroSubtitle">Sottotitolo hero</Label>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MapPin, Mail } from "lucide-react";
+import { prisma } from "@/lib/prisma";
 import { PageHero } from "@/components/public/page-hero";
 import { ContactForm } from "@/components/public/contact-form";
 import { CLIENTS_AREA_URL } from "@/lib/nav";
@@ -10,7 +11,11 @@ export const metadata: Metadata = {
     "Contatta Omnia Marketing per il tuo prossimo progetto web, di branding o social. Siamo a Pomigliano d'Arco (Napoli).",
 };
 
-export default function ContattiPage() {
+export default async function ContattiPage() {
+  const settings = await prisma.siteSettings.findUnique({ where: { id: 1 } });
+  const email = settings?.contactEmail || "info@omniamarketing.it";
+  const address = settings?.operationalAddress || "Viale Alfa Romeo, 17 — 80038 Pomigliano d'Arco (NA)";
+
   return (
     <>
       <PageHero
@@ -30,11 +35,11 @@ export default function ContattiPage() {
               Scrivici
             </h2>
             <a
-              href="mailto:info@omniamarketing.it"
+              href={`mailto:${email}`}
               className="flex items-center gap-3 text-xl text-white hover:text-[#ff6b50] transition-colors"
             >
               <Mail className="size-5" aria-hidden="true" />
-              info@omniamarketing.it
+              {email}
             </a>
           </div>
 
@@ -44,7 +49,7 @@ export default function ContattiPage() {
             </h2>
             <p className="flex items-start gap-3 text-[#cccccc]">
               <MapPin className="size-5 shrink-0 mt-0.5" aria-hidden="true" />
-              Viale Alfa Romeo, 17 — 80038 Pomigliano d&apos;Arco (NA)
+              {address}
             </p>
           </div>
 

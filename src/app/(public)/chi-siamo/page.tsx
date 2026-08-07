@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/public/page-hero";
 import { CtaBand } from "@/components/public/cta-band";
-import { SERVICES_LIST } from "@/lib/content/services";
+import { getPublishedServices } from "@/lib/data/services";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -10,7 +10,9 @@ export const metadata: Metadata = {
     "Omnia Marketing è un'entità creativa e tecnologica che trasforma visioni in esperienze digitali uniche e brand memorabili. Web, branding e social sotto lo stesso tetto.",
 };
 
-export default function ChiSiamoPage() {
+export default async function ChiSiamoPage() {
+  const services = await getPublishedServices();
+
   return (
     <>
       <PageHero
@@ -32,7 +34,7 @@ export default function ChiSiamoPage() {
           Cosa facciamo
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {SERVICES_LIST.map((service) => (
+          {services.map((service) => (
             <Link
               key={service.slug}
               href={`/${service.slug}`}

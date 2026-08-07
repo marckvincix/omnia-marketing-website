@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { PageHero } from "@/components/public/page-hero";
 import { ServiceSubGrid } from "@/components/public/service-sub-grid";
 import { RelatedProjects } from "@/components/public/related-projects";
+import { FaqSection } from "@/components/public/faq-section";
 import { CtaBand } from "@/components/public/cta-band";
-import { SERVICES } from "@/lib/content/services";
-
-const service = SERVICES.web;
+import { getServiceBySlug } from "@/lib/data/services";
+import { getFaqsByServiceSlug } from "@/lib/data/faqs";
+import { ServiceJsonLd } from "@/components/shared/json-ld";
 
 export const metadata: Metadata = {
   title: "Web — Siti, App ed eCommerce",
@@ -13,12 +15,20 @@ export const metadata: Metadata = {
     "Realizziamo siti web, app mobile, e-commerce e piattaforme digitali con design minimalista e tecnologia all'avanguardia. Web agency a Napoli e Pomigliano d'Arco.",
 };
 
-export default function WebPage() {
+export default async function WebPage() {
+  const [service, faqs] = await Promise.all([
+    getServiceBySlug("web"),
+    getFaqsByServiceSlug("web"),
+  ]);
+  if (!service) notFound();
+
   return (
     <>
+      <ServiceJsonLd name={service.title} description={service.intro} url="/web" />
       <PageHero eyebrow={service.eyebrow} title={service.title} description={service.intro} />
       <ServiceSubGrid items={service.subservices} />
-      <RelatedProjects slugs={service.relatedProjectSlugs} />
+      <RelatedProjects serviceSlug="web" />
+      <FaqSection items={faqs} />
       <CtaBand
         title="Hai un progetto web in mente?"
         description="Raccontaci la tua idea: la trasformiamo in un sito, un'app o un e-commerce su misura."
