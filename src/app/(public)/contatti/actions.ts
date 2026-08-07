@@ -13,6 +13,11 @@ export async function submitContact(
   _prevState: ContactActionState,
   formData: FormData,
 ): Promise<ContactActionState> {
+  // Honeypot anti-spam: campo invisibile che solo i bot compilano
+  if (formData.get("website")) {
+    redirect("/grazie");
+  }
+
   const parsed = contactSchema.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),

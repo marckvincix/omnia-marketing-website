@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { CtaBand } from "@/components/public/cta-band";
 import { BreadcrumbJsonLd, ArticleJsonLd } from "@/components/shared/json-ld";
@@ -68,8 +69,9 @@ export default async function BlogPostPage({
       </header>
 
       {post.coverImage && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={post.coverImage} alt={post.title} className="mx-6 md:mx-auto md:max-w-4xl rounded-2xl aspect-video object-cover" />
+        <div className="relative mx-6 md:mx-auto md:max-w-4xl aspect-video rounded-2xl overflow-hidden">
+          <Image src={post.coverImage} alt={post.title} fill sizes="(max-width: 896px) 100vw, 896px" className="object-cover" priority />
+        </div>
       )}
 
       <div className="px-6 md:px-12 py-16 max-w-3xl mx-auto text-[#cccccc] leading-relaxed whitespace-pre-wrap">

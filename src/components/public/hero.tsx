@@ -48,31 +48,31 @@ export function Hero({
         <p className="mt-6 text-base md:text-lg text-[#999999] max-w-xl mx-auto">{subtitle}</p>
       </motion.div>
 
-      {recentClients.length > 0 && (
-        <div className="absolute bottom-12 left-8 md:left-12 flex items-center gap-5">
-          <div className="flex -space-x-4">
-            {recentClients.map((client) => (
-              <div
-                key={client.name}
-                title={client.name}
-                className="w-10 h-10 rounded-full border-2 border-[#050505] bg-[#1a1a1a] flex items-center justify-center text-[11px] font-bold text-white"
-              >
-                {client.initials}
-              </div>
-            ))}
+      <div className="absolute bottom-6 left-6 right-6 flex flex-col items-start gap-4 md:bottom-12 md:left-12 md:right-12 md:flex-row md:items-end md:justify-between">
+        {recentClients.length > 0 && (
+          <div className="flex items-center gap-5">
+            <div className="flex -space-x-4 shrink-0">
+              {recentClients.map((client) => (
+                <div
+                  key={client.name}
+                  title={client.name}
+                  className="w-10 h-10 rounded-full border-2 border-[#050505] bg-[#1a1a1a] flex items-center justify-center text-[11px] font-bold text-white"
+                >
+                  {client.initials}
+                </div>
+              ))}
+            </div>
+            <Link
+              href="/progetti"
+              className="text-xs md:text-sm font-medium leading-tight text-[#888888] hover:text-white transition-colors"
+            >
+              Progetti realizzati
+              <br />
+              per i nostri clienti.
+            </Link>
           </div>
-          <Link
-            href="/progetti"
-            className="text-xs md:text-sm font-medium leading-tight text-[#888888] hover:text-white transition-colors"
-          >
-            Progetti realizzati
-            <br />
-            per i nostri clienti.
-          </Link>
-        </div>
-      )}
+        )}
 
-      <div className="absolute bottom-12 right-8 md:right-12 text-right">
         <Link
           href={ctaUrl}
           className="text-white font-medium hover:text-[#ff6b50] transition-colors border-b-2 border-white hover:border-[#ff6b50] pb-1"

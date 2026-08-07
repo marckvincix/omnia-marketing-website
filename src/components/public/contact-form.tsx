@@ -24,6 +24,15 @@ export function ContactForm() {
 
   return (
     <form action={formAction} className="flex flex-col gap-5">
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+      />
+
       <div>
         <label htmlFor="name" className="block text-xs font-bold uppercase tracking-widest text-[#888888] mb-2">
           Nome

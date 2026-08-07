@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { PageHero } from "@/components/public/page-hero";
 import { CtaBand } from "@/components/public/cta-band";
@@ -34,12 +35,15 @@ export default async function BlogPage() {
             {posts.map((post) => (
               <Link key={post.id} href={`/blog/${post.slug}`} className="group">
                 {post.coverImage && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={post.coverImage}
-                    alt={post.title}
-                    className="aspect-video w-full object-cover rounded-2xl mb-4"
-                  />
+                  <div className="relative aspect-video w-full overflow-hidden rounded-2xl mb-4">
+                    <Image
+                      src={post.coverImage}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
                 )}
                 {post.category && (
                   <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ff6b50]">
