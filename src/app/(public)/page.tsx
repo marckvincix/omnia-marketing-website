@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { Hero } from "@/components/public/hero";
+import { HorizontalTicker } from "@/components/public/horizontal-ticker";
 import { ServicesIndex } from "@/components/public/services-index";
 import { WorkGallery } from "@/components/public/work-gallery";
 
@@ -38,6 +39,7 @@ export default async function HomePage() {
         ctaUrl={settings?.heroCtaUrl ?? undefined}
         recentClients={recentProjects.map((p) => ({ initials: initialsFor(p.client), name: p.client }))}
       />
+      <HorizontalTicker />
       <ServicesIndex />
       <WorkGallery />
     </>
