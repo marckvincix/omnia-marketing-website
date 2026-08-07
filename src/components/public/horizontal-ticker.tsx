@@ -79,7 +79,7 @@ export function HorizontalTicker() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-screen overflow-hidden bg-black text-white">
+    <section ref={sectionRef} className="relative h-screen overflow-hidden bg-[#050505] text-white">
       <div
         ref={trackRef}
         className="absolute top-1/2 left-0 flex -translate-y-1/2 items-center whitespace-nowrap will-change-transform"
@@ -97,7 +97,7 @@ export function HorizontalTicker() {
           ) : (
             <span
               key={i}
-              className="mx-4 md:mx-6 shrink-0 leading-none text-[#ff6b50] text-[6vw] md:text-[3.5vw]"
+              className="mx-4 md:mx-6 shrink-0 leading-none text-[#2e9bd6] text-[6vw] md:text-[3.5vw]"
               aria-hidden="true"
             >
               {item.content}

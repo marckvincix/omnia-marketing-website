@@ -12,8 +12,8 @@ interface TubesApp {
 const TUBES_CDN_URL =
   "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js";
 
-const BRAND_TUBE_COLORS = ["#ff6b50", "#ff2d55", "#ffffff"];
-const BRAND_LIGHT_COLORS = ["#ff6b50", "#ffb199", "#ffffff", "#ff2d55"];
+const BRAND_TUBE_COLORS = ["#2e9bd6", "#14305c", "#ffffff"];
+const BRAND_LIGHT_COLORS = ["#2e9bd6", "#8fd3f4", "#ffffff", "#14305c"];
 
 function randomColors(count: number) {
   return Array.from(
@@ -73,7 +73,7 @@ export function TubesBackground({
   }
 
   return (
-    <div className={`relative w-full overflow-hidden bg-black ${className}`} onClick={handleClick}>
+    <div className={`relative w-full overflow-hidden bg-[#050505] ${className}`} onClick={handleClick}>
       <canvas ref={canvasRef} className={`absolute inset-0 block h-full w-full transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`} />
       <div className="relative z-10 h-full w-full pointer-events-none">{children}</div>
     </div>

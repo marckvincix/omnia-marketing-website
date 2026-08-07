@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function CookiePolicyPage() {
   return (
-    <article className="px-6 md:px-12 pt-40 pb-32 max-w-3xl mx-auto">
+    <article className="px-6 md:px-12 pt-20 pb-32 max-w-3xl mx-auto">
       <h1 className="font-display font-black text-white text-4xl md:text-6xl mb-4">
         Cookie Policy
       </h1>
@@ -57,7 +57,7 @@ export default function CookiePolicyPage() {
           <h2 className="font-display text-2xl text-white mb-3">Titolare del trattamento</h2>
           <p>
             Omniaweb S.r.l.s, P.IVA 09553001216 —{" "}
-            <a href="mailto:info@omniamarketing.it" className="text-white underline hover:text-[#ff6b50]">
+            <a href="mailto:info@omniamarketing.it" className="text-white underline hover:text-[#2e9bd6]">
               info@omniamarketing.it
             </a>
           </p>

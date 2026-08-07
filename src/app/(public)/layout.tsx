@@ -1,4 +1,3 @@
-import { SiteNav } from "@/components/public/site-nav";
 import { FloatingDock } from "@/components/public/floating-dock";
 import { SiteFooter } from "@/components/public/site-footer";
 import { OrganizationJsonLd } from "@/components/shared/json-ld";
@@ -13,9 +12,8 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
       >
         Vai al contenuto principale
       </a>
-      <SiteNav />
       <FloatingDock />
-      <main id="main-content">{children}</main>
+      <main id="main-content" className="pb-24">{children}</main>
       <SiteFooter />
     </div>
   );

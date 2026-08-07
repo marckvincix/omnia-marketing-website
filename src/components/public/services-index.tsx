@@ -7,7 +7,7 @@ export async function ServicesIndex() {
   if (services.length === 0) return null;
 
   return (
-    <section className="bg-black text-white">
+    <section className="bg-[#050505] text-white">
       <div className="max-w-7xl mx-auto border-y border-white/20 divide-y divide-white/20">
         {services.map((service, i) => (
           <Link

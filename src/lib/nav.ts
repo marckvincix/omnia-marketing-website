@@ -1,19 +1,7 @@
 import type { LucideIcon } from "lucide-react";
-import { Code2, PenTool, Megaphone, LayoutGrid, Mail } from "lucide-react";
+import { Home, Users, Code2, PenTool, Megaphone, LayoutGrid, Newspaper, Mail, LogIn } from "lucide-react";
 
 export const CLIENTS_AREA_URL = "https://hub.omniamarketing.it";
-
-export const TOP_NAV = [
-  { label: "Home", href: "/" },
-  { label: "Chi Siamo", href: "/chi-siamo" },
-  { label: "Portfolio", href: "/progetti" },
-] as const;
-
-export const SERVICES_NAV = [
-  { label: "Web", href: "/web", description: "Siti, app, e-commerce" },
-  { label: "Branding", href: "/branding", description: "Strategy, naming, logo, UI/UX" },
-  { label: "Social", href: "/social", description: "SMM, foto, video, spot" },
-] as const;
 
 export const FOOTER_NAV = [
   { label: "Home", href: "/" },
@@ -27,9 +15,14 @@ export const FOOTER_NAV = [
 ] as const;
 
 export const DOCK_ITEMS: { label: string; href: string; icon: LucideIcon }[] = [
+  { label: "Home", href: "/", icon: Home },
+  { label: "Chi Siamo", href: "/chi-siamo", icon: Users },
   { label: "Web", href: "/web", icon: Code2 },
   { label: "Branding", href: "/branding", icon: PenTool },
   { label: "Social", href: "/social", icon: Megaphone },
   { label: "Portfolio", href: "/progetti", icon: LayoutGrid },
-  { label: "Contatti", href: "/contatti", icon: Mail },
+  { label: "Blog", href: "/blog", icon: Newspaper },
 ];
+
+export const DOCK_CTA_ICON = Mail;
+export const CLIENTS_AREA_ICON = LogIn;

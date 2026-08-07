@@ -39,10 +39,10 @@ export function ContactForm() {
           name="name"
           type="text"
           required
-          className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#ff6b50] transition-colors"
+          className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#2e9bd6] transition-colors"
         />
         {state.fieldErrors?.name && (
-          <p className="mt-1 text-xs text-[#ff6b50]">{state.fieldErrors.name}</p>
+          <p className="mt-1 text-xs text-[#2e9bd6]">{state.fieldErrors.name}</p>
         )}
       </div>
 
@@ -55,10 +55,10 @@ export function ContactForm() {
           name="email"
           type="email"
           required
-          className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#ff6b50] transition-colors"
+          className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#2e9bd6] transition-colors"
         />
         {state.fieldErrors?.email && (
-          <p className="mt-1 text-xs text-[#ff6b50]">{state.fieldErrors.email}</p>
+          <p className="mt-1 text-xs text-[#2e9bd6]">{state.fieldErrors.email}</p>
         )}
       </div>
 
@@ -70,7 +70,7 @@ export function ContactForm() {
           id="phone"
           name="phone"
           type="tel"
-          className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#ff6b50] transition-colors"
+          className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#2e9bd6] transition-colors"
         />
       </div>
 
@@ -83,14 +83,14 @@ export function ContactForm() {
           name="message"
           rows={5}
           required
-          className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#ff6b50] transition-colors resize-none"
+          className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#2e9bd6] transition-colors resize-none"
         />
         {state.fieldErrors?.message && (
-          <p className="mt-1 text-xs text-[#ff6b50]">{state.fieldErrors.message}</p>
+          <p className="mt-1 text-xs text-[#2e9bd6]">{state.fieldErrors.message}</p>
         )}
       </div>
 
-      {state.error && <p className="text-sm text-[#ff6b50]">{state.error}</p>}
+      {state.error && <p className="text-sm text-[#2e9bd6]">{state.error}</p>}
 
       <SubmitButton />
     </form>

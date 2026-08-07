@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <article className="px-6 md:px-12 pt-40 pb-32 max-w-3xl mx-auto">
+    <article className="px-6 md:px-12 pt-20 pb-32 max-w-3xl mx-auto">
       <h1 className="font-display font-black text-white text-4xl md:text-6xl mb-4">
         Privacy Policy
       </h1>
@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
             sede operativa in Viale Alfa Romeo, 17 — 80038 Pomigliano
             d&apos;Arco (NA). Per qualsiasi richiesta relativa al trattamento
             dei dati personali è possibile scrivere a{" "}
-            <a href="mailto:info@omniamarketing.it" className="text-white underline hover:text-[#ff6b50]">
+            <a href="mailto:info@omniamarketing.it" className="text-white underline hover:text-[#2e9bd6]">
               info@omniamarketing.it
             </a>
             .
@@ -86,7 +86,7 @@ export default function PrivacyPolicyPage() {
           </ul>
           <p className="mt-3">
             Per esercitare questi diritti è sufficiente scrivere a{" "}
-            <a href="mailto:info@omniamarketing.it" className="text-white underline hover:text-[#ff6b50]">
+            <a href="mailto:info@omniamarketing.it" className="text-white underline hover:text-[#2e9bd6]">
               info@omniamarketing.it
             </a>
             .

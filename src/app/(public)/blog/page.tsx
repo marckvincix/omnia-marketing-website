@@ -46,11 +46,11 @@ export default async function BlogPage() {
                   </div>
                 )}
                 {post.category && (
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ff6b50]">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#2e9bd6]">
                     {post.category.name}
                   </span>
                 )}
-                <h2 className="mt-2 font-display text-2xl text-white group-hover:text-[#ff6b50] transition-colors">
+                <h2 className="mt-2 font-display text-2xl text-white group-hover:text-[#2e9bd6] transition-colors">
                   {post.title}
                 </h2>
                 <p className="mt-2 text-sm text-[#999999]">{post.excerpt}</p>

@@ -56,7 +56,7 @@ export default async function ProjectDetailPage({
         client={project.client}
       />
 
-      <header className="px-6 md:px-12 pt-40 pb-16 max-w-7xl mx-auto">
+      <header className="px-6 md:px-12 pt-20 pb-16 max-w-7xl mx-auto">
         <Link
           href="/progetti"
           className="text-xs font-bold tracking-[0.3em] uppercase text-[#666666] hover:text-white transition-colors"
@@ -66,7 +66,7 @@ export default async function ProjectDetailPage({
         <h1 className="mt-8 font-display font-black text-white text-5xl md:text-7xl leading-[0.95] tracking-tight">
           {project.client}
         </h1>
-        <p className="mt-4 text-sm font-bold tracking-[0.2em] uppercase text-[#ff6b50]">
+        <p className="mt-4 text-sm font-bold tracking-[0.2em] uppercase text-[#2e9bd6]">
           {project.category}
         </p>
         <p className="mt-8 max-w-2xl text-lg text-[#999999]">{project.description}</p>
@@ -76,7 +76,7 @@ export default async function ProjectDetailPage({
             href={project.externalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2 text-white border-b-2 border-white hover:border-[#ff6b50] hover:text-[#ff6b50] transition-colors pb-1 w-fit"
+            className="mt-8 inline-flex items-center gap-2 text-white border-b-2 border-white hover:border-[#2e9bd6] hover:text-[#2e9bd6] transition-colors pb-1 w-fit"
           >
             Visita il sito
             <ArrowUpRight className="size-4" aria-hidden="true" />
@@ -94,7 +94,7 @@ export default async function ProjectDetailPage({
 
       <section className="px-6 md:px-12 py-20 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
         <div>
-          <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#ff6b50] mb-6">
+          <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-6">
             Servizi svolti
           </h2>
           <ul className="flex flex-wrap gap-3">
@@ -111,13 +111,13 @@ export default async function ProjectDetailPage({
 
         {project.results.length > 0 && (
           <div>
-            <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#ff6b50] mb-6">
+            <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-6">
               Risultati
             </h2>
             <ul className="flex flex-col gap-3">
               {project.results.map((r) => (
                 <li key={r} className="flex items-start gap-3 text-[#cccccc]">
-                  <Check className="size-5 text-[#ff6b50] shrink-0 mt-0.5" aria-hidden="true" />
+                  <Check className="size-5 text-[#2e9bd6] shrink-0 mt-0.5" aria-hidden="true" />
                   {r}
                 </li>
               ))}

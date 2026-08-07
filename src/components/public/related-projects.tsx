@@ -8,7 +8,7 @@ export async function RelatedProjects({ serviceSlug }: { serviceSlug: string }) 
 
   return (
     <section className="px-6 md:px-12 py-20 max-w-7xl mx-auto border-t border-[#1a1a1a]">
-      <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#ff6b50] mb-12">
+      <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-12">
         Progetti correlati
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -23,14 +23,14 @@ export async function RelatedProjects({ serviceSlug }: { serviceSlug: string }) 
             </div>
             <div className="mt-6 flex justify-between items-start">
               <div>
-                <h3 className="font-display text-2xl group-hover:text-[#ff6b50] transition-colors">
+                <h3 className="font-display text-2xl group-hover:text-[#2e9bd6] transition-colors">
                   {project.client}
                 </h3>
                 <p className="text-[#666666] text-[10px] font-bold uppercase tracking-[0.2em] mt-1">
                   {project.category}
                 </p>
               </div>
-              <div className="p-2.5 rounded-full border border-[#333333] group-hover:bg-[#ff6b50] group-hover:text-black group-hover:border-transparent transition-all">
+              <div className="p-2.5 rounded-full border border-[#333333] group-hover:bg-[#2e9bd6] group-hover:text-black group-hover:border-transparent transition-all">
                 <ArrowUpRight className="size-5" aria-hidden="true" />
               </div>
             </div>

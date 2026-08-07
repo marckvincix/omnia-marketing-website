@@ -30,7 +30,7 @@ export default async function ChiSiamoPage() {
       </section>
 
       <section className="px-6 md:px-12 py-20 max-w-7xl mx-auto border-t border-[#1a1a1a]">
-        <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#ff6b50] mb-12">
+        <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-12">
           Cosa facciamo
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -44,7 +44,7 @@ export default async function ChiSiamoPage() {
                 <h3 className="font-display text-2xl text-white">{service.title}</h3>
                 <p className="mt-3 text-sm text-[#999999]">{service.intro}</p>
               </div>
-              <span className="mt-8 text-sm font-semibold text-[#888888] group-hover:text-[#ff6b50] transition-colors">
+              <span className="mt-8 text-sm font-semibold text-[#888888] group-hover:text-[#2e9bd6] transition-colors">
                 Scopri di più →
               </span>
             </Link>
@@ -53,7 +53,7 @@ export default async function ChiSiamoPage() {
       </section>
 
       <section className="px-6 md:px-12 py-20 max-w-7xl mx-auto border-t border-[#1a1a1a]">
-        <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#ff6b50] mb-8">
+        <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6] mb-8">
           Un unico partner
         </h2>
         <p className="max-w-3xl text-lg md:text-2xl text-[#cccccc] leading-relaxed font-display">

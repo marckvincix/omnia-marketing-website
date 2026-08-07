@@ -17,7 +17,7 @@ export async function WorkGallery({
   return (
     <section id="progetti" className="py-32 px-6 md:px-12 max-w-7xl mx-auto">
       <div className="flex justify-between items-end mb-20 border-b border-[#222222] pb-10">
-        <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#ff6b50]">
+        <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#2e9bd6]">
           {heading}
         </h2>
         {showViewAllLink && (
@@ -43,14 +43,14 @@ export async function WorkGallery({
               </div>
               <div className="mt-8 flex justify-between items-start">
                 <div>
-                  <h3 className="font-display text-3xl tracking-tight mb-2 group-hover:text-[#ff6b50] transition-colors">
+                  <h3 className="font-display text-3xl tracking-tight mb-2 group-hover:text-[#2e9bd6] transition-colors">
                     {project.client}
                   </h3>
                   <p className="text-[#666666] text-[10px] font-bold uppercase tracking-[0.2em]">
                     {project.category}
                   </p>
                 </div>
-                <div className="p-3 rounded-full border border-[#333333] group-hover:bg-[#ff6b50] group-hover:text-black group-hover:border-transparent transition-all duration-300">
+                <div className="p-3 rounded-full border border-[#333333] group-hover:bg-[#2e9bd6] group-hover:text-black group-hover:border-transparent transition-all duration-300">
                   <ArrowUpRight className="size-6" aria-hidden="true" />
                 </div>
               </div>

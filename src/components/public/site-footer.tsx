@@ -30,7 +30,7 @@ export async function SiteFooter() {
           <div className="flex flex-col gap-6">
             <a
               href={`mailto:${email}`}
-              className="text-2xl md:text-3xl font-semibold hover:text-[#ff6b50] transition-colors w-fit"
+              className="text-2xl md:text-3xl font-semibold hover:text-[#2e9bd6] transition-colors w-fit"
             >
               {email}
             </a>

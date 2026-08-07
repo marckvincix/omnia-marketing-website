@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function GraziePage() {
   return (
-    <section className="px-6 md:px-12 pt-48 pb-32 max-w-4xl mx-auto text-center">
+    <section className="px-6 md:px-12 pt-24 pb-32 max-w-4xl mx-auto text-center">
       <h1 className="font-display font-black text-white text-5xl md:text-7xl leading-[0.95]">
         Grazie.
       </h1>
