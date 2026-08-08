@@ -42,7 +42,7 @@ export function ScrollWordReveal({ text }: { text: string }) {
   return (
     <section ref={sectionRef} className="relative flex min-h-screen items-center justify-center bg-[#000000] px-6 md:px-12">
       <p
-        className="max-w-5xl mx-auto text-center font-bold leading-[1.05] text-3xl md:text-5xl lg:text-6xl"
+        className="max-w-5xl mx-auto text-center font-bold leading-[1.05] tracking-[0.02em] text-3xl md:text-5xl lg:text-6xl"
         style={{ fontFamily: "var(--font-alfa-slab)" }}
       >
         {words.map((word, i) => (
