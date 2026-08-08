@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { Hero } from "@/components/public/hero";
+import { IntroLogoReveal } from "@/components/public/intro-logo-reveal";
 import { HorizontalTicker } from "@/components/public/horizontal-ticker";
 import { ServicesIndex } from "@/components/public/services-index";
 import { ProjectBentoGrid } from "@/components/public/project-bento-grid";
@@ -16,6 +17,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <IntroLogoReveal />
       <Hero title={settings?.heroTitle} />
       <HorizontalTicker />
       <ServicesIndex />
