@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PageHero } from "@/components/public/page-hero";
+import { ScrollWordReveal } from "@/components/public/scroll-word-reveal";
 import { ServiceSubGrid } from "@/components/public/service-sub-grid";
 import { RelatedProjects } from "@/components/public/related-projects";
 import { FaqSection } from "@/components/public/faq-section";
@@ -25,7 +25,7 @@ export default async function SocialPage() {
   return (
     <>
       <ServiceJsonLd name={service.title} description={service.intro} url="/social" />
-      <PageHero eyebrow={service.eyebrow} title={service.title} description={service.intro} />
+      <ScrollWordReveal text="Social curati al dettaglio: gestiamo contenuti, realizziamo foto e video unici e produciamo spot per valorizzare la tua presenza digitale." />
       <ServiceSubGrid items={service.subservices} />
       <RelatedProjects serviceSlug="social" />
       <FaqSection items={faqs} />

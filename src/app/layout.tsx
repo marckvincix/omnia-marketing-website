@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono, Archivo_Black, Space_Mono, Montserrat } from "next/font/google";
+import { Inter, Geist_Mono, Archivo_Black, Space_Mono, Montserrat, Alfa_Slab_One } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -35,6 +35,13 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
+const alfaSlabOne = Alfa_Slab_One({
+  variable: "--font-alfa-slab",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
@@ -49,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="it"
-      className={`${inter.variable} ${geistMono.variable} ${archivoBlack.variable} ${spaceMono.variable} ${montserrat.variable} h-full antialiased`}
+      className={`${inter.variable} ${geistMono.variable} ${archivoBlack.variable} ${spaceMono.variable} ${montserrat.variable} ${alfaSlabOne.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
