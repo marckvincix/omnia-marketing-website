@@ -19,7 +19,10 @@ export default async function DisiscrivitiPage({
   if (email && token) {
     const subscriber = await prisma.newsletterSubscriber.findUnique({ where: { email } });
     if (subscriber && subscriber.unsubscribeToken === token) {
-      await prisma.newsletterSubscriber.delete({ where: { id: subscriber.id } });
+      await prisma.newsletterSubscriber.update({
+        where: { id: subscriber.id },
+        data: { unsubscribedAt: new Date() },
+      });
       success = true;
     }
   }

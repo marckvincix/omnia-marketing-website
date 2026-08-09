@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sendNewsletterForPost } from "@/lib/email/send-newsletter";
+import type { SegmentKey } from "@/lib/email/segments";
 
 async function requireAdmin() {
   const session = await auth();
@@ -16,9 +17,9 @@ export async function deleteSubscriber(id: string) {
   revalidatePath("/admin/newsletter");
 }
 
-export async function sendUpdateEmail(postId: string) {
+export async function sendUpdateEmail(postId: string, segment: SegmentKey) {
   await requireAdmin();
-  const result = await sendNewsletterForPost(postId);
+  const result = await sendNewsletterForPost(postId, segment);
   revalidatePath("/admin/newsletter");
   return result;
 }

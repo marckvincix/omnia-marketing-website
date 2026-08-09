@@ -5,6 +5,14 @@ import { Loader2, Send } from "lucide-react";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { SEGMENTS, type SegmentKey } from "@/lib/email/segment-labels";
 import { sendUpdateEmail } from "./actions";
 
 export interface PostSendRowData {
@@ -17,12 +25,13 @@ export interface PostSendRowData {
 export function PostSendRow({ post, subscriberCount }: { post: PostSendRowData; subscriberCount: number }) {
   const [isPending, startTransition] = useTransition();
   const [confirming, setConfirming] = useState(false);
+  const [segment, setSegment] = useState<SegmentKey>("all");
   const [result, setResult] = useState<string | null>(null);
 
   function handleSend() {
     setConfirming(false);
     startTransition(async () => {
-      const res = await sendUpdateEmail(post.id);
+      const res = await sendUpdateEmail(post.id, segment);
       setResult(`Inviata a ${res.sent}/${res.total} iscritti`);
     });
   }
@@ -49,9 +58,23 @@ export function PostSendRow({ post, subscriberCount }: { post: PostSendRowData; 
         {result ? (
           <span className="text-xs text-muted-foreground">{result}</span>
         ) : confirming ? (
-          <Button size="sm" variant="destructive" disabled={isPending} onClick={handleSend}>
-            {isPending ? <Loader2 className="size-4 animate-spin" /> : "Conferma invio"}
-          </Button>
+          <div className="flex items-center justify-end gap-2">
+            <Select value={segment} onValueChange={(v) => setSegment(v as SegmentKey)}>
+              <SelectTrigger className="w-48" size="sm">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {SEGMENTS.map((s) => (
+                  <SelectItem key={s.key} value={s.key}>
+                    {s.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Button size="sm" variant="destructive" disabled={isPending} onClick={handleSend}>
+              {isPending ? <Loader2 className="size-4 animate-spin" /> : "Conferma invio"}
+            </Button>
+          </div>
         ) : (
           <Button
             size="sm"

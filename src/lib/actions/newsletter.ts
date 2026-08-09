@@ -29,7 +29,7 @@ export async function subscribeNewsletter(
   const subscriber = await prisma.newsletterSubscriber.upsert({
     where: { email: parsed.data.email },
     create: { email: parsed.data.email },
-    update: {},
+    update: { unsubscribedAt: null },
   });
 
   try {
