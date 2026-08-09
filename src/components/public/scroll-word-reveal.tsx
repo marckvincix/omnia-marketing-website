@@ -3,10 +3,13 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useVisitorName } from "@/lib/visitor-name-context";
 
 export function ScrollWordReveal({ text }: { text: string }) {
+  const { name } = useVisitorName();
   const sectionRef = useRef<HTMLDivElement>(null);
-  const words = text.split(" ");
+  const displayText = name ? `${name}, ${text}` : text;
+  const words = displayText.split(" ");
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -37,7 +40,7 @@ export function ScrollWordReveal({ text }: { text: string }) {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [displayText]);
 
   return (
     <section ref={sectionRef} className="relative flex min-h-screen items-center justify-center bg-[#000000] px-6 md:px-12">

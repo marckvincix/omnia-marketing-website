@@ -95,7 +95,10 @@ export function IntroLogoReveal() {
           end: "bottom bottom",
           scrub: 0.4,
           invalidateOnRefresh: true,
-          onLeave: () => gsap.set(curtainRef.current, { display: "none" }),
+          onLeave: () => {
+            gsap.set(curtainRef.current, { display: "none" });
+            window.dispatchEvent(new CustomEvent("omnia:intro-complete"));
+          },
           onEnterBack: () => gsap.set(curtainRef.current, { display: "flex" }),
         },
       });

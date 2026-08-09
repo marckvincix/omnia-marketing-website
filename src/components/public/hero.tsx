@@ -1,13 +1,18 @@
 "use client";
 
 import { TubesBackground } from "./tubes-background";
+import { useVisitorName } from "@/lib/visitor-name-context";
 
 interface HeroProps {
   title?: string;
 }
 
 export function Hero({ title = "crediamo\nnel design" }: HeroProps) {
+  const { name } = useVisitorName();
   const lines = title.split("\n");
+  if (name) {
+    lines[0] = `${name}, ${lines[0]}`;
+  }
 
   return (
     <TubesBackground className="h-screen">
