@@ -3,6 +3,8 @@ import { MapPin } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { FOOTER_NAV, CLIENTS_AREA_URL } from "@/lib/nav";
 import { LightBeamButton } from "./light-beam-button";
+import { NewsletterForm } from "./newsletter-form";
+import { SocialIcons } from "./social-icons";
 
 const DEFAULT_EMAIL = "info@omniamarketing.it";
 const DEFAULT_ADDRESS = "Viale Alfa Romeo, 17 — 80038 Pomigliano d'Arco (NA)";
@@ -48,7 +50,15 @@ export async function SiteFooter() {
         </div>
       </div>
 
-      <nav aria-label="Link footer" className="max-w-7xl mx-auto mt-24 flex flex-wrap gap-x-8 gap-y-3 text-sm text-[#888888]">
+      <div className="max-w-7xl mx-auto mt-24 pt-10 border-t border-[#111111] flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-normal text-[#888888] mb-3">Newsletter</p>
+          <NewsletterForm />
+        </div>
+        <SocialIcons className="flex gap-3" />
+      </div>
+
+      <nav aria-label="Link footer" className="max-w-7xl mx-auto mt-16 flex flex-wrap gap-x-8 gap-y-3 text-sm text-[#888888]">
         {FOOTER_NAV.map((item) => (
           <Link key={item.href} href={item.href} className="hover:text-white transition-colors">
             {item.label}
