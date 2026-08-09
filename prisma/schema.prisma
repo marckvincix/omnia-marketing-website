@@ -226,6 +226,9 @@ model BlogPost {
   excerpt String
   content String
 
+  // Id della riga sorgente in Omnia Hub (content_updates), per la sync automatica.
+  externalId String? @unique
+
   coverImage        String?
   categoryId         String?
   category           BlogCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
