@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/public/page-hero";
 import { CtaBand } from "@/components/public/cta-band";
 import { StackedProjects } from "@/components/public/stacked-projects";
 import { getPublishedProjects } from "@/lib/data/projects";
@@ -15,11 +14,6 @@ export default async function ProgettiPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Portfolio"
-        title="Progetti realizzati per i nostri clienti."
-        description="Ogni progetto nasce da un ascolto attento e si costruisce insieme al cliente, dal primo brief al risultato finale."
-      />
       <StackedProjects projects={projects} />
       <CtaBand
         title="Il prossimo progetto potrebbe essere il tuo."
