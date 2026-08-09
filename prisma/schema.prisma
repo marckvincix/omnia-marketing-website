@@ -132,9 +132,16 @@ model Project {
   order     Int     @default(0)
   published Boolean @default(true)
 
+  // Immagine di copertina: sfondo mostrato in ogni scheda progetto sul sito.
+  coverImage String?
+
   seoTitle       String?
   seoDescription String?
   ogImage        String?
+
+  // Testo pensato per i motori generativi/AI (GEO), distinto dalla meta description SEO tradizionale.
+  geoTitle       String?
+  geoDescription String?
 
   media       ProjectMedia[]
   services    ProjectService[]

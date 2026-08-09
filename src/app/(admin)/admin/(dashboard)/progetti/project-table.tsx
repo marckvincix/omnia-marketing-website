@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Pencil, Plus } from "lucide-react";
 import {
   Table,
@@ -12,28 +13,23 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DeleteButton } from "@/components/admin/delete-button";
-import type { ProjectInput } from "@/lib/validation/admin";
-import { ProjectForm } from "./project-form";
 import { deleteProject } from "./actions";
 
-export function ProjectTable({
-  projects,
-  serviceOptions,
-}: {
-  projects: ProjectInput[];
-  serviceOptions: { id: string; title: string }[];
-}) {
+export interface ProjectRowData {
+  id: string;
+  client: string;
+  category: string;
+  slug: string;
+  published: boolean;
+}
+
+export function ProjectTable({ projects }: { projects: ProjectRowData[] }) {
   return (
     <div>
       <div className="flex justify-end mb-4">
-        <ProjectForm
-          serviceOptions={serviceOptions}
-          trigger={
-            <Button>
-              <Plus className="size-4" /> Nuovo progetto
-            </Button>
-          }
-        />
+        <Button render={<Link href="/admin/progetti/nuovo" />}>
+          <Plus className="size-4" /> Nuovo progetto
+        </Button>
       </div>
 
       <div className="rounded-xl border border-border bg-card overflow-hidden">
@@ -60,16 +56,14 @@ export function ProjectTable({
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center justify-end gap-3">
-                    <ProjectForm
-                      initial={project}
-                      serviceOptions={serviceOptions}
-                      trigger={
-                        <button className="text-muted-foreground hover:text-foreground transition-colors" title="Modifica">
-                          <Pencil className="size-4" />
-                        </button>
-                      }
-                    />
-                    <DeleteButton action={() => deleteProject(project.id!)} />
+                    <Link
+                      href={`/admin/progetti/${project.id}`}
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      title="Modifica"
+                    >
+                      <Pencil className="size-4" />
+                    </Link>
+                    <DeleteButton action={() => deleteProject(project.id)} />
                   </div>
                 </TableCell>
               </TableRow>

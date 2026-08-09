@@ -21,6 +21,7 @@ export interface ProjectView {
   servicesRendered: string[];
   serviceSlugs: string[];
   description: string;
+  coverImage: string | null;
   results: string[];
   testimonialQuote: string;
   externalUrl: string;
@@ -35,6 +36,7 @@ type ProjectWithRelations = {
   client: string;
   category: string;
   description: string;
+  coverImage: string | null;
   resultsText: string | null;
   testimonialQuote: string | null;
   externalUrl: string | null;
@@ -52,6 +54,7 @@ function toView(p: ProjectWithRelations): ProjectView {
     servicesRendered: p.services.map((s) => s.service.title),
     serviceSlugs: p.services.map((s) => s.service.slug),
     description: p.description,
+    coverImage: p.coverImage,
     results: p.resultsText ? p.resultsText.split(" · ").filter(Boolean) : [],
     testimonialQuote: p.testimonialQuote ?? "",
     externalUrl: p.externalUrl ?? "#",
@@ -82,4 +85,13 @@ export async function getProjectBySlug(slug: string): Promise<ProjectView | null
 export async function getProjectsByServiceSlug(serviceSlug: string): Promise<ProjectView[]> {
   const all = await getPublishedProjects();
   return all.filter((p) => p.serviceSlugs.includes(serviceSlug));
+}
+
+export async function getProjectCategoryOptions(): Promise<string[]> {
+  const rows = await prisma.project.findMany({
+    select: { category: true },
+    distinct: ["category"],
+    orderBy: { category: "asc" },
+  });
+  return rows.map((r) => r.category).filter(Boolean);
 }

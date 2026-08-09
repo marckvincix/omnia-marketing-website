@@ -37,6 +37,7 @@ export const projectSchema = z.object({
   client: z.string().trim().min(1, "Cliente obbligatorio"),
   category: z.string().trim().min(1, "Categoria obbligatoria"),
   description: z.string().trim().min(1, "Descrizione obbligatoria"),
+  coverImage: z.string().trim().optional().or(z.literal("")),
   year: z.coerce.number().int().optional().nullable(),
   externalUrl: z.string().trim().optional().or(z.literal("")),
   resultsText: z.string().trim().optional().or(z.literal("")),
@@ -46,6 +47,8 @@ export const projectSchema = z.object({
   published: z.boolean().default(true),
   seoTitle: z.string().trim().optional().or(z.literal("")),
   seoDescription: z.string().trim().optional().or(z.literal("")),
+  geoTitle: z.string().trim().optional().or(z.literal("")),
+  geoDescription: z.string().trim().optional().or(z.literal("")),
   serviceIds: z.array(z.string()).default([]),
   media: z.array(projectMediaSchema).default([]),
 });

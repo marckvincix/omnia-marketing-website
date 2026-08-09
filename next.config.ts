@@ -8,6 +8,15 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  experimental: {
+    serverActions: {
+      // Consente il caricamento di immagini fino a 20MB dal form progetti (media library inclusa).
+      bodySizeLimit: "25mb",
+    },
+    // Il middleware admin intercetta anche le richieste di upload: senza questo, Next.js
+    // tronca il body a 10MB prima ancora che la server action lo veda.
+    middlewareClientMaxBodySize: "25mb",
+  },
   images: {
     remotePatterns: [
       {

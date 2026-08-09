@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { getPublishedProjects } from "@/lib/data/projects";
 import { TiltCard } from "./tilt-card";
@@ -30,12 +31,22 @@ export async function ProjectBentoGrid() {
           <TiltCard key={project.slug} className={SPAN_PATTERN[i % SPAN_PATTERN.length]}>
             <Link href={`/progetti/${project.slug}`} className="group block h-full">
               <article className="card-hover-glow relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0a]">
-                <div
-                  className={`relative flex-1 min-h-[160px] overflow-hidden bg-gradient-to-br ${project.gradient} flex items-center justify-center`}
-                >
-                  <span className="font-display text-4xl md:text-5xl text-white/10 select-none transition-colors duration-500 group-hover:text-white/20">
-                    {project.client}
-                  </span>
+                <div className="relative flex-1 min-h-[160px] overflow-hidden">
+                  {project.coverImage ? (
+                    <Image
+                      src={project.coverImage}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className={`absolute inset-0 flex items-center justify-center bg-gradient-to-br ${project.gradient}`}>
+                      <span className="font-display text-4xl md:text-5xl text-white/10 select-none transition-colors duration-500 group-hover:text-white/20">
+                        {project.client}
+                      </span>
+                    </div>
+                  )}
 
                   {project.servicesRendered.length > 0 && (
                     <div className="absolute top-4 left-4 flex flex-wrap gap-1.5">

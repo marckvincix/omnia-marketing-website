@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { getProjectsByServiceSlug } from "@/lib/data/projects";
 import { TiltCard } from "./tilt-card";
@@ -17,12 +18,22 @@ export async function RelatedProjects({ serviceSlug }: { serviceSlug: string }) 
           <TiltCard key={project.slug}>
             <Link href={`/progetti/${project.slug}`} className="group block h-full">
               <article className="card-hover-glow relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0a]">
-                <div
-                  className={`relative aspect-[16/9] overflow-hidden bg-gradient-to-br ${project.gradient} flex items-center justify-center`}
-                >
-                  <span className="font-display text-3xl text-white/15 group-hover:text-white/25 transition-colors">
-                    {project.client}
-                  </span>
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  {project.coverImage ? (
+                    <Image
+                      src={project.coverImage}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className={`absolute inset-0 flex items-center justify-center bg-gradient-to-br ${project.gradient}`}>
+                      <span className="font-display text-3xl text-white/15 group-hover:text-white/25 transition-colors">
+                        {project.client}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <div className="flex items-center justify-between gap-4 px-6 py-5">
                   <div>
