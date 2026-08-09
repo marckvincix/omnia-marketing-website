@@ -42,7 +42,7 @@ export async function SiteFooter() {
         )}
 
         <div className="mb-24 pt-24 border-t border-[#111111]">
-          <h2 className={`${SECTION_HEADING} mb-8`}>
+          <h2 className={`${SECTION_HEADING} mb-16`}>
             RESTA
             <br />
             AGGIORNATO
