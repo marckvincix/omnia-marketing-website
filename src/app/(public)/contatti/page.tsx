@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MapPin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { PageHero } from "@/components/public/page-hero";
 import { ContactForm } from "@/components/public/contact-form";
@@ -15,7 +15,6 @@ export const metadata: Metadata = {
 export default async function ContattiPage() {
   const settings = await prisma.siteSettings.findUnique({ where: { id: 1 } });
   const email = settings?.contactEmail || "info@omniamarketing.it";
-  const address = settings?.operationalAddress || "Viale Alfa Romeo, 17 — 80038 Pomigliano d'Arco (NA)";
 
   return (
     <>
@@ -42,16 +41,6 @@ export default async function ContattiPage() {
               <Mail className="size-5" aria-hidden="true" />
               {email}
             </a>
-          </div>
-
-          <div>
-            <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-4">
-              Sede operativa
-            </h2>
-            <p className="flex items-start gap-3 text-[#cccccc]">
-              <MapPin className="size-5 shrink-0 mt-0.5" aria-hidden="true" />
-              {address}
-            </p>
           </div>
 
           <div>

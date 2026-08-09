@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { CtaBand } from "@/components/public/cta-band";
+import { BlogCardsSection } from "@/components/public/blog-cards-section";
+import { getOtherBlogPosts } from "@/lib/data/blog";
 import { BreadcrumbJsonLd, ArticleJsonLd } from "@/components/shared/json-ld";
 
 export async function generateMetadata({
@@ -40,6 +42,8 @@ export default async function BlogPostPage({
   });
 
   if (!post || !post.published) notFound();
+
+  const otherPosts = await getOtherBlogPosts(post.slug, 3);
 
   return (
     <article>
@@ -87,6 +91,8 @@ export default async function BlogPostPage({
           ))}
         </div>
       )}
+
+      <BlogCardsSection posts={otherPosts} heading="Blog" viewAllHref="/blog" />
 
       <CtaBand
         title="Ti interessa un progetto simile?"

@@ -1,61 +1,79 @@
 import Link from "next/link";
-import { MapPin } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { FOOTER_NAV, CLIENTS_AREA_URL } from "@/lib/nav";
 import { LightBeamButton } from "./light-beam-button";
 import { NewsletterForm } from "./newsletter-form";
 import { SocialIcons } from "./social-icons";
+import { BlogCardsGrid } from "./blog-cards-section";
+import { getLatestBlogPosts } from "@/lib/data/blog";
 
 const DEFAULT_EMAIL = "info@omniamarketing.it";
-const DEFAULT_ADDRESS = "Viale Alfa Romeo, 17 — 80038 Pomigliano d'Arco (NA)";
 const DEFAULT_PIVA = "09553001216";
 const DEFAULT_COMPANY = "Omnia Marketing";
 
+const SECTION_HEADING =
+  "text-[13vw] md:text-[8vw] leading-[0.85] font-black tracking-tighter text-white select-none font-display";
+
 export async function SiteFooter() {
-  const settings = await prisma.siteSettings.findUnique({ where: { id: 1 } });
+  const [settings, latestPosts] = await Promise.all([
+    prisma.siteSettings.findUnique({ where: { id: 1 } }),
+    getLatestBlogPosts(3),
+  ]);
   const year = new Date().getFullYear();
 
   const email = settings?.contactEmail || DEFAULT_EMAIL;
-  const address = settings?.operationalAddress || DEFAULT_ADDRESS;
   const piva = settings?.piva || DEFAULT_PIVA;
   const companyName = settings?.companyName || DEFAULT_COMPANY;
 
   return (
     <footer id="contatti" className="relative pt-40 pb-20 px-6 md:px-12 border-t border-[#1a1a1a] bg-[#000000]">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-16">
-        <div className="flex-1">
-          <h2 className="text-[13vw] md:text-[8vw] leading-[0.85] font-black tracking-tighter text-white mb-12 select-none font-display">
-            PARLIAMO
-            <br />
-            NE.
-          </h2>
-          <div className="flex flex-col gap-6">
-            <a
-              href={`mailto:${email}`}
-              className="text-2xl md:text-3xl font-semibold hover:text-[#2e9bd6] transition-colors w-fit"
+      <div className="max-w-7xl mx-auto">
+        {latestPosts.length > 0 && (
+          <div className="mb-24">
+            <h2 className={`${SECTION_HEADING} mb-12`}>BLOG</h2>
+            <BlogCardsGrid posts={latestPosts} />
+            <Link
+              href="/blog"
+              className="mt-8 inline-block text-[#666666] hover:text-white text-xs font-medium uppercase tracking-normal transition-colors"
             >
-              {email}
-            </a>
-            <p className="text-[#666666] flex items-center gap-2">
-              <MapPin className="size-4" aria-hidden="true" />
-              {address}
-            </p>
+              Vedi tutto il blog →
+            </Link>
           </div>
-        </div>
+        )}
 
-        <div className="md:mb-6">
-          <LightBeamButton href={CLIENTS_AREA_URL} target="_blank" rel="noopener noreferrer">
-            Area Clienti
-          </LightBeamButton>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto mt-24 pt-10 border-t border-[#111111] flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-normal text-[#888888] mb-3">Newsletter</p>
+        <div className="mb-24 pt-24 border-t border-[#111111]">
+          <h2 className={`${SECTION_HEADING} mb-8`}>
+            RESTA
+            <br />
+            AGGIORNATO
+          </h2>
           <NewsletterForm />
         </div>
-        <SocialIcons className="flex gap-3" />
+
+        <div className="pt-24 border-t border-[#111111] flex flex-col md:flex-row justify-between items-start md:items-end gap-16">
+          <div className="flex-1">
+            <h2 className={`${SECTION_HEADING} mb-12`}>
+              PARLIAMO
+              <br />
+              NE.
+            </h2>
+            <div className="flex flex-col gap-6">
+              <a
+                href={`mailto:${email}`}
+                className="text-2xl md:text-3xl font-semibold hover:text-[#2e9bd6] transition-colors w-fit"
+              >
+                {email}
+              </a>
+              <SocialIcons className="flex gap-3" />
+            </div>
+          </div>
+
+          <div className="md:mb-6">
+            <LightBeamButton href={CLIENTS_AREA_URL} target="_blank" rel="noopener noreferrer">
+              Area Clienti
+            </LightBeamButton>
+          </div>
+        </div>
       </div>
 
       <nav aria-label="Link footer" className="max-w-7xl mx-auto mt-16 flex flex-wrap gap-x-8 gap-y-3 text-sm text-[#888888]">
