@@ -7,7 +7,7 @@ import { VisitorNameProvider } from "@/lib/visitor-name-context";
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <VisitorNameProvider>
-      <div className="min-h-screen bg-[#000000] text-[#ebebeb] selection-coral overflow-x-hidden">
+      <div className="min-h-screen bg-[#000000] text-[#ebebeb] selection-coral overflow-x-clip">
         <OrganizationJsonLd />
         <a
           href="#main-content"
