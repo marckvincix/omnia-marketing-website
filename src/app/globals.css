@@ -179,3 +179,16 @@
     box-shadow: 0 0 24px -6px rgba(46, 155, 214, 0.45);
   }
 }
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-scroll {
+  animation: marquee-scroll 22s linear infinite;
+}
