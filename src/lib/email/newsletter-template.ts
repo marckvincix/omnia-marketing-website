@@ -51,9 +51,7 @@ export function renderNewsletterEmail({
           <table role="presentation" width="100%" style="max-width:600px;" cellpadding="0" cellspacing="0">
             <tr>
               <td style="padding-bottom:32px;">
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:22px;font-weight:900;color:#ffffff;letter-spacing:-0.02em;">OMNIA</span>
-                <br />
-                <span style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700;color:${BRAND_BLUE};letter-spacing:0.05em;">MARKETING</span>
+                <img src="${siteUrl}/logo-omnia-email.png" width="180" alt="Omnia Marketing" style="display:block;width:180px;height:auto;border:0;" />
               </td>
             </tr>
             <tr>
