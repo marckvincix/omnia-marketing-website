@@ -239,6 +239,9 @@ model BlogPost {
   published   Boolean   @default(false)
   publishedAt DateTime?
 
+  // Quando è stata inviata l'email di aggiornamento agli iscritti alla newsletter.
+  newsletterSentAt DateTime?
+
   seoTitle       String?
   seoDescription String?
   ogImage        String?
@@ -295,7 +298,8 @@ model LegalPage {
 // --- Newsletter ------------------------------------------------------------
 
 model NewsletterSubscriber {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  createdAt DateTime @default(now())
+  id                String   @id @default(cuid())
+  email             String   @unique
+  unsubscribeToken  String   @unique @default(cuid())
+  createdAt         DateTime @default(now())
 }

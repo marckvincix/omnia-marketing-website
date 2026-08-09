@@ -9,6 +9,7 @@ import {
   Newspaper,
   Image as ImageIcon,
   Mail,
+  Send,
   Settings,
 } from "lucide-react";
 
@@ -28,5 +29,6 @@ export const ADMIN_NAV: AdminNavItem[] = [
   { label: "Blog", href: "/admin/blog", icon: Newspaper },
   { label: "Media", href: "/admin/media", icon: ImageIcon },
   { label: "Messaggi", href: "/admin/messaggi", icon: Mail },
+  { label: "Newsletter", href: "/admin/newsletter", icon: Send },
   { label: "Impostazioni", href: "/admin/impostazioni", icon: Settings },
 ];
