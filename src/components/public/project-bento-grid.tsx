@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { getPublishedProjects } from "@/lib/data/projects";
 import { TiltCard } from "./tilt-card";
+import { LightBeamButton } from "./light-beam-button";
 
 const SPAN_PATTERN = [
   "md:col-span-2 md:row-span-2 min-h-[280px] md:min-h-[540px]",
@@ -19,12 +20,9 @@ export async function ProjectBentoGrid() {
         <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6]">
           Progetti Selezionati
         </h2>
-        <Link
-          href="/progetti"
-          className="hidden md:block text-[#666666] hover:text-white text-xs font-medium uppercase tracking-normal transition-colors"
-        >
+        <LightBeamButton href="/progetti" className="hidden md:inline-flex">
           Vedi tutto il portfolio →
-        </Link>
+        </LightBeamButton>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6">

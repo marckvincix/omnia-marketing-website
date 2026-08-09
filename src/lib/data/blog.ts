@@ -7,11 +7,3 @@ export async function getLatestBlogPosts(limit: number) {
     take: limit,
   });
 }
-
-export async function getOtherBlogPosts(excludeSlug: string, limit: number) {
-  return prisma.blogPost.findMany({
-    where: { published: true, slug: { not: excludeSlug } },
-    orderBy: { publishedAt: "desc" },
-    take: limit,
-  });
-}

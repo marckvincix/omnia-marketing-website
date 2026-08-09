@@ -32,12 +32,9 @@ export async function SiteFooter() {
           <div className="mb-24">
             <h2 className={`${SECTION_HEADING} mb-12`}>BLOG</h2>
             <BlogCardsGrid posts={latestPosts} />
-            <Link
-              href="/blog"
-              className="mt-8 inline-block text-[#666666] hover:text-white text-xs font-medium uppercase tracking-normal transition-colors"
-            >
+            <LightBeamButton href="/blog" className="mt-8">
               Vedi tutto il blog →
-            </Link>
+            </LightBeamButton>
           </div>
         )}
 

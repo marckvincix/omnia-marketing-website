@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { newsletterSchema } from "@/lib/validation/newsletter";
+import { sendWelcomeEmail } from "@/lib/email/send-welcome";
 
 export type NewsletterActionState = {
   error?: string;
@@ -25,11 +26,18 @@ export async function subscribeNewsletter(
     return { error: parsed.error.issues[0]?.message ?? "Email non valida" };
   }
 
-  await prisma.newsletterSubscriber.upsert({
+  const subscriber = await prisma.newsletterSubscriber.upsert({
     where: { email: parsed.data.email },
     create: { email: parsed.data.email },
     update: {},
   });
+
+  try {
+    await sendWelcomeEmail(subscriber.email, subscriber.unsubscribeToken);
+  } catch (error) {
+    // L'iscrizione è comunque andata a buon fine anche se l'email non parte.
+    console.error("Errore invio email di benvenuto newsletter", error);
+  }
 
   return { success: true };
 }
