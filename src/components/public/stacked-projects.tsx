@@ -11,7 +11,7 @@ export function StackedProjects({ projects }: { projects: ProjectView[] }) {
       {projects.map((project, i) => (
         <article
           key={project.slug}
-          className={`relative flex h-full flex-col justify-between overflow-hidden rounded-[2.5rem] border border-white/10 bg-gradient-to-br ${project.gradient} p-10 md:p-16 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.8)]`}
+          className={`relative flex min-h-[70vh] md:min-h-[75vh] flex-col justify-between overflow-hidden rounded-[2.5rem] border border-white/10 bg-gradient-to-br ${project.gradient} p-10 md:p-16 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.8)]`}
         >
           <span
             aria-hidden="true"

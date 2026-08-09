@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { subscribeNewsletter, type NewsletterActionState } from "@/lib/actions/newsletter";
+import { useVisitorName } from "@/lib/visitor-name-context";
 import { LightBeamButton } from "./light-beam-button";
 
 const initialState: NewsletterActionState = {};
@@ -18,9 +19,14 @@ function SubmitButton() {
 
 export function NewsletterForm() {
   const [state, formAction] = useActionState(subscribeNewsletter, initialState);
+  const { name } = useVisitorName();
 
   if (state.success) {
-    return <p className="text-sm text-[#2e9bd6]">Iscrizione confermata, grazie!</p>;
+    return (
+      <p className="text-sm text-[#2e9bd6]">
+        {name ? `${name}, iscrizione confermata, grazie!` : "Iscrizione confermata, grazie!"}
+      </p>
+    );
   }
 
   return (
@@ -38,7 +44,7 @@ export function NewsletterForm() {
           type="email"
           name="email"
           required
-          placeholder="Inserisci la tua email"
+          placeholder={name ? `${name}, inserisci qui la tua email` : "Inserisci la tua email"}
           aria-label="Email per la newsletter"
           className="w-full bg-transparent border-0 border-b border-[#333333] pb-3 text-base text-white placeholder:text-[#666666] focus:outline-none focus:border-[#2e9bd6] transition-colors"
         />

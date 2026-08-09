@@ -35,7 +35,7 @@ export default async function ChiSiamoPage() {
           <Link
             key={service.slug}
             href={`/${service.slug}`}
-            className="card-hover-glow group relative flex h-full flex-col justify-between overflow-hidden rounded-[2.5rem] border border-[#1f1f1f] bg-gradient-to-br from-[#131313] to-[#0a0a0a] p-10 md:p-16"
+            className="card-hover-glow group relative flex min-h-[70vh] md:min-h-[75vh] flex-col justify-between overflow-hidden rounded-[2.5rem] border border-[#1f1f1f] bg-gradient-to-br from-[#131313] to-[#0a0a0a] p-10 md:p-16"
           >
             <span
               aria-hidden="true"

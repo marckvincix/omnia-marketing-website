@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { submitContact, type ContactActionState } from "@/app/(public)/contatti/actions";
+import { useVisitorName } from "@/lib/visitor-name-context";
 import { LightBeamButton } from "./light-beam-button";
 
 const initialState: ContactActionState = {};
@@ -18,6 +19,7 @@ function SubmitButton() {
 
 export function ContactForm() {
   const [state, formAction] = useActionState(submitContact, initialState);
+  const { name } = useVisitorName();
 
   return (
     <form action={formAction} className="flex flex-col gap-5">
@@ -39,6 +41,8 @@ export function ContactForm() {
           name="name"
           type="text"
           required
+          defaultValue={name ?? ""}
+          key={name ?? "empty"}
           className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#2e9bd6] transition-colors"
         />
         {state.fieldErrors?.name && (
