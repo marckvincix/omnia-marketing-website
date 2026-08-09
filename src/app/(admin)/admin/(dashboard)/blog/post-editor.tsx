@@ -59,7 +59,7 @@ export function PostEditor({
 
   return (
     <div className="flex flex-col gap-6 max-w-3xl">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <Label htmlFor="b-title">Titolo</Label>
           <Input id="b-title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
@@ -90,7 +90,7 @@ export function PostEditor({
         <Input id="b-cover" value={form.coverImage} onChange={(e) => setForm({ ...form, coverImage: e.target.value })} />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <Label>Categoria</Label>
           <Select
@@ -147,7 +147,7 @@ export function PostEditor({
         </div>
       </div>
 
-      <div className="border-t border-border pt-4 grid grid-cols-2 gap-4">
+      <div className="border-t border-border pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <Label htmlFor="b-seoTitle">Meta title</Label>
           <Input id="b-seoTitle" value={form.seoTitle} onChange={(e) => setForm({ ...form, seoTitle: e.target.value })} />

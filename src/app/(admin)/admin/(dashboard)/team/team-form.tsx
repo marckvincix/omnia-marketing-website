@@ -51,7 +51,7 @@ export function TeamForm({ trigger, initial }: { trigger: React.ReactNode; initi
         </DialogHeader>
 
         <div className="flex flex-col gap-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="tm-name">Nome</Label>
               <Input id="tm-name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
@@ -67,7 +67,7 @@ export function TeamForm({ trigger, initial }: { trigger: React.ReactNode; initi
             <Textarea id="tm-bio" rows={3} value={form.bio} onChange={(e) => setForm({ ...form, bio: e.target.value })} />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="tm-photo">URL foto</Label>
               <Input id="tm-photo" value={form.photoUrl} onChange={(e) => setForm({ ...form, photoUrl: e.target.value })} />

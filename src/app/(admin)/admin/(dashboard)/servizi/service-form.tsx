@@ -76,7 +76,7 @@ export function ServiceForm({
         </DialogHeader>
 
         <div className="flex flex-col gap-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="title">Titolo</Label>
               <Input
@@ -115,7 +115,7 @@ export function ServiceForm({
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="ctaLabel">Testo CTA</Label>
               <Input
@@ -192,7 +192,7 @@ export function ServiceForm({
             </div>
           </div>
 
-          <div className="border-t border-border pt-4 grid grid-cols-2 gap-4">
+          <div className="border-t border-border pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="seoTitle">Meta title</Label>
               <Input

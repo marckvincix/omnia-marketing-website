@@ -23,7 +23,7 @@ export default async function AdminBlogPage() {
         title="Blog"
         description="Articoli pubblicati sul sito."
         action={
-          <div className="flex items-center gap-3">
+          <>
             <Link href="/admin/blog/categorie" className="text-sm text-muted-foreground hover:text-foreground">
               Categorie
             </Link>
@@ -33,7 +33,7 @@ export default async function AdminBlogPage() {
             <Button render={<Link href="/admin/blog/nuovo" />}>
               <Plus className="size-4" /> Nuovo articolo
             </Button>
-          </div>
+          </>
         }
       />
       <PostTable

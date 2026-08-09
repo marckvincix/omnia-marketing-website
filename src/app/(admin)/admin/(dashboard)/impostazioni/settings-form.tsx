@@ -47,7 +47,7 @@ export function SettingsForm({ initial }: { initial: SiteSettingsInput }) {
             <Label htmlFor="s-heroSubtitle">Sottotitolo hero</Label>
             <Textarea id="s-heroSubtitle" rows={2} value={form.heroSubtitle} onChange={(e) => setForm({ ...form, heroSubtitle: e.target.value })} />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="s-heroCtaLabel">Testo CTA</Label>
               <Input id="s-heroCtaLabel" value={form.heroCtaLabel} onChange={(e) => setForm({ ...form, heroCtaLabel: e.target.value })} />
@@ -63,7 +63,7 @@ export function SettingsForm({ initial }: { initial: SiteSettingsInput }) {
       <section className="rounded-xl border border-border bg-card p-6">
         <h2 className="font-semibold mb-4">Dati aziendali</h2>
         <div className="flex flex-col gap-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="s-companyName">Ragione sociale</Label>
               <Input id="s-companyName" value={form.companyName} onChange={(e) => setForm({ ...form, companyName: e.target.value })} />
@@ -81,7 +81,7 @@ export function SettingsForm({ initial }: { initial: SiteSettingsInput }) {
             <Label htmlFor="s-operationalAddress">Sede operativa</Label>
             <Input id="s-operationalAddress" value={form.operationalAddress} onChange={(e) => setForm({ ...form, operationalAddress: e.target.value })} />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="s-contactEmail">Email di contatto</Label>
               <Input id="s-contactEmail" value={form.contactEmail} onChange={(e) => setForm({ ...form, contactEmail: e.target.value })} />

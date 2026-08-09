@@ -82,7 +82,7 @@ export function ProjectForm({
         </DialogHeader>
 
         <div className="flex flex-col gap-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="p-title">Titolo</Label>
               <Input id="p-title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
@@ -93,7 +93,7 @@ export function ProjectForm({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="p-client">Cliente</Label>
               <Input id="p-client" value={form.client} onChange={(e) => setForm({ ...form, client: e.target.value })} />
@@ -114,7 +114,7 @@ export function ProjectForm({
             <Textarea id="p-description" rows={3} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="p-year">Anno</Label>
               <Input
@@ -175,7 +175,7 @@ export function ProjectForm({
             <div className="flex items-center justify-between mb-3">
               <Label>Testimonianza</Label>
             </div>
-            <div className="grid grid-cols-2 gap-3 mb-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
               <Input
                 placeholder="Autore"
                 value={form.testimonialAuthor}
@@ -247,7 +247,7 @@ export function ProjectForm({
             </div>
           </div>
 
-          <div className="border-t border-border pt-4 grid grid-cols-2 gap-4">
+          <div className="border-t border-border pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="p-seoTitle">Meta title</Label>
               <Input id="p-seoTitle" value={form.seoTitle} onChange={(e) => setForm({ ...form, seoTitle: e.target.value })} />
