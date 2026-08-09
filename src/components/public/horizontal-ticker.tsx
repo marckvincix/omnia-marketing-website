@@ -22,6 +22,7 @@ const FONT_FAMILY: Record<TextFont, string> = {
 };
 
 const ITEMS: TickerItem[] = [
+  { type: "icon", content: "✦" },
   { type: "text", content: "costruiamo siti che convertono", font: "mono" },
   { type: "icon", content: "💻" },
   { type: "text", content: "diamo forma a identità che si ricordano", font: "italic" },
