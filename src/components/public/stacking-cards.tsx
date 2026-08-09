@@ -6,6 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const TOP_BASE = 96;
 const TOP_STEP = 28;
+const MAX_DIM_OPACITY = 0.65;
+const MAX_SCALE_DOWN = 0.03;
 
 export function StackingCards({
   children,
@@ -29,7 +31,7 @@ export function StackingCards({
       );
       if (cards.length === 0) return;
 
-      cards.forEach((card, i) => {
+      cards.forEach((card) => {
         gsap.fromTo(
           card,
           { opacity: 0, y: 60 },
@@ -45,34 +47,41 @@ export function StackingCards({
             },
           },
         );
-
-        const nextCard = cards[i + 1];
-        if (!nextCard) return;
-
-        gsap.to(card, {
-          scale: 0.97,
-          ease: "none",
-          scrollTrigger: {
-            trigger: nextCard,
-            start: "top bottom",
-            end: "top top",
-            scrub: true,
-          },
-        });
-
-        if (overlays[i]) {
-          gsap.to(overlays[i], {
-            opacity: 0.65,
-            ease: "none",
-            scrollTrigger: {
-              trigger: nextCard,
-              start: "top bottom",
-              end: "top top",
-              scrub: true,
-            },
-          });
-        }
       });
+
+      // Solo la scheda "in cima" alla pila deve restare a piena luce: per
+      // ogni coppia (scheda, scheda successiva) misuriamo in tempo reale
+      // quanto la successiva si è avvicinata alla propria posizione sticky
+      // di riposo e scuriamo la precedente in proporzione. Non possiamo
+      // affidarci a marcatori start/end statici di ScrollTrigger perché,
+      // combinati con position:sticky, calcolano la progressione sulla
+      // posizione "naturale" (non agganciata) dell'elemento — che non
+      // corrisponde a quando la scheda copre visivamente quella sotto.
+      const updateDimming = () => {
+        const viewportHeight = window.innerHeight;
+        for (let i = 0; i < cards.length - 1; i++) {
+          const nextCard = cards[i + 1];
+          const nextStickyTop = TOP_BASE + (i + 1) * TOP_STEP;
+          const rect = nextCard.getBoundingClientRect();
+          const raw = (viewportHeight - rect.top) / (viewportHeight - nextStickyTop);
+          const progress = Math.min(Math.max(raw, 0), 1);
+
+          gsap.set(cards[i], { scale: 1 - progress * MAX_SCALE_DOWN });
+          if (overlays[i]) {
+            gsap.set(overlays[i], { opacity: progress * MAX_DIM_OPACITY });
+          }
+        }
+      };
+
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        onUpdate: updateDimming,
+        onRefresh: updateDimming,
+      });
+
+      updateDimming();
     }, containerRef);
 
     return () => ctx.revert();
