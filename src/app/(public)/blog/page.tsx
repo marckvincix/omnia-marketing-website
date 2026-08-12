@@ -21,7 +21,6 @@ export default async function BlogPage() {
   return (
     <>
       <PageHero
-        eyebrow="Blog"
         title={posts.length > 0 ? "Approfondimenti e novità." : "Presto i primi articoli."}
         description={
           posts.length > 0

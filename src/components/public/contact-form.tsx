@@ -17,7 +17,13 @@ function SubmitButton() {
   );
 }
 
-export function ContactForm() {
+export function ContactForm({
+  serviceOptions = [],
+  defaultServiceId,
+}: {
+  serviceOptions?: { id: string; title: string }[];
+  defaultServiceId?: string;
+}) {
   const [state, formAction] = useActionState(submitContact, initialState);
   const { name } = useVisitorName();
 
@@ -77,6 +83,27 @@ export function ContactForm() {
           className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#2e9bd6] transition-colors"
         />
       </div>
+
+      {serviceOptions.length > 0 && (
+        <div>
+          <label htmlFor="serviceId" className="block text-xs font-bold uppercase tracking-normal text-[#888888] mb-2">
+            Servizio di interesse <span className="text-[#555555] normal-case">(facoltativo)</span>
+          </label>
+          <select
+            id="serviceId"
+            name="serviceId"
+            defaultValue={defaultServiceId ?? ""}
+            className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#2e9bd6] transition-colors"
+          >
+            <option value="">Seleziona un servizio</option>
+            {serviceOptions.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.title}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <div>
         <label htmlFor="message" className="block text-xs font-bold uppercase tracking-normal text-[#888888] mb-2">

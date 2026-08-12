@@ -13,6 +13,13 @@ function gradientForSlug(slug: string) {
   return GRADIENTS[sum % GRADIENTS.length];
 }
 
+export interface ProjectGalleryItem {
+  id: string;
+  url: string;
+  alt: string;
+  type: "IMAGE" | "VIDEO";
+}
+
 export interface ProjectView {
   id: string;
   slug: string;
@@ -21,6 +28,7 @@ export interface ProjectView {
   servicesRendered: string[];
   serviceSlugs: string[];
   description: string;
+  processText: string;
   coverImage: string | null;
   results: string[];
   testimonialQuote: string;
@@ -28,6 +36,7 @@ export interface ProjectView {
   gradient: string;
   seoTitle: string;
   seoDescription: string;
+  gallery: ProjectGalleryItem[];
 }
 
 type ProjectWithRelations = {
@@ -36,6 +45,7 @@ type ProjectWithRelations = {
   client: string;
   category: string;
   description: string;
+  processText: string | null;
   coverImage: string | null;
   resultsText: string | null;
   testimonialQuote: string | null;
@@ -43,6 +53,7 @@ type ProjectWithRelations = {
   seoTitle: string | null;
   seoDescription: string | null;
   services: { service: { title: string; slug: string } }[];
+  media: { id: string; url: string; alt: string; type: "IMAGE" | "VIDEO" }[];
 };
 
 function toView(p: ProjectWithRelations): ProjectView {
@@ -54,6 +65,7 @@ function toView(p: ProjectWithRelations): ProjectView {
     servicesRendered: p.services.map((s) => s.service.title),
     serviceSlugs: p.services.map((s) => s.service.slug),
     description: p.description,
+    processText: p.processText ?? "",
     coverImage: p.coverImage,
     results: p.resultsText ? p.resultsText.split(" · ").filter(Boolean) : [],
     testimonialQuote: p.testimonialQuote ?? "",
@@ -61,6 +73,7 @@ function toView(p: ProjectWithRelations): ProjectView {
     gradient: gradientForSlug(p.slug),
     seoTitle: p.seoTitle ?? `${p.client} — Case Study`,
     seoDescription: p.seoDescription ?? p.description,
+    gallery: p.media.map((m) => ({ id: m.id, url: m.url, alt: m.alt, type: m.type })),
   };
 }
 
@@ -68,7 +81,10 @@ export async function getPublishedProjects(): Promise<ProjectView[]> {
   const projects = await prisma.project.findMany({
     where: { published: true },
     orderBy: { order: "asc" },
-    include: { services: { include: { service: true } } },
+    include: {
+      services: { include: { service: true } },
+      media: { orderBy: { order: "asc" } },
+    },
   });
   return projects.map(toView);
 }
@@ -76,7 +92,10 @@ export async function getPublishedProjects(): Promise<ProjectView[]> {
 export async function getProjectBySlug(slug: string): Promise<ProjectView | null> {
   const project = await prisma.project.findUnique({
     where: { slug },
-    include: { services: { include: { service: true } } },
+    include: {
+      services: { include: { service: true } },
+      media: { orderBy: { order: "asc" } },
+    },
   });
   if (!project || !project.published) return null;
   return toView(project);

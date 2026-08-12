@@ -68,6 +68,11 @@ export function HorizontalTicker() {
         },
       });
 
+      // I web font (Space Mono, Archivo Black, Satoshi) possono finire di caricarsi dopo
+      // il primo calcolo della larghezza: senza questo refresh la durata dello scroll
+      // resta ancorata alla larghezza (più corta) misurata col font di fallback.
+      document.fonts?.ready.then(() => ScrollTrigger.refresh());
+
       return () => {
         tween.scrollTrigger?.kill();
         tween.kill();
@@ -88,7 +93,7 @@ export function HorizontalTicker() {
           item.type === "text" ? (
             <span
               key={i}
-              className={`mx-4 md:mx-6 shrink-0 leading-none text-[7vw] md:text-[4.5vw] ${FONT_CLASS[item.font]}`}
+              className={`mx-4 md:mx-6 shrink-0 leading-none text-[clamp(2.25rem,10vw,3.75rem)] md:text-[clamp(2rem,4.5vw,3.5rem)] ${FONT_CLASS[item.font]}`}
               style={{ fontFamily: FONT_FAMILY[item.font] }}
             >
               {item.content}
@@ -96,7 +101,7 @@ export function HorizontalTicker() {
           ) : (
             <span
               key={i}
-              className="mx-4 md:mx-6 shrink-0 leading-none text-[#2e9bd6] text-[6vw] md:text-[3.5vw]"
+              className="mx-4 md:mx-6 shrink-0 leading-none text-[#2e9bd6] text-[clamp(2rem,9vw,3.25rem)] md:text-[clamp(1.75rem,3.5vw,3rem)]"
               aria-hidden="true"
             >
               {item.content}

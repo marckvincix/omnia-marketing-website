@@ -12,6 +12,7 @@ export interface MessageRowData {
   name: string;
   email: string;
   phone: string | null;
+  service: string | null;
   message: string;
   handled: boolean;
   createdAt: string;
@@ -44,6 +45,9 @@ export function MessageRow({ message }: { message: MessageRowData }) {
         <a href={`mailto:${message.email}`} className="hover:text-foreground">{message.email}</a>
       </TableCell>
       <TableCell className="text-muted-foreground">{message.phone || "—"}</TableCell>
+      <TableCell className="text-muted-foreground">
+        {message.service ? <Badge variant="outline">{message.service}</Badge> : "—"}
+      </TableCell>
       <TableCell className="max-w-sm truncate text-muted-foreground">{message.message}</TableCell>
       <TableCell className="text-muted-foreground text-sm whitespace-nowrap">
         {new Date(message.createdAt).toLocaleDateString("it-IT", { day: "2-digit", month: "2-digit", year: "numeric" })}

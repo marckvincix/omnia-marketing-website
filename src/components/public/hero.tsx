@@ -2,14 +2,32 @@
 
 import { TubesBackground } from "./tubes-background";
 import { useVisitorName } from "@/lib/visitor-name-context";
+import { useVisitorTracking } from "@/lib/visitor-tracking-context";
+
+type Interest = "web" | "branding" | "social";
 
 interface HeroProps {
   title?: string;
+  /**
+   * Titoli alternativi ("riga1\nriga2") per ciascun interesse rilevato, dal più discreto
+   * (indice 0, mostrato dalla 2ª visita) al più diretto. Sostituisce interamente `title`
+   * quando il visitatore è di ritorno e non ci ha ancora contattato.
+   */
+  variants?: Partial<Record<Interest, string[]>>;
 }
 
-export function Hero({ title = "crediamo\nnel design" }: HeroProps) {
+export function Hero({ title = "crediamo\nnel design", variants }: HeroProps) {
   const { name } = useVisitorName();
-  const lines = title.split("\n");
+  const { hydrated, isReturning, topInterest, tier, contacted } = useVisitorTracking();
+
+  const tierList =
+    hydrated && isReturning && !contacted && topInterest
+      ? variants?.[topInterest as Interest]
+      : undefined;
+  const activeTitle =
+    tierList && tierList.length > 0 ? tierList[Math.min(tier, tierList.length - 1)] : title;
+
+  const lines = activeTitle.split("\n");
   if (name) {
     lines[0] = `${name}, ${lines[0]}`;
   }

@@ -13,6 +13,7 @@ import { getEmailMetrics } from "@/lib/email/metrics";
 import { getSubscriberEngagementMap } from "@/lib/email/segments";
 import { SubscriberRow } from "./subscriber-row";
 import { PostSendRow } from "./post-send-row";
+import { SyncMetricsButton } from "./sync-metrics-button";
 
 export const metadata: Metadata = {
   title: "Newsletter",
@@ -43,14 +44,18 @@ export default async function AdminNewsletterPage() {
   const subscribers = allSubscribers.filter((s) => !s.unsubscribedAt);
   const webhookConfigured = !!process.env.RESEND_WEBHOOK_SECRET;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const isLocalSite = siteUrl.includes("localhost");
 
   return (
     <div className="flex flex-col gap-12">
       <div>
-        <AdminPageHeader
-          title="Newsletter"
-          description="Piattaforma di email marketing: invia aggiornamenti, segmenta gli iscritti e monitora le performance."
-        />
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <AdminPageHeader
+            title="Newsletter"
+            description="Piattaforma di email marketing: invia aggiornamenti, segmenta gli iscritti e monitora le performance."
+          />
+          <SyncMetricsButton />
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
           <MetricCard label="Inviate" value={metrics.sent} />
@@ -75,6 +80,21 @@ export default async function AdminNewsletterPage() {
               con URL <code className="rounded bg-muted px-1 py-0.5">{siteUrl}/api/webhooks/resend</code>,
               seleziona tutti gli eventi email.*, poi copia il signing secret nella variabile{" "}
               <code className="rounded bg-muted px-1 py-0.5">RESEND_WEBHOOK_SECRET</code>.
+            </p>
+          </div>
+        )}
+
+        {webhookConfigured && isLocalSite && (
+          <div className="mt-4 rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 text-sm">
+            <p className="font-medium text-amber-600 dark:text-amber-400">
+              Webhook non raggiungibile in locale
+            </p>
+            <p className="mt-1 text-muted-foreground">
+              Resend non riesce a consegnare gli eventi a un indirizzo <code className="rounded bg-muted px-1 py-0.5">localhost</code>,
+              quindi in sviluppo le metriche non si aggiornano da sole. Usa il pulsante{" "}
+              <span className="font-medium text-foreground">Aggiorna metriche da Resend</span> per interrogare
+              l&apos;API e sincronizzarle manualmente. Una volta pubblicato il sito su un dominio pubblico, il
+              webhook funzionerà automaticamente.
             </p>
           </div>
         )}

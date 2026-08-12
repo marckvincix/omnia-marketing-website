@@ -39,6 +39,7 @@ export default async function EditProjectPage({
           client: project.client,
           category: project.category,
           description: project.description,
+          processText: project.processText ?? "",
           coverImage: project.coverImage ?? "",
           year: project.year,
           externalUrl: project.externalUrl ?? "",

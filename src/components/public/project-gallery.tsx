@@ -1,22 +1,23 @@
 "use client";
 
-import { Children, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import type { ProjectGalleryItem } from "@/lib/data/projects";
 
 const TOP_BASE = 96;
 const TOP_STEP = 28;
 const MAX_DIM_OPACITY = 0.65;
 const MAX_SCALE_DOWN = 0.03;
 
-export function StackingCards({
-  children,
-  className = "px-6 md:px-12 py-20 max-w-7xl mx-auto",
+function GalleryColumn({
+  items,
+  className,
 }: {
-  children: React.ReactNode;
+  items: ProjectGalleryItem[];
   className?: string;
 }) {
-  const items = Children.toArray(children);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -49,14 +50,6 @@ export function StackingCards({
         );
       });
 
-      // Solo la scheda "in cima" alla pila deve restare a piena luce: per
-      // ogni coppia (scheda, scheda successiva) misuriamo in tempo reale
-      // quanto la successiva si è avvicinata alla propria posizione sticky
-      // di riposo e scuriamo la precedente in proporzione. Non possiamo
-      // affidarci a marcatori start/end statici di ScrollTrigger perché,
-      // combinati con position:sticky, calcolano la progressione sulla
-      // posizione "naturale" (non agganciata) dell'elemento — che non
-      // corrisponde a quando la scheda copre visivamente quella sotto.
       const updateDimming = () => {
         const viewportHeight = window.innerHeight;
         for (let i = 0; i < cards.length - 1; i++) {
@@ -88,24 +81,52 @@ export function StackingCards({
   }, [items.length]);
 
   return (
-    <section ref={containerRef} className={className}>
+    <div ref={containerRef} className={className}>
       {items.map((item, i) => (
         <div
-          key={i}
+          key={item.id}
           data-stack-card
-          className="sticky mb-8"
+          className="sticky mb-4 md:mb-6"
           style={{ top: `${TOP_BASE + i * TOP_STEP}px`, zIndex: i + 1 }}
         >
-          <div className="relative">
-            {item}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl md:rounded-[2rem] border border-white/10">
+            <Image
+              src={item.url}
+              alt={item.alt}
+              fill
+              sizes="(max-width: 768px) 50vw, 25vw"
+              className="object-cover"
+            />
             <div
               data-stack-overlay
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-black opacity-0"
+              className="pointer-events-none absolute inset-0 rounded-2xl md:rounded-[2rem] bg-black opacity-0"
             />
           </div>
         </div>
       ))}
+    </div>
+  );
+}
+
+export function ProjectGallery({ items }: { items: ProjectGalleryItem[] }) {
+  if (items.length === 0) return null;
+
+  const left = items.filter((_, i) => i % 2 === 0);
+  const right = items.filter((_, i) => i % 2 === 1);
+
+  return (
+    <section className="px-6 md:px-12 py-20 border-t border-[#1a1a1a]">
+      {/* Mobile: una sola colonna, tutte le foto, nessuno sfasamento. */}
+      <div className="md:hidden">
+        <GalleryColumn items={items} />
+      </div>
+
+      {/* Desktop: due colonne affiancate, la destra sfasata più in basso. */}
+      <div className="hidden md:grid md:grid-cols-2 md:gap-8">
+        <GalleryColumn items={left} />
+        {right.length > 0 && <GalleryColumn items={right} className="md:mt-40" />}
+      </div>
     </section>
   );
 }

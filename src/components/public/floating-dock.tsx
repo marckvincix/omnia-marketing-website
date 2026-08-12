@@ -3,10 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { DOCK_ITEMS, DOCK_CTA_ICON, CLIENTS_AREA_ICON, CLIENTS_AREA_URL } from "@/lib/nav";
+import { useVisitorTracking } from "@/lib/visitor-tracking-context";
+import { INTEREST_CLICK_WEIGHT } from "@/lib/use-interest-tracking";
 import { LightBeamButton } from "./light-beam-button";
+
+const SERVICE_SLUGS = new Set(["web", "branding", "social"]);
 
 export function FloatingDock() {
   const pathname = usePathname();
+  const { recordView } = useVisitorTracking();
   const CtaIcon = DOCK_CTA_ICON;
   const ClientsIcon = CLIENTS_AREA_ICON;
 
@@ -18,12 +23,15 @@ export function FloatingDock() {
       <div className="flex shrink-0 items-center gap-px pr-1 border-r border-white/10 md:gap-0.5 md:pr-2">
         {DOCK_ITEMS.map((item) => {
           const active = pathname === item.href;
+          const serviceSlug = item.href.replace(/^\//, "");
+          const isServiceLink = SERVICE_SLUGS.has(serviceSlug);
           return (
             <Link
               key={item.href}
               href={item.href}
               title={item.label}
               aria-current={active ? "page" : undefined}
+              onClick={isServiceLink ? () => recordView(serviceSlug, INTEREST_CLICK_WEIGHT) : undefined}
               className={`shrink-0 rounded-lg p-1.5 transition-all md:rounded-xl md:p-2.5 ${
                 active ? "bg-white/10 text-white" : "text-white/70 hover:bg-white/10 hover:text-white"
               }`}

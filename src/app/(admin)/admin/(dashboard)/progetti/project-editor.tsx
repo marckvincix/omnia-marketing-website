@@ -15,8 +15,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
+import { VideoUploadField } from "@/components/admin/video-upload-field";
 import type { ProjectInput } from "@/lib/validation/admin";
-import { saveProject, uploadProjectImage } from "./actions";
+import { saveProject, uploadProjectImage, uploadProjectVideo } from "./actions";
 
 const NEW_CATEGORY = "__new__";
 
@@ -26,6 +27,7 @@ const emptyProject: ProjectInput = {
   client: "",
   category: "",
   description: "",
+  processText: "",
   coverImage: "",
   year: null,
   externalUrl: "",
@@ -58,6 +60,24 @@ export function ProjectEditor({
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
+  function handleGenerateGeo() {
+    const client = form.client.trim() || "il cliente";
+    const category = form.category.trim() || "un progetto digitale";
+    const results = form.resultsText
+      ? form.resultsText.split("·").map((r) => r.trim()).filter(Boolean)
+      : [];
+
+    const title = `Omnia Marketing per ${client}: ${category}`;
+
+    const descParts = [
+      `Omnia Marketing ha realizzato per ${client} un progetto di ${category.toLowerCase()}.`,
+    ];
+    if (form.description.trim()) descParts.push(form.description.trim());
+    if (results.length > 0) descParts.push(`Risultati ottenuti: ${results.join(", ")}.`);
+
+    setForm({ ...form, geoTitle: title, geoDescription: descParts.join(" ") });
+  }
+
   function handleSubmit() {
     setError(null);
     startTransition(async () => {
@@ -72,8 +92,8 @@ export function ProjectEditor({
   }
 
   return (
-    <div className="flex flex-col gap-6 max-w-3xl">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="flex flex-col gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div>
           <Label htmlFor="p-title">Titolo</Label>
           <Input id="p-title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
@@ -82,9 +102,6 @@ export function ProjectEditor({
           <Label htmlFor="p-slug">Slug (URL)</Label>
           <Input id="p-slug" value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value })} />
         </div>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <Label htmlFor="p-client">Cliente</Label>
           <Input id="p-client" value={form.client} onChange={(e) => setForm({ ...form, client: e.target.value })} />
@@ -131,10 +148,38 @@ export function ProjectEditor({
         uploadAction={uploadProjectImage}
         helperText="Sarà lo sfondo di questo progetto in ogni scheda del sito. JPG, PNG o WEBP, fino a 20MB."
       />
+      <div className="mt-2 rounded-lg border border-border bg-muted/30 p-3 text-xs text-muted-foreground">
+        <p className="font-medium text-foreground mb-1">Dimensioni consigliate</p>
+        <p className="mb-2">
+          Viene usata in due punti con proporzioni diverse: banner panoramico (21:9) in cima alla pagina
+          del progetto, e sfondo delle schede in Portfolio/Home (formato più verticale, varia con l&apos;altezza
+          dello schermo).
+        </p>
+        <ul className="space-y-0.5">
+          <li><span className="font-medium text-foreground">Mobile</span> — banner 342×147px · scheda 340×589px</li>
+          <li><span className="font-medium text-foreground">Tablet</span> — banner 724×310px · scheda 722×883px</li>
+          <li><span className="font-medium text-foreground">Desktop</span> — banner 1344×576px (fino a ~1824×782px su schermi molto larghi) · scheda 1182×673px</li>
+        </ul>
+        <p className="mt-2">Carica un file più grande di questi valori (es. 2400×1050px) per restare nitida anche su schermi retina.</p>
+      </div>
 
       <div>
         <Label htmlFor="p-description">Descrizione</Label>
         <Textarea id="p-description" rows={3} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+      </div>
+
+      <div>
+        <Label htmlFor="p-processText">Come lo abbiamo realizzato</Label>
+        <p className="text-xs text-muted-foreground mb-2">
+          Testo esteso per la pagina progetto: spiega l&apos;approccio tecnico, le scelte fatte e come
+          si è svolto il lavoro. Compare in una sezione dedicata dopo servizi e risultati.
+        </p>
+        <Textarea
+          id="p-processText"
+          rows={6}
+          value={form.processText}
+          onChange={(e) => setForm({ ...form, processText: e.target.value })}
+        />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -218,7 +263,7 @@ export function ProjectEditor({
 
       <div className="border-t border-border pt-4">
         <div className="flex items-center justify-between mb-3">
-          <Label>Galleria immagini</Label>
+          <Label>Galleria (foto e video)</Label>
           <Button
             type="button"
             variant="outline"
@@ -230,24 +275,81 @@ export function ProjectEditor({
             <Plus className="size-4" /> Aggiungi
           </Button>
         </div>
-        <p className="text-xs text-muted-foreground mb-3">
-          Verrà usata nella galleria fotografica della pagina progetto (design in arrivo).
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="mb-3 rounded-lg border border-border bg-muted/30 p-3 text-xs text-muted-foreground">
+          <p className="font-medium text-foreground mb-1">Dimensioni consigliate</p>
+          <p className="mb-2">
+            <span className="font-medium text-foreground">Foto</span> — formato verticale 4:5, almeno
+            1200×1500px. Mobile 342×428px (una colonna) · Tablet 346×433px · Desktop 576×720px
+            (due colonne).
+          </p>
+          <p>
+            <span className="font-medium text-foreground">Video</span> — orizzontali o verticali, vengono
+            mostrati tutti alla stessa altezza nel carosello a scorrimento della pagina progetto.
+            MP4 o WEBM, fino a 100MB.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {form.media.map((m, i) => (
             <div key={m.id ?? i} className="flex gap-2 items-start rounded-lg border border-border p-3">
               <div className="flex-1 flex flex-col gap-2">
-                <ImageUploadField
-                  value={m.url}
-                  onChange={(url) => {
-                    const next = [...form.media];
-                    next[i] = { ...next[i], url };
-                    setForm({ ...form, media: next });
-                  }}
-                  uploadAction={uploadProjectImage}
-                  helperText=""
-                  compact
-                />
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const next = [...form.media];
+                      next[i] = { ...next[i], type: "IMAGE", url: "" };
+                      setForm({ ...form, media: next });
+                    }}
+                    className={`rounded-full border px-3 py-1 text-xs transition-colors ${
+                      m.type === "IMAGE"
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "border-border text-muted-foreground hover:bg-accent"
+                    }`}
+                  >
+                    Immagine
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const next = [...form.media];
+                      next[i] = { ...next[i], type: "VIDEO", url: "" };
+                      setForm({ ...form, media: next });
+                    }}
+                    className={`rounded-full border px-3 py-1 text-xs transition-colors ${
+                      m.type === "VIDEO"
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "border-border text-muted-foreground hover:bg-accent"
+                    }`}
+                  >
+                    Video
+                  </button>
+                </div>
+
+                {m.type === "VIDEO" ? (
+                  <VideoUploadField
+                    value={m.url}
+                    onChange={(url) => {
+                      const next = [...form.media];
+                      next[i] = { ...next[i], url };
+                      setForm({ ...form, media: next });
+                    }}
+                    uploadAction={uploadProjectVideo}
+                    helperText=""
+                    compact
+                  />
+                ) : (
+                  <ImageUploadField
+                    value={m.url}
+                    onChange={(url) => {
+                      const next = [...form.media];
+                      next[i] = { ...next[i], url };
+                      setForm({ ...form, media: next });
+                    }}
+                    uploadAction={uploadProjectImage}
+                    helperText=""
+                    compact
+                  />
+                )}
                 <Input
                   placeholder="Testo alternativo (ALT)"
                   value={m.alt}
@@ -268,7 +370,7 @@ export function ProjectEditor({
             </div>
           ))}
           {form.media.length === 0 && (
-            <p className="text-sm text-muted-foreground">Nessuna immagine ancora.</p>
+            <p className="text-sm text-muted-foreground">Nessuna immagine o video ancora.</p>
           )}
         </div>
       </div>
@@ -288,7 +390,12 @@ export function ProjectEditor({
       </div>
 
       <div className="border-t border-border pt-4">
-        <Label className="mb-1 block">GEO — per i motori generativi/AI</Label>
+        <div className="flex items-center justify-between mb-1">
+          <Label className="block">GEO — per i motori generativi/AI</Label>
+          <Button type="button" variant="outline" size="sm" onClick={handleGenerateGeo}>
+            Compila automaticamente
+          </Button>
+        </div>
         <p className="text-xs text-muted-foreground mb-3">
           Testo chiaro e fattuale pensato per essere citato da ChatGPT, Perplexity, Google AI Overview e simili.
         </p>

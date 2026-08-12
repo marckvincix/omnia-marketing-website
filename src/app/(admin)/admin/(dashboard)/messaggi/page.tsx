@@ -19,6 +19,7 @@ export const metadata: Metadata = {
 export default async function AdminMessagesPage() {
   const messages = await prisma.contactSubmission.findMany({
     orderBy: { createdAt: "desc" },
+    include: { service: { select: { title: true } } },
   });
 
   return (
@@ -36,6 +37,7 @@ export default async function AdminMessagesPage() {
               <TableHead>Nome</TableHead>
               <TableHead>Email</TableHead>
               <TableHead>Telefono</TableHead>
+              <TableHead>Servizio</TableHead>
               <TableHead>Messaggio</TableHead>
               <TableHead>Data</TableHead>
               <TableHead>Stato</TableHead>
@@ -51,6 +53,7 @@ export default async function AdminMessagesPage() {
                   name: m.name,
                   email: m.email,
                   phone: m.phone,
+                  service: m.service?.title ?? null,
                   message: m.message,
                   handled: m.handled,
                   createdAt: m.createdAt.toISOString(),
@@ -59,7 +62,7 @@ export default async function AdminMessagesPage() {
             ))}
             {messages.length === 0 && (
               <TableRow>
-                <TableCell colSpan={8} className="text-center text-muted-foreground py-8">
+                <TableCell colSpan={9} className="text-center text-muted-foreground py-8">
                   Nessun messaggio ricevuto ancora.
                 </TableCell>
               </TableRow>

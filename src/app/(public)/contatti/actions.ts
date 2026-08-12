@@ -18,11 +18,14 @@ export async function submitContact(
     redirect("/grazie");
   }
 
+  // formData.get() ritorna null (non undefined) per i campi assenti dal form:
+  // il popup di richiesta info, ad esempio, non ha il campo telefono.
   const parsed = contactSchema.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),
-    phone: formData.get("phone"),
+    phone: formData.get("phone") || undefined,
     message: formData.get("message"),
+    serviceId: formData.get("serviceId") || undefined,
   });
 
   if (!parsed.success) {
@@ -39,6 +42,7 @@ export async function submitContact(
       email: parsed.data.email,
       phone: parsed.data.phone || null,
       message: parsed.data.message,
+      serviceId: parsed.data.serviceId || null,
     },
   });
 

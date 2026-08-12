@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import { useVisitorName } from "@/lib/visitor-name-context";
+import { COOKIE_CONSENT_KEY, COOKIE_DECIDED_EVENT } from "@/lib/cookie-consent";
 import { LightBeamButton } from "./light-beam-button";
 
 export function NamePopup() {
@@ -15,14 +16,31 @@ export function NamePopup() {
   useEffect(() => {
     if (!hydrated || name || dismissed) return;
 
-    if (pathname === "/") {
-      const handler = () => setOpen(true);
-      window.addEventListener("omnia:intro-complete", handler);
-      return () => window.removeEventListener("omnia:intro-complete", handler);
+    function schedule() {
+      if (pathname === "/") {
+        const handler = () => setOpen(true);
+        window.addEventListener("omnia:intro-complete", handler);
+        return () => window.removeEventListener("omnia:intro-complete", handler);
+      }
+      const timer = setTimeout(() => setOpen(true), 800);
+      return () => clearTimeout(timer);
     }
 
-    const timer = setTimeout(() => setOpen(true), 800);
-    return () => clearTimeout(timer);
+    // Aspetta che il banner cookie sia stato deciso (accettato o rifiutato)
+    // prima di mostrare questo popup, per non sovrapporre due richieste.
+    if (localStorage.getItem(COOKIE_CONSENT_KEY)) {
+      return schedule();
+    }
+
+    let cleanup: (() => void) | undefined;
+    const onDecided = () => {
+      cleanup = schedule();
+    };
+    window.addEventListener(COOKIE_DECIDED_EVENT, onDecided, { once: true });
+    return () => {
+      window.removeEventListener(COOKIE_DECIDED_EVENT, onDecided);
+      cleanup?.();
+    };
   }, [hydrated, name, dismissed, pathname]);
 
   if (!open) return null;

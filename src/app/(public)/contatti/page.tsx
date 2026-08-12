@@ -5,6 +5,7 @@ import { PageHero } from "@/components/public/page-hero";
 import { ContactForm } from "@/components/public/contact-form";
 import { LightBeamButton } from "@/components/public/light-beam-button";
 import { CLIENTS_AREA_URL } from "@/lib/nav";
+import { getPublishedServices } from "@/lib/data/services";
 
 export const metadata: Metadata = {
   title: "Contatti",
@@ -13,27 +14,28 @@ export const metadata: Metadata = {
 };
 
 export default async function ContattiPage() {
-  const settings = await prisma.siteSettings.findUnique({ where: { id: 1 } });
+  const [settings, services] = await Promise.all([
+    prisma.siteSettings.findUnique({ where: { id: 1 } }),
+    getPublishedServices(),
+  ]);
   const email = settings?.contactEmail || "info@omniamarketing.it";
 
   return (
     <>
       <PageHero
-        eyebrow="Contatti"
         title="Parliamo del tuo progetto."
         description="Raccontaci la tua idea: ti rispondiamo il prima possibile."
       />
 
       <section className="px-6 md:px-12 pb-32 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
         <div>
-          <ContactForm />
+          <ContactForm
+            serviceOptions={services.map((s) => ({ id: s.id, title: s.title }))}
+          />
         </div>
 
         <div className="flex flex-col gap-8">
           <div>
-            <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-4">
-              Scrivici
-            </h2>
             <a
               href={`mailto:${email}`}
               className="flex items-center gap-3 text-xl text-white hover:text-[#2e9bd6] transition-colors"
@@ -44,9 +46,6 @@ export default async function ContattiPage() {
           </div>
 
           <div>
-            <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-4">
-              Sei già nostro cliente?
-            </h2>
             <LightBeamButton href={CLIENTS_AREA_URL} target="_blank" rel="noopener noreferrer">
               Accedi all&apos;Area Clienti →
             </LightBeamButton>

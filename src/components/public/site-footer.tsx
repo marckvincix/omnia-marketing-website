@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { FOOTER_NAV, CLIENTS_AREA_URL } from "@/lib/nav";
+import { CLIENTS_AREA_URL } from "@/lib/nav";
 import { LightBeamButton } from "./light-beam-button";
 import { NewsletterForm } from "./newsletter-form";
 import { SocialIcons } from "./social-icons";
 import { BlogCardsGrid } from "./blog-cards-section";
+import { FooterNav } from "./footer-nav";
 import { getLatestBlogPosts } from "@/lib/data/blog";
 
 const DEFAULT_EMAIL = "info@omniamarketing.it";
@@ -73,13 +74,7 @@ export async function SiteFooter() {
         </div>
       </div>
 
-      <nav aria-label="Link footer" className="max-w-7xl mx-auto mt-16 flex flex-wrap gap-x-8 gap-y-3 text-sm text-[#888888]">
-        {FOOTER_NAV.map((item) => (
-          <Link key={item.href} href={item.href} className="hover:text-white transition-colors">
-            {item.label}
-          </Link>
-        ))}
-      </nav>
+      <FooterNav />
 
       <div className="max-w-7xl mx-auto mt-16 pt-10 border-t border-[#111111] flex flex-col md:flex-row justify-between text-[#444444] text-[10px] font-bold uppercase tracking-normal gap-4">
         <p>
@@ -91,6 +86,9 @@ export async function SiteFooter() {
           </Link>
           <Link href="/cookie-policy" className="hover:text-[#888888] transition-colors">
             Cookie Policy
+          </Link>
+          <Link href="/cookie-policy#preferenze" className="hover:text-[#888888] transition-colors">
+            Preferenze cookie
           </Link>
         </div>
       </div>

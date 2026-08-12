@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LightBeamButton } from "@/components/public/light-beam-button";
+import { TrackContact } from "@/components/public/track-contact";
 
 export const metadata: Metadata = {
   title: "Grazie",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function GraziePage() {
   return (
     <section className="px-6 md:px-12 pt-24 pb-32 max-w-4xl mx-auto text-center">
+      <TrackContact />
       <h1 className="font-display font-black text-white text-5xl md:text-7xl leading-[0.95]">
         Grazie.
       </h1>

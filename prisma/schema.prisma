@@ -94,9 +94,10 @@ model Service {
   seoDescription String?
   ogImage        String?
 
-  benefits ServiceBenefit[]
-  faqs     Faq[]
-  projects ProjectService[]
+  benefits           ServiceBenefit[]
+  faqs               Faq[]
+  projects           ProjectService[]
+  contactSubmissions ContactSubmission[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -123,6 +124,9 @@ model Project {
   category    String
   year        Int?
   externalUrl String?
+
+  // Testo esteso per la pagina progetto: spiega il processo/approccio tecnico del lavoro svolto.
+  processText String?
 
   resultsText        String?
   testimonialAuthor   String?
@@ -291,6 +295,8 @@ model ContactSubmission {
   email     String
   phone     String?
   message   String
+  serviceId String?
+  service   Service? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
   handled   Boolean  @default(false)
   createdAt DateTime @default(now())
 }

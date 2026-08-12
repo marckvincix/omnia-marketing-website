@@ -11,6 +11,7 @@ interface VisitorNameContextValue {
   hydrated: boolean;
   setName: (name: string) => void;
   dismiss: () => void;
+  clearName: () => void;
 }
 
 const VisitorNameContext = createContext<VisitorNameContextValue | null>(null);
@@ -39,8 +40,13 @@ export function VisitorNameProvider({ children }: { children: React.ReactNode })
     setDismissed(true);
   }, []);
 
+  const clearName = useCallback(() => {
+    localStorage.removeItem(STORAGE_KEY);
+    setNameState(null);
+  }, []);
+
   return (
-    <VisitorNameContext.Provider value={{ name, dismissed, hydrated, setName, dismiss }}>
+    <VisitorNameContext.Provider value={{ name, dismissed, hydrated, setName, dismiss, clearName }}>
       {children}
     </VisitorNameContext.Provider>
   );

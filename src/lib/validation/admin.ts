@@ -37,6 +37,7 @@ export const projectSchema = z.object({
   client: z.string().trim().min(1, "Cliente obbligatorio"),
   category: z.string().trim().min(1, "Categoria obbligatoria"),
   description: z.string().trim().min(1, "Descrizione obbligatoria"),
+  processText: z.string().trim().optional().or(z.literal("")),
   coverImage: z.string().trim().optional().or(z.literal("")),
   year: z.coerce.number().int().optional().nullable(),
   externalUrl: z.string().trim().optional().or(z.literal("")),
