@@ -61,6 +61,10 @@ export async function saveBlogPost(input: BlogPostInput) {
   revalidatePath("/admin/blog");
   revalidatePath("/blog");
   revalidatePath(`/blog/${post.slug}`);
+  // Il footer (in (public)/layout.tsx, comune a tutte le pagine pubbliche) mostra gli
+  // ultimi 3 articoli: senza revalidare il layout resta con la lista vecchia finché non
+  // scade la cache, anche se /blog è già aggiornato.
+  revalidatePath("/", "layout");
 
   redirect("/admin/blog");
 }
@@ -71,4 +75,5 @@ export async function deleteBlogPost(id: string) {
   revalidatePath("/admin/blog");
   revalidatePath("/blog");
   revalidatePath(`/blog/${post.slug}`);
+  revalidatePath("/", "layout");
 }
