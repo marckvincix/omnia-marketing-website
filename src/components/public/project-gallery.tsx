@@ -126,8 +126,8 @@ export function ProjectGallery({ items }: { items: ProjectGalleryItem[] }) {
         <GalleryColumn items={items} />
       </div>
 
-      {/* Desktop: due colonne affiancate, la destra sfasata più in basso. */}
-      <div className="hidden md:grid md:grid-cols-2 md:gap-8">
+      {/* Desktop: due colonne affiancate e ravvicinate, centrate in pagina, la destra sfasata più in basso. */}
+      <div className="hidden md:grid md:grid-cols-2 md:gap-4 md:max-w-4xl md:mx-auto">
         <GalleryColumn items={left} />
         {right.length > 0 && <GalleryColumn items={right} className="md:mt-40" />}
       </div>
