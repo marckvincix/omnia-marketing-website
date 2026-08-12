@@ -5,10 +5,8 @@ import { LightBeamButton } from "./light-beam-button";
 import { NewsletterForm } from "./newsletter-form";
 import { SocialIcons } from "./social-icons";
 import { BlogCardsGrid } from "./blog-cards-section";
-import { FooterNav } from "./footer-nav";
 import { getLatestBlogPosts } from "@/lib/data/blog";
 
-const DEFAULT_EMAIL = "info@omniamarketing.it";
 const DEFAULT_PIVA = "09553001216";
 const DEFAULT_COMPANY = "Omnia Marketing";
 
@@ -22,7 +20,6 @@ export async function SiteFooter() {
   ]);
   const year = new Date().getFullYear();
 
-  const email = settings?.contactEmail || DEFAULT_EMAIL;
   const piva = settings?.piva || DEFAULT_PIVA;
   const companyName = settings?.companyName || DEFAULT_COMPANY;
 
@@ -56,12 +53,6 @@ export async function SiteFooter() {
               NE.
             </h2>
             <div className="flex flex-col gap-6">
-              <a
-                href={`mailto:${email}`}
-                className="text-2xl md:text-3xl font-semibold hover:text-[#2e9bd6] transition-colors w-fit"
-              >
-                {email}
-              </a>
               <SocialIcons className="flex gap-3" />
             </div>
           </div>
@@ -73,8 +64,6 @@ export async function SiteFooter() {
           </div>
         </div>
       </div>
-
-      <FooterNav />
 
       <div className="max-w-7xl mx-auto mt-16 pt-10 border-t border-[#111111] flex flex-col md:flex-row justify-between text-[#444444] text-[10px] font-bold uppercase tracking-normal gap-4">
         <p>
