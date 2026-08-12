@@ -44,7 +44,11 @@ function GalleryColumn({
             scrollTrigger: {
               trigger: card,
               start: "top 95%",
-              toggleActions: "play none none reverse",
+              // Le card sono sticky e impilate: una volta comparse devono restare
+              // visibili. Con "reverse" l'animazione le nascondeva di nuovo scrollando
+              // verso l'alto, e ripetendo su/giù la card sticky perdeva la sincronia
+              // con la posizione di trigger, facendo sparire le immagini.
+              toggleActions: "play none none none",
             },
           },
         );
@@ -86,7 +90,7 @@ function GalleryColumn({
         <div
           key={item.id}
           data-stack-card
-          className="sticky mb-4 md:mb-6"
+          className="sticky mb-4 md:mb-6 md:w-[85%]"
           style={{ top: `${TOP_BASE + i * TOP_STEP}px`, zIndex: i + 1 }}
         >
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl md:rounded-[2rem] border border-white/10">
