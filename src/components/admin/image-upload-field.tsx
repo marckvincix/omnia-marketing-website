@@ -3,6 +3,8 @@
 import { useRef, useState } from "react";
 import { ImagePlus, Loader2, X } from "lucide-react";
 import { Label } from "@/components/ui/label";
+import { getBrowserStorageClient, MEDIA_BUCKET } from "@/lib/supabase-browser";
+import type { UploadSlot } from "@/lib/supabase-storage";
 
 const MAX_UPLOAD_BYTES = 20 * 1024 * 1024;
 
@@ -17,7 +19,7 @@ export function ImageUploadField({
   label?: string;
   value: string;
   onChange: (url: string) => void;
-  uploadAction: (formData: FormData) => Promise<{ url: string }>;
+  uploadAction: (fileName: string) => Promise<UploadSlot>;
   helperText?: string;
   compact?: boolean;
 }) {
@@ -33,10 +35,12 @@ export function ImageUploadField({
     }
     setPending(true);
     try {
-      const formData = new FormData();
-      formData.set("file", file);
-      const { url } = await uploadAction(formData);
-      onChange(url);
+      const { path, token, publicUrl } = await uploadAction(file.name);
+      const { error: uploadError } = await getBrowserStorageClient()
+        .storage.from(MEDIA_BUCKET)
+        .uploadToSignedUrl(path, token, file);
+      if (uploadError) throw new Error(uploadError.message);
+      onChange(publicUrl);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Errore durante il caricamento");
     } finally {

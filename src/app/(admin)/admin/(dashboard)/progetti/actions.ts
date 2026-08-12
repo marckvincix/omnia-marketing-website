@@ -4,44 +4,17 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getStorageClient, MEDIA_BUCKET } from "@/lib/supabase-storage";
+import { createUploadSlot, type UploadSlot } from "@/lib/supabase-storage";
 import { projectSchema, type ProjectInput } from "@/lib/validation/admin";
-
-const MAX_UPLOAD_BYTES = 20 * 1024 * 1024;
-const MAX_VIDEO_UPLOAD_BYTES = 100 * 1024 * 1024;
 
 async function requireAdmin() {
   const session = await auth();
   if (!session) throw new Error("Non autorizzato");
 }
 
-async function uploadToMediaBucket(file: File, maxBytes: number, tooBigMessage: string) {
-  if (!file || file.size === 0) throw new Error("Nessun file selezionato");
-  if (file.size > maxBytes) throw new Error(tooBigMessage);
-
-  const ext = file.name.split(".").pop() || "bin";
-  const key = `projects/${crypto.randomUUID()}.${ext}`;
-
-  const supabase = getStorageClient();
-  const { error } = await supabase.storage.from(MEDIA_BUCKET).upload(key, file, {
-    contentType: file.type,
-  });
-  if (error) throw new Error(error.message);
-
-  const { data: pub } = supabase.storage.from(MEDIA_BUCKET).getPublicUrl(key);
-  return { url: pub.publicUrl };
-}
-
-export async function uploadProjectImage(formData: FormData): Promise<{ url: string }> {
+export async function createProjectMediaUploadSlot(fileName: string): Promise<UploadSlot> {
   await requireAdmin();
-  const file = formData.get("file") as File | null;
-  return uploadToMediaBucket(file as File, MAX_UPLOAD_BYTES, "Il file supera i 20MB consentiti");
-}
-
-export async function uploadProjectVideo(formData: FormData): Promise<{ url: string }> {
-  await requireAdmin();
-  const file = formData.get("file") as File | null;
-  return uploadToMediaBucket(file as File, MAX_VIDEO_UPLOAD_BYTES, "Il file supera i 100MB consentiti");
+  return createUploadSlot(fileName, "projects/");
 }
 
 export async function saveProject(input: ProjectInput) {

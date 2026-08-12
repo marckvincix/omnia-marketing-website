@@ -3,38 +3,33 @@
 import { revalidatePath } from "next/cache";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getStorageClient, MEDIA_BUCKET } from "@/lib/supabase-storage";
+import { getStorageClient, MEDIA_BUCKET, createUploadSlot, type UploadSlot } from "@/lib/supabase-storage";
 
 async function requireAdmin() {
   const session = await auth();
   if (!session) throw new Error("Non autorizzato");
 }
 
-export async function uploadMedia(formData: FormData) {
+export async function createMediaUploadSlot(fileName: string): Promise<UploadSlot> {
   await requireAdmin();
+  return createUploadSlot(fileName);
+}
 
-  const file = formData.get("file") as File | null;
-  const altText = (formData.get("altText") as string) || "";
-  if (!file || file.size === 0) throw new Error("Nessun file selezionato");
-
-  const ext = file.name.split(".").pop() || "bin";
-  const key = `${crypto.randomUUID()}.${ext}`;
-
-  const supabase = getStorageClient();
-  const { error } = await supabase.storage.from(MEDIA_BUCKET).upload(key, file, {
-    contentType: file.type,
-  });
-  if (error) throw new Error(error.message);
-
-  const { data: pub } = supabase.storage.from(MEDIA_BUCKET).getPublicUrl(key);
-  const type = file.type.startsWith("video") ? "VIDEO" : "IMAGE";
+export async function finalizeMediaUpload(input: {
+  url: string;
+  contentType: string;
+  sizeBytes: number;
+  altText: string;
+}) {
+  await requireAdmin();
+  const type = input.contentType.startsWith("video") ? "VIDEO" : "IMAGE";
 
   await prisma.media.create({
     data: {
-      url: pub.publicUrl,
+      url: input.url,
       type,
-      altText,
-      sizeBytes: file.size,
+      altText: input.altText,
+      sizeBytes: input.sizeBytes,
     },
   });
 

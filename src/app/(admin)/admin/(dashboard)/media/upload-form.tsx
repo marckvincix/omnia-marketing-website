@@ -5,7 +5,8 @@ import { Upload, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { uploadMedia } from "./actions";
+import { getBrowserStorageClient, MEDIA_BUCKET } from "@/lib/supabase-browser";
+import { createMediaUploadSlot, finalizeMediaUpload } from "./actions";
 
 export function UploadForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -14,9 +15,27 @@ export function UploadForm() {
 
   function handleSubmit(formData: FormData) {
     setError(null);
+    const file = formData.get("file") as File | null;
+    const altText = (formData.get("altText") as string) || "";
+    if (!file || file.size === 0) {
+      setError("Nessun file selezionato");
+      return;
+    }
+
     startTransition(async () => {
       try {
-        await uploadMedia(formData);
+        const { path, token, publicUrl } = await createMediaUploadSlot(file.name);
+        const { error: uploadError } = await getBrowserStorageClient()
+          .storage.from(MEDIA_BUCKET)
+          .uploadToSignedUrl(path, token, file);
+        if (uploadError) throw new Error(uploadError.message);
+
+        await finalizeMediaUpload({
+          url: publicUrl,
+          contentType: file.type,
+          sizeBytes: file.size,
+          altText,
+        });
         formRef.current?.reset();
       } catch (e) {
         setError(e instanceof Error ? e.message : "Errore durante il caricamento");

@@ -17,7 +17,7 @@ import {
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { VideoUploadField } from "@/components/admin/video-upload-field";
 import type { ProjectInput } from "@/lib/validation/admin";
-import { saveProject, uploadProjectImage, uploadProjectVideo } from "./actions";
+import { saveProject, createProjectMediaUploadSlot } from "./actions";
 
 const NEW_CATEGORY = "__new__";
 
@@ -145,7 +145,7 @@ export function ProjectEditor({
         label="Immagine di copertina"
         value={form.coverImage ?? ""}
         onChange={(url) => setForm({ ...form, coverImage: url })}
-        uploadAction={uploadProjectImage}
+        uploadAction={createProjectMediaUploadSlot}
         helperText="Sarà lo sfondo di questo progetto in ogni scheda del sito. JPG, PNG o WEBP, fino a 20MB."
       />
       <div className="mt-2 rounded-lg border border-border bg-muted/30 p-3 text-xs text-muted-foreground">
@@ -333,7 +333,7 @@ export function ProjectEditor({
                       next[i] = { ...next[i], url };
                       setForm({ ...form, media: next });
                     }}
-                    uploadAction={uploadProjectVideo}
+                    uploadAction={createProjectMediaUploadSlot}
                     helperText=""
                     compact
                   />
@@ -345,7 +345,7 @@ export function ProjectEditor({
                       next[i] = { ...next[i], url };
                       setForm({ ...form, media: next });
                     }}
-                    uploadAction={uploadProjectImage}
+                    uploadAction={createProjectMediaUploadSlot}
                     helperText=""
                     compact
                   />
