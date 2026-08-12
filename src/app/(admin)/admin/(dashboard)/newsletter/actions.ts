@@ -9,7 +9,7 @@ import type { SegmentKey } from "@/lib/email/segments";
 
 async function requireAdmin() {
   const session = await auth();
-  if (!session) throw new Error("Non autorizzato");
+  if (!session) throw new Error("Non autorizzato: effettua di nuovo l'accesso.");
 }
 
 export async function deleteSubscriber(id: string) {
@@ -19,8 +19,8 @@ export async function deleteSubscriber(id: string) {
 }
 
 export async function sendUpdateEmail(postId: string, segment: SegmentKey) {
-  await requireAdmin();
   try {
+    await requireAdmin();
     const result = await sendNewsletterForPost(postId, segment);
     revalidatePath("/admin/newsletter");
     return result;
@@ -35,8 +35,8 @@ export async function sendUpdateEmail(postId: string, segment: SegmentKey) {
 }
 
 export async function syncMetrics() {
-  await requireAdmin();
   try {
+    await requireAdmin();
     const result = await syncEmailMetricsFromResend();
     revalidatePath("/admin/newsletter");
     return result;
