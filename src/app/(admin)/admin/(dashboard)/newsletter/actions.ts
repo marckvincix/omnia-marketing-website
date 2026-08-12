@@ -36,7 +36,16 @@ export async function sendUpdateEmail(postId: string, segment: SegmentKey) {
 
 export async function syncMetrics() {
   await requireAdmin();
-  const result = await syncEmailMetricsFromResend();
-  revalidatePath("/admin/newsletter");
-  return result;
+  try {
+    const result = await syncEmailMetricsFromResend();
+    revalidatePath("/admin/newsletter");
+    return result;
+  } catch (error) {
+    console.error("Errore sync metriche newsletter", error);
+    return {
+      checked: 0,
+      updated: 0,
+      error: error instanceof Error ? error.message : "Errore sconosciuto durante la sincronizzazione",
+    };
+  }
 }

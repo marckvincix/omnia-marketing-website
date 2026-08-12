@@ -13,11 +13,15 @@ export function SyncMetricsButton() {
     setResult(null);
     startTransition(async () => {
       const res = await syncMetrics();
-      setResult(
-        res.updated > 0
-          ? `Aggiornate ${res.updated}/${res.checked} email`
-          : `Nessuna novità (${res.checked} email controllate)`,
-      );
+      if ("error" in res && res.error) {
+        setResult(`Errore: ${res.error}`);
+      } else {
+        setResult(
+          res.updated > 0
+            ? `Aggiornate ${res.updated}/${res.checked} email`
+            : `Nessuna novità (${res.checked} email controllate)`,
+        );
+      }
     });
   }
 
