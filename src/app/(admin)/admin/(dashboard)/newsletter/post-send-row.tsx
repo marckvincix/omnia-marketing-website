@@ -32,7 +32,11 @@ export function PostSendRow({ post, subscriberCount }: { post: PostSendRowData; 
     setConfirming(false);
     startTransition(async () => {
       const res = await sendUpdateEmail(post.id, segment);
-      setResult(`Inviata a ${res.sent}/${res.total} iscritti`);
+      if ("error" in res && res.error) {
+        setResult(`Errore: ${res.error}`);
+      } else {
+        setResult(`Inviata a ${res.sent}/${res.total} iscritti`);
+      }
     });
   }
 

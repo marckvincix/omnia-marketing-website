@@ -20,9 +20,18 @@ export async function deleteSubscriber(id: string) {
 
 export async function sendUpdateEmail(postId: string, segment: SegmentKey) {
   await requireAdmin();
-  const result = await sendNewsletterForPost(postId, segment);
-  revalidatePath("/admin/newsletter");
-  return result;
+  try {
+    const result = await sendNewsletterForPost(postId, segment);
+    revalidatePath("/admin/newsletter");
+    return result;
+  } catch (error) {
+    console.error("Errore invio newsletter", error);
+    return {
+      sent: 0,
+      total: 0,
+      error: error instanceof Error ? error.message : "Errore sconosciuto durante l'invio",
+    };
+  }
 }
 
 export async function syncMetrics() {
