@@ -20,7 +20,7 @@ async function main() {
       companyName: "Omnia Marketing",
       piva: "09553001216",
       legalAddress: "Vico Bagnara, 4 — 80135 Napoli",
-      operationalAddress: "Viale Alfa Romeo, 17 — 80038 Pomigliano d'Arco (NA)",
+      operationalAddress: "Napoli",
       contactEmail: "info@omniamarketing.it",
       footerText: "Crediamo nel design. Siti web, branding e social per aziende che vogliono distinguersi.",
     },

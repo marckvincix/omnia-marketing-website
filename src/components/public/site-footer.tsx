@@ -22,7 +22,6 @@ export async function SiteFooter() {
 
   const piva = settings?.piva || DEFAULT_PIVA;
   const companyName = settings?.companyName || DEFAULT_COMPANY;
-  const address = settings?.operationalAddress || "Viale Alfa Romeo, 17 — 80038 Pomigliano d'Arco (NA)";
 
   return (
     <footer id="contatti" className="relative pt-40 pb-20 px-6 md:px-12 border-t border-[#1a1a1a] bg-[#000000]">
@@ -82,9 +81,9 @@ export async function SiteFooter() {
           <div>
             <p className="mb-3 text-[10px] font-bold uppercase tracking-normal text-[#555555]">Dove siamo</p>
             <address className="not-italic text-[#999999] leading-relaxed">
-              {address}
+              Napoli
               <br />
-              Napoli e Campania
+              Operiamo in tutta Italia
             </address>
           </div>
         </div>

@@ -45,7 +45,7 @@ const alfaSlabOne = Alfa_Slab_One({
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const DEFAULT_TITLE = "Omnia Marketing — Agenzia Web, Branding e Social a Napoli";
 const DEFAULT_DESCRIPTION =
-  "Omnia Marketing è un'agenzia di web design, branding e social media management con sede a Pomigliano d'Arco (Napoli). Realizziamo siti web, e-commerce, identità di brand e gestiamo i canali social per aziende in tutta la Campania.";
+  "Omnia Marketing è un'agenzia di web design, branding e social media management con sede a Napoli. Realizziamo siti web, e-commerce, identità di brand e gestiamo i canali social per aziende in tutta Italia da molti anni.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

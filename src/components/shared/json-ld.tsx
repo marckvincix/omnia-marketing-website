@@ -16,7 +16,7 @@ export async function OrganizationJsonLd() {
     // fissa, non essendoci un campo dedicato in SiteSettings.
     legalName: "Omniaweb S.r.l.s",
     description:
-      "Agenzia di web design, branding e social media management con sede a Pomigliano d'Arco (Napoli).",
+      "Agenzia di web design, branding e social media management con sede a Napoli, al fianco di aziende in tutta Italia da molti anni.",
     url: SITE_URL,
     logo: `${SITE_URL}/logo-omnia-email.png`,
     image: `${SITE_URL}/logo-omnia-email.png`,
@@ -26,22 +26,18 @@ export async function OrganizationJsonLd() {
     priceRange: "€€",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Viale Alfa Romeo, 17",
-      addressLocality: "Pomigliano d'Arco",
-      postalCode: "80038",
+      streetAddress: "Vico Bagnara, 4",
+      addressLocality: "Napoli",
+      postalCode: "80135",
       addressRegion: "NA",
       addressCountry: "IT",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 40.9169,
-      longitude: 14.3833,
+      latitude: 40.8518,
+      longitude: 14.2681,
     },
-    areaServed: [
-      { "@type": "City", name: "Napoli" },
-      { "@type": "AdministrativeArea", name: "Campania" },
-      { "@type": "Country", name: "Italia" },
-    ],
+    areaServed: { "@type": "Country", name: "Italia" },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -124,8 +120,8 @@ export function ServiceJsonLd({
       "@id": `${SITE_URL}/#organization`,
     },
     areaServed: {
-      "@type": "City",
-      name: "Napoli",
+      "@type": "Country",
+      name: "Italia",
     },
   };
 

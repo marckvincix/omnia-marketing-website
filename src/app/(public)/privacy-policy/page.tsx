@@ -29,8 +29,7 @@ export default function PrivacyPolicyPage() {
           <h2 className="font-display text-2xl text-white mb-3">1. Titolare del trattamento</h2>
           <p>
             Il Titolare del trattamento dei dati è Omniaweb S.r.l.s, P.IVA 09553001216, con
-            sede legale in Vico Bagnara, 4 — 80135 Napoli e sede operativa in Viale Alfa
-            Romeo, 17 — 80038 Pomigliano d&apos;Arco (NA). Per qualsiasi richiesta relativa
+            sede legale in Vico Bagnara, 4 — 80135 Napoli. Per qualsiasi richiesta relativa
             al trattamento dei dati personali è possibile scrivere a{" "}
             <a href="mailto:info@omniamarketing.it" className="text-white underline hover:text-[#2e9bd6]">
               info@omniamarketing.it

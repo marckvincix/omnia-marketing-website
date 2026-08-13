@@ -13,7 +13,7 @@ import { ServiceJsonLd } from "@/components/shared/json-ld";
 
 const DEFAULT_TITLE = "Web — Siti, App ed eCommerce";
 const DEFAULT_DESCRIPTION =
-  "Realizziamo siti web, app mobile, e-commerce e piattaforme digitali con design minimalista e tecnologia all'avanguardia. Web agency a Napoli e Pomigliano d'Arco.";
+  "Realizziamo siti web, app mobile, e-commerce e piattaforme digitali con design minimalista e tecnologia all'avanguardia. Web agency a Napoli, operiamo in tutta Italia.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const service = await getServiceBySlug("web");

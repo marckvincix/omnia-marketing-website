@@ -10,7 +10,7 @@ import { getPublishedProjects } from "@/lib/data/projects";
 
 const TITLE = "Omnia Marketing — Agenzia web, branding e social a Napoli";
 const DESCRIPTION =
-  "Omnia Marketing: crediamo nel design. Realizziamo siti web, e-commerce, branding e contenuti social per aziende che vogliono distinguersi. Agenzia web a Napoli e Pomigliano d'Arco.";
+  "Omnia Marketing: crediamo nel design. Realizziamo siti web, e-commerce, branding e contenuti social per aziende che vogliono distinguersi. Agenzia web a Napoli, al fianco di aziende in tutta Italia da molti anni.";
 
 export const metadata: Metadata = {
   // "absolute" bypassa il template "%s | Omnia Marketing" del layout root: il titolo

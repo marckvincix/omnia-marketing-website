@@ -9,7 +9,7 @@ import { getPublishedServices } from "@/lib/data/services";
 
 const TITLE = "Contatti — Richiedi una Consulenza a Napoli";
 const DESCRIPTION =
-  "Contatta Omnia Marketing per il tuo prossimo progetto web, di branding o social. Siamo a Pomigliano d'Arco (Napoli): richiedi una consulenza gratuita.";
+  "Contatta Omnia Marketing per il tuo prossimo progetto web, di branding o social. Siamo a Napoli e lavoriamo con aziende in tutta Italia: richiedi una consulenza gratuita.";
 
 export const metadata: Metadata = {
   title: TITLE,

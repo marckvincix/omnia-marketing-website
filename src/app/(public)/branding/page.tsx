@@ -13,7 +13,7 @@ import { ServiceJsonLd } from "@/components/shared/json-ld";
 
 const DEFAULT_TITLE = "Branding — Strategy, Naming, Logo, UI/UX";
 const DEFAULT_DESCRIPTION =
-  "Diamo forma alla tua identità visiva: strategy, naming, logo design e UI/UX per un brand che emoziona e distingue. Agenzia di branding a Napoli e Pomigliano d'Arco.";
+  "Diamo forma alla tua identità visiva: strategy, naming, logo design e UI/UX per un brand che emoziona e distingue. Agenzia di branding a Napoli, al fianco di clienti in tutta Italia.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const service = await getServiceBySlug("branding");

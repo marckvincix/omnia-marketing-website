@@ -8,7 +8,7 @@ import { TiltCard } from "@/components/public/tilt-card";
 
 const TITLE = "Blog — Consigli su Web, Branding e Social";
 const DESCRIPTION =
-  "Approfondimenti su design, sviluppo web, branding e social media a cura di Omnia Marketing, agenzia digitale a Napoli e Pomigliano d'Arco.";
+  "Approfondimenti su design, sviluppo web, branding e social media a cura di Omnia Marketing, agenzia digitale a Napoli attiva in tutta Italia.";
 
 export const metadata: Metadata = {
   title: TITLE,

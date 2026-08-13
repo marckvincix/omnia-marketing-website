@@ -6,7 +6,7 @@ import { getPublishedProjects } from "@/lib/data/projects";
 
 const TITLE = "Portfolio — Progetti Web, Branding e Social a Napoli";
 const DESCRIPTION =
-  "I progetti realizzati da Omnia Marketing: siti web, e-commerce, branding e social per aziende a Napoli, Pomigliano d'Arco e in tutta Italia che vogliono distinguersi.";
+  "I progetti realizzati da Omnia Marketing: siti web, e-commerce, branding e social per aziende a Napoli e in tutta Italia che vogliono distinguersi.";
 
 export const metadata: Metadata = {
   title: TITLE,

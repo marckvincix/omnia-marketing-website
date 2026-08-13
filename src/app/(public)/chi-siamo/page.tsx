@@ -9,7 +9,7 @@ import { getGeneralFaqs } from "@/lib/data/faqs";
 
 const TITLE = "Chi Siamo — Agenzia Web e Branding a Napoli";
 const DESCRIPTION =
-  "Omnia Marketing è l'agenzia di web design, branding e social media management con sede a Pomigliano d'Arco (Napoli) che trasforma visioni in esperienze digitali uniche e brand memorabili.";
+  "Omnia Marketing è l'agenzia di web design, branding e social media management con sede a Napoli che trasforma visioni in esperienze digitali uniche e brand memorabili, al fianco di aziende in tutta Italia da molti anni.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -43,10 +43,10 @@ export default async function ChiSiamoPage() {
       <RevealOnScroll className="px-6 md:px-12 pb-24 max-w-7xl mx-auto">
         <p className="max-w-3xl text-base md:text-lg text-[#999999] leading-relaxed">
           Omnia Marketing è un&apos;agenzia di web design, branding e social media
-          management con sede a Pomigliano d&apos;Arco, in provincia di Napoli.
-          Realizziamo siti web, e-commerce, identità di brand e gestiamo i canali
-          social per aziende in tutta la Campania e in Italia, seguendo ogni
-          progetto con un unico team dalla strategia al risultato finale.
+          management con sede a Napoli. Da molti anni realizziamo siti web,
+          e-commerce, identità di brand e gestiamo i canali social per aziende
+          in tutta Italia, seguendo ogni progetto con un unico team dalla
+          strategia al risultato finale.
         </p>
       </RevealOnScroll>
 
