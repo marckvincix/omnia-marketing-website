@@ -8,6 +8,12 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Il logo email viene letto via fs.readFileSync a runtime (per incorporarlo come
+  // data URI nelle email): il file tracing di Vercel non lo rileva perché il percorso
+  // è costruito dinamicamente, quindi va incluso esplicitamente nel bundle serverless.
+  outputFileTracingIncludes: {
+    "/**": ["./public/logo-omnia-email.png"],
+  },
   experimental: {
     serverActions: {
       // Consente il caricamento di immagini (20MB) e video (100MB) dal form progetti.
