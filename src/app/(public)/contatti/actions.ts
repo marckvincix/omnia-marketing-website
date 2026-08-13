@@ -18,8 +18,7 @@ export async function submitContact(
     redirect("/grazie");
   }
 
-  // formData.get() ritorna null (non undefined) per i campi assenti dal form:
-  // il popup di richiesta info, ad esempio, non ha il campo telefono.
+  // formData.get() ritorna null (non undefined) per i campi assenti dal form.
   const parsed = contactSchema.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),

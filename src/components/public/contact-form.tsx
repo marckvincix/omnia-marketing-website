@@ -74,24 +74,29 @@ export function ContactForm({
 
       <div>
         <label htmlFor="phone" className="block text-xs font-bold uppercase tracking-normal text-[#888888] mb-2">
-          Telefono <span className="text-[#555555] normal-case">(facoltativo)</span>
+          Telefono
         </label>
         <input
           id="phone"
           name="phone"
           type="tel"
+          required
           className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#2e9bd6] transition-colors"
         />
+        {state.fieldErrors?.phone && (
+          <p className="mt-1 text-xs text-[#2e9bd6]">{state.fieldErrors.phone}</p>
+        )}
       </div>
 
       {serviceOptions.length > 0 && (
         <div>
           <label htmlFor="serviceId" className="block text-xs font-bold uppercase tracking-normal text-[#888888] mb-2">
-            Servizio di interesse <span className="text-[#555555] normal-case">(facoltativo)</span>
+            Servizio di interesse
           </label>
           <select
             id="serviceId"
             name="serviceId"
+            required
             defaultValue={defaultServiceId ?? ""}
             className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#2e9bd6] transition-colors"
           >
@@ -102,6 +107,9 @@ export function ContactForm({
               </option>
             ))}
           </select>
+          {state.fieldErrors?.serviceId && (
+            <p className="mt-1 text-xs text-[#2e9bd6]">{state.fieldErrors.serviceId}</p>
+          )}
         </div>
       )}
 

@@ -147,6 +147,25 @@ export function RequestInfoPopup({
 
           <div>
             <label
+              htmlFor="popup-phone"
+              className="block text-xs font-bold uppercase tracking-normal text-[#888888] mb-2"
+            >
+              Telefono
+            </label>
+            <input
+              id="popup-phone"
+              name="phone"
+              type="tel"
+              required
+              className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#2e9bd6] transition-colors"
+            />
+            {state.fieldErrors?.phone && (
+              <p className="mt-1 text-xs text-[#2e9bd6]">{state.fieldErrors.phone}</p>
+            )}
+          </div>
+
+          <div>
+            <label
               htmlFor="popup-service"
               className="block text-xs font-bold uppercase tracking-normal text-[#888888] mb-2"
             >
@@ -155,6 +174,7 @@ export function RequestInfoPopup({
             <select
               id="popup-service"
               name="serviceId"
+              required
               defaultValue={defaultServiceId ?? ""}
               className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#2e9bd6] transition-colors"
             >
@@ -165,6 +185,9 @@ export function RequestInfoPopup({
                 </option>
               ))}
             </select>
+            {state.fieldErrors?.serviceId && (
+              <p className="mt-1 text-xs text-[#2e9bd6]">{state.fieldErrors.serviceId}</p>
+            )}
           </div>
 
           <div>
