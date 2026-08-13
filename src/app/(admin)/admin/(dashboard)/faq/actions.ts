@@ -31,10 +31,21 @@ export async function saveFaq(input: FaqInput) {
   });
 
   revalidatePath("/admin/faq");
+  // Le FAQ compaiono su più pagine pubbliche (quelle di servizio se collegate a un
+  // servizio, Chi Siamo se generali): non sappiamo qui quale, quindi le rivalidiamo
+  // tutte per sicurezza.
+  revalidatePath("/web");
+  revalidatePath("/branding");
+  revalidatePath("/social");
+  revalidatePath("/chi-siamo");
 }
 
 export async function deleteFaq(id: string) {
   await requireAdmin();
   await prisma.faq.delete({ where: { id } });
   revalidatePath("/admin/faq");
+  revalidatePath("/web");
+  revalidatePath("/branding");
+  revalidatePath("/social");
+  revalidatePath("/chi-siamo");
 }
