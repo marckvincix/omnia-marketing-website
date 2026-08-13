@@ -121,7 +121,7 @@ model Project {
   slug        String  @unique
   client      String
   description String
-  category    String
+  category    String[] @default([])
   year        Int?
   externalUrl String?
 

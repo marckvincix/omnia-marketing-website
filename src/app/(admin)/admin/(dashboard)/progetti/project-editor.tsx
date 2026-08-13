@@ -7,25 +7,16 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { VideoUploadField } from "@/components/admin/video-upload-field";
 import type { ProjectInput } from "@/lib/validation/admin";
 import { saveProject, createProjectMediaUploadSlot } from "./actions";
 
-const NEW_CATEGORY = "__new__";
-
 const emptyProject: ProjectInput = {
   title: "",
   slug: "",
   client: "",
-  category: "",
+  category: [],
   description: "",
   processText: "",
   coverImage: "",
@@ -54,15 +45,28 @@ export function ProjectEditor({
   categoryOptions: string[];
 }) {
   const [form, setForm] = useState<ProjectInput>(initial ?? emptyProject);
-  const [customCategory, setCustomCategory] = useState(
-    !!form.category && !categoryOptions.includes(form.category),
-  );
+  const [newCategory, setNewCategory] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
+  function addCategory(name: string) {
+    const trimmed = name.trim();
+    if (!trimmed || form.category.includes(trimmed)) return;
+    setForm((f) => ({ ...f, category: [...f.category, trimmed] }));
+  }
+
+  function toggleCategory(name: string) {
+    setForm((f) => ({
+      ...f,
+      category: f.category.includes(name)
+        ? f.category.filter((c) => c !== name)
+        : [...f.category, name],
+    }));
+  }
+
   function handleGenerateGeo() {
     const client = form.client.trim() || "il cliente";
-    const category = form.category.trim() || "un progetto digitale";
+    const category = form.category.length > 0 ? form.category.join(", ") : "un progetto digitale";
     const results = form.resultsText
       ? form.resultsText.split("·").map((r) => r.trim()).filter(Boolean)
       : [];
@@ -106,38 +110,64 @@ export function ProjectEditor({
           <Label htmlFor="p-client">Cliente</Label>
           <Input id="p-client" value={form.client} onChange={(e) => setForm({ ...form, client: e.target.value })} />
         </div>
-        <div>
-          <Label>Categoria</Label>
-          <Select
-            value={customCategory ? NEW_CATEGORY : form.category || ""}
-            onValueChange={(v) => {
-              if (v === NEW_CATEGORY) {
-                setCustomCategory(true);
-                setForm({ ...form, category: "" });
-              } else {
-                setCustomCategory(false);
-                setForm({ ...form, category: v ?? "" });
+      </div>
+
+      <div>
+        <Label className="mb-2 block">Categorie</Label>
+        <div className="flex flex-wrap gap-2 mb-3">
+          {categoryOptions.map((c) => {
+            const checked = form.category.includes(c);
+            return (
+              <button
+                key={c}
+                type="button"
+                onClick={() => toggleCategory(c)}
+                className={`rounded-full border px-3 py-1.5 text-sm transition-colors ${
+                  checked
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "border-border text-muted-foreground hover:bg-accent"
+                }`}
+              >
+                {c}
+              </button>
+            );
+          })}
+          {form.category
+            .filter((c) => !categoryOptions.includes(c))
+            .map((c) => (
+              <button
+                key={c}
+                type="button"
+                onClick={() => toggleCategory(c)}
+                className="rounded-full border px-3 py-1.5 text-sm bg-primary text-primary-foreground border-primary"
+              >
+                {c}
+              </button>
+            ))}
+        </div>
+        <div className="flex gap-2">
+          <Input
+            placeholder="Nuova categoria"
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                addCategory(newCategory);
+                setNewCategory("");
               }
             }}
+          />
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => {
+              addCategory(newCategory);
+              setNewCategory("");
+            }}
           >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Seleziona categoria" />
-            </SelectTrigger>
-            <SelectContent>
-              {categoryOptions.map((c) => (
-                <SelectItem key={c} value={c}>{c}</SelectItem>
-              ))}
-              <SelectItem value={NEW_CATEGORY}>+ Nuova categoria…</SelectItem>
-            </SelectContent>
-          </Select>
-          {customCategory && (
-            <Input
-              className="mt-2"
-              placeholder="Nome nuova categoria"
-              value={form.category}
-              onChange={(e) => setForm({ ...form, category: e.target.value })}
-            />
-          )}
+            <Plus className="size-4" /> Aggiungi
+          </Button>
         </div>
       </div>
 

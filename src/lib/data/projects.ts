@@ -24,7 +24,7 @@ export interface ProjectView {
   id: string;
   slug: string;
   client: string;
-  category: string;
+  category: string[];
   servicesRendered: string[];
   serviceSlugs: string[];
   description: string;
@@ -43,7 +43,7 @@ type ProjectWithRelations = {
   id: string;
   slug: string;
   client: string;
-  category: string;
+  category: string[];
   description: string;
   processText: string | null;
   coverImage: string | null;
@@ -107,10 +107,7 @@ export async function getProjectsByServiceSlug(serviceSlug: string): Promise<Pro
 }
 
 export async function getProjectCategoryOptions(): Promise<string[]> {
-  const rows = await prisma.project.findMany({
-    select: { category: true },
-    distinct: ["category"],
-    orderBy: { category: "asc" },
-  });
-  return rows.map((r) => r.category).filter(Boolean);
+  const rows = await prisma.project.findMany({ select: { category: true } });
+  const unique = new Set(rows.flatMap((r) => r.category).filter(Boolean));
+  return [...unique].sort((a, b) => a.localeCompare(b));
 }

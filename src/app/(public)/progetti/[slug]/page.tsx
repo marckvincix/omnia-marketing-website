@@ -89,7 +89,7 @@ export default async function ProjectDetailPage({
           {project.client}
         </h1>
         <p className="mt-4 text-sm font-bold tracking-normal uppercase text-[#2e9bd6]">
-          {project.category}
+          {project.category.join(" · ")}
         </p>
         <p className="mt-8 max-w-2xl text-lg text-[#999999]">{project.description}</p>
 

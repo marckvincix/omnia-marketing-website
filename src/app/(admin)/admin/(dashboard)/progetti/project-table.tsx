@@ -18,7 +18,7 @@ import { deleteProject } from "./actions";
 export interface ProjectRowData {
   id: string;
   client: string;
-  category: string;
+  category: string[];
   slug: string;
   published: boolean;
 }
@@ -47,7 +47,7 @@ export function ProjectTable({ projects }: { projects: ProjectRowData[] }) {
             {projects.map((project) => (
               <TableRow key={project.id}>
                 <TableCell className="font-medium">{project.client}</TableCell>
-                <TableCell className="text-muted-foreground">{project.category}</TableCell>
+                <TableCell className="text-muted-foreground">{project.category.join(" · ")}</TableCell>
                 <TableCell className="text-muted-foreground">/progetti/{project.slug}</TableCell>
                 <TableCell>
                   <Badge variant={project.published ? "default" : "secondary"}>

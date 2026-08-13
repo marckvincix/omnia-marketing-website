@@ -1,7 +1,7 @@
 export interface Project {
   slug: string;
   client: string;
-  category: string;
+  category: string[];
   servicesRendered: string[];
   serviceSlugs: ("web" | "branding" | "social")[];
   description: string;
@@ -16,7 +16,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "giudice-pubblicita",
     client: "Giudice Pubblicità",
-    category: "Sito Web · Branding · Social",
+    category: ["Sito Web", "Branding", "Social"],
     servicesRendered: ["Sito Web", "Social Media Management", "Fotografia", "Video", "Branding"],
     serviceSlugs: ["web", "social", "branding"],
     description:
@@ -36,7 +36,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "nbgshop-it",
     client: "Nbgshop.it",
-    category: "eCommerce · Branding",
+    category: ["eCommerce", "Branding"],
     servicesRendered: ["eCommerce", "Logo Design", "Branding", "Social Media Management"],
     serviceSlugs: ["web", "branding", "social"],
     description:
@@ -56,7 +56,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "newstanis",
     client: "Newstanis",
-    category: "Sito Web · SEO",
+    category: ["Sito Web", "SEO"],
     servicesRendered: ["Sito Web", "SEO"],
     serviceSlugs: ["web"],
     description:

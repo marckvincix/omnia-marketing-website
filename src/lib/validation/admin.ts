@@ -35,7 +35,7 @@ export const projectSchema = z.object({
   title: z.string().trim().min(1, "Titolo obbligatorio"),
   slug: z.string().trim().toLowerCase().regex(slugRegex, "Slug non valido"),
   client: z.string().trim().min(1, "Cliente obbligatorio"),
-  category: z.string().trim().min(1, "Categoria obbligatoria"),
+  category: z.array(z.string().trim().min(1)).min(1, "Seleziona almeno una categoria"),
   description: z.string().trim().min(1, "Descrizione obbligatoria"),
   processText: z.string().trim().optional().or(z.literal("")),
   coverImage: z.string().trim().optional().or(z.literal("")),

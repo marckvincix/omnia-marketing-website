@@ -53,7 +53,7 @@ function ProjectCard({ project, index, total }: { project: ProjectView; index: n
                 {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
               </span>
               <span className="text-[10px] font-bold uppercase tracking-normal text-white/60">
-                {project.category}
+                {project.category.join(" · ")}
               </span>
             </div>
 
