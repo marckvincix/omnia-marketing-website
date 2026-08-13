@@ -47,3 +47,38 @@ export function SubscriberRow({ subscriber }: { subscriber: SubscriberRowData })
     </TableRow>
   );
 }
+
+export interface UnsubscribedRowData {
+  id: string;
+  email: string;
+  createdAt: string;
+  unsubscribedAt: string;
+}
+
+export function UnsubscribedRow({ subscriber }: { subscriber: UnsubscribedRowData }) {
+  return (
+    <TableRow>
+      <TableCell className="font-medium text-muted-foreground">{subscriber.email}</TableCell>
+      <TableCell className="text-muted-foreground text-sm whitespace-nowrap">
+        {new Date(subscriber.createdAt).toLocaleDateString("it-IT", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        })}
+      </TableCell>
+      <TableCell className="text-sm whitespace-nowrap">
+        <Badge variant="outline">
+          Disiscritto il{" "}
+          {new Date(subscriber.unsubscribedAt).toLocaleDateString("it-IT", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          })}
+        </Badge>
+      </TableCell>
+      <TableCell className="text-right">
+        <DeleteButton action={() => deleteSubscriber(subscriber.id)} />
+      </TableCell>
+    </TableRow>
+  );
+}

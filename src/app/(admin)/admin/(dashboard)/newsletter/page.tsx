@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import { getEmailMetrics } from "@/lib/email/metrics";
 import { getSubscriberEngagementMap } from "@/lib/email/segments";
-import { SubscriberRow } from "./subscriber-row";
+import { SubscriberRow, UnsubscribedRow } from "./subscriber-row";
 import { PostSendRow } from "./post-send-row";
 import { SyncMetricsButton } from "./sync-metrics-button";
 
@@ -42,6 +42,7 @@ export default async function AdminNewsletterPage() {
   ]);
 
   const subscribers = allSubscribers.filter((s) => !s.unsubscribedAt);
+  const unsubscribed = allSubscribers.filter((s) => s.unsubscribedAt);
   const webhookConfigured = !!process.env.RESEND_WEBHOOK_SECRET;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const isLocalSite = siteUrl.includes("localhost");
@@ -185,6 +186,41 @@ export default async function AdminNewsletterPage() {
           </Table>
         </div>
       </div>
+
+      {unsubscribed.length > 0 && (
+        <div>
+          <AdminPageHeader
+            title="Disiscritti"
+            description={`${unsubscribed.length} ${unsubscribed.length === 1 ? "persona si è disiscritta" : "persone si sono disiscritte"} dalla newsletter. Non ricevono più nessuna email.`}
+          />
+
+          <div className="rounded-xl border border-border bg-card overflow-hidden">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Iscritto il</TableHead>
+                  <TableHead>Stato</TableHead>
+                  <TableHead className="w-16 text-right">Azioni</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {unsubscribed.map((subscriber) => (
+                  <UnsubscribedRow
+                    key={subscriber.id}
+                    subscriber={{
+                      id: subscriber.id,
+                      email: subscriber.email,
+                      createdAt: subscriber.createdAt.toISOString(),
+                      unsubscribedAt: subscriber.unsubscribedAt!.toISOString(),
+                    }}
+                  />
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
