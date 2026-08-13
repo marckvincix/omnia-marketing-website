@@ -42,6 +42,49 @@ function num(value: string | null | undefined): number {
   return Number.isFinite(n) ? n : 0;
 }
 
+export interface Ga4RealtimePage {
+  page: string;
+  activeUsers: number;
+}
+
+export interface Ga4Realtime {
+  activeUsers: number;
+  byPage: Ga4RealtimePage[];
+}
+
+export async function getGa4Realtime(): Promise<Ga4Realtime | { error: string }> {
+  const setup = getClient();
+  if (!setup) return { error: "Google Analytics non è ancora configurato." };
+  const { client, propertyId } = setup;
+  const property = `properties/${propertyId}`;
+
+  try {
+    const [totalRes, pagesRes] = await Promise.all([
+      client.runRealtimeReport({ property, metrics: [{ name: "activeUsers" }] }),
+      client.runRealtimeReport({
+        property,
+        dimensions: [{ name: "unifiedScreenName" }],
+        metrics: [{ name: "activeUsers" }],
+        orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+        limit: 5,
+      }),
+    ]);
+
+    const activeUsers = num(totalRes[0].rows?.[0]?.metricValues?.[0]?.value);
+    const byPage: Ga4RealtimePage[] = (pagesRes[0].rows ?? []).map((row) => ({
+      page: row.dimensionValues?.[0]?.value || "(senza titolo)",
+      activeUsers: num(row.metricValues?.[0]?.value),
+    }));
+
+    return { activeUsers, byPage };
+  } catch (error) {
+    console.error("Errore lettura metriche in tempo reale Google Analytics", error);
+    return {
+      error: error instanceof Error ? error.message : "Errore sconosciuto durante la lettura delle metriche",
+    };
+  }
+}
+
 export async function getGa4Report(days: number = 28): Promise<Ga4Report | { error: string }> {
   const setup = getClient();
   if (!setup) return { error: "Google Analytics non è ancora configurato." };

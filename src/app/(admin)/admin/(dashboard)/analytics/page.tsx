@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
+import { RealtimeVisitors } from "@/components/admin/realtime-visitors";
 import { getGa4Report, isGa4Configured } from "@/lib/analytics/ga4";
 
 export const metadata: Metadata = {
@@ -90,6 +91,10 @@ export default async function AdminAnalyticsPage() {
           title="Analytics"
           description="Statistiche di traffico del sito negli ultimi 28 giorni, da Google Analytics."
         />
+
+        <div className="mb-6 max-w-sm">
+          <RealtimeVisitors variant="panel" />
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
           <MetricCard label="Utenti attivi" value={overview.activeUsers} />

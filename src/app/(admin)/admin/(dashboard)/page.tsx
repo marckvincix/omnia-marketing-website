@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { ADMIN_NAV } from "@/lib/admin-nav";
+import { RealtimeVisitors } from "@/components/admin/realtime-visitors";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -35,6 +36,10 @@ export default async function AdminDashboardPage() {
       <p className="text-sm text-muted-foreground mb-8">
         Panoramica dei contenuti del sito Omnia Marketing.
       </p>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+        <RealtimeVisitors variant="card" />
+      </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
         {stats.map((stat) => (
