@@ -55,7 +55,7 @@ export function renderEmailLayout({
           <table role="presentation" width="100%" style="max-width:600px;" cellpadding="0" cellspacing="0">
             <tr>
               <td style="padding-bottom:32px;">
-                <img src="${LOGO_DATA_URI}" width="180" alt="Omnia Marketing" style="display:block;width:180px;height:auto;border:0;" />
+                <img src="${LOGO_DATA_URI}" width="90" alt="Omnia Marketing" style="display:block;width:90px;height:auto;border:0;" />
               </td>
             </tr>
             <tr>
