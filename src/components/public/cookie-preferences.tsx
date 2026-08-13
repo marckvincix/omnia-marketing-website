@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { useVisitorTracking } from "@/lib/visitor-tracking-context";
 import { useVisitorName } from "@/lib/visitor-name-context";
+import { deleteVisitorNameRecord } from "@/lib/visitor-name/actions";
 import { COOKIE_CONSENT_KEY, COOKIE_DECIDED_EVENT } from "@/lib/cookie-consent";
 
 export function CookiePreferences() {
-  const { hydrated, consented, grantConsent, revokeConsent } = useVisitorTracking();
+  const { hydrated, consented, visitorId, grantConsent, revokeConsent } = useVisitorTracking();
   const { clearName, dismiss } = useVisitorName();
   const [feedback, setFeedback] = useState<"accepted" | "rejected" | null>(null);
 
@@ -19,6 +20,7 @@ export function CookiePreferences() {
 
   function handleReject() {
     localStorage.setItem(COOKIE_CONSENT_KEY, "rejected");
+    if (visitorId) deleteVisitorNameRecord(visitorId).catch(() => {});
     revokeConsent();
     clearName();
     dismiss();

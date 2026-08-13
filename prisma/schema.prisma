@@ -301,6 +301,17 @@ model ContactSubmission {
   createdAt DateTime @default(now())
 }
 
+// Nome lasciato nel popup di benvenuto, salvato solo se il visitatore ha accettato
+// la personalizzazione nel banner cookie. visitorId collega il record allo stesso
+// profilo anonimo del tracciamento interessi, per evitare duplicati a ogni riapertura
+// del popup ed essere cancellabile insieme al resto quando revoca il consenso.
+model VisitorName {
+  id        String   @id @default(cuid())
+  name      String
+  visitorId String?  @unique
+  createdAt DateTime @default(now())
+}
+
 model LegalPage {
   id        String   @id @default(cuid())
   slug      String   @unique // "privacy-policy" | "cookie-policy"

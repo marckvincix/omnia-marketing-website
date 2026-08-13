@@ -16,6 +16,7 @@ interface VisitorProfile {
 interface VisitorTrackingContextValue {
   hydrated: boolean;
   consented: boolean;
+  visitorId: string | null;
   isReturning: boolean;
   topInterest: string | null;
   /** 0 = prima visita di ritorno, sale con i giorni per rendere i messaggi via via più diretti. */
@@ -163,6 +164,7 @@ export function VisitorTrackingProvider({ children }: { children: React.ReactNod
   const value: VisitorTrackingContextValue = {
     hydrated,
     consented,
+    visitorId: profile?.visitorId ?? null,
     isReturning: (profile?.visitCount ?? 0) >= 2,
     topInterest: topInterestOf(profile),
     tier: tierFor(profile?.visitCount ?? 0),

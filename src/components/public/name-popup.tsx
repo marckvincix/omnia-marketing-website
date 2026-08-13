@@ -4,44 +4,30 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import { useVisitorName } from "@/lib/visitor-name-context";
-import { COOKIE_CONSENT_KEY, COOKIE_DECIDED_EVENT } from "@/lib/cookie-consent";
+import { useVisitorTracking } from "@/lib/visitor-tracking-context";
+import { recordVisitorName } from "@/lib/visitor-name/actions";
 import { LightBeamButton } from "./light-beam-button";
 
 export function NamePopup() {
   const pathname = usePathname();
   const { name, dismissed, hydrated, setName, dismiss } = useVisitorName();
+  const { hydrated: trackingHydrated, consented, visitorId } = useVisitorTracking();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    if (!hydrated || name || dismissed) return;
+    // Il nome viene chiesto (e salvato) solo se il visitatore ha già accettato la
+    // personalizzazione nel banner cookie: se rifiuta, questo popup non compare mai.
+    if (!hydrated || !trackingHydrated || name || dismissed || !consented) return;
 
-    function schedule() {
-      if (pathname === "/") {
-        const handler = () => setOpen(true);
-        window.addEventListener("omnia:intro-complete", handler);
-        return () => window.removeEventListener("omnia:intro-complete", handler);
-      }
-      const timer = setTimeout(() => setOpen(true), 800);
-      return () => clearTimeout(timer);
+    if (pathname === "/") {
+      const handler = () => setOpen(true);
+      window.addEventListener("omnia:intro-complete", handler);
+      return () => window.removeEventListener("omnia:intro-complete", handler);
     }
-
-    // Aspetta che il banner cookie sia stato deciso (accettato o rifiutato)
-    // prima di mostrare questo popup, per non sovrapporre due richieste.
-    if (localStorage.getItem(COOKIE_CONSENT_KEY)) {
-      return schedule();
-    }
-
-    let cleanup: (() => void) | undefined;
-    const onDecided = () => {
-      cleanup = schedule();
-    };
-    window.addEventListener(COOKIE_DECIDED_EVENT, onDecided, { once: true });
-    return () => {
-      window.removeEventListener(COOKIE_DECIDED_EVENT, onDecided);
-      cleanup?.();
-    };
-  }, [hydrated, name, dismissed, pathname]);
+    const timer = setTimeout(() => setOpen(true), 800);
+    return () => clearTimeout(timer);
+  }, [hydrated, trackingHydrated, name, dismissed, consented, pathname]);
 
   if (!open) return null;
 
@@ -49,6 +35,7 @@ export function NamePopup() {
     e.preventDefault();
     if (!value.trim()) return;
     setName(value);
+    if (visitorId) recordVisitorName(value, visitorId).catch(() => {});
     setOpen(false);
   }
 

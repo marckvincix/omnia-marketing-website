@@ -13,7 +13,7 @@ export default function CookiePolicyPage() {
       <h1 className="font-display font-black text-white text-4xl md:text-6xl mb-4">
         Cookie Policy
       </h1>
-      <p className="text-sm text-[#666666] mb-16">Ultimo aggiornamento: 12 agosto 2026</p>
+      <p className="text-sm text-[#666666] mb-16">Ultimo aggiornamento: 13 agosto 2026</p>
 
       <div className="flex flex-col gap-10 text-[#cccccc] leading-relaxed">
         <section>
@@ -51,12 +51,12 @@ export default function CookiePolicyPage() {
           </h2>
           <p>
             Prima di entrare nel dettaglio, una premessa chiara: questo sito{" "}
-            <strong className="text-white">non utilizza cookie di profilazione</strong>,{" "}
-            <strong className="text-white">non utilizza cookie pubblicitari o di terze parti</strong>{" "}
-            e <strong className="text-white">non utilizza strumenti di analytics</strong>{" "}
-            (come Google Analytics o simili). Non c&apos;è nessun cookie wall: puoi navigare
-            e usare tutte le funzionalità principali del sito anche rifiutando ogni
-            tracciamento facoltativo.
+            <strong className="text-white">non utilizza cookie di profilazione a fini pubblicitari</strong>{" "}
+            e <strong className="text-white">non utilizza cookie di terze parti a scopo di marketing</strong>.
+            Utilizza Google Analytics solo in forma aggregata e solo con il tuo consenso,
+            come descritto al punto 6. Non c&apos;è nessun cookie wall: puoi navigare e usare
+            tutte le funzionalità principali del sito anche rifiutando ogni tracciamento
+            facoltativo.
           </p>
         </section>
 
@@ -106,8 +106,8 @@ export default function CookiePolicyPage() {
             5. Personalizzazione anonima (richiede consenso)
           </h2>
           <p>
-            Se accetti nel banner iniziale, il sito salva sul tuo dispositivo — mai su un
-            server — le seguenti informazioni tramite localStorage:
+            Se accetti nel banner iniziale, il sito salva sul tuo dispositivo tramite
+            localStorage le seguenti informazioni:
           </p>
           <div className="mt-4 overflow-x-auto rounded-xl border border-[#1a1a1a]">
             <table className="w-full text-sm">
@@ -144,17 +144,98 @@ export default function CookiePolicyPage() {
             </table>
           </div>
           <p className="mt-4">
-            Queste informazioni non vengono mai trasmesse ai nostri server, non sono
-            associate alla tua identità reale, non sono incrociate con altri dati e non
-            sono condivise con terzi. Se rifiuti il consenso, o se non lo esprimi, nessuna
-            di queste informazioni viene creata o salvata, e il sito mostra a tutti i
-            visitatori gli stessi contenuti di default.
+            L&apos;identificativo anonimo e le categorie che visiti (omnia_visitor_profile)
+            restano solo sul tuo dispositivo, non vengono mai trasmessi ai nostri server. Il
+            nome che indichi nel popup di benvenuto, invece, viene salvato anche in un
+            nostro database — insieme alla data e al solo identificativo anonimo, mai al
+            tuo indirizzo email o ad altri dati che ti identifichino — così da poter sapere
+            quante persone lo hanno lasciato. In nessun caso queste informazioni sono
+            incrociate con altri dati o condivise con terzi. Se rifiuti il consenso, o se
+            non lo esprimi, nessuna di queste informazioni viene creata o salvata, e il
+            sito mostra a tutti i visitatori gli stessi contenuti di default. Puoi cancellare
+            in ogni momento sia i dati sul dispositivo sia il nome salvato sul server dalla
+            sezione{" "}
+            <a href="#preferenze" className="underline hover:text-white">
+              Preferenze cookie
+            </a>{" "}
+            qui sotto.
           </p>
         </section>
 
         <section>
           <h2 className="font-display text-2xl text-white mb-3">
-            6. Risorse esterne (font)
+            6. Google Analytics (richiede consenso)
+          </h2>
+          <p>
+            Se accetti nel banner iniziale, il sito utilizza{" "}
+            <strong className="text-white">Google Analytics 4</strong>, un servizio di
+            analisi statistica fornito da Google Ireland Limited (per gli utenti
+            nell&apos;Unione Europea), per capire in forma aggregata come viene usato il
+            sito: quante persone lo visitano, quali pagine guardano, da dove arrivano e
+            quanto tempo vi passano. Non usiamo funzionalità pubblicitarie di Google
+            (Google Signals, remarketing) e l&apos;indirizzo IP viene anonimizzato prima
+            della memorizzazione.
+          </p>
+          <div className="mt-4 overflow-x-auto rounded-xl border border-[#1a1a1a]">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-[#1a1a1a] text-left text-xs uppercase text-[#888888]">
+                  <th className="px-4 py-3 font-medium">Nome</th>
+                  <th className="px-4 py-3 font-medium">Finalità</th>
+                  <th className="px-4 py-3 font-medium">Durata</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-[#1a1a1a]">
+                  <td className="px-4 py-3 align-top text-white">_ga</td>
+                  <td className="px-4 py-3 align-top">
+                    Distingue gli utenti in forma aggregata e anonimizzata per il conteggio
+                    di visitatori e sessioni.
+                  </td>
+                  <td className="px-4 py-3 align-top">Fino a 2 anni</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 align-top text-white">_ga_*</td>
+                  <td className="px-4 py-3 align-top">
+                    Mantiene lo stato della sessione corrente per Google Analytics 4.
+                  </td>
+                  <td className="px-4 py-3 align-top">Fino a 2 anni</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4">
+            I dati raccolti da Google Analytics sono trattati da Google secondo la propria{" "}
+            <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              rel="noreferrer"
+              className="text-white underline hover:text-[#2e9bd6]"
+            >
+              informativa privacy
+            </a>{" "}
+            e i propri termini di conservazione. Se rifiuti il consenso, o se non lo esprimi,
+            Google Analytics non viene mai caricato e nessun dato viene inviato a Google.
+            Puoi revocare il consenso in qualsiasi momento dalla sezione{" "}
+            <a href="#preferenze" className="underline hover:text-white">
+              Preferenze cookie
+            </a>{" "}
+            qui sotto, oppure installare l&apos;
+            <a
+              href="https://tools.google.com/dlpage/gaoptout"
+              target="_blank"
+              rel="noreferrer"
+              className="text-white underline hover:text-[#2e9bd6]"
+            >
+              add-on di disattivazione di Google Analytics
+            </a>{" "}
+            per il tuo browser.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-display text-2xl text-white mb-3">
+            7. Risorse esterne (font)
           </h2>
           <p>
             Per la visualizzazione dei caratteri tipografici del sito vengono caricate
@@ -169,21 +250,22 @@ export default function CookiePolicyPage() {
 
         <section>
           <h2 className="font-display text-2xl text-white mb-3">
-            7. Base giuridica
+            8. Base giuridica
           </h2>
           <p>
             I cookie tecnici necessari sono trattati sulla base della necessità di erogare
             il servizio richiesto (art. 122, comma 1, Codice Privacy — nessun consenso
-            necessario). La personalizzazione anonima è trattata sulla base del{" "}
+            necessario). La personalizzazione anonima e Google Analytics sono trattati
+            sulla base del{" "}
             <strong className="text-white">consenso libero, specifico e revocabile</strong>{" "}
             dell&apos;utente (art. 6, par. 1, lett. a, GDPR), espresso tramite il banner
-            iniziale e modificabile in qualsiasi momento come descritto al punto 9.
+            iniziale e modificabile in qualsiasi momento come descritto al punto 10.
           </p>
         </section>
 
         <section>
           <h2 className="font-display text-2xl text-white mb-3">
-            8. Come gestire i cookie dal browser
+            9. Come gestire i cookie dal browser
           </h2>
           <p>
             Oltre agli strumenti offerti da questo sito, puoi gestire o eliminare i cookie
@@ -231,7 +313,7 @@ export default function CookiePolicyPage() {
 
         <section>
           <h2 className="font-display text-2xl text-white mb-3">
-            9. Gestisci e revoca il consenso
+            10. Gestisci e revoca il consenso
           </h2>
           <p className="mb-4">
             Puoi cambiare la tua scelta in qualsiasi momento, con la stessa facilità con cui
@@ -242,7 +324,7 @@ export default function CookiePolicyPage() {
 
         <section>
           <h2 className="font-display text-2xl text-white mb-3">
-            10. Modifiche a questa informativa
+            11. Modifiche a questa informativa
           </h2>
           <p>
             Questa Cookie Policy può essere aggiornata nel tempo, ad esempio in caso di
@@ -255,7 +337,7 @@ export default function CookiePolicyPage() {
 
         <section>
           <h2 className="font-display text-2xl text-white mb-3">
-            11. I tuoi diritti e reclamo al Garante
+            12. I tuoi diritti e reclamo al Garante
           </h2>
           <p>
             Per l&apos;elenco completo dei diritti riconosciuti dal GDPR e le modalità per
@@ -286,7 +368,7 @@ export default function CookiePolicyPage() {
         </section>
 
         <section>
-          <h2 className="font-display text-2xl text-white mb-3">12. Contatti</h2>
+          <h2 className="font-display text-2xl text-white mb-3">13. Contatti</h2>
           <p>
             Per qualsiasi domanda su questa Cookie Policy scrivi a{" "}
             <a href="mailto:info@omniamarketing.it" className="text-white underline hover:text-[#2e9bd6]">

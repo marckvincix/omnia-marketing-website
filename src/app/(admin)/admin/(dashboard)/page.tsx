@@ -3,6 +3,8 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { ADMIN_NAV } from "@/lib/admin-nav";
 import { RealtimeVisitors } from "@/components/admin/realtime-visitors";
+import { Ga4OverviewCards } from "@/components/admin/ga4-overview-cards";
+import { getGa4Report, isGa4Configured } from "@/lib/analytics/ga4";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -10,15 +12,18 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminDashboardPage() {
-  const [services, projects, testimonials, faqs, team, posts, messages] = await Promise.all([
-    prisma.service.count(),
-    prisma.project.count(),
-    prisma.testimonial.count(),
-    prisma.faq.count(),
-    prisma.teamMember.count(),
-    prisma.blogPost.count(),
-    prisma.contactSubmission.count({ where: { handled: false } }),
-  ]);
+  const [services, projects, testimonials, faqs, team, posts, messages, visitorNames, ga4Report] =
+    await Promise.all([
+      prisma.service.count(),
+      prisma.project.count(),
+      prisma.testimonial.count(),
+      prisma.faq.count(),
+      prisma.teamMember.count(),
+      prisma.blogPost.count(),
+      prisma.contactSubmission.count({ where: { handled: false } }),
+      prisma.visitorName.count(),
+      isGa4Configured() ? getGa4Report(28) : Promise.resolve(null),
+    ]);
 
   const stats = [
     { label: "Servizi", value: services, href: "/admin/servizi" },
@@ -28,7 +33,10 @@ export default async function AdminDashboardPage() {
     { label: "Team", value: team, href: "/admin/team" },
     { label: "Articoli blog", value: posts, href: "/admin/blog" },
     { label: "Messaggi da leggere", value: messages, href: "/admin/messaggi" },
+    { label: "Visitatori registrati", value: visitorNames, href: "/admin/visitatori" },
   ];
+
+  const ga4Overview = ga4Report && !("error" in ga4Report) ? ga4Report.overview : null;
 
   return (
     <div>
@@ -40,6 +48,12 @@ export default async function AdminDashboardPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
         <RealtimeVisitors variant="card" />
       </div>
+
+      {ga4Overview && (
+        <div className="mb-8">
+          <Ga4OverviewCards overview={ga4Overview} />
+        </div>
+      )}
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
         {stats.map((stat) => (
