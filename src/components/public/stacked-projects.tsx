@@ -20,7 +20,7 @@ function ProjectCard({ project, index, total }: { project: ProjectView; index: n
       {project.coverImage ? (
         <Image
           src={project.coverImage}
-          alt=""
+          alt={`${project.client} — progetto ${project.category.join(", ")} realizzato da Omnia Marketing`}
           fill
           sizes="(max-width: 1024px) 100vw, 1152px"
           className="object-cover"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { marked } from "marked";
 import { prisma } from "@/lib/prisma";
 import { BreadcrumbJsonLd, ArticleJsonLd } from "@/components/shared/json-ld";
 
@@ -40,6 +41,11 @@ export default async function BlogPostPage({
 
   if (!post || !post.published) notFound();
 
+  // "breaks: true" mantiene la resa dei vecchi articoli scritti come testo semplice
+  // (dove ogni a-capo contava), mentre in più interpreta la sintassi Markdown
+  // (## titoli, **grassetto**, - elenchi, [link](url)) per chi la usa da ora in poi.
+  const contentHtml = marked.parse(post.content, { breaks: true, gfm: true, async: false });
+
   return (
     <article>
       <BreadcrumbJsonLd items={[{ name: "Blog", url: "/blog" }, { name: post.title, url: `/blog/${post.slug}` }]} />
@@ -73,9 +79,16 @@ export default async function BlogPostPage({
         </div>
       )}
 
-      <div className="px-6 md:px-12 py-16 max-w-3xl mx-auto text-[#cccccc] leading-relaxed whitespace-pre-wrap">
-        {post.content}
-      </div>
+      <div
+        className="px-6 md:px-12 py-16 max-w-3xl mx-auto text-[#cccccc] leading-relaxed
+          [&_p]:mb-5 [&_h2]:font-display [&_h2]:text-white [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-bold [&_h2]:mt-12 [&_h2]:mb-4
+          [&_h3]:font-display [&_h3]:text-white [&_h3]:text-xl [&_h3]:md:text-2xl [&_h3]:font-bold [&_h3]:mt-8 [&_h3]:mb-3
+          [&_strong]:text-white [&_strong]:font-semibold
+          [&_a]:text-[#2e9bd6] [&_a]:underline [&_a]:hover:text-white [&_a]:transition-colors
+          [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-5 [&_li]:mb-1.5
+          [&_blockquote]:border-l-2 [&_blockquote]:border-[#2e9bd6] [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-[#999999]"
+        dangerouslySetInnerHTML={{ __html: contentHtml }}
+      />
 
       {post.tags.length > 0 && (
         <div className="px-6 md:px-12 pb-16 max-w-3xl mx-auto flex flex-wrap gap-2">

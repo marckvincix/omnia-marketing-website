@@ -8,10 +8,22 @@ import { StackedProjects } from "@/components/public/stacked-projects";
 import { CtaBand } from "@/components/public/cta-band";
 import { getPublishedProjects } from "@/lib/data/projects";
 
+const TITLE = "Omnia Marketing — Agenzia web, branding e social a Napoli";
+const DESCRIPTION =
+  "Omnia Marketing: crediamo nel design. Realizziamo siti web, e-commerce, branding e contenuti social per aziende che vogliono distinguersi. Agenzia web a Napoli e Pomigliano d'Arco.";
+
 export const metadata: Metadata = {
-  title: "Omnia Marketing — Agenzia web, branding e social a Napoli",
-  description:
-    "Omnia Marketing: crediamo nel design. Realizziamo siti web, e-commerce, branding e contenuti social per aziende che vogliono distinguersi. Agenzia web a Napoli e Pomigliano d'Arco.",
+  // "absolute" bypassa il template "%s | Omnia Marketing" del layout root: il titolo
+  // della home contiene già il brand, altrimenti diventerebbe duplicato in fondo.
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/",
+    type: "website",
+  },
 };
 
 export default async function HomePage() {

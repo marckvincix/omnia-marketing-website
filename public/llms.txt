@@ -1,0 +1,23 @@
+# Omnia Marketing
+
+> Omnia Marketing è un'agenzia digitale con sede a Pomigliano d'Arco (Napoli, Italia) specializzata in sviluppo web, branding e social media management. Realizza siti web, e-commerce e app, cura identità di brand (naming, logo, UI/UX) e gestisce canali social (contenuti, fotografia, video, spot pubblicitari) per aziende in Campania e in tutta Italia.
+
+## Servizi
+
+- [Sviluppo Web](https://omniamarketing.it/web): siti web, e-commerce, app e piattaforme digitali.
+- [Branding](https://omniamarketing.it/branding): strategy, naming, logo design, UI/UX.
+- [Social Media Management](https://omniamarketing.it/social): gestione contenuti, fotografia, video, spot pubblicitari.
+
+## Azienda
+
+- [Chi Siamo](https://omniamarketing.it/chi-siamo): informazioni sull'agenzia e sul metodo di lavoro.
+- [Portfolio](https://omniamarketing.it/progetti): progetti realizzati per i clienti.
+- [Blog](https://omniamarketing.it/blog): approfondimenti su web, branding e social.
+- [Contatti](https://omniamarketing.it/contatti): richiesta di consulenza gratuita.
+
+## Dati aziendali
+
+- Ragione sociale: Omniaweb S.r.l.s
+- Sede: Viale Alfa Romeo, 17 — 80038 Pomigliano d'Arco (NA), Italia
+- Area servita: Napoli, Campania, Italia
+- Email: info@omniamarketing.it

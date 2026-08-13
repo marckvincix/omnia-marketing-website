@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { CLIENTS_AREA_URL } from "@/lib/nav";
+import { CLIENTS_AREA_URL, FOOTER_NAV } from "@/lib/nav";
 import { LightBeamButton } from "./light-beam-button";
 import { NewsletterForm } from "./newsletter-form";
 import { SocialIcons } from "./social-icons";
@@ -22,6 +22,7 @@ export async function SiteFooter() {
 
   const piva = settings?.piva || DEFAULT_PIVA;
   const companyName = settings?.companyName || DEFAULT_COMPANY;
+  const address = settings?.operationalAddress || "Viale Alfa Romeo, 17 — 80038 Pomigliano d'Arco (NA)";
 
   return (
     <footer id="contatti" className="relative pt-40 pb-20 px-6 md:px-12 border-t border-[#1a1a1a] bg-[#000000]">
@@ -61,6 +62,30 @@ export async function SiteFooter() {
             <LightBeamButton href={CLIENTS_AREA_URL} target="_blank" rel="noopener noreferrer">
               Area Clienti
             </LightBeamButton>
+          </div>
+        </div>
+
+        <div className="pt-16 border-t border-[#111111] grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+          <nav aria-label="Naviga il sito">
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-normal text-[#555555]">Naviga</p>
+            <ul className="flex flex-col gap-2">
+              {FOOTER_NAV.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-[#999999] hover:text-white transition-colors">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-normal text-[#555555]">Dove siamo</p>
+            <address className="not-italic text-[#999999] leading-relaxed">
+              {address}
+              <br />
+              Napoli e Campania
+            </address>
           </div>
         </div>
       </div>

@@ -11,11 +11,28 @@ import { getServiceBySlug, getPublishedServices } from "@/lib/data/services";
 import { getFaqsByServiceSlug } from "@/lib/data/faqs";
 import { ServiceJsonLd } from "@/components/shared/json-ld";
 
-export const metadata: Metadata = {
-  title: "Branding — Strategy, Naming, Logo, UI/UX",
-  description:
-    "Diamo forma alla tua identità visiva: strategy, naming, logo design e UI/UX per un brand che emoziona e distingue. Agenzia di branding a Napoli.",
-};
+const DEFAULT_TITLE = "Branding — Strategy, Naming, Logo, UI/UX";
+const DEFAULT_DESCRIPTION =
+  "Diamo forma alla tua identità visiva: strategy, naming, logo design e UI/UX per un brand che emoziona e distingue. Agenzia di branding a Napoli e Pomigliano d'Arco.";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const service = await getServiceBySlug("branding");
+  const title = service?.seoTitle || DEFAULT_TITLE;
+  const description = service?.seoDescription || DEFAULT_DESCRIPTION;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: "/branding" },
+    openGraph: {
+      title,
+      description,
+      url: "/branding",
+      type: "website",
+      ...(service?.ogImage ? { images: [service.ogImage] } : {}),
+    },
+  };
+}
 
 export default async function BrandingPage() {
   const [service, faqs, services] = await Promise.all([

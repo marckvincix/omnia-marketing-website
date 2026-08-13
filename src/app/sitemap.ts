@@ -10,14 +10,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     prisma.blogPost.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
   ]);
 
+  const now = new Date();
+
   const staticPages: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/`, changeFrequency: "weekly", priority: 1 },
-    { url: `${SITE_URL}/chi-siamo`, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${SITE_URL}/progetti`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${SITE_URL}/blog`, changeFrequency: "weekly", priority: 0.6 },
-    { url: `${SITE_URL}/contatti`, changeFrequency: "yearly", priority: 0.6 },
-    { url: `${SITE_URL}/privacy-policy`, changeFrequency: "yearly", priority: 0.2 },
-    { url: `${SITE_URL}/cookie-policy`, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${SITE_URL}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    { url: `${SITE_URL}/chi-siamo`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/progetti`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${SITE_URL}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+    { url: `${SITE_URL}/contatti`, lastModified: now, changeFrequency: "yearly", priority: 0.6 },
+    { url: `${SITE_URL}/privacy-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${SITE_URL}/cookie-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
   ];
 
   const servicePages: MetadataRoute.Sitemap = services.map((s) => ({

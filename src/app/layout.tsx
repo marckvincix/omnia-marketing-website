@@ -42,13 +42,29 @@ const alfaSlabOne = Alfa_Slab_One({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const DEFAULT_TITLE = "Omnia Marketing — Agenzia Web, Branding e Social a Napoli";
+const DEFAULT_DESCRIPTION =
+  "Omnia Marketing è un'agenzia di web design, branding e social media management con sede a Pomigliano d'Arco (Napoli). Realizziamo siti web, e-commerce, identità di brand e gestiamo i canali social per aziende in tutta la Campania.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Omnia Marketing",
+    default: DEFAULT_TITLE,
     template: "%s | Omnia Marketing",
+  },
+  description: DEFAULT_DESCRIPTION,
+  openGraph: {
+    type: "website",
+    locale: "it_IT",
+    siteName: "Omnia Marketing",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
   },
 };
 
@@ -60,6 +76,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <head>
+        <link rel="preconnect" href="https://api.fontshare.com" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
           href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"

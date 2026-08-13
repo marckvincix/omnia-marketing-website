@@ -12,7 +12,7 @@ import { ProjectTestimonial } from "@/components/public/project-testimonial";
 import { StackedProjects } from "@/components/public/stacked-projects";
 import { TrackInterest } from "@/components/public/track-interest";
 import { RequestInfoPopup } from "@/components/public/request-info-popup";
-import { BreadcrumbJsonLd, CreativeWorkJsonLd } from "@/components/shared/json-ld";
+import { BreadcrumbJsonLd, CreativeWorkJsonLd, ReviewJsonLd } from "@/components/shared/json-ld";
 
 export async function generateStaticParams() {
   const projects = await prisma.project.findMany({
@@ -35,7 +35,13 @@ export async function generateMetadata({
     title: project.seoTitle,
     description: project.seoDescription,
     alternates: { canonical: `/progetti/${project.slug}` },
-    openGraph: { title: project.seoTitle, description: project.seoDescription, type: "article" },
+    openGraph: {
+      title: project.seoTitle,
+      description: project.seoDescription,
+      url: `/progetti/${project.slug}`,
+      type: "article",
+      ...(project.coverImage ? { images: [project.coverImage] } : {}),
+    },
   };
 }
 
@@ -110,7 +116,7 @@ export default async function ProjectDetailPage({
         {project.coverImage ? (
           <Image
             src={project.coverImage}
-            alt={project.client}
+            alt={`${project.client} — case study ${project.category.join(", ")} di Omnia Marketing`}
             fill
             sizes="(max-width: 1024px) 100vw, 1600px"
             priority
@@ -130,14 +136,21 @@ export default async function ProjectDetailPage({
       <section className="px-6 md:px-12 py-20 grid grid-cols-1 md:grid-cols-2 gap-16">
         <div>
           <ul className="flex flex-wrap gap-3">
-            {project.servicesRendered.map((s) => (
-              <li
-                key={s}
-                className="rounded-full border border-[#2a2a2a] px-4 py-2 text-sm text-[#cccccc]"
-              >
-                {s}
-              </li>
-            ))}
+            {project.servicesRendered.map((s, i) => {
+              const slug = project.serviceSlugs[i];
+              const className = "rounded-full border border-[#2a2a2a] px-4 py-2 text-sm text-[#cccccc] transition-colors hover:border-[#2e9bd6] hover:text-white";
+              return (
+                <li key={s}>
+                  {slug ? (
+                    <Link href={`/${slug}`} className={className}>
+                      {s}
+                    </Link>
+                  ) : (
+                    <span className={className}>{s}</span>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
 
@@ -175,7 +188,10 @@ export default async function ProjectDetailPage({
       <ProjectVideoCarousel items={videos} />
 
       {project.testimonialQuote && (
-        <ProjectTestimonial quote={project.testimonialQuote} author={project.client} />
+        <>
+          <ProjectTestimonial quote={project.testimonialQuote} author={project.client} />
+          <ReviewJsonLd author={project.client} quote={project.testimonialQuote} />
+        </>
       )}
 
       {/* Il popup di richiesta informazioni scatta qui, non alla fine della pagina: chi ha

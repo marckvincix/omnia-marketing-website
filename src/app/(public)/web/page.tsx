@@ -11,11 +11,28 @@ import { getServiceBySlug, getPublishedServices } from "@/lib/data/services";
 import { getFaqsByServiceSlug } from "@/lib/data/faqs";
 import { ServiceJsonLd } from "@/components/shared/json-ld";
 
-export const metadata: Metadata = {
-  title: "Web — Siti, App ed eCommerce",
-  description:
-    "Realizziamo siti web, app mobile, e-commerce e piattaforme digitali con design minimalista e tecnologia all'avanguardia. Web agency a Napoli e Pomigliano d'Arco.",
-};
+const DEFAULT_TITLE = "Web — Siti, App ed eCommerce";
+const DEFAULT_DESCRIPTION =
+  "Realizziamo siti web, app mobile, e-commerce e piattaforme digitali con design minimalista e tecnologia all'avanguardia. Web agency a Napoli e Pomigliano d'Arco.";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const service = await getServiceBySlug("web");
+  const title = service?.seoTitle || DEFAULT_TITLE;
+  const description = service?.seoDescription || DEFAULT_DESCRIPTION;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: "/web" },
+    openGraph: {
+      title,
+      description,
+      url: "/web",
+      type: "website",
+      ...(service?.ogImage ? { images: [service.ogImage] } : {}),
+    },
+  };
+}
 
 export default async function WebPage() {
   const [service, faqs, services] = await Promise.all([

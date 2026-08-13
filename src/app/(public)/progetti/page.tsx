@@ -4,10 +4,20 @@ import { CtaBand } from "@/components/public/cta-band";
 import { StackedProjects } from "@/components/public/stacked-projects";
 import { getPublishedProjects } from "@/lib/data/projects";
 
+const TITLE = "Portfolio — Progetti Web, Branding e Social a Napoli";
+const DESCRIPTION =
+  "I progetti realizzati da Omnia Marketing: siti web, e-commerce, branding e social per aziende a Napoli, Pomigliano d'Arco e in tutta Italia che vogliono distinguersi.";
+
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description:
-    "I progetti realizzati da Omnia Marketing: siti web, e-commerce, branding e social per aziende che vogliono distinguersi.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/progetti" },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/progetti",
+    type: "website",
+  },
 };
 
 export default async function ProgettiPage() {

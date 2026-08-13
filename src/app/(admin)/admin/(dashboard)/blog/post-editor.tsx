@@ -83,6 +83,12 @@ export function PostEditor({
           </span>
         </div>
         <Textarea id="b-content" rows={14} value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} />
+        <p className="mt-1.5 text-xs text-muted-foreground">
+          Supporta Markdown: <code className="rounded bg-muted px-1 py-0.5">## Titolo</code>,{" "}
+          <code className="rounded bg-muted px-1 py-0.5">**grassetto**</code>,{" "}
+          <code className="rounded bg-muted px-1 py-0.5">- elenco</code>,{" "}
+          <code className="rounded bg-muted px-1 py-0.5">[testo](url)</code> per i link interni ad altre pagine del sito.
+        </p>
       </div>
 
       <div>

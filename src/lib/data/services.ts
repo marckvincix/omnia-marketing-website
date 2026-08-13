@@ -12,6 +12,9 @@ export interface ServiceView {
   eyebrow: string;
   intro: string;
   subservices: ServiceSub[];
+  seoTitle: string | null;
+  seoDescription: string | null;
+  ogImage: string | null;
 }
 
 function toView(s: {
@@ -21,6 +24,9 @@ function toView(s: {
   excerpt: string;
   description: string;
   benefits: { title: string; description: string }[];
+  seoTitle: string | null;
+  seoDescription: string | null;
+  ogImage: string | null;
 }): ServiceView {
   return {
     id: s.id,
@@ -29,6 +35,9 @@ function toView(s: {
     eyebrow: s.excerpt,
     intro: s.description,
     subservices: s.benefits.map((b) => ({ title: b.title, description: b.description })),
+    seoTitle: s.seoTitle,
+    seoDescription: s.seoDescription,
+    ogImage: s.ogImage,
   };
 }
 

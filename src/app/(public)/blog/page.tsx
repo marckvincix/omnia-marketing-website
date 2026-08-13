@@ -6,9 +6,20 @@ import { PageHero } from "@/components/public/page-hero";
 import { CtaBand } from "@/components/public/cta-band";
 import { TiltCard } from "@/components/public/tilt-card";
 
+const TITLE = "Blog — Consigli su Web, Branding e Social";
+const DESCRIPTION =
+  "Approfondimenti su design, sviluppo web, branding e social media a cura di Omnia Marketing, agenzia digitale a Napoli e Pomigliano d'Arco.";
+
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Approfondimenti su design, web, branding e social a cura di Omnia Marketing.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/blog" },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/blog",
+    type: "website",
+  },
 };
 
 export default async function BlogPage() {

@@ -7,10 +7,20 @@ import { LightBeamButton } from "@/components/public/light-beam-button";
 import { CLIENTS_AREA_URL } from "@/lib/nav";
 import { getPublishedServices } from "@/lib/data/services";
 
+const TITLE = "Contatti — Richiedi una Consulenza a Napoli";
+const DESCRIPTION =
+  "Contatta Omnia Marketing per il tuo prossimo progetto web, di branding o social. Siamo a Pomigliano d'Arco (Napoli): richiedi una consulenza gratuita.";
+
 export const metadata: Metadata = {
-  title: "Contatti",
-  description:
-    "Contatta Omnia Marketing per il tuo prossimo progetto web, di branding o social. Siamo a Pomigliano d'Arco (Napoli).",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/contatti" },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/contatti",
+    type: "website",
+  },
 };
 
 export default async function ContattiPage() {

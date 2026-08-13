@@ -3,18 +3,30 @@ import { getPublishedServices } from "@/lib/data/services";
 import { ScrollWordReveal } from "@/components/public/scroll-word-reveal";
 import { RevealOnScroll } from "@/components/public/reveal-on-scroll";
 import { StackedServices } from "@/components/public/stacked-services";
+import { FaqSection } from "@/components/public/faq-section";
 import { CtaBand } from "@/components/public/cta-band";
+import { getGeneralFaqs } from "@/lib/data/faqs";
+
+const TITLE = "Chi Siamo — Agenzia Web e Branding a Napoli";
+const DESCRIPTION =
+  "Omnia Marketing è l'agenzia di web design, branding e social media management con sede a Pomigliano d'Arco (Napoli) che trasforma visioni in esperienze digitali uniche e brand memorabili.";
 
 export const metadata: Metadata = {
-  title: "Chi Siamo",
-  description:
-    "Omnia Marketing è lo studio creativo e tecnologico che trasforma visioni in esperienze digitali uniche e brand memorabili.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/chi-siamo" },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/chi-siamo",
+    type: "website",
+  },
 };
 
 const KEYWORDS = ["STRATEGIA", "DESIGN", "SVILUPPO", "CONTENUTI", "RISULTATI"];
 
 export default async function ChiSiamoPage() {
-  const services = await getPublishedServices();
+  const [services, generalFaqs] = await Promise.all([getPublishedServices(), getGeneralFaqs()]);
 
   return (
     <>
@@ -26,6 +38,16 @@ export default async function ChiSiamoPage() {
           <span className="text-[#666666]">come funziona.</span>&rdquo;
         </blockquote>
         <p className="mt-4 text-sm text-[#666666] uppercase tracking-normal">— Steve Jobs</p>
+      </RevealOnScroll>
+
+      <RevealOnScroll className="px-6 md:px-12 pb-24 max-w-7xl mx-auto">
+        <p className="max-w-3xl text-base md:text-lg text-[#999999] leading-relaxed">
+          Omnia Marketing è un&apos;agenzia di web design, branding e social media
+          management con sede a Pomigliano d&apos;Arco, in provincia di Napoli.
+          Realizziamo siti web, e-commerce, identità di brand e gestiamo i canali
+          social per aziende in tutta la Campania e in Italia, seguendo ogni
+          progetto con un unico team dalla strategia al risultato finale.
+        </p>
       </RevealOnScroll>
 
       <StackedServices services={services} />
@@ -51,6 +73,8 @@ export default async function ChiSiamoPage() {
           ))}
         </div>
       </div>
+
+      <FaqSection items={generalFaqs} />
 
       <CtaBand
         title="Parliamo del tuo prossimo progetto."

@@ -11,11 +11,28 @@ import { getServiceBySlug, getPublishedServices } from "@/lib/data/services";
 import { getFaqsByServiceSlug } from "@/lib/data/faqs";
 import { ServiceJsonLd } from "@/components/shared/json-ld";
 
-export const metadata: Metadata = {
-  title: "Social — SMM, Fotografia, Video, Spot",
-  description:
-    "Social media management, fotografia, videografia e spot pubblicitari dal taglio cinematografico per aziende che vogliono distinguersi sui social.",
-};
+const DEFAULT_TITLE = "Social — SMM, Fotografia, Video, Spot";
+const DEFAULT_DESCRIPTION =
+  "Social media management, fotografia, videografia e spot pubblicitari dal taglio cinematografico per aziende a Napoli e in Campania che vogliono distinguersi sui social.";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const service = await getServiceBySlug("social");
+  const title = service?.seoTitle || DEFAULT_TITLE;
+  const description = service?.seoDescription || DEFAULT_DESCRIPTION;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: "/social" },
+    openGraph: {
+      title,
+      description,
+      url: "/social",
+      type: "website",
+      ...(service?.ogImage ? { images: [service.ogImage] } : {}),
+    },
+  };
+}
 
 export default async function SocialPage() {
   const [service, faqs, services] = await Promise.all([
