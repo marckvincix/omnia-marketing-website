@@ -12,7 +12,12 @@ const nextConfig: NextConfig = {
   // data URI nelle email): il file tracing di Vercel non lo rileva perché il percorso
   // è costruito dinamicamente, quindi va incluso esplicitamente nel bundle serverless.
   outputFileTracingIncludes: {
-    "/**": ["./public/logo-omnia-email.png"],
+    "/**": [
+      "./public/logo-omnia-email.png",
+      "./public/email-icon-instagram.png",
+      "./public/email-icon-facebook.png",
+      "./public/email-icon-linkedin.png",
+    ],
   },
   experimental: {
     serverActions: {

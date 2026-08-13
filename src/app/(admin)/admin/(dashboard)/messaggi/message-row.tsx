@@ -5,6 +5,7 @@ import { Mail, MailOpen, Loader2 } from "lucide-react";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { DeleteButton } from "@/components/admin/delete-button";
+import { MessageReplyDialog } from "./message-reply-dialog";
 import { toggleHandled, deleteMessage } from "./actions";
 
 export interface MessageRowData {
@@ -58,7 +59,12 @@ export function MessageRow({ message }: { message: MessageRowData }) {
         </Badge>
       </TableCell>
       <TableCell className="text-right">
-        <DeleteButton action={() => deleteMessage(message.id)} />
+        <div className="flex items-center justify-end gap-1">
+          <MessageReplyDialog
+            message={{ id: message.id, name: message.name, email: message.email, service: message.service }}
+          />
+          <DeleteButton action={() => deleteMessage(message.id)} />
+        </div>
       </TableCell>
     </TableRow>
   );

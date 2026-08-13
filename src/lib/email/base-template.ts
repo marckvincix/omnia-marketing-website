@@ -1,5 +1,6 @@
 import { SOCIAL_LINKS } from "@/lib/social-links";
 import { LOGO_DATA_URI } from "./logo";
+import { SOCIAL_ICON_DATA_URIS } from "./social-icons";
 
 const BRAND_BLUE = "#2e9bd6";
 const BG = "#000000";
@@ -37,12 +38,13 @@ export function renderEmailLayout({
   footerNote?: string;
   siteUrl: string;
 }) {
-  const socialBadges = SOCIAL_LINKS.map(
-    (social) => `
-      <a href="${social.href}" target="_blank" rel="noopener noreferrer" style="display:inline-block;width:36px;height:36px;line-height:36px;text-align:center;border-radius:999px;border:1px solid ${BORDER};color:${TEXT_MUTED};font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;text-decoration:none;margin:0 6px;">
-        ${social.label.slice(0, 2).toUpperCase()}
-      </a>`,
-  ).join("");
+  const socialBadges = SOCIAL_LINKS.map((social) => {
+    const icon = SOCIAL_ICON_DATA_URIS[social.label];
+    return `
+      <a href="${social.href}" target="_blank" rel="noopener noreferrer" style="display:inline-block;width:36px;height:36px;margin:0 6px;">
+        <img src="${icon}" width="36" height="36" alt="${escapeHtml(social.label)}" style="display:block;width:36px;height:36px;border:0;border-radius:999px;" />
+      </a>`;
+  }).join("");
 
   const ctaBlock =
     ctaLabel && ctaHref
@@ -78,8 +80,8 @@ export function renderEmailLayout({
         <td align="center">
           <table role="presentation" width="100%" style="max-width:600px;" cellpadding="0" cellspacing="0">
             <tr>
-              <td style="padding-bottom:32px;">
-                <img src="${LOGO_DATA_URI}" width="90" alt="Omnia Marketing" style="display:block;width:90px;height:auto;border:0;" />
+              <td style="padding-bottom:32px;text-align:center;">
+                <img src="${LOGO_DATA_URI}" width="90" alt="Omnia Marketing" style="display:inline-block;width:90px;height:auto;border:0;" />
               </td>
             </tr>
             <tr>
