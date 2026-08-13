@@ -11,7 +11,7 @@ import { LightBeamButton } from "./light-beam-button";
 export function NamePopup() {
   const pathname = usePathname();
   const { name, dismissed, hydrated, setName, dismiss } = useVisitorName();
-  const { hydrated: trackingHydrated, consented, visitorId } = useVisitorTracking();
+  const { hydrated: trackingHydrated, consented, visitorId, topInterest } = useVisitorTracking();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
@@ -35,7 +35,7 @@ export function NamePopup() {
     e.preventDefault();
     if (!value.trim()) return;
     setName(value);
-    if (visitorId) recordVisitorName(value, visitorId).catch(() => {});
+    if (visitorId) recordVisitorName(value, visitorId, topInterest).catch(() => {});
     setOpen(false);
   }
 

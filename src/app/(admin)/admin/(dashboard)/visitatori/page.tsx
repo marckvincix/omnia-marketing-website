@@ -31,6 +31,7 @@ export default async function AdminVisitorsPage() {
           <TableHeader>
             <TableRow>
               <TableHead>Nome</TableHead>
+              <TableHead>Interesse</TableHead>
               <TableHead>Registrato il</TableHead>
               <TableHead className="w-16 text-right">Azioni</TableHead>
             </TableRow>
@@ -42,13 +43,14 @@ export default async function AdminVisitorsPage() {
                 visitor={{
                   id: visitor.id,
                   name: visitor.name,
+                  topInterest: visitor.topInterest,
                   createdAt: visitor.createdAt.toISOString(),
                 }}
               />
             ))}
             {visitors.length === 0 && (
               <TableRow>
-                <TableCell colSpan={3} className="text-center text-muted-foreground py-8">
+                <TableCell colSpan={4} className="text-center text-muted-foreground py-8">
                   Nessun visitatore ha ancora lasciato il proprio nome.
                 </TableCell>
               </TableRow>

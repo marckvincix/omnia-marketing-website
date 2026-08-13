@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { syncVisitorInterest } from "@/lib/visitor-name/actions";
 
 const STORAGE_KEY = "omnia_visitor_profile";
 
@@ -140,6 +141,12 @@ export function VisitorTrackingProvider({ children }: { children: React.ReactNod
           },
         };
         writeProfile(updated);
+        // Fire-and-forget: aggiorna l'interesse principale in admin, se questo visitatore
+        // ha già lasciato il nome (altrimenti l'azione è un no-op silenzioso).
+        const newTopInterest = topInterestOf(updated);
+        if (newTopInterest) {
+          syncVisitorInterest(updated.visitorId, newTopInterest).catch(() => {});
+        }
         return updated;
       });
     },

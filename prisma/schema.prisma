@@ -309,6 +309,10 @@ model VisitorName {
   id        String   @id @default(cuid())
   name      String
   visitorId String?  @unique
+  // Slug del servizio ("web" | "branding" | "social") con più interazioni per questo
+  // visitatore. Aggiornato ogni volta che naviga, quindi resta valido anche appena dopo
+  // aver lasciato il nome, non solo dopo i giorni necessari a diventare "visitatore di ritorno".
+  topInterest String?
   createdAt DateTime @default(now())
 }
 

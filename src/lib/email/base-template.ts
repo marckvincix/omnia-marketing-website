@@ -23,15 +23,18 @@ export function renderEmailLayout({
   ctaLabel,
   ctaHref,
   unsubscribeUrl,
+  footerNote,
   siteUrl,
 }: {
   title: string;
   eyebrow: string;
   heading: string;
   bodyHtml: string;
-  ctaLabel: string;
-  ctaHref: string;
-  unsubscribeUrl: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  unsubscribeUrl?: string;
+  /** Sostituisce la nota "iscritto alla newsletter" nel footer, per le email transazionali. */
+  footerNote?: string;
   siteUrl: string;
 }) {
   const socialBadges = SOCIAL_LINKS.map(
@@ -40,6 +43,27 @@ export function renderEmailLayout({
         ${social.label.slice(0, 2).toUpperCase()}
       </a>`,
   ).join("");
+
+  const ctaBlock =
+    ctaLabel && ctaHref
+      ? `<table role="presentation" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="border-radius:999px;background-color:#000000;border:1px solid ${BRAND_BLUE};box-shadow:0 0 20px -4px rgba(46,155,214,0.55);">
+                      <a href="${ctaHref}" style="display:inline-block;padding:14px 28px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;">
+                        ${escapeHtml(ctaLabel)}
+                      </a>
+                    </td>
+                  </tr>
+                </table>`
+      : "";
+
+  const footerLine = unsubscribeUrl
+    ? `Hai ricevuto questa email perché sei iscritto alla newsletter di Omnia Marketing.
+                <br />
+                <a href="${unsubscribeUrl}" style="color:${TEXT_FAINT};text-decoration:underline;">Disiscriviti</a>`
+    : footerNote
+      ? escapeHtml(footerNote)
+      : "";
 
   return `<!DOCTYPE html>
 <html lang="it">
@@ -69,15 +93,7 @@ export function renderEmailLayout({
                 <div style="margin:0 0 28px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:${TEXT_MUTED};">
                   ${bodyHtml}
                 </div>
-                <table role="presentation" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td style="border-radius:999px;background-color:#000000;border:1px solid ${BRAND_BLUE};box-shadow:0 0 20px -4px rgba(46,155,214,0.55);">
-                      <a href="${ctaHref}" style="display:inline-block;padding:14px 28px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;">
-                        ${escapeHtml(ctaLabel)}
-                      </a>
-                    </td>
-                  </tr>
-                </table>
+                ${ctaBlock}
               </td>
             </tr>
             <tr>
@@ -91,10 +107,7 @@ export function renderEmailLayout({
                 <a href="${siteUrl}" style="color:${TEXT_FAINT};">${siteUrl.replace(/^https?:\/\//, "")}</a>
                 &middot;
                 <a href="mailto:info@omniamarketing.it" style="color:${TEXT_FAINT};">info@omniamarketing.it</a>
-                <br />
-                Hai ricevuto questa email perché sei iscritto alla newsletter di Omnia Marketing.
-                <br />
-                <a href="${unsubscribeUrl}" style="color:${TEXT_FAINT};text-decoration:underline;">Disiscriviti</a>
+                ${footerLine ? `<br />${footerLine}` : ""}
               </td>
             </tr>
           </table>

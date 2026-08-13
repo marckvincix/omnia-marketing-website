@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { contactSchema } from "@/lib/validation/contact";
+import { sendContactConfirmationEmail, sendContactNotificationEmail } from "@/lib/email/send-contact-notifications";
 
 export type ContactActionState = {
   error?: string;
@@ -35,15 +36,42 @@ export async function submitContact(
     return { fieldErrors };
   }
 
-  await prisma.contactSubmission.create({
-    data: {
+  const [, service, settings] = await Promise.all([
+    prisma.contactSubmission.create({
+      data: {
+        name: parsed.data.name,
+        email: parsed.data.email,
+        phone: parsed.data.phone || null,
+        message: parsed.data.message,
+        serviceId: parsed.data.serviceId || null,
+      },
+    }),
+    parsed.data.serviceId
+      ? prisma.service.findUnique({ where: { id: parsed.data.serviceId }, select: { title: true } })
+      : Promise.resolve(null),
+    prisma.siteSettings.findUnique({ where: { id: 1 }, select: { contactEmail: true } }),
+  ]);
+
+  const notifyEmail = settings?.contactEmail || "info@omniamarketing.it";
+
+  // Le email non devono mai bloccare l'invio: la richiesta è comunque salvata anche se
+  // Resend fallisce (es. chiave API non ancora aggiornata).
+  const results = await Promise.allSettled([
+    sendContactConfirmationEmail(parsed.data.name, parsed.data.email),
+    sendContactNotificationEmail({
       name: parsed.data.name,
       email: parsed.data.email,
-      phone: parsed.data.phone || null,
+      phone: parsed.data.phone || "—",
+      serviceName: service?.title ?? null,
       message: parsed.data.message,
-      serviceId: parsed.data.serviceId || null,
-    },
-  });
+      notifyEmail,
+    }),
+  ]);
+  for (const result of results) {
+    if (result.status === "rejected") {
+      console.error("Errore invio email modulo contatti", result.reason);
+    }
+  }
 
   redirect("/grazie");
 }
