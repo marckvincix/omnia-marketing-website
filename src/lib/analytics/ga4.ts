@@ -47,9 +47,16 @@ export interface Ga4RealtimePage {
   activeUsers: number;
 }
 
+export interface Ga4RealtimeLocation {
+  city: string;
+  country: string;
+  activeUsers: number;
+}
+
 export interface Ga4Realtime {
   activeUsers: number;
   byPage: Ga4RealtimePage[];
+  byLocation: Ga4RealtimeLocation[];
 }
 
 export async function getGa4Realtime(): Promise<Ga4Realtime | { error: string }> {
@@ -59,11 +66,18 @@ export async function getGa4Realtime(): Promise<Ga4Realtime | { error: string }>
   const property = `properties/${propertyId}`;
 
   try {
-    const [totalRes, pagesRes] = await Promise.all([
+    const [totalRes, pagesRes, locationsRes] = await Promise.all([
       client.runRealtimeReport({ property, metrics: [{ name: "activeUsers" }] }),
       client.runRealtimeReport({
         property,
         dimensions: [{ name: "unifiedScreenName" }],
+        metrics: [{ name: "activeUsers" }],
+        orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+        limit: 5,
+      }),
+      client.runRealtimeReport({
+        property,
+        dimensions: [{ name: "city" }, { name: "country" }],
         metrics: [{ name: "activeUsers" }],
         orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
         limit: 5,
@@ -76,7 +90,13 @@ export async function getGa4Realtime(): Promise<Ga4Realtime | { error: string }>
       activeUsers: num(row.metricValues?.[0]?.value),
     }));
 
-    return { activeUsers, byPage };
+    const byLocation: Ga4RealtimeLocation[] = (locationsRes[0].rows ?? []).map((row) => ({
+      city: row.dimensionValues?.[0]?.value || "",
+      country: row.dimensionValues?.[1]?.value || "",
+      activeUsers: num(row.metricValues?.[0]?.value),
+    }));
+
+    return { activeUsers, byPage, byLocation };
   } catch (error) {
     console.error("Errore lettura metriche in tempo reale Google Analytics", error);
     return {
