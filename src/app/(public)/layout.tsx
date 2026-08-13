@@ -2,6 +2,7 @@ import { FloatingDock } from "@/components/public/floating-dock";
 import { SiteFooter } from "@/components/public/site-footer";
 import { NamePopup } from "@/components/public/name-popup";
 import { CookieBanner } from "@/components/public/cookie-banner";
+import { GoogleAnalytics } from "@/components/public/google-analytics";
 import { ScrollTriggerRouteCleanup } from "@/components/public/scroll-trigger-route-cleanup";
 import { OrganizationJsonLd } from "@/components/shared/json-ld";
 import { VisitorNameProvider } from "@/lib/visitor-name-context";
@@ -24,6 +25,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
           <SiteFooter />
           <NamePopup />
           <CookieBanner />
+          <GoogleAnalytics />
           <ScrollTriggerRouteCleanup />
         </div>
       </VisitorTrackingProvider>

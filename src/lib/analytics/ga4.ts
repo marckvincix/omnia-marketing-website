@@ -1,0 +1,108 @@
+import { BetaAnalyticsDataClient } from "@google-analytics/data";
+
+export interface Ga4Overview {
+  activeUsers: number;
+  sessions: number;
+  pageViews: number;
+  avgSessionDurationSeconds: number;
+  bounceRate: number;
+}
+
+export interface Ga4TopPage {
+  path: string;
+  views: number;
+}
+
+export interface Ga4TrafficSource {
+  channel: string;
+  sessions: number;
+}
+
+export interface Ga4Report {
+  overview: Ga4Overview;
+  topPages: Ga4TopPage[];
+  trafficSources: Ga4TrafficSource[];
+}
+
+function getClient(): { client: BetaAnalyticsDataClient; propertyId: string } | null {
+  const keyJson = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
+  const propertyId = process.env.GOOGLE_ANALYTICS_PROPERTY_ID;
+  if (!keyJson || !propertyId) return null;
+
+  const credentials = JSON.parse(keyJson);
+  return { client: new BetaAnalyticsDataClient({ credentials }), propertyId };
+}
+
+export function isGa4Configured(): boolean {
+  return !!process.env.GOOGLE_SERVICE_ACCOUNT_KEY && !!process.env.GOOGLE_ANALYTICS_PROPERTY_ID;
+}
+
+function num(value: string | null | undefined): number {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : 0;
+}
+
+export async function getGa4Report(days: number = 28): Promise<Ga4Report | { error: string }> {
+  const setup = getClient();
+  if (!setup) return { error: "Google Analytics non è ancora configurato." };
+  const { client, propertyId } = setup;
+  const property = `properties/${propertyId}`;
+  const dateRanges = [{ startDate: `${days}daysAgo`, endDate: "today" }];
+
+  try {
+    const [overviewRes, pagesRes, sourcesRes] = await Promise.all([
+      client.runReport({
+        property,
+        dateRanges,
+        metrics: [
+          { name: "activeUsers" },
+          { name: "sessions" },
+          { name: "screenPageViews" },
+          { name: "averageSessionDuration" },
+          { name: "bounceRate" },
+        ],
+      }),
+      client.runReport({
+        property,
+        dateRanges,
+        dimensions: [{ name: "pagePath" }],
+        metrics: [{ name: "screenPageViews" }],
+        orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
+        limit: 10,
+      }),
+      client.runReport({
+        property,
+        dateRanges,
+        dimensions: [{ name: "sessionDefaultChannelGroup" }],
+        metrics: [{ name: "sessions" }],
+        orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
+      }),
+    ]);
+
+    const overviewRow = overviewRes[0].rows?.[0];
+    const overview: Ga4Overview = {
+      activeUsers: num(overviewRow?.metricValues?.[0]?.value),
+      sessions: num(overviewRow?.metricValues?.[1]?.value),
+      pageViews: num(overviewRow?.metricValues?.[2]?.value),
+      avgSessionDurationSeconds: num(overviewRow?.metricValues?.[3]?.value),
+      bounceRate: num(overviewRow?.metricValues?.[4]?.value),
+    };
+
+    const topPages: Ga4TopPage[] = (pagesRes[0].rows ?? []).map((row) => ({
+      path: row.dimensionValues?.[0]?.value ?? "—",
+      views: num(row.metricValues?.[0]?.value),
+    }));
+
+    const trafficSources: Ga4TrafficSource[] = (sourcesRes[0].rows ?? []).map((row) => ({
+      channel: row.dimensionValues?.[0]?.value ?? "—",
+      sessions: num(row.metricValues?.[0]?.value),
+    }));
+
+    return { overview, topPages, trafficSources };
+  } catch (error) {
+    console.error("Errore lettura metriche Google Analytics", error);
+    return {
+      error: error instanceof Error ? error.message : "Errore sconosciuto durante la lettura delle metriche",
+    };
+  }
+}

@@ -11,6 +11,7 @@ import {
   Mail,
   Send,
   Settings,
+  BarChart3,
 } from "lucide-react";
 
 export interface AdminNavItem {
@@ -30,5 +31,6 @@ export const ADMIN_NAV: AdminNavItem[] = [
   { label: "Media", href: "/admin/media", icon: ImageIcon },
   { label: "Messaggi", href: "/admin/messaggi", icon: Mail },
   { label: "Newsletter", href: "/admin/newsletter", icon: Send },
+  { label: "Analytics", href: "/admin/analytics", icon: BarChart3 },
   { label: "Impostazioni", href: "/admin/impostazioni", icon: Settings },
 ];
