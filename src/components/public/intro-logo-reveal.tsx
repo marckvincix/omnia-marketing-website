@@ -159,8 +159,8 @@ export function IntroLogoReveal() {
           ref={indicatorRef}
           className="absolute bottom-28 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce text-white/60"
         >
-          <span className="text-[10px] font-bold uppercase tracking-normal">Scroll</span>
-          <ChevronDown className="size-6" strokeWidth={1.5} />
+          <span className="text-xs md:text-[10px] font-bold uppercase tracking-normal">Scroll</span>
+          <ChevronDown className="size-8 md:size-6" strokeWidth={1.5} />
         </div>
       </div>
     </div>
