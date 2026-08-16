@@ -313,6 +313,17 @@ model VisitorName {
   // visitatore. Aggiornato ogni volta che naviga, quindi resta valido anche appena dopo
   // aver lasciato il nome, non solo dopo i giorni necessari a diventare "visitatore di ritorno".
   topInterest String?
+  // Città dedotta dall'header di geolocalizzazione di Vercel (edge network) al momento
+  // dell'invio del nome: nessun indirizzo IP viene mai letto né salvato, solo la città
+  // che Vercel calcola per noi.
+  city        String?
+  // Segnali grezzi per il punteggio lead, aggiornati ad ogni pagina/interazione tracciata:
+  // il punteggio vero e proprio si calcola in base a questi, non è salvato qui, per poter
+  // affinare l'algoritmo senza dover rimigrare i dati.
+  visitCount    Int     @default(1)
+  tier          Int     @default(0)
+  interestScore Int     @default(0)
+  contacted     Boolean @default(false)
   createdAt DateTime @default(now())
 }
 

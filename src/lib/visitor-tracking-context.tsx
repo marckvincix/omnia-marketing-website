@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { syncVisitorInterest } from "@/lib/visitor-name/actions";
+import { syncVisitorProfile } from "@/lib/visitor-name/actions";
 
 const STORAGE_KEY = "omnia_visitor_profile";
 
@@ -23,6 +23,9 @@ interface VisitorTrackingContextValue {
   /** 0 = prima visita di ritorno, sale con i giorni per rendere i messaggi via via più diretti. */
   tier: number;
   contacted: boolean;
+  visitCount: number;
+  /** Somma di tutte le interazioni tracciate su qualunque categoria: misura di engagement grezza. */
+  interestScore: number;
   /** peso facoltativo: 1 = visita pagina (default), usato anche per hover/click con peso maggiore. */
   recordView: (slug: string, weight?: number) => void;
   grantConsent: () => void;
@@ -77,6 +80,21 @@ function topInterestOf(profile: VisitorProfile | null): string | null {
     }
   }
   return best;
+}
+
+function interestScoreOf(profile: VisitorProfile | null): number {
+  if (!profile) return 0;
+  return Object.values(profile.interestViews).reduce((sum, n) => sum + n, 0);
+}
+
+function syncProfile(profile: VisitorProfile) {
+  syncVisitorProfile(profile.visitorId, {
+    topInterest: topInterestOf(profile),
+    visitCount: profile.visitCount,
+    tier: tierFor(profile.visitCount),
+    interestScore: interestScoreOf(profile),
+    contacted: profile.contacted,
+  }).catch(() => {});
 }
 
 export function VisitorTrackingProvider({ children }: { children: React.ReactNode }) {
@@ -141,12 +159,9 @@ export function VisitorTrackingProvider({ children }: { children: React.ReactNod
           },
         };
         writeProfile(updated);
-        // Fire-and-forget: aggiorna l'interesse principale in admin, se questo visitatore
-        // ha già lasciato il nome (altrimenti l'azione è un no-op silenzioso).
-        const newTopInterest = topInterestOf(updated);
-        if (newTopInterest) {
-          syncVisitorInterest(updated.visitorId, newTopInterest).catch(() => {});
-        }
+        // Fire-and-forget: aggiorna i segnali del punteggio lead in admin, se questo
+        // visitatore ha già lasciato il nome (altrimenti l'azione è un no-op silenzioso).
+        syncProfile(updated);
         return updated;
       });
     },
@@ -164,6 +179,9 @@ export function VisitorTrackingProvider({ children }: { children: React.ReactNod
       if (!prev || prev.contacted) return prev;
       const updated: VisitorProfile = { ...prev, contacted: true };
       writeProfile(updated);
+      // Il contatto è il segnale più forte per il punteggio lead: sincronizzalo subito,
+      // non aspettare la prossima recordView.
+      syncProfile(updated);
       return updated;
     });
   }, []);
@@ -176,6 +194,8 @@ export function VisitorTrackingProvider({ children }: { children: React.ReactNod
     topInterest: topInterestOf(profile),
     tier: tierFor(profile?.visitCount ?? 0),
     contacted: profile?.contacted ?? false,
+    visitCount: profile?.visitCount ?? 1,
+    interestScore: interestScoreOf(profile),
     recordView,
     grantConsent,
     revokeConsent,

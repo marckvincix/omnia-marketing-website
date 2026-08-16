@@ -146,14 +146,17 @@ export default function CookiePolicyPage() {
             L&apos;identificativo anonimo e le categorie che visiti (omnia_visitor_profile)
             restano solo sul tuo dispositivo, non vengono mai trasmessi ai nostri server. Il
             nome che indichi nel popup di benvenuto, invece, viene salvato anche in un
-            nostro database — insieme alla data e al solo identificativo anonimo, mai al
-            tuo indirizzo email o ad altri dati che ti identifichino — così da poter sapere
-            quante persone lo hanno lasciato. In nessun caso queste informazioni sono
-            incrociate con altri dati o condivise con terzi. Se rifiuti il consenso, o se
-            non lo esprimi, nessuna di queste informazioni viene creata o salvata, e il
-            sito mostra a tutti i visitatori gli stessi contenuti di default. Puoi cancellare
-            in ogni momento sia i dati sul dispositivo sia il nome salvato sul server dalla
-            sezione{" "}
+            nostro database — insieme alla data, al solo identificativo anonimo (mai al
+            tuo indirizzo email o ad altri dati che ti identifichino), alla città
+            approssimativa dedotta dalla tua connessione (non salviamo mai il tuo
+            indirizzo IP) e a un livello di interesse/coinvolgimento calcolato dalle
+            pagine che visiti — così da poter sapere quante persone hanno lasciato il
+            nome e dare priorità a chi mostra più interesse quando rispondiamo. In
+            nessun caso queste informazioni sono incrociate con altri dati o condivise
+            con terzi. Se rifiuti il consenso, o se non lo esprimi, nessuna di queste
+            informazioni viene creata o salvata, e il sito mostra a tutti i visitatori
+            gli stessi contenuti di default. Puoi cancellare in ogni momento sia i dati
+            sul dispositivo sia quelli salvati sul server dalla sezione{" "}
             <a href="#preferenze" className="underline hover:text-white">
               Preferenze cookie
             </a>{" "}
