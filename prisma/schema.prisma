@@ -317,6 +317,10 @@ model VisitorName {
   // dell'invio del nome: nessun indirizzo IP viene mai letto né salvato, solo la città
   // che Vercel calcola per noi.
   city        String?
+  // Da dove arriva il visitatore alla prima visita in assoluto (referrer/UTM), calcolato
+  // una sola volta al momento del consenso e mai più ricalcolato nelle visite successive,
+  // altrimenti la navigazione interna al sito lo sovrascriverebbe.
+  trafficSource String?
   // Segnali grezzi per il punteggio lead, aggiornati ad ogni pagina/interazione tracciata:
   // il punteggio vero e proprio si calcola in base a questi, non è salvato qui, per poter
   // affinare l'algoritmo senza dover rimigrare i dati.
@@ -343,6 +347,10 @@ model NewsletterSubscriber {
   unsubscribeToken String    @unique @default(cuid())
   createdAt        DateTime  @default(now())
   unsubscribedAt   DateTime?
+  // Se chi si iscrive ha anche accettato la personalizzazione e ha un profilo anonimo
+  // attivo, colleghiamo l'iscrizione a quel visitorId: permette di mostrare l'email in
+  // /admin/visitatori quando la stessa persona ha lasciato anche il nome.
+  visitorId        String?
 
   emailEvents EmailEvent[]
 }

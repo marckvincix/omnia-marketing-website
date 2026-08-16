@@ -20,6 +20,7 @@ export function NamePopup() {
     tier,
     interestScore,
     contacted,
+    trafficSource,
   } = useVisitorTracking();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -45,9 +46,14 @@ export function NamePopup() {
     if (!value.trim()) return;
     setName(value);
     if (visitorId) {
-      recordVisitorName(value, visitorId, { topInterest, visitCount, tier, interestScore, contacted }).catch(
-        () => {},
-      );
+      recordVisitorName(value, visitorId, {
+        topInterest,
+        visitCount,
+        tier,
+        interestScore,
+        contacted,
+        trafficSource,
+      }).catch(() => {});
     }
     setOpen(false);
   }

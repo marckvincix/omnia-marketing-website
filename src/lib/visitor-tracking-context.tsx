@@ -12,6 +12,9 @@ interface VisitorProfile {
   visitCount: number;
   interestViews: Record<string, number>;
   contacted: boolean;
+  /** Da dove arriva alla primissima visita (referrer/UTM): calcolato una sola volta al
+   * consenso, mai più ricalcolato, altrimenti la navigazione interna lo sovrascriverebbe. */
+  trafficSource: string;
 }
 
 interface VisitorTrackingContextValue {
@@ -26,6 +29,7 @@ interface VisitorTrackingContextValue {
   visitCount: number;
   /** Somma di tutte le interazioni tracciate su qualunque categoria: misura di engagement grezza. */
   interestScore: number;
+  trafficSource: string | null;
   /** peso facoltativo: 1 = visita pagina (default), usato anche per hover/click con peso maggiore. */
   recordView: (slug: string, weight?: number) => void;
   grantConsent: () => void;
@@ -87,6 +91,44 @@ function interestScoreOf(profile: VisitorProfile | null): number {
   return Object.values(profile.interestViews).reduce((sum, n) => sum + n, 0);
 }
 
+const KNOWN_SOURCES: [pattern: RegExp, label: string][] = [
+  [/google/, "Google (organico)"],
+  [/bing/, "Bing (organico)"],
+  [/yahoo/, "Yahoo (organico)"],
+  [/duckduckgo/, "DuckDuckGo (organico)"],
+  [/facebook|fb\.com/, "Facebook"],
+  [/instagram/, "Instagram"],
+  [/linkedin/, "LinkedIn"],
+  [/tiktok/, "TikTok"],
+  [/chatgpt|openai/, "ChatGPT"],
+  [/perplexity/, "Perplexity"],
+];
+
+/** Calcolata una sola volta, alla primissima visita: legge document.referrer e gli
+ * eventuali parametri utm_source/utm_medium presenti nell'URL di atterraggio. */
+function detectTrafficSource(): string {
+  const params = new URLSearchParams(window.location.search);
+  const utmSource = params.get("utm_source");
+  if (utmSource) {
+    const utmMedium = params.get("utm_medium");
+    return utmMedium ? `${utmSource} (${utmMedium})` : utmSource;
+  }
+
+  const ref = document.referrer;
+  if (!ref) return "Diretto";
+
+  try {
+    const host = new URL(ref).hostname.replace(/^www\./, "");
+    if (host === window.location.hostname) return "Diretto";
+    for (const [pattern, label] of KNOWN_SOURCES) {
+      if (pattern.test(host)) return label;
+    }
+    return host;
+  } catch {
+    return "Diretto";
+  }
+}
+
 function syncProfile(profile: VisitorProfile) {
   syncVisitorProfile(profile.visitorId, {
     topInterest: topInterestOf(profile),
@@ -94,6 +136,7 @@ function syncProfile(profile: VisitorProfile) {
     tier: tierFor(profile.visitCount),
     interestScore: interestScoreOf(profile),
     contacted: profile.contacted,
+    trafficSource: profile.trafficSource,
   }).catch(() => {});
 }
 
@@ -125,6 +168,7 @@ export function VisitorTrackingProvider({ children }: { children: React.ReactNod
         visitCount: 1,
         interestViews: {},
         contacted: false,
+        trafficSource: detectTrafficSource(),
       };
       writeProfile(created);
       return created;
@@ -196,6 +240,7 @@ export function VisitorTrackingProvider({ children }: { children: React.ReactNod
     contacted: profile?.contacted ?? false,
     visitCount: profile?.visitCount ?? 1,
     interestScore: interestScoreOf(profile),
+    trafficSource: profile?.trafficSource ?? null,
     recordView,
     grantConsent,
     revokeConsent,

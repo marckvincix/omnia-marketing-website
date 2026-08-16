@@ -11,6 +11,13 @@ import {
 
 const ALL = "__all__";
 
+const SEGMENT_LABELS: Record<string, string> = {
+  [ALL]: "Tutti i segmenti",
+  Caldo: "Caldo",
+  Tiepido: "Tiepido",
+  Freddo: "Freddo",
+};
+
 export function VisitorFilters({ cities }: { cities: string[] }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -34,7 +41,9 @@ export function VisitorFilters({ cities }: { cities: string[] }) {
     <div className="flex flex-wrap gap-3 mb-4">
       <Select value={segment} onValueChange={(v) => setParam("segment", v)}>
         <SelectTrigger className="w-40">
-          <SelectValue placeholder="Segmento" />
+          <SelectValue placeholder="Segmento">
+            {(v: string) => SEGMENT_LABELS[v] ?? v}
+          </SelectValue>
         </SelectTrigger>
         <SelectContent>
           <SelectItem value={ALL}>Tutti i segmenti</SelectItem>
@@ -46,7 +55,9 @@ export function VisitorFilters({ cities }: { cities: string[] }) {
 
       <Select value={city} onValueChange={(v) => setParam("city", v)}>
         <SelectTrigger className="w-48">
-          <SelectValue placeholder="Città" />
+          <SelectValue placeholder="Città">
+            {(v: string) => (v === ALL ? "Tutte le città" : v)}
+          </SelectValue>
         </SelectTrigger>
         <SelectContent>
           <SelectItem value={ALL}>Tutte le città</SelectItem>

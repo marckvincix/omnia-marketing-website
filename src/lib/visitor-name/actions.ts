@@ -11,6 +11,7 @@ export interface VisitorProfileSnapshot {
   tier: number;
   interestScore: number;
   contacted: boolean;
+  trafficSource?: string | null;
 }
 
 // L'header di geolocalizzazione lo calcola la rete edge di Vercel per ogni richiesta:
@@ -44,6 +45,7 @@ export async function recordVisitorName(
       tier: profile?.tier ?? 0,
       interestScore: profile?.interestScore ?? 0,
       contacted: profile?.contacted ?? false,
+      trafficSource: profile?.trafficSource || null,
     },
     update: {
       name: trimmed,
@@ -53,6 +55,7 @@ export async function recordVisitorName(
       ...(profile?.tier !== undefined ? { tier: profile.tier } : {}),
       ...(profile?.interestScore !== undefined ? { interestScore: profile.interestScore } : {}),
       ...(profile?.contacted !== undefined ? { contacted: profile.contacted } : {}),
+      ...(profile?.trafficSource ? { trafficSource: profile.trafficSource } : {}),
     },
   });
 }
@@ -78,6 +81,7 @@ export async function syncVisitorProfile(visitorId: string, profile: VisitorProf
       tier: profile.tier,
       interestScore: profile.interestScore,
       contacted: profile.contacted,
+      ...(profile.trafficSource ? { trafficSource: profile.trafficSource } : {}),
     },
   });
 }

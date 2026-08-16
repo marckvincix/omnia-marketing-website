@@ -21,8 +21,10 @@ const SEGMENT_STYLES: Record<LeadSegment, string> = {
 export interface VisitorNameRowData {
   id: string;
   name: string;
+  email: string | null;
   topInterest: string | null;
   city: string | null;
+  trafficSource: string | null;
   segment: LeadSegment;
   createdAt: string;
 }
@@ -31,6 +33,9 @@ export function VisitorNameRow({ visitor }: { visitor: VisitorNameRowData }) {
   return (
     <TableRow>
       <TableCell className="font-medium">{visitor.name}</TableCell>
+      <TableCell className="text-muted-foreground text-sm">
+        {visitor.email || "—"}
+      </TableCell>
       <TableCell>
         <Badge variant="outline" className={SEGMENT_STYLES[visitor.segment]}>
           {visitor.segment}
@@ -38,6 +43,9 @@ export function VisitorNameRow({ visitor }: { visitor: VisitorNameRowData }) {
       </TableCell>
       <TableCell className="text-muted-foreground text-sm">
         {visitor.city || "—"}
+      </TableCell>
+      <TableCell className="text-muted-foreground text-sm">
+        {visitor.trafficSource || "—"}
       </TableCell>
       <TableCell>
         {visitor.topInterest ? (

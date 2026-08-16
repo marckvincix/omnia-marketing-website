@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { subscribeNewsletter, type NewsletterActionState } from "@/lib/actions/newsletter";
 import { useVisitorName } from "@/lib/visitor-name-context";
+import { useVisitorTracking } from "@/lib/visitor-tracking-context";
 import { LightBeamButton } from "./light-beam-button";
 
 const initialState: NewsletterActionState = {};
@@ -20,6 +21,7 @@ function SubmitButton() {
 export function NewsletterForm() {
   const [state, formAction] = useActionState(subscribeNewsletter, initialState);
   const { name } = useVisitorName();
+  const { visitorId } = useVisitorTracking();
 
   if (state.success) {
     return (
@@ -39,6 +41,7 @@ export function NewsletterForm() {
         aria-hidden="true"
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
+      {visitorId && <input type="hidden" name="visitorId" value={visitorId} />}
       <div className="flex items-center gap-8">
         <input
           type="email"

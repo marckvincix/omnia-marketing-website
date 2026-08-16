@@ -26,10 +26,13 @@ export async function subscribeNewsletter(
     return { error: parsed.error.issues[0]?.message ?? "Email non valida" };
   }
 
+  const visitorId = formData.get("visitorId");
+  const visitorIdValue = typeof visitorId === "string" && visitorId ? visitorId : undefined;
+
   const subscriber = await prisma.newsletterSubscriber.upsert({
     where: { email: parsed.data.email },
-    create: { email: parsed.data.email },
-    update: { unsubscribedAt: null },
+    create: { email: parsed.data.email, ...(visitorIdValue ? { visitorId: visitorIdValue } : {}) },
+    update: { unsubscribedAt: null, ...(visitorIdValue ? { visitorId: visitorIdValue } : {}) },
   });
 
   try {
