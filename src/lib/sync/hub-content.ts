@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 
 type HubContentRow = {
@@ -44,6 +45,7 @@ export async function syncHubBlogPosts() {
   const rows = (data ?? []) as HubContentRow[];
   let created = 0;
   let updated = 0;
+  const affectedSlugs: string[] = [];
 
   for (const row of rows) {
     const existing = await prisma.blogPost.findUnique({ where: { externalId: row.id } });
@@ -51,22 +53,47 @@ export async function syncHubBlogPosts() {
     const baseSlug = slugify(row.title) || row.id;
     const slug = existing?.slug ?? (await uniqueSlug(baseSlug));
 
-    const postData = {
+    const basePostData = {
       title: row.title,
       excerpt: row.excerpt || row.title,
       content: row.body,
       coverImage: row.image_url,
       readingTimeMinutes: estimateReadingTime(row.body),
       published: true,
-      publishedAt: row.published_at ? new Date(row.published_at) : new Date(),
     };
 
     if (existing) {
-      await prisma.blogPost.update({ where: { id: existing.id }, data: postData });
+      // Non tocchiamo publishedAt di un articolo già pubblicato se Hub non fornisce una
+      // data (published_at nullo): altrimenti ogni risincronizzazione settimanale lo
+      // "ripubblicherebbe" con la data odierna, facendolo risalire in cima al blog e al
+      // footer come se fosse appena uscito.
+      await prisma.blogPost.update({
+        where: { id: existing.id },
+        data: {
+          ...basePostData,
+          ...(row.published_at ? { publishedAt: new Date(row.published_at) } : {}),
+        },
+      });
       updated++;
     } else {
-      await prisma.blogPost.create({ data: { ...postData, slug, externalId: row.id } });
+      await prisma.blogPost.create({
+        data: {
+          ...basePostData,
+          publishedAt: row.published_at ? new Date(row.published_at) : new Date(),
+          slug,
+          externalId: row.id,
+        },
+      });
       created++;
+    }
+    affectedSlugs.push(slug);
+  }
+
+  if (rows.length > 0) {
+    revalidatePath("/blog");
+    revalidatePath("/", "layout");
+    for (const slug of affectedSlugs) {
+      revalidatePath(`/blog/${slug}`);
     }
   }
 
