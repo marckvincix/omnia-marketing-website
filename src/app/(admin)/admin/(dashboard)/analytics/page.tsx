@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { RealtimeVisitors } from "@/components/admin/realtime-visitors";
 import { Ga4OverviewCards } from "@/components/admin/ga4-overview-cards";
-import { getGa4Report, isGa4Configured } from "@/lib/analytics/ga4";
+import { getGa4Report, isGa4Configured, type Ga4Period } from "@/lib/analytics/ga4";
+import { PeriodFilter } from "./period-filter";
 
 export const metadata: Metadata = {
   title: "Analytics",
@@ -20,7 +21,20 @@ const CHANNEL_LABELS: Record<string, string> = {
   "Unassigned": "Non assegnato",
 };
 
-export default async function AdminAnalyticsPage() {
+const PERIOD_DESCRIPTIONS: Record<Ga4Period, string> = {
+  day: "Statistiche di traffico del sito di oggi, da Google Analytics.",
+  month: "Statistiche di traffico del sito negli ultimi 30 giorni, da Google Analytics.",
+  year: "Statistiche di traffico del sito nell'ultimo anno, da Google Analytics.",
+};
+
+export default async function AdminAnalyticsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ period?: string }>;
+}) {
+  const { period: periodParam } = await searchParams;
+  const period: Ga4Period = periodParam === "day" || periodParam === "year" ? periodParam : "month";
+
   if (!isGa4Configured()) {
     return (
       <div>
@@ -51,7 +65,7 @@ export default async function AdminAnalyticsPage() {
     );
   }
 
-  const report = await getGa4Report(28);
+  const report = await getGa4Report(period);
 
   if ("error" in report) {
     return (
@@ -73,10 +87,10 @@ export default async function AdminAnalyticsPage() {
   return (
     <div className="flex flex-col gap-10">
       <div>
-        <AdminPageHeader
-          title="Analytics"
-          description="Statistiche di traffico del sito negli ultimi 28 giorni, da Google Analytics."
-        />
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <AdminPageHeader title="Analytics" description={PERIOD_DESCRIPTIONS[period]} />
+          <PeriodFilter period={period} />
+        </div>
 
         <div className="mb-6 max-w-sm">
           <RealtimeVisitors variant="panel" />

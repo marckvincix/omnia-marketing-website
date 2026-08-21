@@ -105,12 +105,20 @@ export async function getGa4Realtime(): Promise<Ga4Realtime | { error: string }>
   }
 }
 
-export async function getGa4Report(days: number = 28): Promise<Ga4Report | { error: string }> {
+export type Ga4Period = "day" | "month" | "year";
+
+const PERIOD_START_DATE: Record<Ga4Period, string> = {
+  day: "today",
+  month: "30daysAgo",
+  year: "365daysAgo",
+};
+
+export async function getGa4Report(period: Ga4Period = "month"): Promise<Ga4Report | { error: string }> {
   const setup = getClient();
   if (!setup) return { error: "Google Analytics non è ancora configurato." };
   const { client, propertyId } = setup;
   const property = `properties/${propertyId}`;
-  const dateRanges = [{ startDate: `${days}daysAgo`, endDate: "today" }];
+  const dateRanges = [{ startDate: PERIOD_START_DATE[period], endDate: "today" }];
 
   try {
     const [overviewRes, pagesRes, sourcesRes] = await Promise.all([

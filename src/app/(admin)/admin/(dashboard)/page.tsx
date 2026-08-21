@@ -22,7 +22,7 @@ export default async function AdminDashboardPage() {
       prisma.blogPost.count(),
       prisma.contactSubmission.count({ where: { handled: false } }),
       prisma.visitorName.count(),
-      isGa4Configured() ? getGa4Report(28) : Promise.resolve(null),
+      isGa4Configured() ? getGa4Report("month") : Promise.resolve(null),
     ]);
 
   const stats = [
