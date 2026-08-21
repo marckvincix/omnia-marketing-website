@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { RealtimeVisitors } from "@/components/admin/realtime-visitors";
 import { Ga4OverviewCards } from "@/components/admin/ga4-overview-cards";
-import { getGa4Report, isGa4Configured, type Ga4Period } from "@/lib/analytics/ga4";
+import { getGa4Report, isGa4Configured } from "@/lib/analytics/ga4";
+import { isValidGa4Period } from "@/lib/analytics/period";
 import { PeriodFilter } from "./period-filter";
 
 export const metadata: Metadata = {
@@ -21,19 +22,13 @@ const CHANNEL_LABELS: Record<string, string> = {
   "Unassigned": "Non assegnato",
 };
 
-const PERIOD_DESCRIPTIONS: Record<Ga4Period, string> = {
-  day: "Statistiche di traffico del sito di oggi, da Google Analytics.",
-  month: "Statistiche di traffico del sito negli ultimi 30 giorni, da Google Analytics.",
-  year: "Statistiche di traffico del sito nell'ultimo anno, da Google Analytics.",
-};
-
 export default async function AdminAnalyticsPage({
   searchParams,
 }: {
   searchParams: Promise<{ period?: string }>;
 }) {
   const { period: periodParam } = await searchParams;
-  const period: Ga4Period = periodParam === "day" || periodParam === "year" ? periodParam : "month";
+  const period = isValidGa4Period(periodParam) ? periodParam : "30d";
 
   if (!isGa4Configured()) {
     return (
@@ -82,13 +77,16 @@ export default async function AdminAnalyticsPage({
     );
   }
 
-  const { overview, topPages, trafficSources } = report;
+  const { overview, topPages, trafficSources, currentLabel, comparisonLabel } = report;
 
   return (
     <div className="flex flex-col gap-10">
       <div>
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <AdminPageHeader title="Analytics" description={PERIOD_DESCRIPTIONS[period]} />
+          <AdminPageHeader
+            title="Analytics"
+            description={`Statistiche di traffico del sito — ${currentLabel}, da Google Analytics.`}
+          />
           <PeriodFilter period={period} />
         </div>
 
@@ -96,7 +94,7 @@ export default async function AdminAnalyticsPage({
           <RealtimeVisitors variant="panel" />
         </div>
 
-        <Ga4OverviewCards overview={overview} />
+        <Ga4OverviewCards overview={overview} comparisonLabel={comparisonLabel} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

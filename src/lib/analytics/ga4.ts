@@ -1,11 +1,19 @@
 import { BetaAnalyticsDataClient } from "@google-analytics/data";
+import { resolvePeriod } from "./period";
+
+export interface Ga4MetricComparison {
+  current: number;
+  previous: number;
+  /** null quando il periodo precedente è a zero: la variazione percentuale non è definibile. */
+  changePercent: number | null;
+}
 
 export interface Ga4Overview {
-  activeUsers: number;
-  sessions: number;
-  pageViews: number;
-  avgSessionDurationSeconds: number;
-  bounceRate: number;
+  activeUsers: Ga4MetricComparison;
+  sessions: Ga4MetricComparison;
+  pageViews: Ga4MetricComparison;
+  avgSessionDurationSeconds: Ga4MetricComparison;
+  bounceRate: Ga4MetricComparison;
 }
 
 export interface Ga4TopPage {
@@ -22,6 +30,8 @@ export interface Ga4Report {
   overview: Ga4Overview;
   topPages: Ga4TopPage[];
   trafficSources: Ga4TrafficSource[];
+  currentLabel: string;
+  comparisonLabel: string;
 }
 
 function getClient(): { client: BetaAnalyticsDataClient; propertyId: string } | null {
@@ -105,26 +115,28 @@ export async function getGa4Realtime(): Promise<Ga4Realtime | { error: string }>
   }
 }
 
-export type Ga4Period = "day" | "month" | "year";
+function comparison(current: number, previous: number): Ga4MetricComparison {
+  const changePercent = previous > 0 ? ((current - previous) / previous) * 100 : null;
+  return { current, previous, changePercent };
+}
 
-const PERIOD_START_DATE: Record<Ga4Period, string> = {
-  day: "today",
-  month: "30daysAgo",
-  year: "365daysAgo",
-};
-
-export async function getGa4Report(period: Ga4Period = "month"): Promise<Ga4Report | { error: string }> {
+export async function getGa4Report(period: string = "30d"): Promise<Ga4Report | { error: string }> {
   const setup = getClient();
   if (!setup) return { error: "Google Analytics non è ancora configurato." };
   const { client, propertyId } = setup;
   const property = `properties/${propertyId}`;
-  const dateRanges = [{ startDate: PERIOD_START_DATE[period], endDate: "today" }];
+  const { current, previous, currentLabel, comparisonLabel } = resolvePeriod(period);
+  const comparisonDateRanges = [
+    { ...current, name: "current" },
+    { ...previous, name: "previous" },
+  ];
 
   try {
     const [overviewRes, pagesRes, sourcesRes] = await Promise.all([
       client.runReport({
         property,
-        dateRanges,
+        dateRanges: comparisonDateRanges,
+        dimensions: [{ name: "dateRange" }],
         metrics: [
           { name: "activeUsers" },
           { name: "sessions" },
@@ -135,7 +147,7 @@ export async function getGa4Report(period: Ga4Period = "month"): Promise<Ga4Repo
       }),
       client.runReport({
         property,
-        dateRanges,
+        dateRanges: [current],
         dimensions: [{ name: "pagePath" }],
         metrics: [{ name: "screenPageViews" }],
         orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
@@ -143,20 +155,24 @@ export async function getGa4Report(period: Ga4Period = "month"): Promise<Ga4Repo
       }),
       client.runReport({
         property,
-        dateRanges,
+        dateRanges: [current],
         dimensions: [{ name: "sessionDefaultChannelGroup" }],
         metrics: [{ name: "sessions" }],
         orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
       }),
     ]);
 
-    const overviewRow = overviewRes[0].rows?.[0];
+    const currentRow = overviewRes[0].rows?.find((r) => r.dimensionValues?.[0]?.value === "current");
+    const previousRow = overviewRes[0].rows?.find((r) => r.dimensionValues?.[0]?.value === "previous");
+    const curr = (i: number) => num(currentRow?.metricValues?.[i]?.value);
+    const prev = (i: number) => num(previousRow?.metricValues?.[i]?.value);
+
     const overview: Ga4Overview = {
-      activeUsers: num(overviewRow?.metricValues?.[0]?.value),
-      sessions: num(overviewRow?.metricValues?.[1]?.value),
-      pageViews: num(overviewRow?.metricValues?.[2]?.value),
-      avgSessionDurationSeconds: num(overviewRow?.metricValues?.[3]?.value),
-      bounceRate: num(overviewRow?.metricValues?.[4]?.value),
+      activeUsers: comparison(curr(0), prev(0)),
+      sessions: comparison(curr(1), prev(1)),
+      pageViews: comparison(curr(2), prev(2)),
+      avgSessionDurationSeconds: comparison(curr(3), prev(3)),
+      bounceRate: comparison(curr(4), prev(4)),
     };
 
     const topPages: Ga4TopPage[] = (pagesRes[0].rows ?? []).map((row) => ({
@@ -169,7 +185,7 @@ export async function getGa4Report(period: Ga4Period = "month"): Promise<Ga4Repo
       sessions: num(row.metricValues?.[0]?.value),
     }));
 
-    return { overview, topPages, trafficSources };
+    return { overview, topPages, trafficSources, currentLabel, comparisonLabel };
   } catch (error) {
     console.error("Errore lettura metriche Google Analytics", error);
     return {

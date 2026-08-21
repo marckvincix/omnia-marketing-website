@@ -22,7 +22,7 @@ export default async function AdminDashboardPage() {
       prisma.blogPost.count(),
       prisma.contactSubmission.count({ where: { handled: false } }),
       prisma.visitorName.count(),
-      isGa4Configured() ? getGa4Report("month") : Promise.resolve(null),
+      isGa4Configured() ? getGa4Report("30d") : Promise.resolve(null),
     ]);
 
   const stats = [
@@ -36,7 +36,7 @@ export default async function AdminDashboardPage() {
     { label: "Visitatori registrati", value: visitorNames, href: "/admin/visitatori" },
   ];
 
-  const ga4Overview = ga4Report && !("error" in ga4Report) ? ga4Report.overview : null;
+  const ga4Data = ga4Report && !("error" in ga4Report) ? ga4Report : null;
 
   return (
     <div>
@@ -49,9 +49,9 @@ export default async function AdminDashboardPage() {
         <RealtimeVisitors variant="card" />
       </div>
 
-      {ga4Overview && (
+      {ga4Data && (
         <div className="mb-8">
-          <Ga4OverviewCards overview={ga4Overview} />
+          <Ga4OverviewCards overview={ga4Data.overview} comparisonLabel={ga4Data.comparisonLabel} />
         </div>
       )}
 
