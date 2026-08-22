@@ -26,10 +26,21 @@ export interface Ga4TrafficSource {
   sessions: number;
 }
 
+export interface Ga4CityRow {
+  city: string;
+  activeUsers: number;
+  newUsers: number;
+  sessions: number;
+  /** 0-1: percentuale di sessioni con coinvolgimento (equivalente al "Tasso di coinvolgimento" di GA4). */
+  engagementRate: number;
+  avgSessionDurationSeconds: number;
+}
+
 export interface Ga4Report {
   overview: Ga4Overview;
   topPages: Ga4TopPage[];
   trafficSources: Ga4TrafficSource[];
+  demographics: Ga4CityRow[];
   currentLabel: string;
   comparisonLabel: string;
 }
@@ -132,7 +143,7 @@ export async function getGa4Report(period: string = "30d"): Promise<Ga4Report | 
   ];
 
   try {
-    const [overviewRes, pagesRes, sourcesRes] = await Promise.all([
+    const [overviewRes, pagesRes, sourcesRes, demographicsRes] = await Promise.all([
       client.runReport({
         property,
         dateRanges: comparisonDateRanges,
@@ -161,6 +172,20 @@ export async function getGa4Report(period: string = "30d"): Promise<Ga4Report | 
         metrics: [{ name: "sessions" }],
         orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
       }),
+      client.runReport({
+        property,
+        dateRanges: [current],
+        dimensions: [{ name: "city" }],
+        metrics: [
+          { name: "activeUsers" },
+          { name: "newUsers" },
+          { name: "sessions" },
+          { name: "engagementRate" },
+          { name: "averageSessionDuration" },
+        ],
+        orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+        limit: 10,
+      }),
     ]);
 
     const currentRow = overviewRes[0].rows?.find((r) => r.dimensionValues?.[0]?.value === "current");
@@ -186,7 +211,16 @@ export async function getGa4Report(period: string = "30d"): Promise<Ga4Report | 
       sessions: num(row.metricValues?.[0]?.value),
     }));
 
-    return { overview, topPages, trafficSources, currentLabel, comparisonLabel };
+    const demographics: Ga4CityRow[] = (demographicsRes[0].rows ?? []).map((row) => ({
+      city: row.dimensionValues?.[0]?.value || "(non impostata)",
+      activeUsers: num(row.metricValues?.[0]?.value),
+      newUsers: num(row.metricValues?.[1]?.value),
+      sessions: num(row.metricValues?.[2]?.value),
+      engagementRate: num(row.metricValues?.[3]?.value),
+      avgSessionDurationSeconds: num(row.metricValues?.[4]?.value),
+    }));
+
+    return { overview, topPages, trafficSources, demographics, currentLabel, comparisonLabel };
   } catch (error) {
     console.error("Errore lettura metriche Google Analytics", error);
     return {
