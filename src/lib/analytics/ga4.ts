@@ -26,8 +26,8 @@ export interface Ga4TrafficSource {
   sessions: number;
 }
 
-export interface Ga4CityRow {
-  city: string;
+export interface Ga4DemographicRow {
+  label: string;
   activeUsers: number;
   newUsers: number;
   sessions: number;
@@ -36,11 +36,16 @@ export interface Ga4CityRow {
   avgSessionDurationSeconds: number;
 }
 
+export interface Ga4Demographics {
+  byCity: Ga4DemographicRow[];
+  byCountry: Ga4DemographicRow[];
+}
+
 export interface Ga4Report {
   overview: Ga4Overview;
   topPages: Ga4TopPage[];
   trafficSources: Ga4TrafficSource[];
-  demographics: Ga4CityRow[];
+  demographics: Ga4Demographics;
   currentLabel: string;
   comparisonLabel: string;
 }
@@ -143,7 +148,15 @@ export async function getGa4Report(period: string = "30d"): Promise<Ga4Report | 
   ];
 
   try {
-    const [overviewRes, pagesRes, sourcesRes, demographicsRes] = await Promise.all([
+    const demographicMetrics = [
+      { name: "activeUsers" },
+      { name: "newUsers" },
+      { name: "sessions" },
+      { name: "engagementRate" },
+      { name: "averageSessionDuration" },
+    ];
+
+    const [overviewRes, pagesRes, sourcesRes, cityRes, countryRes] = await Promise.all([
       client.runReport({
         property,
         dateRanges: comparisonDateRanges,
@@ -176,13 +189,15 @@ export async function getGa4Report(period: string = "30d"): Promise<Ga4Report | 
         property,
         dateRanges: [current],
         dimensions: [{ name: "city" }],
-        metrics: [
-          { name: "activeUsers" },
-          { name: "newUsers" },
-          { name: "sessions" },
-          { name: "engagementRate" },
-          { name: "averageSessionDuration" },
-        ],
+        metrics: demographicMetrics,
+        orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+        limit: 10,
+      }),
+      client.runReport({
+        property,
+        dateRanges: [current],
+        dimensions: [{ name: "country" }],
+        metrics: demographicMetrics,
         orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
         limit: 10,
       }),
@@ -211,14 +226,20 @@ export async function getGa4Report(period: string = "30d"): Promise<Ga4Report | 
       sessions: num(row.metricValues?.[0]?.value),
     }));
 
-    const demographics: Ga4CityRow[] = (demographicsRes[0].rows ?? []).map((row) => ({
-      city: row.dimensionValues?.[0]?.value || "(non impostata)",
-      activeUsers: num(row.metricValues?.[0]?.value),
-      newUsers: num(row.metricValues?.[1]?.value),
-      sessions: num(row.metricValues?.[2]?.value),
-      engagementRate: num(row.metricValues?.[3]?.value),
-      avgSessionDurationSeconds: num(row.metricValues?.[4]?.value),
-    }));
+    const toDemographicRows = (res: (typeof cityRes)): Ga4DemographicRow[] =>
+      (res[0].rows ?? []).map((row) => ({
+        label: row.dimensionValues?.[0]?.value || "(non impostata)",
+        activeUsers: num(row.metricValues?.[0]?.value),
+        newUsers: num(row.metricValues?.[1]?.value),
+        sessions: num(row.metricValues?.[2]?.value),
+        engagementRate: num(row.metricValues?.[3]?.value),
+        avgSessionDurationSeconds: num(row.metricValues?.[4]?.value),
+      }));
+
+    const demographics: Ga4Demographics = {
+      byCity: toDemographicRows(cityRes),
+      byCountry: toDemographicRows(countryRes),
+    };
 
     return { overview, topPages, trafficSources, demographics, currentLabel, comparisonLabel };
   } catch (error) {
