@@ -136,7 +136,8 @@ export async function getGa4Report(period: string = "30d"): Promise<Ga4Report | 
       client.runReport({
         property,
         dateRanges: comparisonDateRanges,
-        dimensions: [{ name: "dateRange" }],
+        // Non va dichiarato in "dimensions": con più dateRanges la API lo aggiunge da sola
+        // come prima colonna di ogni riga (dichiararlo esplicitamente dà INVALID_ARGUMENT).
         metrics: [
           { name: "activeUsers" },
           { name: "sessions" },
