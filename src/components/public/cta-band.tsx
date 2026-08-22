@@ -20,9 +20,10 @@ interface CtaBandProps {
   description?: string;
   ctaLabel?: string;
   /**
-   * Un elenco di messaggi per ciascun interesse rilevato, dal più discreto (indice 0,
-   * mostrato dalla 2ª visita) al più diretto (indice più alto, mostrato dopo più giorni
-   * di ritorno). Smette di essere usato non appena il visitatore ci contatta.
+   * Un elenco di messaggi per ciascun interesse rilevato, dal più discreto (indice 0) al
+   * più diretto (indice più alto, mostrato dopo più giorni di ritorno). Sostituisce il
+   * testo di base non appena viene rilevato un interesse, e resta valido anche dopo che
+   * il visitatore ci ha contattato, finché non emerge un interesse diverso.
    */
   variants?: Partial<Record<Interest, CtaVariant[]>>;
 }
@@ -34,13 +35,13 @@ export function CtaBand({
   variants,
 }: CtaBandProps) {
   const { name } = useVisitorName();
-  const { hydrated, isReturning, topInterest, tier, contacted } = useVisitorTracking();
+  const { hydrated, topInterest, tier } = useVisitorTracking();
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  const tierList =
-    hydrated && isReturning && !contacted && topInterest
-      ? variants?.[topInterest as Interest]
-      : undefined;
+  // Una volta rilevato un interesse resta valido finché non ne emerge uno diverso: non
+  // dipende da isReturning/contacted, il testo di base è riservato solo a chi non ha
+  // ancora mostrato alcun interesse.
+  const tierList = hydrated && topInterest ? variants?.[topInterest as Interest] : undefined;
   const variant =
     tierList && tierList.length > 0 ? tierList[Math.min(tier, tierList.length - 1)] : undefined;
 

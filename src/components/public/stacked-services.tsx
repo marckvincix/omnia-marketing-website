@@ -48,11 +48,11 @@ function ServiceCard({ service, index, total }: { service: ServiceView; index: n
 }
 
 export function StackedServices({ services }: { services: ServiceView[] }) {
-  const { hydrated, isReturning, topInterest } = useVisitorTracking();
+  const { hydrated, topInterest } = useVisitorTracking();
   if (services.length === 0) return null;
 
   const ordered =
-    hydrated && isReturning && topInterest
+    hydrated && topInterest
       ? [...services].sort(
           (a, b) => Number(b.slug === topInterest) - Number(a.slug === topInterest),
         )

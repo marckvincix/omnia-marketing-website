@@ -10,20 +10,22 @@ interface HeroProps {
   title?: string;
   /**
    * Titoli alternativi ("riga1\nriga2") per ciascun interesse rilevato, dal più discreto
-   * (indice 0, mostrato dalla 2ª visita) al più diretto. Sostituisce interamente `title`
-   * quando il visitatore è di ritorno e non ci ha ancora contattato.
+   * (indice 0) al più diretto (cresce con i giorni di ritorno). Sostituisce interamente
+   * `title` non appena viene rilevato un interesse, e resta valido anche dopo che il
+   * visitatore ci ha contattato, finché non emerge un interesse diverso.
    */
   variants?: Partial<Record<Interest, string[]>>;
 }
 
 export function Hero({ title = "crediamo\nnel design", variants }: HeroProps) {
   const { name } = useVisitorName();
-  const { hydrated, isReturning, topInterest, tier, contacted } = useVisitorTracking();
+  const { hydrated, topInterest, tier } = useVisitorTracking();
 
-  const tierList =
-    hydrated && isReturning && !contacted && topInterest
-      ? variants?.[topInterest as Interest]
-      : undefined;
+  // Una volta rilevato un interesse resta valido finché non ne emerge uno diverso: non
+  // torna al testo di base "crediamo nel design", riservato a chi non ha ancora
+  // mostrato alcun interesse. Non dipende da isReturning/contacted: anche il giorno
+  // stesso, e anche dopo aver già scritto, l'interesse registrato resta quello.
+  const tierList = hydrated && topInterest ? variants?.[topInterest as Interest] : undefined;
   const activeTitle =
     tierList && tierList.length > 0 ? tierList[Math.min(tier, tierList.length - 1)] : title;
 

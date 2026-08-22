@@ -95,11 +95,11 @@ export function StackedProjects({
   projects: ProjectView[];
   sectionClassName?: string;
 }) {
-  const { hydrated, isReturning, topInterest } = useVisitorTracking();
+  const { hydrated, topInterest } = useVisitorTracking();
   if (projects.length === 0) return null;
 
   const ordered =
-    hydrated && isReturning && topInterest
+    hydrated && topInterest
       ? [...projects].sort(
           (a, b) =>
             Number(b.serviceSlugs.includes(topInterest)) -
