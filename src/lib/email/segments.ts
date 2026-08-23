@@ -11,12 +11,14 @@ export interface SegmentOption {
   description: string;
 }
 
-// Segmenti fissi (aperture/click/bounce) + un segmento per ogni categoria di articolo su cui
-// almeno un iscritto ha cliccato: permette di inviare una newsletter mirata solo a chi ha
-// già mostrato interesse per web/branding/social, invece che a tutta la lista.
+// Segmenti fissi (aperture/click/bounce) + un segmento per ogni categoria di articolo
+// (web/branding/social): permette di inviare una newsletter mirata solo a chi ha già
+// mostrato interesse per quella categoria, invece che a tutta la lista. Sempre elencate
+// tutte, anche senza click ancora registrati, altrimenti il filtro resterebbe invisibile
+// finché qualcuno non clicca almeno un link — cosa che non può succedere se il filtro
+// stesso non è mai comparso per inviare una prima email mirata.
 export async function getSegmentOptions(): Promise<SegmentOption[]> {
   const categories = await prisma.blogCategory.findMany({
-    where: { interests: { some: {} } },
     orderBy: { name: "asc" },
   });
 
