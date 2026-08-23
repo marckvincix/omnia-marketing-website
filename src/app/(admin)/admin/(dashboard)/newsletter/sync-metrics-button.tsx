@@ -15,6 +15,10 @@ export function SyncMetricsButton() {
       const res = await syncMetrics();
       if ("error" in res && res.error) {
         setResult(`Errore: ${res.error}`);
+      } else if ("errors" in res && res.errors > 0) {
+        setResult(
+          `Errore su ${res.errors}/${res.checked} email: ${res.firstErrorMessage ?? "errore sconosciuto"}`,
+        );
       } else {
         setResult(
           res.updated > 0

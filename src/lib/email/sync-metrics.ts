@@ -32,7 +32,14 @@ const LAST_EVENT_MAP: Partial<Record<string, { status: EmailEventStatus; fields:
  * in stato finale e allinea lo stato/le date in base all'evento più avanzato raggiunto
  * (sent < delivered < opened < clicked), riempiendo le tappe intermedie non ancora registrate.
  */
-export async function syncEmailMetricsFromResend(): Promise<{ checked: number; updated: number }> {
+export async function syncEmailMetricsFromResend(): Promise<{
+  checked: number;
+  updated: number;
+  errors: number;
+  /** Messaggio del primo errore incontrato, per capire subito la causa (es. chiave Resend
+   * con permessi limitati) invece di un generico "nessuna novità" che nasconde il problema. */
+  firstErrorMessage: string | null;
+}> {
   const pending = await prisma.emailEvent.findMany({
     where: { status: { notIn: TERMINAL_STATUSES } },
     orderBy: { createdAt: "desc" },
@@ -40,10 +47,20 @@ export async function syncEmailMetricsFromResend(): Promise<{ checked: number; u
   });
 
   let updated = 0;
+  let errors = 0;
+  let firstErrorMessage: string | null = null;
 
   for (const event of pending) {
     try {
-      const { data } = await resend.emails.get(event.resendEmailId);
+      // L'SDK Resend non lancia un'eccezione sugli errori API: ritorna { data: null, error }.
+      // Leggere solo "data" (come prima) faceva fallire ogni richiesta in silenzio, senza
+      // errore né log, mostrando un fuorviante "nessuna novità" anche quando la chiave API
+      // non aveva i permessi di lettura.
+      const { data, error: apiError } = await resend.emails.get(event.resendEmailId);
+      if (apiError) {
+        throw new Error(apiError.message);
+      }
+
       const mapping = data?.last_event ? LAST_EVENT_MAP[data.last_event] : undefined;
 
       if (mapping && mapping.status !== event.status) {
@@ -58,10 +75,14 @@ export async function syncEmailMetricsFromResend(): Promise<{ checked: number; u
       }
     } catch (error) {
       console.error(`Errore sync metriche per ${event.resendEmailId}`, error);
+      errors++;
+      if (!firstErrorMessage) {
+        firstErrorMessage = error instanceof Error ? error.message : "Errore sconosciuto";
+      }
     }
 
     await wait(RATE_LIMIT_DELAY_MS);
   }
 
-  return { checked: pending.length, updated };
+  return { checked: pending.length, updated, errors, firstErrorMessage };
 }
