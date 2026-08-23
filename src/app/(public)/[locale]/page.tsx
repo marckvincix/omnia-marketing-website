@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { Hero } from "@/components/public/hero";
 import { IntroLogoReveal } from "@/components/public/intro-logo-reveal";
@@ -29,10 +29,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function HomePage() {
   const locale = await getLocale();
-  const [settings, settingsTranslation, projects] = await Promise.all([
+  const [settings, settingsTranslation, projects, t] = await Promise.all([
     prisma.siteSettings.findUnique({ where: { id: 1 } }),
     locale === DEFAULT_LOCALE ? null : prisma.siteSettingsTranslation.findUnique({ where: { locale } }),
     getPublishedProjects(locale),
+    getTranslations("pages.home"),
   ]);
   const heroTitle = settingsTranslation?.heroTitle || settings?.heroTitle;
 
@@ -59,8 +60,8 @@ export default async function HomePage() {
       <ServicesIndex />
       <StackedProjects projects={projects} />
       <CtaBand
-        title="Crediamo nel design. Parliamo del tuo progetto."
-        description="Raccontaci la tua idea: la trasformiamo in un'esperienza digitale su misura."
+        title={t("ctaTitle")}
+        description={t("ctaDescription")}
         variants={{
           web: [
             {

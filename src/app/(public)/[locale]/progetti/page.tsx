@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { ScrollWordReveal } from "@/components/public/scroll-word-reveal";
 import { CtaBand } from "@/components/public/cta-band";
 import { StackedProjects } from "@/components/public/stacked-projects";
@@ -22,15 +22,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ProgettiPage() {
   const locale = await getLocale();
-  const projects = await getPublishedProjects(locale);
+  const [projects, t] = await Promise.all([getPublishedProjects(locale), getTranslations("pages.progetti")]);
 
   return (
     <>
-      <ScrollWordReveal text="Ogni progetto nasce da un ascolto attento e si costruisce insieme al cliente, dal primo brief al risultato finale." />
+      <ScrollWordReveal text={t("scrollReveal")} />
       <StackedProjects projects={projects} />
       <CtaBand
-        title="Il prossimo progetto potrebbe essere il tuo."
-        description="Raccontaci la tua idea: la trasformiamo in un'esperienza digitale su misura."
+        title={t("ctaTitle")}
+        description={t("ctaDescription")}
         variants={{
           web: [
             {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Mail } from "lucide-react";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { PageHero } from "@/components/public/page-hero";
 import { ContactForm } from "@/components/public/contact-form";
@@ -25,18 +25,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ContattiPage() {
   const locale = await getLocale();
-  const [settings, services] = await Promise.all([
+  const [settings, services, t] = await Promise.all([
     prisma.siteSettings.findUnique({ where: { id: 1 } }),
     getPublishedServices(locale),
+    getTranslations("pages.contatti"),
   ]);
   const email = settings?.contactEmail || "info@omniamarketing.it";
 
   return (
     <>
-      <PageHero
-        title="Parliamo del tuo progetto."
-        description="Raccontaci la tua idea: ti rispondiamo il prima possibile."
-      />
+      <PageHero title={t("heroTitle")} description={t("heroDescription")} />
 
       <section className="px-6 md:px-12 pb-32 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
         <div>
@@ -58,7 +56,7 @@ export default async function ContattiPage() {
 
           <div>
             <LightBeamButton href={CLIENTS_AREA_URL} target="_blank" rel="noopener noreferrer">
-              Accedi all&apos;Area Clienti →
+              {t("accediAreaClienti")}
             </LightBeamButton>
           </div>
         </div>

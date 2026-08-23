@@ -49,7 +49,7 @@
     "vaiAlContenuto": "Skip to main content"
   },
   "email": {
-    "footerUnsubscribeNote": "You received this email because you are subscribed to the Omnia Marketing newsletter.",
+    "footerUnsubscribeNote": "You received this email because you're subscribed to the Omnia Marketing newsletter.",
     "disiscriviti": "Unsubscribe",
     "newsletterEyebrow": "New Update",
     "newsletterCta": "Read the full article →",
@@ -66,5 +66,86 @@
     "adminReplyEyebrow": "Omnia Marketing",
     "adminReplyHeading": "We have an answer for you",
     "adminReplyFooterNote": "Feel free to reply directly to this email to continue the conversation."
+  },
+  "pages": {
+    "web": {
+      "scrollReveal": "Websites designed with meticulous attention to detail: we create modern designs, refine every visual element, and craft unique digital experiences for your brand.",
+      "ctaTitle": "Do you have a web project in mind?",
+      "ctaDescription": "Tell us about your idea: we'll turn it into a custom website, app, or e-commerce site.",
+      "popupTitle": "Ready to take your business online?",
+      "popupDescription": "Request a free consultation: let's talk about your website, e-commerce site, or app.",
+      "popupSubmitLabel": "Request a consultation",
+      "popupDefaultMessage": "I would like to request a consultation to create a custom website."
+    },
+    "branding": {
+      "scrollReveal": "We shape your visual identity with a design crafted to inspire and set you apart: from strategy to logo, we create brands that leave a lasting impression.",
+      "ctaTitle": "Do you want a brand identity that's instantly recognizable?",
+      "ctaDescription": "Let's talk about your brand: strategy, naming, and design—all in one process.",
+      "popupTitle": "Do you like the way we build a brand?",
+      "popupDescription": "Let's talk about your visual identity: request a free consultation.",
+      "popupSubmitLabel": "Request a consultation",
+      "popupDefaultMessage": "I would like to request a consultation regarding my brand identity."
+    },
+    "social": {
+      "scrollReveal": "Social media managed down to the last detail: we manage content, create unique photos and videos, and produce commercials to enhance your digital presence.",
+      "ctaTitle": "Ready to tell your brand's story on social media?",
+      "ctaDescription": "From editorial strategy to video production: we manage your channels with a consistent design.",
+      "popupTitle": "Do you want a social media presence that actually drives conversions?",
+      "popupDescription": "Request a free consultation on your social media strategy.",
+      "popupSubmitLabel": "Request a consultation",
+      "popupDefaultMessage": "I would like to request a consultation regarding the management of my social media channels."
+    },
+    "progetti": {
+      "scrollReveal": "Every project begins with careful listening and is developed in collaboration with the client, from the initial brief to the final result.",
+      "ctaTitle": "The next project could be yours.",
+      "ctaDescription": "Tell us about your idea: we'll turn it into a custom digital experience.",
+      "visitaIlSito": "Visit the website",
+      "comeLoAbbiamoRealizzato": "How We Did It",
+      "popupTitle": "Do you like the projects we work on?",
+      "popupDescription": "Tell us about your idea: we can create a custom project, with the same attention to detail as this one.",
+      "popupSubmitLabel": "Request Your Project",
+      "popupDefaultMessage": "I've seen the \"{client}\" project and would like to request a consultation for a similar project."
+    },
+    "chiSiamo": {
+      "scrollReveal": "We believe in design as a practical tool, not as decoration.",
+      "quote": "Design isn't just about how something looks, but how it works.",
+      "quoteAuthor": "— Steve Jobs",
+      "intro": "Omnia Marketing is a web design, branding, and social media management agency based in Naples. For many years, we have been creating websites, e-commerce sites, and brand identities, and managing social media channels for companies throughout Italy, with a single team overseeing each project from strategy to final delivery.",
+      "closing": "Web, branding, and social media all under one roof: no handoffs between different vendors—just one team that knows your brand inside and out.",
+      "keyword1": "STRATEGY",
+      "keyword2": "DESIGN",
+      "keyword3": "DEVELOPMENT",
+      "keyword4": "CONTENTS",
+      "keyword5": "RESULTS",
+      "ctaTitle": "Let's talk about your next project.",
+      "ctaDescription": "Whether you need to build a brand from scratch or grow the one you already have, we're here to listen."
+    },
+    "blog": {
+      "heroTitleEmpty": "The first articles will be coming soon.",
+      "heroTitle": "In-depth coverage and news.",
+      "heroDescriptionEmpty": "We're putting together content on design, the web, branding, and social media. Check back soon.",
+      "heroDescription": "Design, Web, Branding, and Social Media: Ideas and Case Studies from the Studio.",
+      "minutiLettura": "{minutes} min reading time",
+      "ctaTitle": "In the meantime, let's talk about your project.",
+      "ctaDescription": "Tell us about your idea: we'll turn it into a custom digital experience.",
+      "torna": "← Blog"
+    },
+    "contatti": {
+      "heroTitle": "Let's talk about your project.",
+      "heroDescription": "Tell us about your idea: we'll get back to you as soon as possible.",
+      "accediAreaClienti": "Log in to the Customer Area →"
+    },
+    "home": {
+      "ctaTitle": "We believe in design. Let's talk about your project.",
+      "ctaDescription": "Tell us about your idea: we'll turn it into a custom digital experience.",
+      "ticker1": "We build websites that convert",
+      "ticker2": "We shape identities that are remembered",
+      "ticker3": "Let's tell your brand's story on social media",
+      "ticker4": "We combine strategy and creativity",
+      "ticker5": "From the initial naming to the final pixel",
+      "ticker6": "content that stops scrolling",
+      "ticker7": "Web, Branding, and Social Media Under One Roof",
+      "ticker8": "one partner, not three suppliers"
+    }
   }
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { ScrollWordReveal } from "@/components/public/scroll-word-reveal";
 import { ServiceSubGrid } from "@/components/public/service-sub-grid";
 import { RelatedProjects } from "@/components/public/related-projects";
@@ -39,10 +39,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function BrandingPage() {
   const locale = await getLocale();
-  const [service, faqs, services] = await Promise.all([
+  const [service, faqs, services, t] = await Promise.all([
     getServiceBySlug("branding", locale),
     getFaqsByServiceSlug("branding", locale),
     getPublishedServices(locale),
+    getTranslations("pages.branding"),
   ]);
   if (!service) notFound();
 
@@ -50,7 +51,7 @@ export default async function BrandingPage() {
     <>
       <TrackInterest slugs={["branding"]} />
       <ServiceJsonLd name={service.title} description={service.intro} url="/branding" />
-      <ScrollWordReveal text="Diamo forma alla tua identità visiva con un design studiato per emozionare e distinguerti: dalla strategia al logo, creiamo brand capaci di lasciare un segno indelebile." />
+      <ScrollWordReveal text={t("scrollReveal")} />
       <ServiceSubGrid items={service.subservices} />
       <RelatedProjects serviceSlug="branding" />
       <FaqSection items={faqs} />
@@ -59,16 +60,13 @@ export default async function BrandingPage() {
           letto le FAQ ha già abbastanza per farsi un'idea. */}
       <div id="request-info-trigger" aria-hidden="true" />
 
-      <CtaBand
-        title="Vuoi un'identità che si riconosce a colpo d'occhio?"
-        description="Parliamo del tuo brand: strategy, naming e design in un unico percorso."
-      />
+      <CtaBand title={t("ctaTitle")} description={t("ctaDescription")} />
 
       <RequestInfoPopup
-        title="Ti piace il nostro modo di costruire un brand?"
-        description="Parliamo della tua identità visiva: richiedi una consulenza gratuita."
-        submitLabel="Richiedi una consulenza"
-        defaultMessage="Vorrei richiedere una consulenza per la mia identità di brand."
+        title={t("popupTitle")}
+        description={t("popupDescription")}
+        submitLabel={t("popupSubmitLabel")}
+        defaultMessage={t("popupDefaultMessage")}
         serviceOptions={services.map((s) => ({ id: s.id, title: s.title }))}
         defaultServiceId={service.id}
       />

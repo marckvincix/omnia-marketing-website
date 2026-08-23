@@ -31,7 +31,7 @@
   },
   "cookieBanner": {
     "titolo": "Cookies und Datenschutz",
-    "testo": "Wir verwenden technische Cookies, die für den Betrieb der Website erforderlich sind, und – sofern du dem zustimmst – anonyme Daten, die auf deinem Gerät gespeichert werden, um die Inhalte entsprechend deinen Besuchen anzupassen.",
+    "testo": "Wir verwenden technische Cookies, die für den Betrieb der Website erforderlich sind, und – nur wenn du dem zustimmst – anonyme Daten, die auf deinem Gerät gespeichert werden, um die Inhalte entsprechend deinen Besuchen anzupassen.",
     "maggioriInfo": "Weitere Informationen:",
     "accetta": "Akzeptieren",
     "rifiuta": "Ablehnen"
@@ -62,9 +62,90 @@
     "contactConfirmBody1": "Wir haben deine Anfrage erhalten: Unser Team bearbeitet sie bereits und wir werden dir so schnell wie möglich antworten.",
     "contactConfirmBody2": "In der Zwischenzeit kannst du dir unsere neuesten Projekte ansehen.",
     "contactConfirmCta": "Portfolio ansehen →",
-    "contactConfirmFooterNote": "Dies ist eine automatische Bestätigungs-E-Mail zu Ihrer Anfrage, die über das Kontaktformular gesendet wurde.",
+    "contactConfirmFooterNote": "Dies ist eine automatische Bestätigungs-E-Mail zu der über das Kontaktformular gesendeten Anfrage.",
     "adminReplyEyebrow": "Omnia Marketing",
     "adminReplyHeading": "Wir haben eine Antwort für dich",
     "adminReplyFooterNote": "Antworte einfach direkt auf diese E-Mail, um die Unterhaltung fortzusetzen."
+  },
+  "pages": {
+    "web": {
+      "scrollReveal": "Bis ins Detail durchdachte Websites: Wir entwickeln moderne Designs, achten auf jedes visuelle Detail und schaffen einzigartige digitale Erlebnisse für Ihre Marke.",
+      "ctaTitle": "Hast du ein Webprojekt im Sinn?",
+      "ctaDescription": "Erzählen Sie uns von Ihrer Idee: Wir setzen sie in eine maßgeschneiderte Website, App oder einen Online-Shop um.",
+      "popupTitle": "Sind Sie bereit, Ihr Unternehmen online zu bringen?",
+      "popupDescription": "Fordern Sie eine kostenlose Beratung an: Lassen Sie uns über Ihre Website, Ihren Online-Shop oder Ihre App sprechen.",
+      "popupSubmitLabel": "Beratung anfordern",
+      "popupDefaultMessage": "Ich möchte eine Beratung zur Erstellung einer maßgeschneiderten Website anfordern."
+    },
+    "branding": {
+      "scrollReveal": "Wir gestalten Ihre visuelle Identität mit einem Design, das Emotionen weckt und Sie von anderen abhebt: Von der Strategie bis zum Logo schaffen wir Marken, die einen bleibenden Eindruck hinterlassen.",
+      "ctaTitle": "Möchtest du ein Erscheinungsbild, das man auf den ersten Blick erkennt?",
+      "ctaDescription": "Sprechen wir über Ihre Marke: Strategie, Namensfindung und Design in einem einzigen Prozess.",
+      "popupTitle": "Gefällt dir unsere Art, eine Marke aufzubauen?",
+      "popupDescription": "Lassen Sie uns über Ihr Corporate Design sprechen: Fordern Sie eine kostenlose Beratung an.",
+      "popupSubmitLabel": "Beratung anfordern",
+      "popupDefaultMessage": "Ich möchte eine Beratung zu meiner Markenidentität anfragen."
+    },
+    "social": {
+      "scrollReveal": "Sorgfältig gestaltete Social-Media-Kanäle: Wir verwalten Inhalte, erstellen einzigartige Fotos und Videos und produzieren Werbespots, um Ihre digitale Präsenz optimal zur Geltung zu bringen.",
+      "ctaTitle": "Bist du bereit, deine Marke in den sozialen Medien zu präsentieren?",
+      "ctaDescription": "Von der redaktionellen Strategie bis zur Videoproduktion: Wir betreuen Ihre Kanäle mit einem einheitlichen Design.",
+      "popupTitle": "Möchtest du eine Social-Media-Präsenz, die wirklich zum Erfolg führt?",
+      "popupDescription": "Fordern Sie eine kostenlose Beratung zu Ihrer Social-Media-Strategie an.",
+      "popupSubmitLabel": "Beratung anfordern",
+      "popupDefaultMessage": "Ich möchte eine Beratung zur Verwaltung meiner Social-Media-Kanäle anfragen."
+    },
+    "progetti": {
+      "scrollReveal": "Jedes Projekt entsteht aus aufmerksamer Zuhörbereitschaft und wird gemeinsam mit dem Kunden entwickelt – vom ersten Briefing bis zum Endergebnis.",
+      "ctaTitle": "Das nächste Projekt könnte dein Projekt sein.",
+      "ctaDescription": "Erzählen Sie uns von Ihrer Idee: Wir verwandeln sie in ein maßgeschneidertes digitales Erlebnis.",
+      "visitaIlSito": "Besuchen Sie die Website",
+      "comeLoAbbiamoRealizzato": "Wie wir das umgesetzt haben",
+      "popupTitle": "Gefallen dir die Projekte, die wir umsetzen?",
+      "popupDescription": "Erzählen Sie uns von Ihrer Idee: Wir können ein maßgeschneidertes Projekt umsetzen, das ebenso bis ins Detail durchdacht ist wie dieses.",
+      "popupSubmitLabel": "Fordern Sie Ihr Projekt an",
+      "popupDefaultMessage": "Ich habe mir das Projekt „{client}“ angesehen und würde gerne eine Beratung für ein ähnliches Projekt anfragen."
+    },
+    "chiSiamo": {
+      "scrollReveal": "Wir glauben daran, dass Design ein Arbeitsinstrument ist und keine Dekoration.",
+      "quote": "Beim Design geht es nicht nur darum, wie etwas aussieht, sondern auch darum, wie es funktioniert.",
+      "quoteAuthor": "— Steve Jobs",
+      "intro": "Omnia Marketing ist eine Agentur für Webdesign, Branding und Social-Media-Management mit Sitz in Neapel. Seit vielen Jahren erstellen wir Websites, E-Commerce-Seiten und Markenidentitäten und betreuen die Social-Media-Kanäle von Unternehmen in ganz Italien, wobei jedes Projekt von der Strategie bis zum Endergebnis von einem einzigen Team begleitet wird.",
+      "closing": "Web, Branding und Social Media unter einem Dach: kein Wechsel zwischen verschiedenen Anbietern, sondern ein einziges Team, das Ihre Marke von Anfang bis Ende kennt.",
+      "keyword1": "STRATEGIE",
+      "keyword2": "DESIGN",
+      "keyword3": "ENTWICKLUNG",
+      "keyword4": "INHALT",
+      "keyword5": "ERGEBNISSE",
+      "ctaTitle": "Lass uns über dein nächstes Projekt sprechen.",
+      "ctaDescription": "Ganz gleich, ob Sie eine Marke von Grund auf neu aufbauen oder Ihre bestehende Marke weiterentwickeln möchten – wir haben ein offenes Ohr für Sie."
+    },
+    "blog": {
+      "heroTitleEmpty": "Bald gibt es die ersten Artikel.",
+      "heroTitle": "Hintergrundinformationen und Neuigkeiten.",
+      "heroDescriptionEmpty": "Wir bereiten gerade Inhalte zu den Themen Design, Web, Branding und Social Media vor. Schau bald wieder vorbei.",
+      "heroDescription": "Design, Web, Branding und Social Media: Ideen und Fallstudien aus unserem Studio.",
+      "minutiLettura": "{minutes} Minuten Lesezeit",
+      "ctaTitle": "Lass uns in der Zwischenzeit über dein Projekt sprechen.",
+      "ctaDescription": "Erzählen Sie uns von Ihrer Idee: Wir verwandeln sie in ein maßgeschneidertes digitales Erlebnis.",
+      "torna": "← Blog"
+    },
+    "contatti": {
+      "heroTitle": "Lass uns über dein Projekt sprechen.",
+      "heroDescription": "Schildere uns deine Idee: Wir melden uns so schnell wie möglich bei dir.",
+      "accediAreaClienti": "Zum Kundenbereich →"
+    },
+    "home": {
+      "ctaTitle": "Wir glauben an Design. Lassen Sie uns über Ihr Projekt sprechen.",
+      "ctaDescription": "Erzählen Sie uns von Ihrer Idee: Wir verwandeln sie in ein maßgeschneidertes digitales Erlebnis.",
+      "ticker1": "Wir erstellen Websites, die zu Conversions führen",
+      "ticker2": "Wir gestalten Identitäten, die in Erinnerung bleiben",
+      "ticker3": "Wir präsentieren deine Marke in den sozialen Medien",
+      "ticker4": "Wir verbinden Strategie und Kreativität",
+      "ticker5": "vom ersten Namensvorschlag bis zum letzten Pixel",
+      "ticker6": "Inhalte, die das Scrollen unterbrechen",
+      "ticker7": "Web, Branding und Social Media unter einem Dach",
+      "ticker8": "ein Partner, nicht drei Lieferanten"
+    }
   }
 }

@@ -6,6 +6,7 @@ import { marked } from "marked";
 import { prisma } from "@/lib/prisma";
 import { BreadcrumbJsonLd, ArticleJsonLd } from "@/components/shared/json-ld";
 import { buildAlternates } from "@/lib/i18n/metadata";
+import { getTranslations } from "next-intl/server";
 import { localize } from "@/lib/i18n/localize";
 import { DEFAULT_LOCALE } from "@/lib/i18n/locales";
 
@@ -50,7 +51,11 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string; locale: string }>;
 }) {
   const { slug, locale } = await params;
-  const post = await getLocalizedPost(slug, locale);
+  const [post, t, tNav] = await Promise.all([
+    getLocalizedPost(slug, locale),
+    getTranslations("pages.blog"),
+    getTranslations("nav"),
+  ]);
 
   if (!post || !post.published) notFound();
 
@@ -61,7 +66,7 @@ export default async function BlogPostPage({
 
   return (
     <article>
-      <BreadcrumbJsonLd items={[{ name: "Blog", url: "/blog" }, { name: post.title, url: `/blog/${post.slug}` }]} />
+      <BreadcrumbJsonLd items={[{ name: tNav("blog"), url: "/blog" }, { name: post.title, url: `/blog/${post.slug}` }]} />
       <ArticleJsonLd
         title={post.title}
         description={post.seoDescription || post.excerpt}
@@ -73,7 +78,7 @@ export default async function BlogPostPage({
 
       <header className="px-6 md:px-12 pt-20 pb-12 max-w-3xl mx-auto">
         <Link href="/blog" className="text-xs font-bold tracking-normal uppercase text-[#666666] hover:text-white transition-colors">
-          ← Blog
+          ← {tNav("blog")}
         </Link>
         {post.category && (
           <p className="mt-6 text-[10px] font-bold uppercase tracking-normal text-[#2e9bd6]">
@@ -83,7 +88,7 @@ export default async function BlogPostPage({
         <h1 className="mt-2 font-display font-black text-white text-4xl md:text-6xl leading-[0.95]">
           {post.title}
         </h1>
-        <p className="mt-6 text-sm text-[#666666]">{post.readingTimeMinutes} min di lettura</p>
+        <p className="mt-6 text-sm text-[#666666]">{t("minutiLettura", { minutes: post.readingTimeMinutes })}</p>
       </header>
 
       {post.coverImage && (

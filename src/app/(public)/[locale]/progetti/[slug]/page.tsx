@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { ArrowUpRight, Check } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { getProjectBySlug, getPublishedProjects } from "@/lib/data/projects";
@@ -60,9 +61,11 @@ export default async function ProjectDetailPage({
 
   const processParagraphs = project.processText.split(/\n{2,}/).filter(Boolean);
 
-  const [allProjects, services] = await Promise.all([
+  const [allProjects, services, t, tNav] = await Promise.all([
     getPublishedProjects(locale),
     getPublishedServices(locale),
+    getTranslations("pages.progetti"),
+    getTranslations("nav"),
   ]);
   const otherProjects = allProjects.filter((p) => p.slug !== project.slug);
 
@@ -74,7 +77,7 @@ export default async function ProjectDetailPage({
       <TrackInterest slugs={project.serviceSlugs} />
       <BreadcrumbJsonLd
         items={[
-          { name: "Portfolio", url: "/progetti" },
+          { name: tNav("portfolio"), url: "/progetti" },
           { name: project.client, url: `/progetti/${project.slug}` },
         ]}
       />
@@ -90,7 +93,7 @@ export default async function ProjectDetailPage({
           href="/progetti"
           className="text-xs font-bold tracking-normal uppercase text-[#666666] hover:text-white transition-colors"
         >
-          ← Portfolio
+          ← {tNav("portfolio")}
         </Link>
         <h1 className="mt-8 font-display font-black text-white text-5xl md:text-7xl leading-[0.95] tracking-tight">
           {project.client}
@@ -107,7 +110,7 @@ export default async function ProjectDetailPage({
             rel="noopener noreferrer"
             className="mt-8 inline-flex items-center gap-2 text-white border-b-2 border-white hover:border-[#2e9bd6] hover:text-[#2e9bd6] transition-colors pb-1 w-fit"
           >
-            Visita il sito
+            {t("visitaIlSito")}
             <ArrowUpRight className="size-4" aria-hidden="true" />
           </a>
         )}
@@ -172,7 +175,7 @@ export default async function ProjectDetailPage({
       {project.processText && (
         <section className="px-6 md:px-12 py-20 border-t border-[#1a1a1a]">
           <h2 className="text-xs font-bold tracking-normal uppercase text-[#2e9bd6] mb-8">
-            Come lo abbiamo realizzato
+            {t("comeLoAbbiamoRealizzato")}
           </h2>
           <div className="md:columns-2 md:gap-x-16">
             {processParagraphs.map((paragraph, i) => (
@@ -202,10 +205,10 @@ export default async function ProjectDetailPage({
       <StackedProjects projects={otherProjects} sectionClassName="px-6 md:px-12 py-20" />
 
       <RequestInfoPopup
-        title="Ti piacciono i progetti che realizziamo?"
-        description="Raccontaci la tua idea: possiamo realizzare un progetto su misura, curato nei dettagli come questo."
-        submitLabel="Richiedi il tuo progetto"
-        defaultMessage={`Ho visto il progetto "${project.client}" e vorrei richiedere una consulenza per un progetto simile.`}
+        title={t("popupTitle")}
+        description={t("popupDescription")}
+        submitLabel={t("popupSubmitLabel")}
+        defaultMessage={t("popupDefaultMessage", { client: project.client })}
         serviceOptions={services.map((s) => ({ id: s.id, title: s.title }))}
         defaultServiceId={defaultServiceId}
       />

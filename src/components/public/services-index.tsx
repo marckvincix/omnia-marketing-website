@@ -1,8 +1,10 @@
+import { getLocale } from "next-intl/server";
 import { getPublishedServices } from "@/lib/data/services";
 import { ServiceIndexLink } from "./service-index-link";
 
 export async function ServicesIndex() {
-  const services = await getPublishedServices();
+  const locale = await getLocale();
+  const services = await getPublishedServices(locale);
   if (services.length === 0) return null;
 
   return (

@@ -66,5 +66,86 @@
     "adminReplyEyebrow": "Omnia Marketing",
     "adminReplyHeading": "Abbiamo una risposta per te",
     "adminReplyFooterNote": "Rispondi pure direttamente a questa email per continuare la conversazione."
+  },
+  "pages": {
+    "web": {
+      "scrollReveal": "Siti web studiati nel dettaglio: realizziamo design moderni, curiamo ogni elemento visivo e creiamo esperienze digitali uniche per il tuo brand.",
+      "ctaTitle": "Hai un progetto web in mente?",
+      "ctaDescription": "Raccontaci la tua idea: la trasformiamo in un sito, un'app o un e-commerce su misura.",
+      "popupTitle": "Pronto a portare online la tua attività?",
+      "popupDescription": "Richiedi una consulenza gratuita: parliamo del tuo sito, e-commerce o app.",
+      "popupSubmitLabel": "Richiedi una consulenza",
+      "popupDefaultMessage": "Vorrei richiedere una consulenza per realizzare un sito web su misura."
+    },
+    "branding": {
+      "scrollReveal": "Diamo forma alla tua identità visiva con un design studiato per emozionare e distinguerti: dalla strategia al logo, creiamo brand capaci di lasciare un segno indelebile.",
+      "ctaTitle": "Vuoi un'identità che si riconosce a colpo d'occhio?",
+      "ctaDescription": "Parliamo del tuo brand: strategy, naming e design in un unico percorso.",
+      "popupTitle": "Ti piace il nostro modo di costruire un brand?",
+      "popupDescription": "Parliamo della tua identità visiva: richiedi una consulenza gratuita.",
+      "popupSubmitLabel": "Richiedi una consulenza",
+      "popupDefaultMessage": "Vorrei richiedere una consulenza per la mia identità di brand."
+    },
+    "social": {
+      "scrollReveal": "Social curati al dettaglio: gestiamo contenuti, realizziamo foto e video unici e produciamo spot per valorizzare la tua presenza digitale.",
+      "ctaTitle": "Pronti a raccontare il tuo brand sui social?",
+      "ctaDescription": "Dalla strategia editoriale alla produzione video: gestiamo i tuoi canali con un design coerente.",
+      "popupTitle": "Vuoi una presenza social che converte davvero?",
+      "popupDescription": "Richiedi una consulenza gratuita per la tua strategia sui social.",
+      "popupSubmitLabel": "Richiedi una consulenza",
+      "popupDefaultMessage": "Vorrei richiedere una consulenza per la gestione dei miei canali social."
+    },
+    "progetti": {
+      "scrollReveal": "Ogni progetto nasce da un ascolto attento e si costruisce insieme al cliente, dal primo brief al risultato finale.",
+      "ctaTitle": "Il prossimo progetto potrebbe essere il tuo.",
+      "ctaDescription": "Raccontaci la tua idea: la trasformiamo in un'esperienza digitale su misura.",
+      "visitaIlSito": "Visita il sito",
+      "comeLoAbbiamoRealizzato": "Come lo abbiamo realizzato",
+      "popupTitle": "Ti piacciono i progetti che realizziamo?",
+      "popupDescription": "Raccontaci la tua idea: possiamo realizzare un progetto su misura, curato nei dettagli come questo.",
+      "popupSubmitLabel": "Richiedi il tuo progetto",
+      "popupDefaultMessage": "Ho visto il progetto \"{client}\" e vorrei richiedere una consulenza per un progetto simile."
+    },
+    "chiSiamo": {
+      "scrollReveal": "Crediamo nel design come strumento di lavoro, non come decorazione.",
+      "quote": "Il design non è solo come appare, ma come funziona.",
+      "quoteAuthor": "— Steve Jobs",
+      "intro": "Omnia Marketing è un'agenzia di web design, branding e social media management con sede a Napoli. Da molti anni realizziamo siti web, e-commerce, identità di brand e gestiamo i canali social per aziende in tutta Italia, seguendo ogni progetto con un unico team dalla strategia al risultato finale.",
+      "closing": "Web, branding e social sotto lo stesso tetto: niente passaggi di mano tra fornitori diversi, un solo team che conosce il tuo brand dall'inizio alla fine.",
+      "keyword1": "STRATEGIA",
+      "keyword2": "DESIGN",
+      "keyword3": "SVILUPPO",
+      "keyword4": "CONTENUTI",
+      "keyword5": "RISULTATI",
+      "ctaTitle": "Parliamo del tuo prossimo progetto.",
+      "ctaDescription": "Che tu debba costruire un brand da zero o far crescere quello che hai già, siamo qui per ascoltare."
+    },
+    "blog": {
+      "heroTitleEmpty": "Presto i primi articoli.",
+      "heroTitle": "Approfondimenti e novità.",
+      "heroDescriptionEmpty": "Stiamo preparando contenuti su design, web, branding e social. Torna a trovarci a breve.",
+      "heroDescription": "Design, web, branding e social: idee e case study dallo studio.",
+      "minutiLettura": "{minutes} min di lettura",
+      "ctaTitle": "Nel frattempo, parliamo del tuo progetto.",
+      "ctaDescription": "Raccontaci la tua idea: la trasformiamo in un'esperienza digitale su misura.",
+      "torna": "← Blog"
+    },
+    "contatti": {
+      "heroTitle": "Parliamo del tuo progetto.",
+      "heroDescription": "Raccontaci la tua idea: ti rispondiamo il prima possibile.",
+      "accediAreaClienti": "Accedi all'Area Clienti →"
+    },
+    "home": {
+      "ctaTitle": "Crediamo nel design. Parliamo del tuo progetto.",
+      "ctaDescription": "Raccontaci la tua idea: la trasformiamo in un'esperienza digitale su misura.",
+      "ticker1": "costruiamo siti che convertono",
+      "ticker2": "diamo forma a identità che si ricordano",
+      "ticker3": "raccontiamo il tuo brand sui social",
+      "ticker4": "uniamo strategia e creatività",
+      "ticker5": "dal primo naming al pixel finale",
+      "ticker6": "contenuti che fermano lo scroll",
+      "ticker7": "Web, Branding e Social sotto lo stesso tetto",
+      "ticker8": "un partner, non tre fornitori"
+    }
   }
 }

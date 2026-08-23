@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { ScrollWordReveal } from "@/components/public/scroll-word-reveal";
 import { ServiceSubGrid } from "@/components/public/service-sub-grid";
 import { RelatedProjects } from "@/components/public/related-projects";
@@ -39,10 +39,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function SocialPage() {
   const locale = await getLocale();
-  const [service, faqs, services] = await Promise.all([
+  const [service, faqs, services, t] = await Promise.all([
     getServiceBySlug("social", locale),
     getFaqsByServiceSlug("social", locale),
     getPublishedServices(locale),
+    getTranslations("pages.social"),
   ]);
   if (!service) notFound();
 
@@ -50,7 +51,7 @@ export default async function SocialPage() {
     <>
       <TrackInterest slugs={["social"]} />
       <ServiceJsonLd name={service.title} description={service.intro} url="/social" />
-      <ScrollWordReveal text="Social curati al dettaglio: gestiamo contenuti, realizziamo foto e video unici e produciamo spot per valorizzare la tua presenza digitale." />
+      <ScrollWordReveal text={t("scrollReveal")} />
       <ServiceSubGrid items={service.subservices} />
       <RelatedProjects serviceSlug="social" />
       <FaqSection items={faqs} />
@@ -59,16 +60,13 @@ export default async function SocialPage() {
           letto le FAQ ha già abbastanza per farsi un'idea. */}
       <div id="request-info-trigger" aria-hidden="true" />
 
-      <CtaBand
-        title="Pronti a raccontare il tuo brand sui social?"
-        description="Dalla strategia editoriale alla produzione video: gestiamo i tuoi canali con un design coerente."
-      />
+      <CtaBand title={t("ctaTitle")} description={t("ctaDescription")} />
 
       <RequestInfoPopup
-        title="Vuoi una presenza social che converte davvero?"
-        description="Richiedi una consulenza gratuita per la tua strategia sui social."
-        submitLabel="Richiedi una consulenza"
-        defaultMessage="Vorrei richiedere una consulenza per la gestione dei miei canali social."
+        title={t("popupTitle")}
+        description={t("popupDescription")}
+        submitLabel={t("popupSubmitLabel")}
+        defaultMessage={t("popupDefaultMessage")}
         serviceOptions={services.map((s) => ({ id: s.id, title: s.title }))}
         defaultServiceId={service.id}
       />

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { getPublishedServices } from "@/lib/data/services";
 import { ScrollWordReveal } from "@/components/public/scroll-word-reveal";
 import { RevealOnScroll } from "@/components/public/reveal-on-scroll";
@@ -23,47 +23,39 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const KEYWORDS = ["STRATEGIA", "DESIGN", "SVILUPPO", "CONTENUTI", "RISULTATI"];
-
 export default async function ChiSiamoPage() {
   const locale = await getLocale();
-  const [services, generalFaqs] = await Promise.all([getPublishedServices(locale), getGeneralFaqs(locale)]);
+  const [services, generalFaqs, t] = await Promise.all([
+    getPublishedServices(locale),
+    getGeneralFaqs(locale),
+    getTranslations("pages.chiSiamo"),
+  ]);
+  const keywords = [t("keyword1"), t("keyword2"), t("keyword3"), t("keyword4"), t("keyword5")];
 
   return (
     <>
-      <ScrollWordReveal text="Crediamo nel design come strumento di lavoro, non come decorazione." />
+      <ScrollWordReveal text={t("scrollReveal")} />
 
       <RevealOnScroll className="px-6 md:px-12 py-24 max-w-7xl mx-auto">
         <blockquote className="font-display text-3xl md:text-5xl text-white max-w-4xl leading-tight">
-          &ldquo;Il design non è solo come appare, ma{" "}
-          <span className="text-[#666666]">come funziona.</span>&rdquo;
+          &ldquo;{t("quote")}&rdquo;
         </blockquote>
-        <p className="mt-4 text-sm text-[#666666] uppercase tracking-normal">— Steve Jobs</p>
+        <p className="mt-4 text-sm text-[#666666] uppercase tracking-normal">{t("quoteAuthor")}</p>
       </RevealOnScroll>
 
       <RevealOnScroll className="px-6 md:px-12 pb-24 max-w-7xl mx-auto">
-        <p className="max-w-3xl text-base md:text-lg text-[#999999] leading-relaxed">
-          Omnia Marketing è un&apos;agenzia di web design, branding e social media
-          management con sede a Napoli. Da molti anni realizziamo siti web,
-          e-commerce, identità di brand e gestiamo i canali social per aziende
-          in tutta Italia, seguendo ogni progetto con un unico team dalla
-          strategia al risultato finale.
-        </p>
+        <p className="max-w-3xl text-base md:text-lg text-[#999999] leading-relaxed">{t("intro")}</p>
       </RevealOnScroll>
 
       <StackedServices services={services} />
 
       <RevealOnScroll className="px-6 md:px-12 py-24 max-w-7xl mx-auto border-t border-[#1a1a1a]">
-        <p className="max-w-3xl text-lg md:text-2xl text-[#cccccc] leading-relaxed font-display">
-          Web, branding e social sotto lo stesso tetto: niente passaggi di
-          mano tra fornitori diversi, un solo team che conosce il tuo brand
-          dall&apos;inizio alla fine.
-        </p>
+        <p className="max-w-3xl text-lg md:text-2xl text-[#cccccc] leading-relaxed font-display">{t("closing")}</p>
       </RevealOnScroll>
 
       <div className="relative overflow-hidden py-10 border-y border-[#1a1a1a] bg-[#000000]">
         <div className="flex w-max animate-marquee-scroll">
-          {[...KEYWORDS, ...KEYWORDS].map((word, i) => (
+          {[...keywords, ...keywords].map((word, i) => (
             <span
               key={i}
               className="mx-6 shrink-0 text-3xl md:text-5xl font-black uppercase tracking-tight text-white/10"
@@ -78,8 +70,8 @@ export default async function ChiSiamoPage() {
       <FaqSection items={generalFaqs} />
 
       <CtaBand
-        title="Parliamo del tuo prossimo progetto."
-        description="Che tu debba costruire un brand da zero o far crescere quello che hai già, siamo qui per ascoltare."
+        title={t("ctaTitle")}
+        description={t("ctaDescription")}
         variants={{
           web: [
             {

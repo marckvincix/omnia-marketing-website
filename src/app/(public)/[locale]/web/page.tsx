@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { ScrollWordReveal } from "@/components/public/scroll-word-reveal";
 import { ServiceSubGrid } from "@/components/public/service-sub-grid";
 import { RelatedProjects } from "@/components/public/related-projects";
@@ -39,10 +39,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function WebPage() {
   const locale = await getLocale();
-  const [service, faqs, services] = await Promise.all([
+  const [service, faqs, services, t] = await Promise.all([
     getServiceBySlug("web", locale),
     getFaqsByServiceSlug("web", locale),
     getPublishedServices(locale),
+    getTranslations("pages.web"),
   ]);
   if (!service) notFound();
 
@@ -50,7 +51,7 @@ export default async function WebPage() {
     <>
       <TrackInterest slugs={["web"]} />
       <ServiceJsonLd name={service.title} description={service.intro} url="/web" />
-      <ScrollWordReveal text="Siti web studiati nel dettaglio: realizziamo design moderni, curiamo ogni elemento visivo e creiamo esperienze digitali uniche per il tuo brand." />
+      <ScrollWordReveal text={t("scrollReveal")} />
       <ServiceSubGrid items={service.subservices} />
       <RelatedProjects serviceSlug="web" />
       <FaqSection items={faqs} />
@@ -59,16 +60,13 @@ export default async function WebPage() {
           letto le FAQ ha già abbastanza per farsi un'idea. */}
       <div id="request-info-trigger" aria-hidden="true" />
 
-      <CtaBand
-        title="Hai un progetto web in mente?"
-        description="Raccontaci la tua idea: la trasformiamo in un sito, un'app o un e-commerce su misura."
-      />
+      <CtaBand title={t("ctaTitle")} description={t("ctaDescription")} />
 
       <RequestInfoPopup
-        title="Pronto a portare online la tua attività?"
-        description="Richiedi una consulenza gratuita: parliamo del tuo sito, e-commerce o app."
-        submitLabel="Richiedi una consulenza"
-        defaultMessage="Vorrei richiedere una consulenza per realizzare un sito web su misura."
+        title={t("popupTitle")}
+        description={t("popupDescription")}
+        submitLabel={t("popupSubmitLabel")}
+        defaultMessage={t("popupDefaultMessage")}
         serviceOptions={services.map((s) => ({ id: s.id, title: s.title }))}
         defaultServiceId={service.id}
       />

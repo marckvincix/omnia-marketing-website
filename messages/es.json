@@ -66,5 +66,86 @@
     "adminReplyEyebrow": "Omnia Marketing",
     "adminReplyHeading": "Tenemos una respuesta para ti",
     "adminReplyFooterNote": "No dudes en responder directamente a este correo electrónico para continuar la conversación."
+  },
+  "pages": {
+    "web": {
+      "scrollReveal": "Páginas web diseñadas al detalle: creamos diseños modernos, cuidamos cada elemento visual y creamos experiencias digitales únicas para tu marca.",
+      "ctaTitle": "¿Tienes algún proyecto web en mente?",
+      "ctaDescription": "Cuéntanos tu idea: la convertiremos en una página web, una aplicación o una tienda online a medida.",
+      "popupTitle": "¿Estás listo para llevar tu negocio a Internet?",
+      "popupDescription": "Solicita una consulta gratuita: hablemos de tu página web, tu tienda online o tu aplicación.",
+      "popupSubmitLabel": "Solicita una consulta",
+      "popupDefaultMessage": "Me gustaría solicitar asesoramiento para crear una página web a medida."
+    },
+    "branding": {
+      "scrollReveal": "Damos forma a tu identidad visual con un diseño pensado para emocionar y diferenciarte: desde la estrategia hasta el logotipo, creamos marcas capaces de dejar una huella imborrable.",
+      "ctaTitle": "¿Quieres una identidad que se reconozca a simple vista?",
+      "ctaDescription": "Hablemos de tu marca: estrategia, elección del nombre y diseño en un único proceso.",
+      "popupTitle": "¿Te gusta nuestra forma de crear una marca?",
+      "popupDescription": "Hablemos de tu identidad visual: solicita una consulta gratuita.",
+      "popupSubmitLabel": "Solicita una consulta",
+      "popupDefaultMessage": "Me gustaría solicitar asesoramiento sobre la identidad de mi marca."
+    },
+    "social": {
+      "scrollReveal": "Redes sociales cuidadas hasta el último detalle: gestionamos contenidos, creamos fotos y vídeos únicos y producimos anuncios para potenciar tu presencia digital.",
+      "ctaTitle": "¿Estás listo para dar a conocer tu marca en las redes sociales?",
+      "ctaDescription": "Desde la estrategia editorial hasta la producción de vídeos: gestionamos tus canales con un diseño coherente.",
+      "popupTitle": "¿Quieres una presencia en redes sociales que realmente genere conversiones?",
+      "popupDescription": "Solicita una consulta gratuita sobre tu estrategia en redes sociales.",
+      "popupSubmitLabel": "Solicita una consulta",
+      "popupDefaultMessage": "Me gustaría solicitar asesoramiento para la gestión de mis redes sociales."
+    },
+    "progetti": {
+      "scrollReveal": "Cada proyecto surge de una escucha atenta y se desarrolla junto con el cliente, desde el primer briefing hasta el resultado final.",
+      "ctaTitle": "El próximo proyecto podría ser el tuyo.",
+      "ctaDescription": "Cuéntanos tu idea: la convertiremos en una experiencia digital a medida.",
+      "visitaIlSito": "Visita la página web",
+      "comeLoAbbiamoRealizzato": "Cómo lo hemos llevado a cabo",
+      "popupTitle": "¿Te gustan los proyectos que llevamos a cabo?",
+      "popupDescription": "Cuéntanos tu idea: podemos crear un proyecto a medida, tan cuidado en los detalles como este.",
+      "popupSubmitLabel": "Solicita tu proyecto",
+      "popupDefaultMessage": "He visto el proyecto «{client}» y me gustaría solicitar asesoramiento para un proyecto similar."
+    },
+    "chiSiamo": {
+      "scrollReveal": "Creemos en el diseño como herramienta de trabajo, no como decoración.",
+      "quote": "El diseño no es solo cómo se ve, sino cómo funciona.",
+      "quoteAuthor": "— Steve Jobs",
+      "intro": "Omnia Marketing es una agencia de diseño web, imagen de marca y gestión de redes sociales con sede en Nápoles. Llevamos muchos años creando páginas web, tiendas online e identidades de marca, y gestionando los canales de redes sociales para empresas de toda Italia, acompañando cada proyecto con un único equipo desde la estrategia hasta el resultado final.",
+      "closing": "Web, imagen de marca y redes sociales bajo un mismo techo: sin cambios de manos entre distintos proveedores, un único equipo que conoce tu marca de principio a fin.",
+      "keyword1": "ESTRATEGIA",
+      "keyword2": "DISEÑO",
+      "keyword3": "DESARROLLO",
+      "keyword4": "CONTENIDOS",
+      "keyword5": "RESULTADOS",
+      "ctaTitle": "Hablemos de tu próximo proyecto.",
+      "ctaDescription": "Tanto si necesitas crear una marca desde cero como hacer crecer la que ya tienes, estamos aquí para escucharte."
+    },
+    "blog": {
+      "heroTitleEmpty": "Pronto publicaremos los primeros artículos.",
+      "heroTitle": "Análisis en profundidad y novedades.",
+      "heroDescriptionEmpty": "Estamos preparando contenidos sobre diseño, web, imagen de marca y redes sociales. Vuelve a visitarnos pronto.",
+      "heroDescription": "Diseño, web, imagen de marca y redes sociales: ideas y casos prácticos del estudio.",
+      "minutiLettura": "{minutes} minutos de lectura",
+      "ctaTitle": "Mientras tanto, hablemos de tu proyecto.",
+      "ctaDescription": "Cuéntanos tu idea: la convertiremos en una experiencia digital a medida.",
+      "torna": "← Blog"
+    },
+    "contatti": {
+      "heroTitle": "Hablemos de tu proyecto.",
+      "heroDescription": "Cuéntanos tu idea: te responderemos lo antes posible.",
+      "accediAreaClienti": "Accede al Área de clientes →"
+    },
+    "home": {
+      "ctaTitle": "Creemos en el diseño. Hablemos de tu proyecto.",
+      "ctaDescription": "Cuéntanos tu idea: la convertiremos en una experiencia digital a medida.",
+      "ticker1": "Creamos sitios web que generan conversiones",
+      "ticker2": "damos forma a identidades que perduran en la memoria",
+      "ticker3": "Contamos la historia de tu marca en las redes sociales",
+      "ticker4": "Combinamos estrategia y creatividad",
+      "ticker5": "desde la elección del nombre inicial hasta el último píxel",
+      "ticker6": "contenidos que detienen el desplazamiento",
+      "ticker7": "Web, imagen de marca y redes sociales bajo un mismo techo",
+      "ticker8": "un socio, no tres proveedores"
+    }
   }
 }

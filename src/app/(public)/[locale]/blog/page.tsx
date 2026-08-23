@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { PageHero } from "@/components/public/page-hero";
 import { CtaBand } from "@/components/public/cta-band";
@@ -26,25 +26,24 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function BlogPage() {
   const locale = await getLocale();
-  const rows = await prisma.blogPost.findMany({
-    where: { published: true },
-    orderBy: { publishedAt: "desc" },
-    include: {
-      category: true,
-      translations: locale === DEFAULT_LOCALE ? false : { where: { locale } },
-    },
-  });
+  const [rows, t] = await Promise.all([
+    prisma.blogPost.findMany({
+      where: { published: true },
+      orderBy: { publishedAt: "desc" },
+      include: {
+        category: true,
+        translations: locale === DEFAULT_LOCALE ? false : { where: { locale } },
+      },
+    }),
+    getTranslations("pages.blog"),
+  ]);
   const posts = rows.map((post) => localize(post, post.translations?.[0], ["title", "excerpt"]));
 
   return (
     <>
       <PageHero
-        title={posts.length > 0 ? "Approfondimenti e novità." : "Presto i primi articoli."}
-        description={
-          posts.length > 0
-            ? "Design, web, branding e social: idee e case study dallo studio."
-            : "Stiamo preparando contenuti su design, web, branding e social. Torna a trovarci a breve."
-        }
+        title={posts.length > 0 ? t("heroTitle") : t("heroTitleEmpty")}
+        description={posts.length > 0 ? t("heroDescription") : t("heroDescriptionEmpty")}
       />
 
       {posts.length > 0 && (
@@ -77,7 +76,7 @@ export default async function BlogPage() {
                       {post.title}
                     </h2>
                     <p className="mt-2 text-sm text-[#999999]">{post.excerpt}</p>
-                    <p className="mt-3 text-xs text-[#666666]">{post.readingTimeMinutes} min di lettura</p>
+                    <p className="mt-3 text-xs text-[#666666]">{t("minutiLettura", { minutes: post.readingTimeMinutes })}</p>
                   </div>
                 </Link>
               </TiltCard>
@@ -86,10 +85,7 @@ export default async function BlogPage() {
         </section>
       )}
 
-      <CtaBand
-        title="Nel frattempo, parliamo del tuo progetto."
-        description="Raccontaci la tua idea: la trasformiamo in un'esperienza digitale su misura."
-      />
+      <CtaBand title={t("ctaTitle")} description={t("ctaDescription")} />
     </>
   );
 }

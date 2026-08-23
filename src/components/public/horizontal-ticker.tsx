@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -21,29 +22,30 @@ const FONT_FAMILY: Record<TextFont, string> = {
   italic: "var(--font-satoshi, var(--font-body))",
 };
 
-const ITEMS: TickerItem[] = [
-  { type: "icon", content: "✦" },
-  { type: "text", content: "costruiamo siti che convertono", font: "mono" },
-  { type: "icon", content: "💻" },
-  { type: "text", content: "diamo forma a identità che si ricordano", font: "italic" },
-  { type: "icon", content: "🎨" },
-  { type: "text", content: "raccontiamo il tuo brand sui social", font: "archivo" },
-  { type: "icon", content: "📱" },
-  { type: "text", content: "uniamo strategia e creatività", font: "italic" },
-  { type: "icon", content: "✦" },
-  { type: "text", content: "dal primo naming al pixel finale", font: "mono" },
-  { type: "icon", content: "✏️" },
-  { type: "text", content: "contenuti che fermano lo scroll", font: "archivo" },
-  { type: "icon", content: "🎬" },
-  { type: "text", content: "Web, Branding e Social sotto lo stesso tetto", font: "mono" },
-  { type: "icon", content: "🤝" },
-  { type: "text", content: "un partner, non tre fornitori", font: "archivo" },
-  { type: "icon", content: "→" },
-];
-
 export function HorizontalTicker() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations("pages.home");
+
+  const ITEMS: TickerItem[] = [
+    { type: "icon", content: "✦" },
+    { type: "text", content: t("ticker1"), font: "mono" },
+    { type: "icon", content: "💻" },
+    { type: "text", content: t("ticker2"), font: "italic" },
+    { type: "icon", content: "🎨" },
+    { type: "text", content: t("ticker3"), font: "archivo" },
+    { type: "icon", content: "📱" },
+    { type: "text", content: t("ticker4"), font: "italic" },
+    { type: "icon", content: "✦" },
+    { type: "text", content: t("ticker5"), font: "mono" },
+    { type: "icon", content: "✏️" },
+    { type: "text", content: t("ticker6"), font: "archivo" },
+    { type: "icon", content: "🎬" },
+    { type: "text", content: t("ticker7"), font: "mono" },
+    { type: "icon", content: "🤝" },
+    { type: "text", content: t("ticker8"), font: "archivo" },
+    { type: "icon", content: "→" },
+  ];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
