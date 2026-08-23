@@ -3,9 +3,8 @@ import { LOGO_DATA_URI } from "./logo";
 import { SOCIAL_ICON_DATA_URIS } from "./social-icons";
 
 const BRAND_BLUE = "#2e9bd6";
-const BG = "#000000";
-const CARD_BG = "#0a0a0a";
-const BORDER = "#1f1f1f";
+const BG = "#ffffff";
+const CARD_BG = "#000000";
 const TEXT_MUTED = "#999999";
 const TEXT_FAINT = "#666666";
 
@@ -80,12 +79,10 @@ export function renderEmailLayout({
         <td align="center">
           <table role="presentation" width="100%" style="max-width:600px;" cellpadding="0" cellspacing="0">
             <tr>
-              <td style="padding-bottom:32px;text-align:center;">
-                <img src="${LOGO_DATA_URI}" width="90" alt="Omnia Marketing" style="display:inline-block;width:90px;height:auto;border:0;" />
-              </td>
-            </tr>
-            <tr>
-              <td style="background-color:${CARD_BG};border:1px solid ${BORDER};border-radius:24px;padding:40px 32px;">
+              <td style="background-color:${CARD_BG};border-radius:24px;padding:40px 32px;">
+                <div style="margin:0 0 28px;text-align:center;">
+                  <img src="${LOGO_DATA_URI}" width="90" alt="Omnia Marketing" style="display:inline-block;width:90px;height:auto;border:0;" />
+                </div>
                 <p style="margin:0 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:${BRAND_BLUE};">
                   ${escapeHtml(eyebrow)}
                 </p>
