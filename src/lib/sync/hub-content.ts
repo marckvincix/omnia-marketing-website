@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import { classifyCategory } from "./classify-category";
 
 type HubContentRow = {
   id: string;
@@ -47,11 +48,21 @@ export async function syncHubBlogPosts() {
   let updated = 0;
   const affectedSlugs: string[] = [];
 
+  const categories = await prisma.blogCategory.findMany({
+    where: { slug: { in: ["web", "branding", "social"] } },
+  });
+  const categoryIdBySlug = new Map(categories.map((c) => [c.slug, c.id]));
+
   for (const row of rows) {
     const existing = await prisma.blogPost.findUnique({ where: { externalId: row.id } });
 
     const baseSlug = slugify(row.title) || row.id;
     const slug = existing?.slug ?? (await uniqueSlug(baseSlug));
+
+    // Hub non fornisce una categoria: la deduciamo dal testo. Se l'admin ha già assegnato
+    // una categoria a mano nell'editor del sito, non la sovrascriviamo a ogni risincronizzazione.
+    const guessedSlug = classifyCategory(`${row.title} ${row.excerpt ?? ""} ${row.body}`);
+    const guessedCategoryId = guessedSlug ? categoryIdBySlug.get(guessedSlug) : undefined;
 
     const basePostData = {
       title: row.title,
@@ -72,6 +83,7 @@ export async function syncHubBlogPosts() {
         data: {
           ...basePostData,
           ...(row.published_at ? { publishedAt: new Date(row.published_at) } : {}),
+          ...(existing.categoryId ? {} : { categoryId: guessedCategoryId }),
         },
       });
       updated++;
@@ -82,6 +94,7 @@ export async function syncHubBlogPosts() {
           publishedAt: row.published_at ? new Date(row.published_at) : new Date(),
           slug,
           externalId: row.id,
+          categoryId: guessedCategoryId,
         },
       });
       created++;

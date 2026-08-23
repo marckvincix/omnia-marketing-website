@@ -217,10 +217,11 @@ model TeamMember {
 // --- Blog --------------------------------------------------------------
 
 model BlogCategory {
-  id    String @id @default(cuid())
-  name  String
-  slug  String @unique
-  posts BlogPost[]
+  id        String @id @default(cuid())
+  name      String
+  slug      String @unique
+  posts     BlogPost[]
+  interests SubscriberInterest[]
 }
 
 model BlogTag {
@@ -353,6 +354,23 @@ model NewsletterSubscriber {
   visitorId        String?
 
   emailEvents EmailEvent[]
+  interests   SubscriberInterest[]
+}
+
+// Quante volte un iscritto ha cliccato un link in una newsletter il cui articolo apparteneva
+// a una data categoria (Web/Branding/Social): permette di capire di cosa si interessa
+// davvero e di segmentare i prossimi invii di conseguenza, invece di mandare a tutti lo
+// stesso contenuto. Aggiornato dal webhook Resend (email.clicked) e dal fallback di sync.
+model SubscriberInterest {
+  id            String   @id @default(cuid())
+  subscriberId  String
+  subscriber    NewsletterSubscriber @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+  categoryId    String
+  category      BlogCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  clickCount    Int      @default(0)
+  lastClickedAt DateTime @default(now())
+
+  @@unique([subscriberId, categoryId])
 }
 
 // --- Email marketing -------------------------------------------------------

@@ -10,7 +10,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { getEmailMetrics } from "@/lib/email/metrics";
-import { getSubscriberEngagementMap } from "@/lib/email/segments";
+import {
+  getSegmentOptions,
+  getSubscriberEngagementMap,
+  getSubscriberTopInterestMap,
+} from "@/lib/email/segments";
 import { SubscriberRow, UnsubscribedRow } from "./subscriber-row";
 import { PostSendRow } from "./post-send-row";
 import { SyncMetricsButton } from "./sync-metrics-button";
@@ -30,7 +34,7 @@ function MetricCard({ label, value }: { label: string; value: string | number })
 }
 
 export default async function AdminNewsletterPage() {
-  const [allSubscribers, posts, metrics, engagement] = await Promise.all([
+  const [allSubscribers, posts, metrics, engagement, segmentOptions, topInterest] = await Promise.all([
     prisma.newsletterSubscriber.findMany({ orderBy: { createdAt: "desc" } }),
     prisma.blogPost.findMany({
       where: { published: true },
@@ -39,6 +43,8 @@ export default async function AdminNewsletterPage() {
     }),
     getEmailMetrics(),
     getSubscriberEngagementMap(),
+    getSegmentOptions(),
+    getSubscriberTopInterestMap(),
   ]);
 
   const subscribers = allSubscribers.filter((s) => !s.unsubscribedAt);
@@ -128,6 +134,7 @@ export default async function AdminNewsletterPage() {
                     newsletterSentAt: post.newsletterSentAt?.toISOString() ?? null,
                   }}
                   subscriberCount={subscribers.length}
+                  segments={segmentOptions}
                 />
               ))}
               {posts.length === 0 && (
@@ -171,6 +178,7 @@ export default async function AdminNewsletterPage() {
                       openedCount: stats?.openedCount ?? 0,
                       clickedCount: stats?.clickedCount ?? 0,
                       bouncedCount: stats?.bouncedCount ?? 0,
+                      topInterest: topInterest.get(subscriber.id) ?? null,
                     }}
                   />
                 );

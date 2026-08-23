@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 import { prisma } from "@/lib/prisma";
 import { EmailEventStatus } from "@/generated/prisma/client";
+import { recordClickInterest } from "@/lib/email/record-click-interest";
 
 interface ResendWebhookPayload {
   type: string;
@@ -54,6 +55,16 @@ export async function POST(request: Request) {
     where: { resendEmailId: emailId },
     data,
   });
+
+  if (mapping.status === EmailEventStatus.CLICKED) {
+    const clickedEvent = await prisma.emailEvent.findUnique({
+      where: { resendEmailId: emailId },
+      select: { subscriberId: true, campaignId: true },
+    });
+    if (clickedEvent) {
+      await recordClickInterest(clickedEvent.subscriberId, clickedEvent.campaignId);
+    }
+  }
 
   return NextResponse.json({ ok: true });
 }

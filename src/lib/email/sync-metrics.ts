@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { resend } from "./resend";
 import { EmailEventStatus } from "@/generated/prisma/client";
+import { recordClickInterest } from "./record-click-interest";
 
 const TERMINAL_STATUSES: EmailEventStatus[] = ["CLICKED", "BOUNCED", "COMPLAINED"];
 const MAX_BATCH = 200;
@@ -72,6 +73,10 @@ export async function syncEmailMetricsFromResend(): Promise<{
         }
         await prisma.emailEvent.update({ where: { id: event.id }, data: patch });
         updated++;
+
+        if (mapping.status === EmailEventStatus.CLICKED && event.status !== EmailEventStatus.CLICKED) {
+          await recordClickInterest(event.subscriberId, event.campaignId);
+        }
       }
     } catch (error) {
       console.error(`Errore sync metriche per ${event.resendEmailId}`, error);

@@ -1,11 +1,45 @@
 import { prisma } from "@/lib/prisma";
+import { FIXED_SEGMENTS, categorySegmentKey, parseCategorySegment } from "./segment-labels";
 import type { SegmentKey } from "./segment-labels";
 
 export type { SegmentKey } from "./segment-labels";
-export { SEGMENTS } from "./segment-labels";
+export { FIXED_SEGMENTS } from "./segment-labels";
+
+export interface SegmentOption {
+  key: SegmentKey;
+  label: string;
+  description: string;
+}
+
+// Segmenti fissi (aperture/click/bounce) + un segmento per ogni categoria di articolo su cui
+// almeno un iscritto ha cliccato: permette di inviare una newsletter mirata solo a chi ha
+// già mostrato interesse per web/branding/social, invece che a tutta la lista.
+export async function getSegmentOptions(): Promise<SegmentOption[]> {
+  const categories = await prisma.blogCategory.findMany({
+    where: { interests: { some: {} } },
+    orderBy: { name: "asc" },
+  });
+
+  const categoryOptions: SegmentOption[] = categories.map((category) => ({
+    key: categorySegmentKey(category.id),
+    label: `Interessati: ${category.name}`,
+    description: `Ha cliccato almeno un articolo di categoria "${category.name}" in una newsletter precedente.`,
+  }));
+
+  return [...FIXED_SEGMENTS, ...categoryOptions];
+}
 
 export async function getSubscriberIdsForSegment(segment: SegmentKey): Promise<string[] | null> {
   if (segment === "all") return null; // null = nessun filtro, tutti gli attivi
+
+  const categoryId = parseCategorySegment(segment);
+  if (categoryId) {
+    const rows = await prisma.subscriberInterest.findMany({
+      where: { categoryId },
+      select: { subscriberId: true },
+    });
+    return rows.map((r) => r.subscriberId);
+  }
 
   if (segment === "openers") {
     const rows = await prisma.emailEvent.findMany({
@@ -48,6 +82,23 @@ export async function getSubscriberIdsForSegment(segment: SegmentKey): Promise<s
   }
 
   return null;
+}
+
+// Categoria con più click per ciascun iscritto, da mostrare nella lista Iscritti così l'admin
+// vede a colpo d'occhio di cosa si interessa davvero ognuno.
+export async function getSubscriberTopInterestMap(): Promise<Map<string, string>> {
+  const interests = await prisma.subscriberInterest.findMany({
+    select: { subscriberId: true, clickCount: true, category: { select: { name: true } } },
+    orderBy: { clickCount: "desc" },
+  });
+
+  const map = new Map<string, string>();
+  for (const interest of interests) {
+    if (!map.has(interest.subscriberId)) {
+      map.set(interest.subscriberId, interest.category.name);
+    }
+  }
+  return map;
 }
 
 export interface SubscriberEngagement {

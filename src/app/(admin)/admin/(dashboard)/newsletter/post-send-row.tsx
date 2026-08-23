@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SEGMENTS, type SegmentKey } from "@/lib/email/segment-labels";
+import type { SegmentKey } from "@/lib/email/segment-labels";
 import { sendUpdateEmail } from "./actions";
 
 export interface PostSendRowData {
@@ -22,7 +22,21 @@ export interface PostSendRowData {
   newsletterSentAt: string | null;
 }
 
-export function PostSendRow({ post, subscriberCount }: { post: PostSendRowData; subscriberCount: number }) {
+export interface SegmentOptionData {
+  key: SegmentKey;
+  label: string;
+  description: string;
+}
+
+export function PostSendRow({
+  post,
+  subscriberCount,
+  segments,
+}: {
+  post: PostSendRowData;
+  subscriberCount: number;
+  segments: SegmentOptionData[];
+}) {
   const [isPending, startTransition] = useTransition();
   const [confirming, setConfirming] = useState(false);
   const [segment, setSegment] = useState<SegmentKey>("all");
@@ -64,11 +78,13 @@ export function PostSendRow({ post, subscriberCount }: { post: PostSendRowData; 
         ) : confirming ? (
           <div className="flex items-center justify-end gap-2">
             <Select value={segment} onValueChange={(v) => setSegment(v as SegmentKey)}>
-              <SelectTrigger className="w-48" size="sm">
-                <SelectValue />
+              <SelectTrigger className="w-56" size="sm">
+                <SelectValue placeholder="Segmento">
+                  {(v: string) => segments.find((s) => s.key === v)?.label ?? v}
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
-                {SEGMENTS.map((s) => (
+                {segments.map((s) => (
                   <SelectItem key={s.key} value={s.key}>
                     {s.label}
                   </SelectItem>
