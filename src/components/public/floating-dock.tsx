@@ -2,11 +2,12 @@
 
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { Languages, Check } from "lucide-react";
+import { Check } from "lucide-react";
+import * as Flags from "country-flag-icons/react/3x2";
 import { DOCK_ITEMS, DOCK_CTA_ICON, CLIENTS_AREA_ICON, CLIENTS_AREA_URL } from "@/lib/nav";
 import { useVisitorTracking } from "@/lib/visitor-tracking-context";
 import { INTEREST_CLICK_WEIGHT } from "@/lib/use-interest-tracking";
-import { LOCALES, LOCALE_META } from "@/lib/i18n/locales";
+import { LOCALES, LOCALE_META, type Locale } from "@/lib/i18n/locales";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,8 +18,17 @@ import { LightBeamButton } from "./light-beam-button";
 
 const SERVICE_SLUGS = new Set(["web", "branding", "social"]);
 
+function FlagIcon({ locale, className }: { locale: Locale; className?: string }) {
+  const Flag = Flags[LOCALE_META[locale].flagCountry as keyof typeof Flags];
+  return (
+    <span className={`inline-block shrink-0 overflow-hidden rounded-[3px] ${className ?? ""}`}>
+      <Flag title={LOCALE_META[locale].label} className="block h-full w-full" />
+    </span>
+  );
+}
+
 function LanguageSwitcher() {
-  const locale = useLocale();
+  const locale = useLocale() as Locale;
   const pathname = usePathname();
   const router = useRouter();
   const t = useTranslations("nav");
@@ -29,7 +39,7 @@ function LanguageSwitcher() {
         title={t("lingua")}
         className="shrink-0 rounded-xl p-2.5 text-white/70 transition-all hover:bg-white/10 hover:text-white md:rounded-xl md:p-2.5"
       >
-        <Languages className="size-5 md:size-4" aria-hidden="true" />
+        <FlagIcon locale={locale} className="h-4 w-6 md:h-3.5 md:w-5" />
         <span className="sr-only">{t("lingua")}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="top" align="start" className="min-w-40">
@@ -39,8 +49,9 @@ function LanguageSwitcher() {
             onClick={() => router.replace(pathname, { locale: l })}
             className="justify-between"
           >
-            <span>
-              {LOCALE_META[l].flag} {LOCALE_META[l].label}
+            <span className="flex items-center gap-2">
+              <FlagIcon locale={l} className="h-3.5 w-5" />
+              {LOCALE_META[l].label}
             </span>
             {l === locale && <Check className="size-4" aria-hidden="true" />}
           </DropdownMenuItem>

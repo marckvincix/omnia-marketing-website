@@ -13,15 +13,17 @@ export function isRtl(locale: string): boolean {
   return RTL_LOCALES.includes(locale as Locale);
 }
 
-export const LOCALE_META: Record<Locale, { label: string; flag: string }> = {
-  it: { label: "Italiano", flag: "🇮🇹" },
-  en: { label: "English", flag: "🇬🇧" },
-  de: { label: "Deutsch", flag: "🇩🇪" },
-  es: { label: "Español", flag: "🇪🇸" },
-  ru: { label: "Русский", flag: "🇷🇺" },
-  zh: { label: "中文", flag: "🇨🇳" },
-  ja: { label: "日本語", flag: "🇯🇵" },
-  ar: { label: "العربية", flag: "🇸🇦" },
+// Codice paese ISO 3166-1 alpha-2 usato per le bandiere SVG di country-flag-icons
+// (non emoji: servono per poter applicare angoli arrotondati via CSS).
+export const LOCALE_META: Record<Locale, { label: string; flagCountry: string }> = {
+  it: { label: "Italiano", flagCountry: "IT" },
+  en: { label: "English", flagCountry: "GB" },
+  de: { label: "Deutsch", flagCountry: "DE" },
+  es: { label: "Español", flagCountry: "ES" },
+  ru: { label: "Русский", flagCountry: "RU" },
+  zh: { label: "中文", flagCountry: "CN" },
+  ja: { label: "日本語", flagCountry: "JP" },
+  ar: { label: "العربية", flagCountry: "SA" },
 };
 
 // Codice locale in stile Open Graph (og:locale), usato nei metadata di ogni pagina.
