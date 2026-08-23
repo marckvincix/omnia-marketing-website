@@ -101,7 +101,7 @@ export function FloatingDock() {
           target="_blank"
           rel="noopener noreferrer"
           title={t("areaClienti")}
-          className="shrink-0 rounded-xl p-2.5 text-white/70 transition-all hover:bg-white/10 hover:text-white md:rounded-xl md:p-2.5"
+          className="hidden shrink-0 rounded-xl p-2.5 text-white/70 transition-all hover:bg-white/10 hover:text-white md:inline-flex md:rounded-xl md:p-2.5"
         >
           <ClientsIcon className="size-5 md:size-4" aria-hidden="true" />
           <span className="sr-only">{t("areaClienti")}</span>

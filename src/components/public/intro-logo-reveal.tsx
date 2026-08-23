@@ -57,6 +57,12 @@ export function IntroLogoReveal() {
     const currentT = { value: 0 };
 
     const computeBoxes = () => {
+      // Durante una transizione di pagina lato client (SPA) il viewport può
+      // riportare momentaneamente 0x0: se non lo scartiamo, containerAspect
+      // diventa NaN e l'intero viewBox dell'SVG (e i calcoli di GSAP a
+      // catena) si rompono, bloccando la navigazione.
+      if (window.innerWidth <= 0 || window.innerHeight <= 0) return;
+
       const containerAspect = window.innerWidth / window.innerHeight;
       const startW = FULL_W / INITIAL_LOGO_WIDTH_FRACTION;
       const startH = startW / containerAspect;
@@ -73,6 +79,7 @@ export function IntroLogoReveal() {
       const y = lerp(startBox.y, endBox.y, t);
       const w = lerp(startBox.w, endBox.w, t);
       const h = lerp(startBox.h, endBox.h, t);
+      if (![x, y, w, h].every(Number.isFinite)) return;
       svgRef.current?.setAttribute("viewBox", `${x} ${y} ${w} ${h}`);
     };
 
@@ -143,7 +150,7 @@ export function IntroLogoReveal() {
     <div ref={wrapperRef} className="relative h-[300vh]">
       <div
         ref={curtainRef}
-        className="fixed inset-0 z-[100] h-screen w-screen overflow-hidden bg-[#050505]"
+        className="fixed inset-0 z-[100] h-dvh w-screen overflow-hidden bg-[#050505]"
         style={{ pointerEvents: "none" }}
         aria-hidden="true"
       >
@@ -157,7 +164,7 @@ export function IntroLogoReveal() {
         )}
         <div
           ref={indicatorRef}
-          className="absolute bottom-28 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce text-white/60"
+          className="absolute bottom-28 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce text-white/80"
         >
           <span className="text-xs md:text-[10px] font-bold uppercase tracking-normal">Scroll</span>
           <ChevronDown className="size-8 md:size-6" strokeWidth={1.5} />
