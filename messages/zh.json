@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "首页",
+    "chiSiamo": "关于我们",
+    "web": "网站",
+    "branding": "品牌建设",
+    "social": "社交媒体",
+    "portfolio": "作品集",
+    "blog": "博客",
+    "contatti": "联系方式",
+    "areaClienti": "客户专区",
+    "lingua": "切换语言",
+    "navigazionePrincipale": "主导航"
+  },
+  "footer": {
+    "blogHeading": "博客",
+    "vediTuttoBlog": "查看博客全部内容 →",
+    "restaAggiornatoRiga1": "RESTA",
+    "restaAggiornatoRiga2": "已更新",
+    "parliamoNeRiga1": "我们来聊聊",
+    "parliamoNeRiga2": "NE.",
+    "areaClienti": "客户专区",
+    "naviga": "浏览",
+    "doveSiamo": "我们的位置",
+    "sedeCitta": "那不勒斯",
+    "sedeNota": "我们的业务覆盖整个意大利",
+    "privacyPolicy": "隐私政策",
+    "cookiePolicy": "Cookie 政策",
+    "preferenzeCookie": "Cookie 设置",
+    "copyright": "© {year} {companyName} — Omniaweb S.r.l.s — 增值税号 {piva}"
+  },
+  "cookieBanner": {
+    "titolo": "Cookie 与隐私",
+    "testo": "我们使用对网站运行必不可少的技术性Cookie；此外，仅在您同意的情况下，我们才会将匿名数据保存到您的设备中，以便根据您的浏览记录对内容进行个性化定制。",
+    "maggioriInfo": "更多信息：",
+    "accetta": "接受",
+    "rifiuta": "拒绝"
+  },
+  "newsletter": {
+    "placeholder": "请输入您的电子邮箱",
+    "placeholderConNome": "{name}，请在此处输入您的电子邮箱",
+    "ariaLabel": "订阅电子报的邮箱",
+    "invio": "正在发送……",
+    "iscrivimi": "请帮我注册",
+    "successo": "注册已确认，谢谢！",
+    "successoConNome": "{name}，已确认注册，谢谢！"
+  },
+  "common": {
+    "vaiAlContenuto": "跳转至主要内容"
+  },
+  "email": {
+    "footerUnsubscribeNote": "您收到这封邮件是因为您订阅了Omnia Marketing的电子报。",
+    "disiscriviti": "取消订阅",
+    "newsletterEyebrow": "最新更新",
+    "newsletterCta": "阅读全文 →",
+    "welcomeEyebrow": "注册已确认",
+    "welcomeHeading": "感谢您的注册！",
+    "welcomeBody": "从今天起，您将直接在您的电子邮箱中收到Omnia Marketing的最新动态、资讯和文章的抢先预览。",
+    "welcomeCta": "前往博客 →",
+    "contactConfirmEyebrow": "已收到请求",
+    "contactConfirmHeading": "谢谢你，{name}！",
+    "contactConfirmBody1": "我们已收到您的请求：我们的团队正在处理，我们将尽快回复您。",
+    "contactConfirmBody2": "与此同时，你可以浏览一下我们最新的项目。",
+    "contactConfirmCta": "查看作品集 →",
+    "contactConfirmFooterNote": "这是一封关于您通过联系表单提交的请求的自动确认邮件。",
+    "adminReplyEyebrow": "Omnia Marketing",
+    "adminReplyHeading": "我们有答案给你",
+    "adminReplyFooterNote": "您可以直接回复这封邮件，继续我们的对话。"
+  }
+}

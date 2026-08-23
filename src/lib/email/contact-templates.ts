@@ -1,28 +1,36 @@
 import { renderEmailLayout, escapeHtml } from "./base-template";
+import { getEmailMessages, formatMessage } from "@/lib/i18n/email-messages";
+import { DEFAULT_LOCALE } from "@/lib/i18n/locales";
 
-export function renderContactConfirmationEmail({
+export async function renderContactConfirmationEmail({
   name,
   siteUrl,
+  locale = DEFAULT_LOCALE,
 }: {
   name: string;
   siteUrl: string;
+  locale?: string;
 }) {
+  const m = await getEmailMessages(locale);
   return renderEmailLayout({
-    title: "Richiesta ricevuta",
-    eyebrow: "Richiesta ricevuta",
-    heading: `Grazie, ${name}!`,
+    title: m.contactConfirmEyebrow,
+    eyebrow: m.contactConfirmEyebrow,
+    heading: formatMessage(m.contactConfirmHeading, { name: escapeHtml(name) }),
     bodyHtml: `
-      <p style="margin:0 0 12px;">Abbiamo ricevuto la tua richiesta: il nostro team la sta già elaborando e ti risponderemo il prima possibile.</p>
-      <p style="margin:0;">Nel frattempo puoi dare un'occhiata ai nostri progetti più recenti.</p>
+      <p style="margin:0 0 12px;">${escapeHtml(m.contactConfirmBody1)}</p>
+      <p style="margin:0;">${escapeHtml(m.contactConfirmBody2)}</p>
     `,
-    ctaLabel: "Guarda il portfolio →",
+    ctaLabel: m.contactConfirmCta,
     ctaHref: `${siteUrl}/progetti`,
-    footerNote: "Questa è un'email automatica di conferma per la richiesta inviata dal modulo contatti.",
+    footerNote: m.contactConfirmFooterNote,
     siteUrl,
+    locale,
   });
 }
 
-export function renderContactNotificationEmail({
+// Sempre in italiano: va all'admin (notifyEmail), non al visitatore che ha compilato il
+// modulo — non dipende dalla lingua con cui quest'ultimo ha navigato il sito.
+export async function renderContactNotificationEmail({
   name,
   email,
   phone,

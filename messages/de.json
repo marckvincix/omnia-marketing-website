@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "chiSiamo": "Über uns",
+    "web": "Web",
+    "branding": "Markenbildung",
+    "social": "Soziale Medien",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contatti": "Kontakt",
+    "areaClienti": "Kundenbereich",
+    "lingua": "Sprache ändern",
+    "navigazionePrincipale": "Hauptnavigation"
+  },
+  "footer": {
+    "blogHeading": "BLOG",
+    "vediTuttoBlog": "Den gesamten Blog anzeigen →",
+    "restaAggiornatoRiga1": "BLEIB",
+    "restaAggiornatoRiga2": "AKTUALISIERT",
+    "parliamoNeRiga1": "REDEN WIR",
+    "parliamoNeRiga2": "NE.",
+    "areaClienti": "Kundenbereich",
+    "naviga": "Navigieren",
+    "doveSiamo": "Wo wir sind",
+    "sedeCitta": "Neapel",
+    "sedeNota": "Wir sind in ganz Italien tätig",
+    "privacyPolicy": "Datenschutzerklärung",
+    "cookiePolicy": "Datenschutzerklärung zu Cookies",
+    "preferenzeCookie": "Cookie-Einstellungen",
+    "copyright": "© {year} {companyName} — Omniaweb S.r.l.s — Umsatzsteuer-Identifikationsnummer {piva}"
+  },
+  "cookieBanner": {
+    "titolo": "Cookies und Datenschutz",
+    "testo": "Wir verwenden technische Cookies, die für den Betrieb der Website erforderlich sind, und – sofern du dem zustimmst – anonyme Daten, die auf deinem Gerät gespeichert werden, um die Inhalte entsprechend deinen Besuchen anzupassen.",
+    "maggioriInfo": "Weitere Informationen:",
+    "accetta": "Akzeptieren",
+    "rifiuta": "Ablehnen"
+  },
+  "newsletter": {
+    "placeholder": "Gib deine E-Mail-Adresse ein",
+    "placeholderConNome": "{name}, gib hier deine E-Mail-Adresse ein",
+    "ariaLabel": "E-Mail-Adresse für den Newsletter",
+    "invio": "Senden…",
+    "iscrivimi": "Melde mich an",
+    "successo": "Anmeldung bestätigt, vielen Dank!",
+    "successoConNome": "{name}, deine Anmeldung wurde bestätigt, vielen Dank!"
+  },
+  "common": {
+    "vaiAlContenuto": "Zum Hauptinhalt springen"
+  },
+  "email": {
+    "footerUnsubscribeNote": "Du hast diese E-Mail erhalten, weil du den Newsletter von Omnia Marketing abonniert hast.",
+    "disiscriviti": "Abmelden",
+    "newsletterEyebrow": "Neues Update",
+    "newsletterCta": "Den vollständigen Artikel lesen →",
+    "welcomeEyebrow": "Anmeldung bestätigt",
+    "welcomeHeading": "Vielen Dank für deine Anmeldung!",
+    "welcomeBody": "Ab heute erhältst du Updates, Neuigkeiten und Artikel von Omnia Marketing als Vorabversion direkt in deinen E-Mail-Posteingang.",
+    "welcomeCta": "Zum Blog →",
+    "contactConfirmEyebrow": "Anfrage eingegangen",
+    "contactConfirmHeading": "Danke, {name}!",
+    "contactConfirmBody1": "Wir haben deine Anfrage erhalten: Unser Team bearbeitet sie bereits und wir werden dir so schnell wie möglich antworten.",
+    "contactConfirmBody2": "In der Zwischenzeit kannst du dir unsere neuesten Projekte ansehen.",
+    "contactConfirmCta": "Portfolio ansehen →",
+    "contactConfirmFooterNote": "Dies ist eine automatische Bestätigungs-E-Mail zu Ihrer Anfrage, die über das Kontaktformular gesendet wurde.",
+    "adminReplyEyebrow": "Omnia Marketing",
+    "adminReplyHeading": "Wir haben eine Antwort für dich",
+    "adminReplyFooterNote": "Antworte einfach direkt auf diese E-Mail, um die Unterhaltung fortzusetzen."
+  }
+}

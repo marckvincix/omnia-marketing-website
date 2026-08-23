@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "الصفحة الرئيسية",
+    "chiSiamo": "من نحن",
+    "web": "الويب",
+    "branding": "العلامة التجارية",
+    "social": "الشبكات الاجتماعية",
+    "portfolio": "محفظة الأعمال",
+    "blog": "مدونة",
+    "contatti": "جهات الاتصال",
+    "areaClienti": "منطقة العملاء",
+    "lingua": "تغيير اللغة",
+    "navigazionePrincipale": "التنقل الرئيسي"
+  },
+  "footer": {
+    "blogHeading": "المدونة",
+    "vediTuttoBlog": "شاهد المدونة بالكامل →",
+    "restaAggiornatoRiga1": "ابقَ",
+    "restaAggiornatoRiga2": "تم التحديث",
+    "parliamoNeRiga1": "لنتحدث",
+    "parliamoNeRiga2": "NE.",
+    "areaClienti": "منطقة العملاء",
+    "naviga": "تصفح",
+    "doveSiamo": "أين نحن",
+    "sedeCitta": "نابولي",
+    "sedeNota": "نحن نعمل في جميع أنحاء إيطاليا",
+    "privacyPolicy": "سياسة الخصوصية",
+    "cookiePolicy": "سياسة ملفات تعريف الارتباط",
+    "preferenzeCookie": "تفضيلات ملفات تعريف الارتباط",
+    "copyright": "© {year} {companyName} — Omniaweb S.r.l.s — رقم ضريبة القيمة المضافة {piva}"
+  },
+  "cookieBanner": {
+    "titolo": "ملفات تعريف الارتباط والخصوصية",
+    "testo": "نستخدم ملفات تعريف الارتباط الفنية الضرورية لتشغيل الموقع، كما نستخدم — فقط في حالة موافقتك — بيانات مجهولة المصدر يتم حفظها على جهازك لتخصيص المحتوى وفقًا لما تزوره.",
+    "maggioriInfo": "مزيد من المعلومات:",
+    "accetta": "قبول",
+    "rifiuta": "رفض"
+  },
+  "newsletter": {
+    "placeholder": "أدخل عنوان بريدك الإلكتروني",
+    "placeholderConNome": "{name}، أدخل بريدك الإلكتروني هنا",
+    "ariaLabel": "البريد الإلكتروني للاشتراك في النشرة الإخبارية",
+    "invio": "إرسال…",
+    "iscrivimi": "أريد التسجيل",
+    "successo": "تم تأكيد التسجيل، شكرًا!",
+    "successoConNome": "{name}، تم تأكيد التسجيل، شكرًا!"
+  },
+  "common": {
+    "vaiAlContenuto": "انتقل إلى المحتوى الرئيسي"
+  },
+  "email": {
+    "footerUnsubscribeNote": "لقد تلقيت هذه الرسالة الإلكترونية لأنك مشترك في النشرة الإخبارية لشركة Omnia Marketing.",
+    "disiscriviti": "إلغاء الاشتراك",
+    "newsletterEyebrow": "تحديث جديد",
+    "newsletterCta": "اقرأ المقال كاملاً →",
+    "welcomeEyebrow": "تم تأكيد التسجيل",
+    "welcomeHeading": "شكرًا على اشتراكك!",
+    "welcomeBody": "ابتداءً من اليوم، ستتلقى أولاً بأول آخر المستجدات والأخبار والمقالات من Omnia Marketing مباشرةً في بريدك الإلكتروني.",
+    "welcomeCta": "انتقل إلى المدونة →",
+    "contactConfirmEyebrow": "تم استلام الطلب",
+    "contactConfirmHeading": "شكرًا، {name}!",
+    "contactConfirmBody1": "لقد تلقينا طلبك: فريقنا يعمل على معالجته حالياً وسنرد عليك في أقرب وقت ممكن.",
+    "contactConfirmBody2": "في هذه الأثناء، يمكنك إلقاء نظرة على أحدث مشاريعنا.",
+    "contactConfirmCta": "شاهد مجموعة الأعمال →",
+    "contactConfirmFooterNote": "هذه رسالة بريد إلكتروني تلقائية لتأكيد الطلب الذي تم إرساله عبر نموذج الاتصال.",
+    "adminReplyEyebrow": "أومنيا للتسويق",
+    "adminReplyHeading": "لدينا إجابة لك",
+    "adminReplyFooterNote": "لا تتردد في الرد مباشرةً على هذه الرسالة الإلكترونية لمواصلة المحادثة."
+  }
+}

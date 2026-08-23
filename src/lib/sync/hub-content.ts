@@ -1,7 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { classifyCategory } from "./classify-category";
+import { translateAndSaveBlogPost } from "@/lib/i18n/translate-and-save";
 
 type HubContentRow = {
   id: string;
@@ -50,6 +52,7 @@ export async function syncHubBlogPosts() {
   let created = 0;
   let updated = 0;
   const affectedSlugs: string[] = [];
+  const affectedPostIds: string[] = [];
 
   const categories = await prisma.blogCategory.findMany({
     where: { slug: { in: ["web", "branding", "social"] } },
@@ -92,8 +95,9 @@ export async function syncHubBlogPosts() {
         },
       });
       updated++;
+      affectedPostIds.push(existing.id);
     } else {
-      await prisma.blogPost.create({
+      const created_ = await prisma.blogPost.create({
         data: {
           ...basePostData,
           publishedAt: row.published_at ? new Date(row.published_at) : new Date(),
@@ -103,15 +107,24 @@ export async function syncHubBlogPosts() {
         },
       });
       created++;
+      affectedPostIds.push(created_.id);
     }
     affectedSlugs.push(slug);
   }
 
   if (rows.length > 0) {
-    revalidatePath("/blog");
-    revalidatePath("/", "layout");
-    for (const slug of affectedSlugs) {
-      revalidatePath(`/blog/${slug}`);
+    revalidatePath("/[locale]/blog", "page");
+    revalidatePath("/[locale]", "layout");
+    revalidatePath("/[locale]/blog/[slug]", "page");
+
+    // Traduzione automatica anche per gli articoli sincronizzati da Hub (non passano
+    // dall'editor admin): parte dopo la risposta della cron, non la blocca.
+    for (const postId of affectedPostIds) {
+      after(() =>
+        translateAndSaveBlogPost(postId).catch((err) =>
+          console.error(`[i18n] Traduzione articolo sync Hub fallita (${postId})`, err),
+        ),
+      );
     }
   }
 

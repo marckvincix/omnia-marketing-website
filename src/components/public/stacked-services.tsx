@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ArrowUpRight } from "lucide-react";
 import type { ServiceView } from "@/lib/data/services";
 import { useVisitorTracking } from "@/lib/visitor-tracking-context";

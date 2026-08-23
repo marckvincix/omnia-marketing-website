@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Home",
+    "chiSiamo": "Chi Siamo",
+    "web": "Web",
+    "branding": "Branding",
+    "social": "Social",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contatti": "Contatti",
+    "areaClienti": "Area Clienti",
+    "lingua": "Cambia lingua",
+    "navigazionePrincipale": "Navigazione principale"
+  },
+  "footer": {
+    "blogHeading": "BLOG",
+    "vediTuttoBlog": "Vedi tutto il blog →",
+    "restaAggiornatoRiga1": "RESTA",
+    "restaAggiornatoRiga2": "AGGIORNATO",
+    "parliamoNeRiga1": "PARLIAMO",
+    "parliamoNeRiga2": "NE.",
+    "areaClienti": "Area Clienti",
+    "naviga": "Naviga",
+    "doveSiamo": "Dove siamo",
+    "sedeCitta": "Napoli",
+    "sedeNota": "Operiamo in tutta Italia",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy",
+    "preferenzeCookie": "Preferenze cookie",
+    "copyright": "© {year} {companyName} — Omniaweb S.r.l.s — P.IVA {piva}"
+  },
+  "cookieBanner": {
+    "titolo": "Cookie e privacy",
+    "testo": "Usiamo cookie tecnici necessari al funzionamento del sito e, solo se acconsenti, dati anonimi salvati sul tuo dispositivo per personalizzare i contenuti in base a ciò che visiti.",
+    "maggioriInfo": "Maggiori informazioni:",
+    "accetta": "Accetta",
+    "rifiuta": "Rifiuta"
+  },
+  "newsletter": {
+    "placeholder": "Inserisci la tua email",
+    "placeholderConNome": "{name}, inserisci qui la tua email",
+    "ariaLabel": "Email per la newsletter",
+    "invio": "Invio…",
+    "iscrivimi": "Iscrivimi",
+    "successo": "Iscrizione confermata, grazie!",
+    "successoConNome": "{name}, iscrizione confermata, grazie!"
+  },
+  "common": {
+    "vaiAlContenuto": "Vai al contenuto principale"
+  },
+  "email": {
+    "footerUnsubscribeNote": "Hai ricevuto questa email perché sei iscritto alla newsletter di Omnia Marketing.",
+    "disiscriviti": "Disiscriviti",
+    "newsletterEyebrow": "Nuovo aggiornamento",
+    "newsletterCta": "Leggi l'articolo completo →",
+    "welcomeEyebrow": "Iscrizione confermata",
+    "welcomeHeading": "Grazie per esserti iscritto/a!",
+    "welcomeBody": "Da oggi riceverai in anteprima gli aggiornamenti, le novità e gli articoli di Omnia Marketing direttamente nella tua casella email.",
+    "welcomeCta": "Vai al blog →",
+    "contactConfirmEyebrow": "Richiesta ricevuta",
+    "contactConfirmHeading": "Grazie, {name}!",
+    "contactConfirmBody1": "Abbiamo ricevuto la tua richiesta: il nostro team la sta già elaborando e ti risponderemo il prima possibile.",
+    "contactConfirmBody2": "Nel frattempo puoi dare un'occhiata ai nostri progetti più recenti.",
+    "contactConfirmCta": "Guarda il portfolio →",
+    "contactConfirmFooterNote": "Questa è un'email automatica di conferma per la richiesta inviata dal modulo contatti.",
+    "adminReplyEyebrow": "Omnia Marketing",
+    "adminReplyHeading": "Abbiamo una risposta per te",
+    "adminReplyFooterNote": "Rispondi pure direttamente a questa email per continuare la conversazione."
+  }
+}

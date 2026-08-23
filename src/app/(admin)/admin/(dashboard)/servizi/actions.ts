@@ -1,9 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { serviceSchema, type ServiceInput } from "@/lib/validation/admin";
+import { translateAndSaveService } from "@/lib/i18n/translate-and-save";
 
 async function requireAdmin() {
   const session = await auth();
@@ -64,15 +66,19 @@ export async function saveService(input: ServiceInput) {
   }
 
   revalidatePath("/admin/servizi");
-  revalidatePath(`/${service.slug}`);
-  revalidatePath("/chi-siamo");
-  revalidatePath("/");
+  // "web"/"branding"/"social" sono cartelle statiche reali, non uno slug dinamico:
+  // solo [locale] va scritto tra parentesi per revalidare la pagina su tutte le lingue.
+  revalidatePath(`/[locale]/${service.slug}`, "page");
+  revalidatePath("/[locale]/chi-siamo", "page");
+  revalidatePath("/[locale]", "page");
+
+  after(() => translateAndSaveService(service.id).catch((err) => console.error("[i18n] Traduzione servizio fallita", err)));
 }
 
 export async function deleteService(id: string) {
   await requireAdmin();
   const service = await prisma.service.delete({ where: { id } });
   revalidatePath("/admin/servizi");
-  revalidatePath(`/${service.slug}`);
-  revalidatePath("/");
+  revalidatePath(`/[locale]/${service.slug}`, "page");
+  revalidatePath("/[locale]", "page");
 }

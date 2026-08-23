@@ -1,9 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { siteSettingsSchema, type SiteSettingsInput } from "@/lib/validation/admin";
+import { translateAndSaveSiteSettings } from "@/lib/i18n/translate-and-save";
 
 export async function saveSiteSettings(input: SiteSettingsInput) {
   const session = await auth();
@@ -43,6 +45,8 @@ export async function saveSiteSettings(input: SiteSettingsInput) {
   });
 
   revalidatePath("/admin/impostazioni");
-  revalidatePath("/");
-  revalidatePath("/contatti");
+  revalidatePath("/[locale]", "page");
+  revalidatePath("/[locale]/contatti", "page");
+
+  after(() => translateAndSaveSiteSettings().catch((err) => console.error("[i18n] Traduzione impostazioni fallita", err)));
 }

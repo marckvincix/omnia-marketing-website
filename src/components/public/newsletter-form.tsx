@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import { useLocale, useTranslations } from "next-intl";
 import { subscribeNewsletter, type NewsletterActionState } from "@/lib/actions/newsletter";
 import { useVisitorName } from "@/lib/visitor-name-context";
 import { useVisitorTracking } from "@/lib/visitor-tracking-context";
@@ -11,9 +12,10 @@ const initialState: NewsletterActionState = {};
 
 function SubmitButton() {
   const { pending } = useFormStatus();
+  const t = useTranslations("newsletter");
   return (
     <LightBeamButton type="submit" disabled={pending} className="shrink-0">
-      {pending ? "Invio…" : "Iscrivimi"}
+      {pending ? t("invio") : t("iscrivimi")}
     </LightBeamButton>
   );
 }
@@ -22,11 +24,13 @@ export function NewsletterForm() {
   const [state, formAction] = useActionState(subscribeNewsletter, initialState);
   const { name } = useVisitorName();
   const { visitorId } = useVisitorTracking();
+  const locale = useLocale();
+  const t = useTranslations("newsletter");
 
   if (state.success) {
     return (
       <p className="text-sm text-[#2e9bd6]">
-        {name ? `${name}, iscrizione confermata, grazie!` : "Iscrizione confermata, grazie!"}
+        {name ? t("successoConNome", { name }) : t("successo")}
       </p>
     );
   }
@@ -42,13 +46,14 @@ export function NewsletterForm() {
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
       {visitorId && <input type="hidden" name="visitorId" value={visitorId} />}
+      <input type="hidden" name="locale" value={locale} />
       <div className="flex items-center gap-8">
         <input
           type="email"
           name="email"
           required
-          placeholder={name ? `${name}, inserisci qui la tua email` : "Inserisci la tua email"}
-          aria-label="Email per la newsletter"
+          placeholder={name ? t("placeholderConNome", { name }) : t("placeholder")}
+          aria-label={t("ariaLabel")}
           className="w-full bg-transparent border-0 border-b border-[#333333] pb-3 text-base text-white placeholder:text-[#666666] focus:outline-none focus:border-[#2e9bd6] transition-colors"
         />
         <SubmitButton />

@@ -3,7 +3,7 @@
 import { useActionState, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { X } from "lucide-react";
-import { submitContact, type ContactActionState } from "@/app/(public)/contatti/actions";
+import { submitContact, type ContactActionState } from "@/app/(public)/[locale]/contatti/actions";
 import { useVisitorName } from "@/lib/visitor-name-context";
 import { useVisitorTracking } from "@/lib/visitor-tracking-context";
 import { LightBeamButton } from "./light-beam-button";

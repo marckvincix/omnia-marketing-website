@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { resend, RESEND_FROM_EMAIL } from "./resend";
 import { renderNewsletterEmail } from "./newsletter-template";
 import { getSubscriberIdsForSegment, type SegmentKey } from "./segments";
+import { DEFAULT_LOCALE } from "@/lib/i18n/locales";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -10,7 +11,11 @@ function wait(ms: number) {
 }
 
 export async function sendNewsletterForPost(postId: string, segment: SegmentKey = "all") {
-  const post = await prisma.blogPost.findUniqueOrThrow({ where: { id: postId } });
+  const post = await prisma.blogPost.findUniqueOrThrow({
+    where: { id: postId },
+    include: { translations: true },
+  });
+  const translationByLocale = new Map(post.translations.map((t) => [t.locale, t]));
 
   const segmentIds = await getSubscriberIdsForSegment(segment);
   const subscribers = await prisma.newsletterSubscriber.findMany({
@@ -32,24 +37,33 @@ export async function sendNewsletterForPost(postId: string, segment: SegmentKey 
     },
   });
 
-  const articleUrl = `${SITE_URL}/blog/${post.slug}`;
   let sent = 0;
 
   for (const subscriber of subscribers) {
+    const locale = subscriber.locale || DEFAULT_LOCALE;
+    // Nella lingua di default l'URL non ha prefisso (/blog/slug); nelle altre sì
+    // (/en/blog/slug ecc.), stesso schema "as-needed" usato dal routing del sito.
+    const localePrefix = locale === DEFAULT_LOCALE ? "" : `/${locale}`;
+    const t = translationByLocale.get(locale);
+    const title = t?.title || post.title;
+    const excerpt = t?.excerpt || post.excerpt;
+    const articleUrl = `${SITE_URL}${localePrefix}/blog/${post.slug}`;
+
     const unsubscribeUrl = `${SITE_URL}/disiscriviti?email=${encodeURIComponent(subscriber.email)}&token=${subscriber.unsubscribeToken}`;
-    const html = renderNewsletterEmail({
-      title: post.title,
-      excerpt: post.excerpt,
+    const html = await renderNewsletterEmail({
+      title,
+      excerpt,
       articleUrl,
       unsubscribeUrl,
       siteUrl: SITE_URL,
+      locale,
     });
 
     try {
       const { data, error } = await resend.emails.send({
         from: RESEND_FROM_EMAIL,
         to: subscriber.email,
-        subject: post.title,
+        subject: title,
         html,
       });
       if (error || !data) {

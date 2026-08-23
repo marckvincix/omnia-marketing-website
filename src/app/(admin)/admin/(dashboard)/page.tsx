@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { ADMIN_NAV } from "@/lib/admin-nav";
 import { RealtimeVisitors } from "@/components/admin/realtime-visitors";
 import { Ga4OverviewCards } from "@/components/admin/ga4-overview-cards";
+import { DeeplUsageCard } from "@/components/admin/deepl-usage-card";
 import { getGa4Report, isGa4Configured } from "@/lib/analytics/ga4";
 
 export const metadata: Metadata = {
@@ -48,6 +49,8 @@ export default async function AdminDashboardPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
         <RealtimeVisitors variant="card" />
       </div>
+
+      <DeeplUsageCard />
 
       {ga4Data && (
         <div className="mb-8">

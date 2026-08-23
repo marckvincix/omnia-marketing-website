@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { DEFAULT_LOCALE } from "@/lib/i18n/locales";
 
 const GRADIENTS = [
   "from-[#3a2a20] to-[#0a0a0a]",
@@ -39,6 +40,16 @@ export interface ProjectView {
   gallery: ProjectGalleryItem[];
 }
 
+type ProjectTranslationFields = {
+  title: string;
+  description: string;
+  processText: string | null;
+  resultsText: string | null;
+  testimonialQuote: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
+};
+
 type ProjectWithRelations = {
   id: string;
   slug: string;
@@ -54,9 +65,18 @@ type ProjectWithRelations = {
   seoDescription: string | null;
   services: { service: { title: string; slug: string } }[];
   media: { id: string; url: string; alt: string; type: "IMAGE" | "VIDEO" }[];
+  translations?: ProjectTranslationFields[];
 };
 
 function toView(p: ProjectWithRelations): ProjectView {
+  const t = p.translations?.[0];
+  const description = t?.description || p.description;
+  const processText = t?.processText || p.processText;
+  const resultsText = t?.resultsText || p.resultsText;
+  const testimonialQuote = t?.testimonialQuote || p.testimonialQuote;
+  const seoTitle = t?.seoTitle || p.seoTitle;
+  const seoDescription = t?.seoDescription || p.seoDescription;
+
   return {
     id: p.id,
     slug: p.slug,
@@ -64,45 +84,47 @@ function toView(p: ProjectWithRelations): ProjectView {
     category: p.category,
     servicesRendered: p.services.map((s) => s.service.title),
     serviceSlugs: p.services.map((s) => s.service.slug),
-    description: p.description,
-    processText: p.processText ?? "",
+    description,
+    processText: processText ?? "",
     coverImage: p.coverImage,
-    results: p.resultsText ? p.resultsText.split(" · ").filter(Boolean) : [],
-    testimonialQuote: p.testimonialQuote ?? "",
+    results: resultsText ? resultsText.split(" · ").filter(Boolean) : [],
+    testimonialQuote: testimonialQuote ?? "",
     externalUrl: p.externalUrl ?? "#",
     gradient: gradientForSlug(p.slug),
-    seoTitle: p.seoTitle ?? `${p.client} — Case Study`,
-    seoDescription: p.seoDescription ?? p.description,
+    seoTitle: seoTitle ?? `${p.client} — Case Study`,
+    seoDescription: seoDescription ?? description,
     gallery: p.media.map((m) => ({ id: m.id, url: m.url, alt: m.alt, type: m.type })),
   };
 }
 
-export async function getPublishedProjects(): Promise<ProjectView[]> {
+export async function getPublishedProjects(locale: string = DEFAULT_LOCALE): Promise<ProjectView[]> {
   const projects = await prisma.project.findMany({
     where: { published: true },
     orderBy: { order: "asc" },
     include: {
       services: { include: { service: true } },
       media: { orderBy: { order: "asc" } },
+      translations: locale === DEFAULT_LOCALE ? false : { where: { locale } },
     },
   });
   return projects.map(toView);
 }
 
-export async function getProjectBySlug(slug: string): Promise<ProjectView | null> {
+export async function getProjectBySlug(slug: string, locale: string = DEFAULT_LOCALE): Promise<ProjectView | null> {
   const project = await prisma.project.findUnique({
     where: { slug },
     include: {
       services: { include: { service: true } },
       media: { orderBy: { order: "asc" } },
+      translations: locale === DEFAULT_LOCALE ? false : { where: { locale } },
     },
   });
   if (!project || !project.published) return null;
   return toView(project);
 }
 
-export async function getProjectsByServiceSlug(serviceSlug: string): Promise<ProjectView[]> {
-  const all = await getPublishedProjects();
+export async function getProjectsByServiceSlug(serviceSlug: string, locale: string = DEFAULT_LOCALE): Promise<ProjectView[]> {
+  const all = await getPublishedProjects(locale);
   return all.filter((p) => p.serviceSlugs.includes(serviceSlug));
 }
 

@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "chiSiamo": "会社概要",
+    "web": "Web",
+    "branding": "ブランディング",
+    "social": "ソーシャル",
+    "portfolio": "ポートフォリオ",
+    "blog": "ブログ",
+    "contatti": "お問い合わせ",
+    "areaClienti": "お客様専用エリア",
+    "lingua": "言語を変更する",
+    "navigazionePrincipale": "メインナビゲーション"
+  },
+  "footer": {
+    "blogHeading": "ブログ",
+    "vediTuttoBlog": "ブログ記事一覧を見る →",
+    "restaAggiornatoRiga1": "RESTA",
+    "restaAggiornatoRiga2": "更新済み",
+    "parliamoNeRiga1": "話しましょう",
+    "parliamoNeRiga2": "NE.",
+    "areaClienti": "お客様専用エリア",
+    "naviga": "閲覧する",
+    "doveSiamo": "アクセス",
+    "sedeCitta": "ナポリ",
+    "sedeNota": "当社はイタリア全土で事業を展開しています",
+    "privacyPolicy": "プライバシーポリシー",
+    "cookiePolicy": "クッキーポリシー",
+    "preferenzeCookie": "クッキーの設定",
+    "copyright": "© {year} {companyName} — Omniaweb S.r.l.s — 付加価値税番号 {piva}"
+  },
+  "cookieBanner": {
+    "titolo": "クッキーとプライバシー",
+    "testo": "当サイトでは、サイトの運営に不可欠な技術的なクッキーを使用しています。また、ご同意いただいた場合に限り、お客様の端末に保存された匿名データを活用し、閲覧履歴に基づいてコンテンツをパーソナライズしています。",
+    "maggioriInfo": "詳細はこちら：",
+    "accetta": "同意する",
+    "rifiuta": "拒否する"
+  },
+  "newsletter": {
+    "placeholder": "メールアドレスを入力してください",
+    "placeholderConNome": "{name}さん、ここにメールアドレスを入力してください",
+    "ariaLabel": "ニュースレターのメールアドレス",
+    "invio": "送信中…",
+    "iscrivimi": "登録する",
+    "successo": "登録が確認されました。ありがとうございます！",
+    "successoConNome": "{name}さん、登録が完了しました。ありがとうございます！"
+  },
+  "common": {
+    "vaiAlContenuto": "メインコンテンツへ移動"
+  },
+  "email": {
+    "footerUnsubscribeNote": "このメールが届いたのは、Omnia Marketingのニュースレターに登録されているためです。",
+    "disiscriviti": "登録解除",
+    "newsletterEyebrow": "新しいアップデート",
+    "newsletterCta": "記事全文を読む →",
+    "welcomeEyebrow": "登録完了",
+    "welcomeHeading": "ご登録いただき、ありがとうございます！",
+    "welcomeBody": "本日より、Omnia Marketingの最新情報、ニュース、記事などを、メールボックスに直接いち早くお届けします。",
+    "welcomeCta": "ブログへ →",
+    "contactConfirmEyebrow": "リクエストを受信しました",
+    "contactConfirmHeading": "ありがとう、{name}！",
+    "contactConfirmBody1": "お客様からのお問い合わせを受け付けました。現在、弊社チームが対応を進めており、できるだけ早くご返信いたします。",
+    "contactConfirmBody2": "それまでの間、当社の最新のプロジェクトをご覧になってみてはいかがでしょうか。",
+    "contactConfirmCta": "ポートフォリオを見る →",
+    "contactConfirmFooterNote": "これは、お問い合わせフォームから送信されたリクエストに対する自動確認メールです。",
+    "adminReplyEyebrow": "オムニア・マーケティング",
+    "adminReplyHeading": "あなたへの答えがあります",
+    "adminReplyFooterNote": "このメールに直接返信して、会話を続けてください。"
+  }
+}

@@ -28,15 +28,17 @@ export async function subscribeNewsletter(
 
   const visitorId = formData.get("visitorId");
   const visitorIdValue = typeof visitorId === "string" && visitorId ? visitorId : undefined;
+  const localeField = formData.get("locale");
+  const locale = typeof localeField === "string" && localeField ? localeField : "it";
 
   const subscriber = await prisma.newsletterSubscriber.upsert({
     where: { email: parsed.data.email },
-    create: { email: parsed.data.email, ...(visitorIdValue ? { visitorId: visitorIdValue } : {}) },
-    update: { unsubscribedAt: null, ...(visitorIdValue ? { visitorId: visitorIdValue } : {}) },
+    create: { email: parsed.data.email, locale, ...(visitorIdValue ? { visitorId: visitorIdValue } : {}) },
+    update: { unsubscribedAt: null, locale, ...(visitorIdValue ? { visitorId: visitorIdValue } : {}) },
   });
 
   try {
-    await sendWelcomeEmail(subscriber.email, subscriber.unsubscribeToken);
+    await sendWelcomeEmail(subscriber.email, subscriber.unsubscribeToken, subscriber.locale);
   } catch (error) {
     // L'iscrizione è comunque andata a buon fine anche se l'email non parte.
     console.error("Errore invio email di benvenuto newsletter", error);

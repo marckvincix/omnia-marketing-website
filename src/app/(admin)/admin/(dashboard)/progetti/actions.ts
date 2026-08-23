@@ -2,10 +2,12 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { after } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { createUploadSlot, type UploadSlot } from "@/lib/supabase-storage";
 import { projectSchema, type ProjectInput } from "@/lib/validation/admin";
+import { translateAndSaveProject } from "@/lib/i18n/translate-and-save";
 
 async function requireAdmin() {
   const session = await auth();
@@ -88,18 +90,20 @@ export async function saveProject(input: ProjectInput) {
   }
 
   revalidatePath("/admin/progetti");
-  revalidatePath("/progetti");
-  revalidatePath(`/progetti/${project.slug}`);
-  revalidatePath("/");
+  revalidatePath("/[locale]/progetti", "page");
+  revalidatePath("/[locale]/progetti/[slug]", "page");
+  revalidatePath("/[locale]", "page");
+
+  after(() => translateAndSaveProject(project.id).catch((err) => console.error("[i18n] Traduzione progetto fallita", err)));
 
   redirect("/admin/progetti");
 }
 
 export async function deleteProject(id: string) {
   await requireAdmin();
-  const project = await prisma.project.delete({ where: { id } });
+  await prisma.project.delete({ where: { id } });
   revalidatePath("/admin/progetti");
-  revalidatePath("/progetti");
-  revalidatePath(`/progetti/${project.slug}`);
-  revalidatePath("/");
+  revalidatePath("/[locale]/progetti", "page");
+  revalidatePath("/[locale]/progetti/[slug]", "page");
+  revalidatePath("/[locale]", "page");
 }

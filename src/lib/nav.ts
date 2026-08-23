@@ -3,25 +3,28 @@ import { Home, Users, Code2, PenTool, Megaphone, LayoutGrid, Newspaper, Mail, Lo
 
 export const CLIENTS_AREA_URL = "https://hub.omniamarketing.it";
 
+// "labelKey" è la chiave nel namespace "nav" del catalogo messaggi (messages/*.json),
+// non un'etichetta scritta qui: i componenti che consumano queste liste risolvono il
+// testo con useTranslations("nav")/getTranslations("nav") nella lingua corrente.
 export const FOOTER_NAV = [
-  { label: "Home", href: "/" },
-  { label: "Chi Siamo", href: "/chi-siamo" },
-  { label: "Web", href: "/web" },
-  { label: "Branding", href: "/branding" },
-  { label: "Social", href: "/social" },
-  { label: "Portfolio", href: "/progetti" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contatti", href: "/contatti" },
+  { labelKey: "home", href: "/" },
+  { labelKey: "chiSiamo", href: "/chi-siamo" },
+  { labelKey: "web", href: "/web" },
+  { labelKey: "branding", href: "/branding" },
+  { labelKey: "social", href: "/social" },
+  { labelKey: "portfolio", href: "/progetti" },
+  { labelKey: "blog", href: "/blog" },
+  { labelKey: "contatti", href: "/contatti" },
 ] as const;
 
-export const DOCK_ITEMS: { label: string; href: string; icon: LucideIcon }[] = [
-  { label: "Home", href: "/", icon: Home },
-  { label: "Chi Siamo", href: "/chi-siamo", icon: Users },
-  { label: "Web", href: "/web", icon: Code2 },
-  { label: "Branding", href: "/branding", icon: PenTool },
-  { label: "Social", href: "/social", icon: Megaphone },
-  { label: "Portfolio", href: "/progetti", icon: LayoutGrid },
-  { label: "Blog", href: "/blog", icon: Newspaper },
+export const DOCK_ITEMS: { labelKey: string; href: string; icon: LucideIcon }[] = [
+  { labelKey: "home", href: "/", icon: Home },
+  { labelKey: "chiSiamo", href: "/chi-siamo", icon: Users },
+  { labelKey: "web", href: "/web", icon: Code2 },
+  { labelKey: "branding", href: "/branding", icon: PenTool },
+  { labelKey: "social", href: "/social", icon: Megaphone },
+  { labelKey: "portfolio", href: "/progetti", icon: LayoutGrid },
+  { labelKey: "blog", href: "/blog", icon: Newspaper },
 ];
 
 export const DOCK_CTA_ICON = Mail;

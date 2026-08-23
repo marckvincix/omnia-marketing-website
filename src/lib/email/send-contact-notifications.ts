@@ -3,8 +3,8 @@ import { renderContactConfirmationEmail, renderContactNotificationEmail } from "
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-export async function sendContactConfirmationEmail(name: string, email: string) {
-  const html = renderContactConfirmationEmail({ name, siteUrl: SITE_URL });
+export async function sendContactConfirmationEmail(name: string, email: string, locale?: string) {
+  const html = await renderContactConfirmationEmail({ name, siteUrl: SITE_URL, locale });
   const { error } = await resend.emails.send({
     from: RESEND_FROM_EMAIL,
     to: email,
@@ -22,7 +22,7 @@ export async function sendContactNotificationEmail(params: {
   message: string;
   notifyEmail: string;
 }) {
-  const html = renderContactNotificationEmail({ ...params, siteUrl: SITE_URL });
+  const html = await renderContactNotificationEmail({ ...params, siteUrl: SITE_URL });
   const { error } = await resend.emails.send({
     from: RESEND_FROM_EMAIL,
     to: params.notifyEmail,

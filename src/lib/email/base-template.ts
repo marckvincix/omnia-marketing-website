@@ -1,6 +1,8 @@
 import { SOCIAL_LINKS } from "@/lib/social-links";
 import { LOGO_DATA_URI } from "./logo";
 import { SOCIAL_ICON_DATA_URIS } from "./social-icons";
+import { getEmailMessages } from "@/lib/i18n/email-messages";
+import { DEFAULT_LOCALE } from "@/lib/i18n/locales";
 
 const BRAND_BLUE = "#2e9bd6";
 const BG = "#ffffff";
@@ -15,7 +17,7 @@ export function escapeHtml(value: string) {
     .replace(/>/g, "&gt;");
 }
 
-export function renderEmailLayout({
+export async function renderEmailLayout({
   title,
   eyebrow,
   heading,
@@ -25,6 +27,7 @@ export function renderEmailLayout({
   unsubscribeUrl,
   footerNote,
   siteUrl,
+  locale = DEFAULT_LOCALE,
 }: {
   title: string;
   eyebrow: string;
@@ -36,7 +39,11 @@ export function renderEmailLayout({
   /** Sostituisce la nota "iscritto alla newsletter" nel footer, per le email transazionali. */
   footerNote?: string;
   siteUrl: string;
+  /** Lingua dell'iscritto/mittente: traduce solo il footer fisso del template (le altre
+   * stringhe arrivano già tradotte da chi chiama, es. renderNewsletterEmail). */
+  locale?: string;
 }) {
+  const m = await getEmailMessages(locale);
   const socialBadges = SOCIAL_LINKS.map((social) => {
     const icon = SOCIAL_ICON_DATA_URIS[social.label];
     return `
@@ -59,9 +66,9 @@ export function renderEmailLayout({
       : "";
 
   const footerLine = unsubscribeUrl
-    ? `Hai ricevuto questa email perché sei iscritto alla newsletter di Omnia Marketing.
+    ? `${escapeHtml(m.footerUnsubscribeNote)}
                 <br />
-                <a href="${unsubscribeUrl}" style="color:${TEXT_FAINT};text-decoration:underline;">Disiscriviti</a>`
+                <a href="${unsubscribeUrl}" style="color:${TEXT_FAINT};text-decoration:underline;">${escapeHtml(m.disiscriviti)}</a>`
     : footerNote
       ? escapeHtml(footerNote)
       : "";

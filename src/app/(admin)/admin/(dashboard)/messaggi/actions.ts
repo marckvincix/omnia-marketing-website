@@ -35,7 +35,7 @@ export async function sendMessageReply(id: string, subject: string, body: string
   const replyTo = settings?.contactEmail || "info@omniamarketing.it";
 
   try {
-    await sendAdminReplyEmail({ to: message.email, subject: trimmedSubject, body: trimmedBody, replyTo });
+    await sendAdminReplyEmail({ to: message.email, subject: trimmedSubject, body: trimmedBody, replyTo, locale: message.locale });
   } catch (error) {
     console.error("Errore invio risposta al messaggio", error);
     return { error: error instanceof Error ? error.message : "Errore sconosciuto durante l'invio" };

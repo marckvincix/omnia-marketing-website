@@ -52,6 +52,19 @@ model SiteSettings {
   updatedAt          DateTime @updatedAt
 }
 
+// Singleton per lingua (non ha una riga SiteSettings a cui collegarsi con una FK: la
+// riga id=1 è unica, quindi qui basta la lingua come chiave). Tradotta automaticamente
+// da DeepL a ogni salvataggio delle impostazioni in admin.
+model SiteSettingsTranslation {
+  id           String   @id @default(cuid())
+  locale       String   @unique
+  heroTitle    String
+  heroSubtitle String?
+  heroCtaLabel String?
+  footerText   String?
+  updatedAt    DateTime @updatedAt
+}
+
 model SocialLink {
   id       String @id @default(cuid())
   platform String // instagram | linkedin | facebook | tiktok | youtube ...
@@ -98,9 +111,29 @@ model Service {
   faqs               Faq[]
   projects           ProjectService[]
   contactSubmissions ContactSubmission[]
+  translations       ServiceTranslation[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// Traduzione automatica (DeepL) dei soli campi di testo di un Service, generata dopo
+// ogni salvataggio in admin. Se manca per una lingua (traduzione in corso o quota DeepL
+// esaurita) il sito pubblico ricade sui campi italiani del Service, campo per campo.
+model ServiceTranslation {
+  id             String   @id @default(cuid())
+  serviceId      String
+  service        Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  locale         String
+  title          String
+  excerpt        String
+  description    String
+  ctaLabel       String?
+  seoTitle       String?
+  seoDescription String?
+  updatedAt      DateTime @updatedAt
+
+  @@unique([serviceId, locale])
 }
 
 model ServiceBenefit {
@@ -111,6 +144,20 @@ model ServiceBenefit {
   description String
   icon        String?
   order       Int     @default(0)
+
+  translations ServiceBenefitTranslation[]
+}
+
+model ServiceBenefitTranslation {
+  id               String         @id @default(cuid())
+  serviceBenefitId String
+  serviceBenefit   ServiceBenefit @relation(fields: [serviceBenefitId], references: [id], onDelete: Cascade)
+  locale           String
+  title            String
+  description      String
+  updatedAt        DateTime       @updatedAt
+
+  @@unique([serviceBenefitId, locale])
 }
 
 // --- Portfolio -------------------------------------------------------------
@@ -150,9 +197,32 @@ model Project {
   media       ProjectMedia[]
   services    ProjectService[]
   testimonials Testimonial[]
+  translations ProjectTranslation[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// Stesso pattern di ServiceTranslation: solo i campi di testo, mai slug/url/anno/categoria.
+model ProjectTranslation {
+  id               String   @id @default(cuid())
+  projectId        String
+  project          Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  locale           String
+  title            String
+  description      String
+  processText      String?
+  resultsText      String?
+  testimonialAuthor String?
+  testimonialRole   String?
+  testimonialQuote  String?
+  seoTitle         String?
+  seoDescription   String?
+  geoTitle         String?
+  geoDescription   String?
+  updatedAt        DateTime @updatedAt
+
+  @@unique([projectId, locale])
 }
 
 model ProjectMedia {
@@ -189,6 +259,22 @@ model Testimonial {
   published  Boolean  @default(true)
   order      Int      @default(0)
   createdAt  DateTime @default(now())
+
+  translations TestimonialTranslation[]
+}
+
+// authorName e company non sono tradotti: sono nomi propri (persona/azienda), non testo
+// da tradurre. Solo la citazione e il ruolo (es. "Fondatore", "Direttore Marketing").
+model TestimonialTranslation {
+  id            String      @id @default(cuid())
+  testimonialId String
+  testimonial   Testimonial @relation(fields: [testimonialId], references: [id], onDelete: Cascade)
+  locale        String
+  quote         String
+  authorRole    String?
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([testimonialId, locale])
 }
 
 model Faq {
@@ -199,6 +285,20 @@ model Faq {
   service   Service? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
   order     Int      @default(0)
   published Boolean  @default(true)
+
+  translations FaqTranslation[]
+}
+
+model FaqTranslation {
+  id        String   @id @default(cuid())
+  faqId     String
+  faq       Faq      @relation(fields: [faqId], references: [id], onDelete: Cascade)
+  locale    String
+  question  String
+  answer    String
+  updatedAt DateTime @updatedAt
+
+  @@unique([faqId, locale])
 }
 
 model TeamMember {
@@ -212,6 +312,20 @@ model TeamMember {
   published   Boolean @default(true)
 
   posts BlogPost[]
+  translations TeamMemberTranslation[]
+}
+
+// name non è tradotto: è il nome di una persona, non testo.
+model TeamMemberTranslation {
+  id           String     @id @default(cuid())
+  teamMemberId String
+  teamMember   TeamMember @relation(fields: [teamMemberId], references: [id], onDelete: Cascade)
+  locale       String
+  role         String
+  bio          String?
+  updatedAt    DateTime   @updatedAt
+
+  @@unique([teamMemberId, locale])
 }
 
 // --- Blog --------------------------------------------------------------
@@ -260,9 +374,25 @@ model BlogPost {
 
   tags BlogPostTag[]
   emailCampaigns EmailCampaign[]
+  translations BlogPostTranslation[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model BlogPostTranslation {
+  id             String   @id @default(cuid())
+  postId         String
+  post           BlogPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  locale         String
+  title          String
+  excerpt        String
+  content        String
+  seoTitle       String?
+  seoDescription String?
+  updatedAt      DateTime @updatedAt
+
+  @@unique([postId, locale])
 }
 
 model BlogPostTag {
@@ -299,6 +429,10 @@ model ContactSubmission {
   serviceId String?
   service   Service? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
   handled   Boolean  @default(false)
+  // Lingua del sito da cui è stato inviato il modulo: usata per rispondere nella stessa
+  // lingua dall'admin (la risposta parte ore/giorni dopo, quando non c'è più una request
+  // in corso da cui dedurla).
+  locale    String   @default("it")
   createdAt DateTime @default(now())
 }
 
@@ -332,6 +466,11 @@ model VisitorName {
   createdAt DateTime @default(now())
 }
 
+// Nota: non collegato a nessuna pagina pubblica — privacy-policy e cookie-policy sono
+// testo JSX scritto direttamente nelle rispettive pagine, non contenuto da qui. Modello
+// tenuto per compatibilità con dati/migrazioni preesistenti, ma senza tabella di
+// traduzione: le pagine legali restano solo in italiano finché non verranno collegate a
+// un contenuto reale da tradurre (e in quel caso meritano revisione umana, non solo DeepL).
 model LegalPage {
   id        String   @id @default(cuid())
   slug      String   @unique // "privacy-policy" | "cookie-policy"
@@ -352,6 +491,9 @@ model NewsletterSubscriber {
   // attivo, colleghiamo l'iscrizione a quel visitorId: permette di mostrare l'email in
   // /admin/visitatori quando la stessa persona ha lasciato anche il nome.
   visitorId        String?
+  // Lingua del sito selezionata al momento dell'iscrizione (dal selettore nel dock):
+  // le email operative (newsletter, risposte) arrivano in questa lingua.
+  locale           String    @default("it")
 
   emailEvents EmailEvent[]
   interests   SubscriberInterest[]

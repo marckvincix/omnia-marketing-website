@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Главная",
+    "chiSiamo": "О нас",
+    "web": "Веб",
+    "branding": "Брендинг",
+    "social": "Социальные сети",
+    "portfolio": "Портфолио",
+    "blog": "Блог",
+    "contatti": "Контакты",
+    "areaClienti": "Личный кабинет",
+    "lingua": "Сменить язык",
+    "navigazionePrincipale": "Главная навигация"
+  },
+  "footer": {
+    "blogHeading": "БЛОГ",
+    "vediTuttoBlog": "Посмотреть весь блог →",
+    "restaAggiornatoRiga1": "ОСТАВАТЬСЯ",
+    "restaAggiornatoRiga2": "ОБНОВЛЕНО",
+    "parliamoNeRiga1": "Поговорим",
+    "parliamoNeRiga2": "НЕ.",
+    "areaClienti": "Личный кабинет",
+    "naviga": "Навигация",
+    "doveSiamo": "Где мы находимся",
+    "sedeCitta": "Неаполь",
+    "sedeNota": "Мы работаем по всей Италии",
+    "privacyPolicy": "Политика конфиденциальности",
+    "cookiePolicy": "Политика использования файлов cookie",
+    "preferenzeCookie": "Настройки файлов cookie",
+    "copyright": "© {year} {companyName} — Omniaweb S.r.l.s — ИНН {piva}"
+  },
+  "cookieBanner": {
+    "titolo": "Файлы cookie и конфиденциальность",
+    "testo": "Мы используем технические файлы cookie, необходимые для работы сайта, а также — только с вашего согласия — анонимные данные, сохраняемые на вашем устройстве, для персонализации контента с учетом того, какие страницы вы просматриваете.",
+    "maggioriInfo": "Дополнительная информация:",
+    "accetta": "Принять",
+    "rifiuta": "Отклонить"
+  },
+  "newsletter": {
+    "placeholder": "Введите свой адрес электронной почты",
+    "placeholderConNome": "{name}, введите здесь свой адрес электронной почты",
+    "ariaLabel": "Электронная почта для подписки на рассылку",
+    "invio": "Отправляю…",
+    "iscrivimi": "Зарегистрируйте меня",
+    "successo": "Регистрация подтверждена, спасибо!",
+    "successoConNome": "{name}, регистрация подтверждена, спасибо!"
+  },
+  "common": {
+    "vaiAlContenuto": "Перейти к основному содержанию"
+  },
+  "email": {
+    "footerUnsubscribeNote": "Вы получили это письмо, потому что подписаны на рассылку Omnia Marketing.",
+    "disiscriviti": "Отписаться",
+    "newsletterEyebrow": "Новое обновление",
+    "newsletterCta": "Прочитать полную статью →",
+    "welcomeEyebrow": "Регистрация подтверждена",
+    "welcomeHeading": "Спасибо, что подписались!",
+    "welcomeBody": "С сегодняшнего дня вы будете получать в первоочередном порядке обновления, новости и статьи от Omnia Marketing прямо на свой электронный адрес.",
+    "welcomeCta": "Перейти в блог →",
+    "contactConfirmEyebrow": "Запрос получен",
+    "contactConfirmHeading": "Спасибо, {name}!",
+    "contactConfirmBody1": "Мы получили ваш запрос: наша команда уже занимается его обработкой, и мы ответим вам в кратчайшие сроки.",
+    "contactConfirmBody2": "А пока ты можешь ознакомиться с нашими последними проектами.",
+    "contactConfirmCta": "Посмотреть портфолио →",
+    "contactConfirmFooterNote": "Это автоматическое письмо с подтверждением запроса, отправленного через форму обратной связи.",
+    "adminReplyEyebrow": "Omnia Marketing",
+    "adminReplyHeading": "У нас есть ответ для вас",
+    "adminReplyFooterNote": "Можете ответить прямо на это письмо, чтобы продолжить разговор."
+  }
+}

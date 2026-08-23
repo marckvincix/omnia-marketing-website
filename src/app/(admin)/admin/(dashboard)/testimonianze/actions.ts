@@ -1,9 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { testimonialSchema, type TestimonialInput } from "@/lib/validation/admin";
+import { translateAndSaveTestimonial } from "@/lib/i18n/translate-and-save";
 
 async function requireAdmin() {
   const session = await auth();
@@ -14,7 +16,7 @@ export async function saveTestimonial(input: TestimonialInput) {
   await requireAdmin();
   const data = testimonialSchema.parse(input);
 
-  await prisma.testimonial.upsert({
+  const testimonial = await prisma.testimonial.upsert({
     where: { id: data.id ?? "__new__" },
     create: {
       authorName: data.authorName,
@@ -35,6 +37,12 @@ export async function saveTestimonial(input: TestimonialInput) {
   });
 
   revalidatePath("/admin/testimonianze");
+
+  after(() =>
+    translateAndSaveTestimonial(testimonial.id).catch((err) =>
+      console.error("[i18n] Traduzione testimonianza fallita", err),
+    ),
+  );
 }
 
 export async function deleteTestimonial(id: string) {

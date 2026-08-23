@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import { submitContact, type ContactActionState } from "@/app/(public)/contatti/actions";
+import { submitContact, type ContactActionState } from "@/app/(public)/[locale]/contatti/actions";
 import { useVisitorName } from "@/lib/visitor-name-context";
 import { LightBeamButton } from "./light-beam-button";
 

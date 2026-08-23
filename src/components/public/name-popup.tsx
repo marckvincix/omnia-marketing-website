@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 import { X } from "lucide-react";
 import { useVisitorName } from "@/lib/visitor-name-context";
 import { useVisitorTracking } from "@/lib/visitor-tracking-context";

@@ -1,9 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { faqSchema, type FaqInput } from "@/lib/validation/admin";
+import { translateAndSaveFaq } from "@/lib/i18n/translate-and-save";
 
 async function requireAdmin() {
   const session = await auth();
@@ -14,7 +16,7 @@ export async function saveFaq(input: FaqInput) {
   await requireAdmin();
   const data = faqSchema.parse(input);
 
-  await prisma.faq.upsert({
+  const faq = await prisma.faq.upsert({
     where: { id: data.id ?? "__new__" },
     create: {
       question: data.question,
@@ -33,19 +35,21 @@ export async function saveFaq(input: FaqInput) {
   revalidatePath("/admin/faq");
   // Le FAQ compaiono su più pagine pubbliche (quelle di servizio se collegate a un
   // servizio, Chi Siamo se generali): non sappiamo qui quale, quindi le rivalidiamo
-  // tutte per sicurezza.
-  revalidatePath("/web");
-  revalidatePath("/branding");
-  revalidatePath("/social");
-  revalidatePath("/chi-siamo");
+  // tutte per sicurezza, su ogni lingua.
+  revalidatePath("/[locale]/web", "page");
+  revalidatePath("/[locale]/branding", "page");
+  revalidatePath("/[locale]/social", "page");
+  revalidatePath("/[locale]/chi-siamo", "page");
+
+  after(() => translateAndSaveFaq(faq.id).catch((err) => console.error("[i18n] Traduzione FAQ fallita", err)));
 }
 
 export async function deleteFaq(id: string) {
   await requireAdmin();
   await prisma.faq.delete({ where: { id } });
   revalidatePath("/admin/faq");
-  revalidatePath("/web");
-  revalidatePath("/branding");
-  revalidatePath("/social");
-  revalidatePath("/chi-siamo");
+  revalidatePath("/[locale]/web", "page");
+  revalidatePath("/[locale]/branding", "page");
+  revalidatePath("/[locale]/social", "page");
+  revalidatePath("/[locale]/chi-siamo", "page");
 }
