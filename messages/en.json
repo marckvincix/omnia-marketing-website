@@ -61,7 +61,7 @@
     "welcomeCta": "Go to the blog →",
     "contactConfirmEyebrow": "Request Received",
     "contactConfirmHeading": "Thank you, {name}!",
-    "contactConfirmBody1": "We have received your request: our team is already working on it, and we will respond as soon as possible.",
+    "contactConfirmBody1": "We have received your request: our team is already processing it, and we will respond as soon as possible.",
     "contactConfirmBody2": "In the meantime, you can take a look at our most recent projects.",
     "contactConfirmCta": "View the portfolio →",
     "contactConfirmFooterNote": "This is an automated confirmation email for the request you submitted via the contact form.",
@@ -84,8 +84,8 @@
     "branding": {
       "seoTitle": "Branding — Strategy, Naming, Logo, UI/UX",
       "seoDescription": "We shape your visual identity: strategy, naming, logo design, and UI/UX for a brand that inspires and stands out. A branding agency in Naples, working with clients throughout Italy.",
-      "scrollReveal": "We shape your visual identity with a design crafted to inspire and set you apart: from strategy to logo, we create brands that leave a lasting impression.",
-      "ctaTitle": "Do you want a brand identity that stands out at a glance?",
+      "scrollReveal": "We shape your visual identity with a design crafted to evoke emotion and set you apart: from strategy to logo, we create brands that leave a lasting impression.",
+      "ctaTitle": "Do you want a brand identity that's instantly recognizable?",
       "ctaDescription": "Let's talk about your brand: strategy, naming, and design—all in one process.",
       "popupTitle": "Do you like the way we build a brand?",
       "popupDescription": "Let's talk about your visual identity: request a free consultation.",
@@ -205,12 +205,12 @@
           },
           {
             "title": "It seems like you're particularly interested in branding.",
-            "description": "Tell us about your project: let's work together to find the right solution.",
+            "description": "Tell us about your project: let's find the right solution together.",
             "ctaLabel": "Let's talk about it"
           },
           {
             "title": "You've come back to visit us several times. Maybe it's time to get started.",
-            "description": "Contact us today—no strings attached—and let's talk about your brand.",
+            "description": "Contact us today—no obligation—and let's talk about your brand.",
             "ctaLabel": "Contact us now"
           }
         ],
@@ -235,10 +235,10 @@
     "blog": {
       "seoTitle": "Blog — Tips on the Web, Branding, and Social Media",
       "seoDescription": "In-depth articles on design, web development, branding, and social media by Omnia Marketing, a digital agency based in Naples that operates throughout Italy.",
-      "heroTitleEmpty": "The first articles will be coming soon.",
-      "heroTitle": "In-depth coverage and news.",
-      "heroDescriptionEmpty": "We're currently working on content about design, the web, branding, and social media. Check back soon.",
-      "heroDescription": "Design, web, branding, and social media: ideas and case studies from the studio.",
+      "heroTitleEmpty": "The first articles are coming soon.",
+      "heroTitle": "In-Depth Articles and News.",
+      "heroDescriptionEmpty": "We're working on content about design, the web, branding, and social media. Check back soon.",
+      "heroDescription": "Design, Web, Branding, and Social Media: Ideas and Case Studies from the Studio.",
       "minutiLettura": "{minutes} min read",
       "ctaTitle": "In the meantime, let's talk about your project.",
       "ctaDescription": "Tell us about your idea: we'll turn it into a custom digital experience.",
@@ -252,8 +252,8 @@
       "accediAreaClienti": "Log in to the Customer Area →"
     },
     "home": {
-      "seoTitle": "Omnia Marketing — Web, Branding, and Social Media Agency in Naples",
-      "seoDescription": "Omnia Marketing: We believe in design. We create websites, e-commerce platforms, branding, and social media content for companies that want to stand out. A web agency based in Naples, we’ve been supporting companies throughout Italy for many years.",
+      "seoTitle": "Omnia Marketing — Web, branding, and social media agency in Naples",
+      "seoDescription": "Omnia Marketing: We believe in design. We create websites, e-commerce platforms, branding, and social media content for companies that want to stand out. A web agency in Naples that has been working with companies throughout Italy for many years.",
       "ctaTitle": "We believe in design. Let's talk about your project.",
       "ctaDescription": "Tell us about your idea: we'll turn it into a custom digital experience.",
       "ticker1": "We build websites that convert",
@@ -300,7 +300,7 @@
         ],
         "branding": [
           {
-            "title": "Do you want a brand that’s instantly recognizable?",
+            "title": "Do you want a brand that's instantly recognizable?",
             "description": "Strategy, naming, logo, and UI/UX—all in a single, customized process designed just for you."
           },
           {
@@ -309,9 +309,9 @@
             "ctaLabel": "Let's talk about it"
           },
           {
-            "title": "Your new identity could emerge this week.",
+            "title": "Your new identity could take shape this week.",
             "description": "It only takes 15 minutes to get started: contact us today.",
-            "ctaLabel": "Contact Us Now"
+            "ctaLabel": "Contact us now"
           }
         ],
         "social": [
@@ -320,17 +320,128 @@
             "description": "Content, photos, videos, and commercials to tell your brand's story in a consistent style."
           },
           {
-            "title": "Please keep coming back to check out our social media projects.",
+            "title": "Please keep checking back to see our social media projects.",
             "description": "Tell us about your channels: let's talk about them together, with no obligation.",
             "ctaLabel": "Let's talk about it"
           },
           {
-            "title": "Your social media presence could take off right away.",
+            "title": "Your social media could take off right away.",
             "description": "It only takes 15 minutes to get started: contact us today.",
             "ctaLabel": "Contact us now"
           }
         ]
       }
+    }
+  },
+  "legal": {
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: August 12, 2026",
+      "intro": "<p>This privacy policy describes how Omniaweb S.r.l.s processes the personal data of users of the omniamarketing.it website, in accordance with Articles 13 and 14 of Regulation (EU) 2016/679 (“GDPR”) and Legislative Decree 196/2003, as amended by Legislative Decree 101/2018 (“Privacy Code”).</p>",
+      "sections": [
+        {
+          "heading": "1. Data Controller",
+          "body": "<p>The Data Controller is Omniaweb S.r.l.s, VAT No. 09553001216, with registered office at Vico Bagnara, 4 — 80135 Naples. For any inquiries regarding the processing of personal data, please write to <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>. Given the size of the organization, there is no mandatory requirement to appoint a Data Protection Officer (DPO) pursuant to Article 37 of the GDPR; the related functions are carried out directly by the Data Controller.</p>"
+        },
+        {
+          "heading": "2. What Data Do We Collect?",
+          "body": "<p>Depending on how you interact with the site, we may collect:</p><ul><li><strong>Contact information</strong> — name, email address, phone number (optional), and the content of your message, when you fill out the contact form or the information request pop-up.</li><li><strong>Newsletter subscription data</strong> — email address, when you voluntarily subscribe to receive updates from our blog.</li><li><strong>Tax information</strong> — address, ZIP code, city, and tax ID number, only if necessary to issue accounting documents for an ongoing contractual relationship.</li><li><strong>Anonymous personalization data</strong> — a randomly generated identifier, the name you optionally provide, and the categories of content you visit, stored only on your device and never transmitted to our servers. Full details are available in the <a href=\"/cookie-policy\">Cookie Policy</a>.</li><li><strong>Technical browsing data</strong> — IP address, browser and device type, and pages visited, collected automatically by the hosting infrastructure for security purposes and to ensure the proper functioning of the service, and stored in system logs for a limited period.</li></ul>"
+        },
+        {
+          "heading": "3. Purposes and Legal Bases for Data Processing",
+          "body": "<table><thead><tr><th>Purpose</th><th>Legal Basis</th></tr></thead><tbody><tr><td>To respond to contact requests or requests for quotes</td><td>Pre-contractual measures at your request (Art. 6.1.b GDPR)</td></tr><tr><td>To provide a service that has already been requested</td><td>Performance of the contract (Art. 6.1.b GDPR)</td></tr><tr><td>Accounting and tax compliance</td><td>Legal obligation (Art. 6.1.c GDPR)</td></tr><tr><td>Sending the newsletter</td><td>Consent (Art. 6.1.a GDPR), which may be revoked at any time</td></tr><tr><td>Anonymous content personalization</td><td>Consent (Art. 6.1.a GDPR), revocable at any time</td></tr><tr><td>Technical security, prevention of misuse, system logs</td><td>Legitimate interest of the Data Controller (Art. 6.1.f GDPR)</td></tr></tbody></table>"
+        },
+        {
+          "heading": "4. Recipients and External Data Processors",
+          "body": "<p>Your data may be processed, on our behalf and in their capacity as data processors pursuant to Article 28 of the GDPR, by the following service providers:</p><ul><li><strong>Supabase Inc.</strong> — database hosting and file storage (portfolio images/videos). It provides a GDPR-compliant Data Processing Addendum.</li><li><strong>Resend</strong> — sending transactional emails and newsletters. It is certified under the <strong>EU-U</strong>.<strong>S. Data Privacy Framework</strong>, the transfer mechanism deemed adequate by the European Commission in its decision of July 10, 2023.</li><li><strong>Application hosting provider</strong> — technical operation of the website and related security logs.</li></ul><p>We do not sell or transfer your personal data to third parties for marketing purposes by entities other than ourselves.</p>"
+        },
+        {
+          "heading": "5. Data Transfers Outside the EU",
+          "body": "<p>Some of the suppliers listed in section 4 have their headquarters or infrastructure in the United States. In these cases, data transfers are carried out on the basis of appropriate safeguards pursuant to Chapter V of the GDPR: the provider’s participation in the EU-U.S. Data Privacy Framework, or, failing that, the adoption of the Standard Contractual Clauses approved by the European Commission via Implementing Decision (EU) 2021/914.</p>"
+        },
+        {
+          "heading": "6. Retention Period",
+          "body": "<ul><li>Contact requests: up to 24 months from the last contact, unless otherwise required by law.</li><li>Newsletter subscription: until you unsubscribe, which you can do with a single click in every email.</li><li>Accounting and tax data: 10 years, as required by civil and tax laws.</li><li>Anonymous personalization data: remains only on your device, never on our servers; you can delete it yourself at any time (see point 9).</li><li>Technical system logs: generally no longer than 6 months, unless there are proven security needs or the need to investigate criminal offenses.</li></ul>"
+        },
+        {
+          "heading": "7. Data Security",
+          "body": "<p>We implement appropriate technical and organizational measures to protect data from unauthorized access, loss, or disclosure: encrypted HTTPS connections, professional hosting infrastructure, and access to the administrative area that is protected by authentication and restricted to authorized personnel.</p>"
+        },
+        {
+          "heading": "8. Minors",
+          "body": "<p>This website is not intended for children under the age of 16, and we do not knowingly collect data from children. If you believe a child has provided us with personal information, please contact us to have it removed.</p>"
+        },
+        {
+          "heading": "9. Manage Your Preferences",
+          "body": "<p>For anonymous content personalization (based on consent), you can enable or disable it at any time directly from here:</p>"
+        },
+        {
+          "heading": "10. Your Rights",
+          "body": "<p>At any time, and without having to provide a reason, you have the right to:</p><ul><li>access your personal data (Art. 15 GDPR);</li><li>request that it be corrected or updated (Art. 16 GDPR);</li><li>request the erasure of your personal data (Art. 17 GDPR);</li><li>request that processing be restricted (Art. 18 GDPR);</li><li>object to the processing (Art. 21 GDPR);</li><li>request data portability (Art. 20 GDPR);</li><li>withdraw previously given consent, without affecting the lawfulness of processing carried out prior to the withdrawal (Art. 7.3 GDPR).</li></ul><p>To exercise these rights, simply write to <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>. We will respond within 30 days, as required by Art. 12 of the GDPR.</p><p>If you believe that the processing of your data violates applicable law, you have the right to file a complaint with the competent supervisory authority: the Italian Data Protection Authority — Piazza Venezia, 11, 00187 Rome, certified email (PEC) <a href=\"mailto:protocollo@pec.gpdp.it\">protocollo@pec.gpdp.it</a>, website <a href=\"https://www.garanteprivacy.it\" target=\"_blank\" rel=\"noreferrer\">www.garanteprivacy.it</a>.</p>"
+        },
+        {
+          "heading": "11. Changes to This Privacy Policy",
+          "body": "<p>This privacy policy may be updated from time to time, for example, in the event of regulatory changes or new services offered by the website. The date of the last update is indicated at the top of the page.</p>"
+        }
+      ]
+    },
+    "cookiePolicy": {
+      "title": "Cookie Policy",
+      "lastUpdated": "Last updated: August 13, 2026",
+      "sections": [
+        {
+          "heading": "1. What Are Cookies and Similar Technologies?",
+          "body": "<p>Cookies are small text files that the websites you visit send to your browser, where they are stored and then sent back to those same websites on your next visit. There are also other technologies with a similar function—such as the browser’s <strong>localStorage</strong>—which are not technically cookies but which, if used to recognize a user over time, are treated as cookies for the purposes of applicable law (Article 122 of the Italian Privacy Code, which implements the ePrivacy Directive 2002/58/EC, and the Guidelines on Cookies and Other Tracking Tools issued by the Italian Data Protection Authority on June 10, 2021). On this page, when we refer to “cookies,” we mean both categories.</p>"
+        },
+        {
+          "heading": "2. Data Controller",
+          "body": "<p>Omniaweb S.r.l.s, VAT No. 09553001216, with registered office at Vico Bagnara, 4 — 80135 Naples — <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>.</p>"
+        },
+        {
+          "heading": "3. What We DO NOT Do",
+          "body": "<p>Before going into detail, a clear disclaimer: this site <strong>does not use profiling cookies for advertising purposes</strong> and <strong>does not use third-party cookies for marketing purposes</strong>. It uses Google Analytics only in aggregate form and only with your consent, as described in section 6. There is no cookie wall: you can browse and use all the main features of the site even if you opt out of all optional tracking.</p>"
+        },
+        {
+          "heading": "4. Necessary technical cookies (no consent required)",
+          "body": "<p>These cookies are essential for the website to function or to provide a service that has been explicitly requested, and do not require prior consent (Art. 122, paragraph 1, of the Privacy Code).</p><table><thead><tr><th>Name</th><th>Purpose</th><th>Duration</th></tr></thead><tbody><tr><td>omnia_cookie_consent</td><td>Saves the choice made in the cookie banner (accepted/rejected) to localStorage so that you are not asked again on every visit.</td><td>Until manually deleted</td></tr><tr><td>Restricted Area Session</td><td>Authentication cookie set only for staff accessing the administrative area (/admin). Does not apply to visitors to the public site.</td><td>Session duration</td></tr></tbody></table>"
+        },
+        {
+          "heading": "5. Anonymous personalization (requires consent)",
+          "body": "<p>If you accept in the initial banner, the site stores the following information on your device using localStorage:</p><table><thead><tr><th>Name</th><th>Content</th><th>Purpose</th></tr></thead><tbody><tr><td>omnia_visitor_profile</td><td>A randomly generated anonymous identifier, the number of days you return to the site, and the categories of projects/services you visit or click on.</td><td>To tailor the text, the order of the content displayed, and the call-to-action buttons to what seems to interest you most.</td></tr><tr><td>omnia_visitor_name</td><td>The name you choose to provide in the welcome pop-up (optional).</td><td>Display site text addressing you by name.</td></tr></tbody></table><p>The anonymous identifier and the categories you visit (omnia_visitor_profile) remain only on your device; they are never transmitted to our servers. The name you provide in the welcome pop-up, however, is also saved in our database—along with the date, the anonymous identifier alone (never your email address or other identifying information), the approximate city inferred from your connection (we never save your IP address), and a level of interest/engagement calculated based on the pages you visit—so we can track how many people have provided their names and prioritize those who show the most interest when we respond. Under no circumstances is this information cross-referenced with other data or shared with third parties. If you refuse consent, or if you do not provide it, none of this information is created or stored, and the site displays the same default content to all visitors. You can delete both the data on your device and the data stored on the server at any time from the <a href=\"#preferenze\">Cookie Preferences</a> section below.</p>"
+        },
+        {
+          "heading": "6. Google Analytics (requires consent)",
+          "body": "<p>If you accept in the initial banner, the site uses <strong>Google Analytics 4</strong>, a statistical analysis service provided by Google Ireland Limited (for users in the European Union), to understand, in aggregate form, how the site is used: how many people visit it, which pages they view, where they come from, and how much time they spend there. We do not use Google’s advertising features (Google Signals, remarketing), and IP addresses are anonymized before being stored.</p><table><thead><tr><th>Name</th><th>Purpose</th><th>Duration</th></tr></thead><tbody><tr><td>_ga</td><td>Distinguishes users in an aggregated and anonymized form for counting visitors and sessions.</td><td>Up to 2 years</td></tr><tr><td>_ga_*</td><td>Maintains the status of the current session for Google Analytics 4.</td><td>Up to 2 years</td></tr></tbody></table><p>The data collected by Google Analytics is processed by Google in accordance with its <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noreferrer\">privacy policy</a> and retention policies. If you refuse consent, or if you do not provide it, Google Analytics is never loaded and no data is sent to Google. You can withdraw your consent at any time from the <a href=\"#preferenze\">Cookie Preferences</a> section below, or install <a href=\"https://tools.google.com/dlpage/gaoptout\" target=\"_blank\" rel=\"noreferrer\">the Google Analytics opt-out add-on</a> for your browser.</p>"
+        },
+        {
+          "heading": "7. External Resources (Sources)",
+          "body": "<p>To display the fonts on this website, resources are loaded from <strong>Google Fonts</strong> and <strong>Fontshare</strong>. Due to technical reasons related to the operation of the HTTP protocol, loading these resources involves transmitting the device’s IP address to the respective providers; however, no tracking cookies are set for profiling purposes.</p>"
+        },
+        {
+          "heading": "8. Legal Basis",
+          "body": "<p>Essential technical cookies are processed based on the need to provide the requested service (Art. 122, para. 1, Privacy Code — no consent required). Anonymous personalization and Google Analytics are processed based on the user’s <strong>free, specific, and revocable consent</strong> (Article 6, paragraph 1, letter a, GDPR), expressed via the initial banner and modifiable at any time as described in point 10.</p>"
+        },
+        {
+          "heading": "9. How to Manage Cookies in Your Browser",
+          "body": "<p>In addition to the tools provided by this site, you can manage or delete cookies directly from your browser settings. Disabling technical cookies may prevent the site from functioning properly. Official guides: <a href=\"https://support.google.com/chrome/answer/95647\" target=\"_blank\" rel=\"noreferrer\">Chrome</a>, <a href=\"https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie\" target=\"_blank\" rel=\"noreferrer\">Firefox</a>, <a href=\"https://support.apple.com/it-it/guide/safari/sfri11471/mac\" target=\"_blank\" rel=\"noreferrer\">Safari</a>, <a href=\"https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09\" target=\"_blank\" rel=\"noreferrer\">Edge</a>.</p>"
+        },
+        {
+          "heading": "10. Manage and Revoke Consent",
+          "body": "<p>You can change your selection at any time, just as easily as you made it the first time, using the controls below.</p>"
+        },
+        {
+          "heading": "11. Changes to This Privacy Policy",
+          "body": "<p>This Cookie Policy may be updated from time to time, for example, in the event of regulatory changes or new website features. The date of the last update is indicated at the top of the page. In the event of substantial changes that introduce new purposes for data processing, you will be asked to provide your consent again.</p>"
+        },
+        {
+          "heading": "12. Your Rights and Filing a Complaint with the Data Protection Authority",
+          "body": "<p>For a complete list of the rights recognized by the GDPR and how to exercise them, please see our <a href=\"/privacy-policy\">Privacy Policy</a>. If you believe that the processing of your personal data violates the law, you have the right to file a complaint with the Italian Data Protection Authority — Piazza Venezia, 11, 00187 Rome, certified email (PEC) <a href=\"mailto:protocollo@pec.gpdp.it\">protocollo@pec.gpdp.it</a>, website <a href=\"https://www.garanteprivacy.it\" target=\"_blank\" rel=\"noreferrer\">www.garanteprivacy.it</a>.</p>"
+        },
+        {
+          "heading": "13. Contact Information",
+          "body": "<p>If you have any questions about this Cookie Policy, please email info@omniamarketing.it.</p>"
+        }
+      ]
     }
   }
 }

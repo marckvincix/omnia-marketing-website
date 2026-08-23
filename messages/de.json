@@ -31,7 +31,7 @@
   },
   "cookieBanner": {
     "titolo": "Cookies und Datenschutz",
-    "testo": "Wir verwenden technische Cookies, die für den Betrieb der Website erforderlich sind, und – sofern du dem zustimmst – anonyme Daten, die auf deinem Gerät gespeichert werden, um die Inhalte anhand deiner Besuche anzupassen.",
+    "testo": "Wir verwenden technische Cookies, die für den Betrieb der Website erforderlich sind, und – nur wenn du dem zustimmst – anonyme Daten, die auf deinem Gerät gespeichert werden, um die Inhalte entsprechend deinen Besuchen anzupassen.",
     "maggioriInfo": "Weitere Informationen:",
     "accetta": "Akzeptieren",
     "rifiuta": "Ablehnen"
@@ -83,8 +83,8 @@
     },
     "branding": {
       "seoTitle": "Branding – Strategie, Namensfindung, Logo, UI/UX",
-      "seoDescription": "Wir gestalten Ihre visuelle Identität: Strategie, Namensfindung, Logodesign und UI/UX für eine Marke, die begeistert und sich von anderen abhebt. Branding-Agentur in Neapel, die Kunden in ganz Italien begleitet.",
-      "scrollReveal": "Wir gestalten Ihre visuelle Identität mit einem Design, das Emotionen weckt und Sie von anderen abhebt: Von der Strategie bis zum Logo – wir schaffen Marken, die einen bleibenden Eindruck hinterlassen.",
+      "seoDescription": "Wir gestalten Ihre visuelle Identität: Strategie, Namensfindung, Logodesign und UI/UX für eine Marke, die begeistert und sich von anderen abhebt. Branding-Agentur in Neapel, die Kunden in ganz Italien zur Seite steht.",
+      "scrollReveal": "Wir gestalten Ihre visuelle Identität mit einem Design, das Emotionen weckt und Sie von anderen abhebt: Von der Strategie bis zum Logo schaffen wir Marken, die einen bleibenden Eindruck hinterlassen.",
       "ctaTitle": "Möchtest du ein Erscheinungsbild, das man auf den ersten Blick erkennt?",
       "ctaDescription": "Sprechen wir über Ihre Marke: Strategie, Namensfindung und Design in einem einzigen Prozess.",
       "popupTitle": "Gefällt dir unsere Art, eine Marke aufzubauen?",
@@ -94,18 +94,18 @@
     },
     "social": {
       "seoTitle": "Soziale Medien – SMM, Fotografie, Video, Werbespots",
-      "seoDescription": "Social-Media-Management, Fotografie, Videoproduktion und kinoreife Werbespots für Unternehmen in Neapel und Kampanien, die sich in den sozialen Medien von der Masse abheben möchten.",
+      "seoDescription": "Social-Media-Management, Fotografie, Videoproduktion und Werbespots im Kino-Stil für Unternehmen in Neapel und Kampanien, die sich in den sozialen Medien von der Masse abheben möchten.",
       "scrollReveal": "Sorgfältig gestaltete Social-Media-Kanäle: Wir verwalten Inhalte, erstellen einzigartige Fotos und Videos und produzieren Werbespots, um Ihre digitale Präsenz optimal zur Geltung zu bringen.",
       "ctaTitle": "Bist du bereit, deine Marke in den sozialen Medien zu präsentieren?",
-      "ctaDescription": "Von der redaktionellen Strategie bis zur Videoproduktion: Wir betreuen Ihre Kanäle mit einem einheitlichen Design.",
-      "popupTitle": "Möchtest du eine Social-Media-Präsenz, die wirklich Ergebnisse bringt?",
+      "ctaDescription": "Von der redaktionellen Strategie bis zur Videoproduktion: Wir betreuen deine Kanäle mit einem einheitlichen Design.",
+      "popupTitle": "Möchtest du eine Social-Media-Präsenz, die wirklich zu Conversions führt?",
       "popupDescription": "Fordern Sie eine kostenlose Beratung zu Ihrer Social-Media-Strategie an.",
       "popupSubmitLabel": "Beratung anfordern",
       "popupDefaultMessage": "Ich möchte eine Beratung zur Verwaltung meiner Social-Media-Kanäle anfragen."
     },
     "progetti": {
       "seoTitle": "Portfolio – Webprojekte, Branding und Social Media in Neapel",
-      "seoDescription": "Die von Omnia Marketing umgesetzten Projekte: Websites, E-Commerce, Branding und Social-Media-Auftritte für Unternehmen in Neapel und ganz Italien, die sich von der Masse abheben möchten.",
+      "seoDescription": "Die von Omnia Marketing umgesetzten Projekte: Websites, E-Commerce, Branding und Social Media für Unternehmen in Neapel und ganz Italien, die sich von der Masse abheben möchten.",
       "scrollReveal": "Jedes Projekt entsteht aus aufmerksamer Zuhörbereitschaft und wird gemeinsam mit dem Kunden entwickelt – vom ersten Briefing bis zum Endergebnis.",
       "ctaTitle": "Das nächste Projekt könnte dein Projekt sein.",
       "ctaDescription": "Erzählen Sie uns von Ihrer Idee: Wir verwandeln sie in ein maßgeschneidertes digitales Erlebnis.",
@@ -168,7 +168,7 @@
     },
     "chiSiamo": {
       "seoTitle": "Über uns – Web- und Branding-Agentur in Neapel",
-      "seoDescription": "Omnia Marketing ist eine Agentur für Webdesign, Branding und Social-Media-Management mit Sitz in Neapel, die seit vielen Jahren gemeinsam mit Unternehmen in ganz Italien Visionen in einzigartige digitale Erlebnisse und einprägsame Marken verwandelt.",
+      "seoDescription": "Omnia Marketing ist eine Agentur für Webdesign, Branding und Social-Media-Management mit Sitz in Neapel, die seit vielen Jahren gemeinsam mit Unternehmen in ganz Italien Visionen in einzigartige digitale Erlebnisse und unvergessliche Marken verwandelt.",
       "scrollReveal": "Wir glauben daran, dass Design ein Arbeitsinstrument ist und keine Dekoration.",
       "quote": "Beim Design geht es nicht nur darum, wie etwas aussieht, sondern auch darum, wie es funktioniert.",
       "quoteAuthor": "— Steve Jobs",
@@ -237,7 +237,7 @@
       "seoDescription": "Einblicke in die Bereiche Design, Webentwicklung, Branding und Social Media, zusammengestellt von Omnia Marketing, einer in ganz Italien tätigen Digitalagentur mit Sitz in Neapel.",
       "heroTitleEmpty": "Bald folgen die ersten Artikel.",
       "heroTitle": "Hintergrundberichte und Neuigkeiten.",
-      "heroDescriptionEmpty": "Wir bereiten gerade Inhalte zu den Themen Design, Web, Branding und Social Media vor. Schau bald wieder vorbei.",
+      "heroDescriptionEmpty": "Wir bereiten gerade Inhalte zu den Themen Design, Web, Branding und Social Media vor. Schau bald wieder bei uns vorbei.",
       "heroDescription": "Design, Web, Branding und Social Media: Ideen und Fallstudien aus unserem Studio.",
       "minutiLettura": "{minutes} Minuten Lesezeit",
       "ctaTitle": "Lass uns in der Zwischenzeit über dein Projekt sprechen.",
@@ -321,7 +321,7 @@
           },
           {
             "title": "Schau dir unsere Social-Media-Projekte weiterhin regelmäßig an.",
-            "description": "Erzähl uns von deinen Kanälen: Wir sprechen gemeinsam darüber, ganz unverbindlich.",
+            "description": "Erzähl uns von deinen Kanälen: Wir besprechen das gemeinsam, ganz unverbindlich.",
             "ctaLabel": "Lass uns darüber reden"
           },
           {
@@ -331,6 +331,117 @@
           }
         ]
       }
+    }
+  },
+  "legal": {
+    "privacyPolicy": {
+      "title": "Datenschutzerklärung",
+      "lastUpdated": "Letzte Aktualisierung: 12. August 2026",
+      "intro": "<p>Diese Datenschutzerklärung beschreibt, wie Omniaweb S.r.l.s die personenbezogenen Daten der Nutzer der Website omniamarketing.it gemäß den Artikeln 13 und 14 der Verordnung (EU) 2016/679 („DSGVO“) und des Gesetzesdekrets 196/2003 in der durch das Gesetzesdekret 101/2018 geänderten Fassung („Datenschutzgesetz“).</p>",
+      "sections": [
+        {
+          "heading": "1. Verantwortlicher für die Datenverarbeitung",
+          "body": "<p>Der Verantwortliche für die Datenverarbeitung ist Omniaweb S.r.l.s, Umsatzsteuer-Identifikationsnummer 09553001216, mit Sitz in Vico Bagnara, 4 – 80135 Neapel. Bei Fragen zur Verarbeitung personenbezogener Daten wenden Sie sich bitte per E-Mail an <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>. Angesichts der Größe der Organisation ist die Ernennung eines Datenschutzbeauftragten (DSB) gemäß Art. 37 DSGVO nicht vorgeschrieben; die entsprechenden Aufgaben werden direkt vom Verantwortlichen wahrgenommen.</p>"
+        },
+        {
+          "heading": "2. Welche Daten erheben wir?",
+          "body": "<p>Je nachdem, wie Sie mit der Website interagieren, erfassen wir möglicherweise folgende Daten:</p><ul><li><strong>Kontaktdaten</strong> – Name, E-Mail-Adresse, Telefonnummer (optional) und den Inhalt der Nachricht, wenn du das Kontaktformular oder das Popup-Fenster zur Anforderung von Informationen ausfüllst.</li><li><strong>Daten zur Newsletter-Anmeldung</strong> – E-Mail-Adresse, wenn du dich freiwillig anmeldest, um Updates von unserem Blog zu erhalten.</li><li><strong>Steuerdaten</strong> – Adresse, Postleitzahl, Ort und Steuernummer, sofern diese für die Ausstellung von Buchhaltungsbelegen im Rahmen eines laufenden Vertragsverhältnisses erforderlich sind.</li><li><strong>Anonyme Personalisierungsdaten</strong> – eine zufällig generierte Kennung, den von Ihnen optional angegebenen Namen und die Kategorien der von Ihnen besuchten Inhalte, die ausschließlich auf Ihrem Gerät gespeichert und niemals an unsere Server übertragen werden. Ausführliche Informationen finden Sie in <a href=\"/cookie-policy\">der</a> <a href=\"/cookie-policy\">Cookie-Richtlinie</a>.</li><li><strong>Technische Navigationsdaten</strong> – IP-Adresse, Browser- und Gerätetyp, besuchte Seiten; diese werden automatisch von der Hosting-Infrastruktur zu Sicherheitszwecken und zur Gewährleistung des ordnungsgemäßen Betriebs des Dienstes erfasst und für einen begrenzten Zeitraum in den Systemprotokollen gespeichert.</li></ul>"
+        },
+        {
+          "heading": "3. Zweck und Rechtsgrundlagen der Datenverarbeitung",
+          "body": "<table><thead><tr><th>Zweck</th><th>Rechtsgrundlage</th></tr></thead><tbody><tr><td>Beantwortung von Kontaktanfragen oder Angebotsanfragen</td><td>Vorvertragliche Maßnahmen auf Ihre Anfrage hin (Art. 6 Abs. 1 Buchstabe b DSGVO)</td></tr><tr><td>Erbringung einer bereits beauftragten Dienstleistung</td><td>Vertragsdurchführung (Art. 6 Abs. 1 Buchstabe b DSGVO)</td></tr><tr><td>Erfüllung buchhalterischer und steuerlicher Verpflichtungen</td><td>Gesetzliche Verpflichtung (Art. 6 Abs. 1 Buchstabe c DSGVO)</td></tr><tr><td>Versand des Newsletters</td><td>Einwilligung (Art. 6 Abs. 1 Buchstabe a DSGVO), jederzeit widerrufbar</td></tr><tr><td>Anonyme Personalisierung von Inhalten</td><td>Einwilligung (Art. 6 Abs. 1 Buchstabe a DSGVO), jederzeit widerrufbar</td></tr><tr><td>Technische Sicherheit, Missbrauchsverhinderung, Systemprotokolle</td><td>Berechtigtes Interesse des Verantwortlichen (Art. 6 Abs. 1 lit. f DSGVO)</td></tr></tbody></table>"
+        },
+        {
+          "heading": "4. Empfänger und externe Auftragsverarbeiter",
+          "body": "<p>Ihre Daten können in unserem Auftrag und in ihrer Eigenschaft als Auftragsverarbeiter gemäß Art. 28 DSGVO von den folgenden Anbietern verarbeitet werden:</p><ul><li><strong>Supabase Inc.</strong> – Hosting der Datenbank und des Dateispeichers (Bilder/Videos des Portfolios). Stellt einen DSGVO-konformen Datenverarbeitungsvertrag zur Verfügung.</li><li><strong>Resend</strong> – Versand von Transaktions-E-Mails und des Newsletters. Der Anbieter ist nach dem <strong>EU-US-Data-Privacy-Framework</strong> zertifiziert, dem von der Europäischen Kommission mit Beschluss vom 10. Juli 2023 als angemessen anerkannten Übertragungsmechanismus.</li><li><strong>Anwendungshosting-Anbieter</strong> – technische Bereitstellung der Website und der zugehörigen Sicherheitsprotokolle.</li></ul><p>Wir verkaufen oder geben Ihre personenbezogenen Daten nicht an Dritte für Marketingzwecke anderer Unternehmen als uns weiter.</p>"
+        },
+        {
+          "heading": "5. Datenübermittlung in Länder außerhalb der EU",
+          "body": "<p>Einige der unter Punkt 4 genannten Anbieter haben ihren Sitz oder verfügen über Infrastrukturen in den Vereinigten Staaten. In diesen Fällen erfolgt die Datenübermittlung auf der Grundlage angemessener Garantien gemäß Kapitel V der DSGVO: die Teilnahme des Anbieters am EU-US-Datenschutzrahmen oder, falls dies nicht der Fall ist, die Anwendung der Standardvertragsklauseln, die von der Europäischen Kommission mit dem Durchführungsbeschluss (EU) 2021/914 genehmigt wurden.</p>"
+        },
+        {
+          "heading": "6. Aufbewahrungsfrist",
+          "body": "<ul><li>Kontaktanfragen: bis zu 24 Monate ab dem letzten Kontakt, sofern keine anderslautenden gesetzlichen Vorschriften bestehen.</li><li>Newsletter-Abonnement: bis zu Ihrer Abmeldung, die jederzeit mit einem Klick in jeder E-Mail möglich ist.</li><li>Buchhaltungs- und Steuerdaten: 10 Jahre, wie es die zivil- und steuerrechtlichen Vorschriften vorsehen.</li><li>Anonyme Personalisierungsdaten: Diese verbleiben ausschließlich auf Ihrem Gerät, niemals auf unseren Servern; Sie können sie jederzeit selbst löschen (siehe Punkt 9).</li><li>Technische Systemprotokolle: in der Regel nicht länger als 6 Monate, sofern keine nachweisbaren Sicherheitserfordernisse oder die Aufklärung von Straftaten vorliegen.</li></ul>"
+        },
+        {
+          "heading": "7. Datensicherheit",
+          "body": "<p>Wir ergreifen angemessene technische und organisatorische Maßnahmen, um die Daten vor unbefugtem Zugriff, Verlust oder Offenlegung zu schützen: verschlüsselte HTTPS-Verbindungen, professionelle Hosting-Infrastrukturen, ein durch Authentifizierung gesicherter und auf autorisiertes Personal beschränkter Zugriff auf den Verwaltungsbereich.</p>"
+        },
+        {
+          "heading": "8. Minderjährige",
+          "body": "<p>Die Website richtet sich nicht an Kinder unter 16 Jahren, und wir erheben wissentlich keine Daten von Kindern. Wenn Sie der Meinung sind, dass ein Kind uns personenbezogene Daten übermittelt hat, kontaktieren Sie uns bitte, damit wir diese löschen können.</p>"
+        },
+        {
+          "heading": "9. Verwalte deine Einstellungen",
+          "body": "<p>Die anonyme Personalisierung von Inhalten (auf der Grundlage Ihrer Einwilligung) können Sie jederzeit direkt hier aktivieren oder deaktivieren:</p>"
+        },
+        {
+          "heading": "10. Deine Rechte",
+          "body": "<p>Du hast jederzeit und ohne Angabe von Gründen das Recht:</p><ul><li>Auskunft über Ihre personenbezogenen Daten zu erhalten (Art. 15 DSGVO);</li><li>die Berichtigung oder Aktualisierung Ihrer Daten zu verlangen (Art. 16 DSGVO);</li><li>die Löschung Ihrer Daten zu verlangen (Art. 17 DSGVO);</li><li>die Einschränkung der Verarbeitung zu verlangen (Art. 18 DSGVO);</li><li>der Verarbeitung zu widersprechen (Art. 21 DSGVO);</li><li>die Datenübertragbarkeit zu verlangen (Art. 20 DSGVO);</li><li>die zuvor erteilte Einwilligung zu widerrufen, ohne dass dadurch die Rechtmäßigkeit der vor dem Widerruf erfolgten Verarbeitung beeinträchtigt wird (Art. 7 Abs. 3 DSGVO).</li></ul><p>Um diese Rechte auszuüben, reicht es aus, eine E-Mail an <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a> zu senden. Wir werden Ihnen gemäß Art. 12 DSGVO innerhalb von 30 Tagen antworten.</p><p>Wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen geltendes Recht verstößt, haben Sie das Recht, eine Beschwerde bei der zuständigen Aufsichtsbehörde einzureichen: der Datenschutzbehörde – Piazza Venezia, 11, 00187 Rom, PEC <a href=\"mailto:protocollo@pec.gpdp.it\">protocollo@pec.gpdp.it</a>, Website <a href=\"https://www.garanteprivacy.it\" target=\"_blank\" rel=\"noreferrer\">www.garanteprivacy.it</a>.</p>"
+        },
+        {
+          "heading": "11. Änderungen an dieser Datenschutzerklärung",
+          "body": "<p>Diese Datenschutzerklärung kann im Laufe der Zeit aktualisiert werden, beispielsweise bei Änderungen der gesetzlichen Bestimmungen oder bei neuen, auf der Website angebotenen Diensten. Das Datum der letzten Aktualisierung ist oben auf der Seite angegeben.</p>"
+        }
+      ]
+    },
+    "cookiePolicy": {
+      "title": "Datenschutzerklärung zu Cookies",
+      "lastUpdated": "Letzte Aktualisierung: 13. August 2026",
+      "sections": [
+        {
+          "heading": "1. Was sind Cookies und ähnliche Technologien?",
+          "body": "<p>Cookies sind kleine Textdateien, die von den besuchten Websites an den Browser des Nutzers gesendet werden, wo sie gespeichert werden, um dann beim nächsten Besuch wieder an dieselben Websites übermittelt zu werden. Darüber hinaus gibt es weitere Technologien mit ähnlicher Funktion – wie beispielsweise den <strong>LocalStorage</strong> des Browsers –, die technisch gesehen keine Cookies sind, aber, wenn sie dazu verwendet werden, einen Nutzer über einen längeren Zeitraum hinweg zu erkennen, im Sinne der geltenden Rechtsvorschriften mit Cookies gleichgestellt werden (Art. 122 des italienischen Datenschutzgesetzes, das die ePrivacy-Richtlinie 2002/58/EG umsetzt, sowie die Leitlinien zu Cookies und anderen Tracking-Instrumenten der italienischen Datenschutzbehörde vom 10. Juni 2021). Wenn wir auf dieser Seite von „Cookies“ sprechen, meinen wir damit beide Kategorien.</p>"
+        },
+        {
+          "heading": "2. Verantwortlicher für die Datenverarbeitung",
+          "body": "<p>Omniaweb S.r.l.s, Umsatzsteuer-Identifikationsnummer 09553001216, mit Sitz in Vico Bagnara, 4 – 80135 Neapel – <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>.</p>"
+        },
+        {
+          "heading": "3. Was wir NICHT tun",
+          "body": "<p>Bevor wir ins Detail gehen, zunächst eine klare Vorbemerkung: Diese Website <strong>verwendet keine Profiling-Cookies zu Werbezwecken</strong> und <strong>keine Cookies von Drittanbietern zu Marketingzwecken</strong>. Google Analytics wird nur in aggregierter Form und nur mit Ihrer Einwilligung verwendet, wie unter Punkt 6 beschrieben. Es gibt keine Cookie-Wall: Sie können auf der Website navigieren und alle wichtigen Funktionen nutzen, auch wenn Sie jegliche optionale Nachverfolgung ablehnen.</p>"
+        },
+        {
+          "heading": "4. Notwendige technische Cookies (keine Einwilligung erforderlich)",
+          "body": "<p>Diese Cookies sind für den Betrieb der Website oder die Erbringung einer ausdrücklich angeforderten Dienstleistung unerlässlich und erfordern keine vorherige Einwilligung (Art. 122 Abs. 1 des Datenschutzgesetzes).</p><table><thead><tr><th>Name</th><th>Zweck</th><th>Gültigkeitsdauer</th></tr></thead><tbody><tr><td>omnia_cookie_consent</td><td>Speichert die im Cookie-Banner getroffene Auswahl (akzeptiert / abgelehnt) in localStorage, damit diese nicht bei jedem Besuch erneut abgefragt wird.</td><td>Bis zur manuellen Löschung</td></tr><tr><td>Sitzung im geschützten Bereich</td><td>Authentifizierungs-Cookie, das nur für Mitarbeiter gesetzt wird, die auf den Administrationsbereich (/admin) zugreifen. Betrifft nicht die Besucher der öffentlichen Website.</td><td>Dauer der Sitzung</td></tr></tbody></table>"
+        },
+        {
+          "heading": "5. Anonyme Personalisierung (erfordert Einwilligung)",
+          "body": "<p>Wenn Sie im Startbanner zustimmen, speichert die Website die folgenden Informationen über localStorage auf Ihrem Gerät:</p><table><thead><tr><th>Name</th><th>Inhalt</th><th>Zweck</th></tr></thead><tbody><tr><td>omnia_visitor_profile</td><td>Eine zufällig generierte anonyme Kennung, die Anzahl der Tage, an denen du die Website besuchst, sowie die Kategorien von Projekten/Dienstleistungen, die du aufrufst oder auf die du klickst.</td><td>Anpassung der Texte, der Reihenfolge der angezeigten Inhalte und der Call-to-Action-Schaltflächen an das, was dich am meisten zu interessieren scheint.</td></tr><tr><td>omnia_visitor_name</td><td>Der Name, den du uns im Begrüßungs-Popup angibst (optional).</td><td>Die Texte auf der Website so anzeigen, dass wir dich mit deinem Namen ansprechen.</td></tr></tbody></table><p>Die anonyme Kennung und die von dir besuchten Kategorien (omnia_visitor_profile) verbleiben ausschließlich auf deinem Gerät und werden niemals an unsere Server übermittelt. Der Name, den du im Begrüßungs-Popup angibst, wird hingegen auch in unserer Datenbank gespeichert – zusammen mit dem Datum, der rein anonymen Kennung (niemals deiner E-Mail-Adresse oder anderen Daten, die dich identifizieren), dem ungefähren Standort, der anhand deiner Verbindung abgeleitet wird (wir speichern niemals deine IP-Adresse), sowie einem Interessens- bzw. Engagementsgrad, der anhand der von dir besuchten Seiten berechnet wird – damit wir wissen, wie viele Personen ihren Namen hinterlassen haben, und bei unseren Antworten denjenigen Vorrang geben können, die mehr Interesse zeigen. Diese Informationen werden in keinem Fall mit anderen Daten abgeglichen oder an Dritte weitergegeben. Wenn du deine Einwilligung verweigerst oder keine erteilst, werden keine dieser Informationen erfasst oder gespeichert, und die Website zeigt allen Besuchern standardmäßig dieselben Inhalte an. Du kannst sowohl die auf dem Gerät als auch die auf dem Server gespeicherten Daten jederzeit im Abschnitt <a href=\"#preferenze\">„Cookie-Einstellungen“</a> unten löschen.</p>"
+        },
+        {
+          "heading": "6. Google Analytics (erfordert Einwilligung)",
+          "body": "<p>Wenn Sie im Startbanner zustimmen, nutzt die Website <strong>Google Analytics 4</strong>, einen von Google Ireland Limited (für Nutzer in der Europäischen Union) bereitgestellten statistischen Analysedienst, um in aggregierter Form zu erfassen, wie die Website genutzt wird: wie viele Personen sie besuchen, welche Seiten sie aufrufen, woher sie kommen und wie viel Zeit sie dort verbringen. Wir nutzen keine Werbefunktionen von Google (Google Signals, Remarketing) und die IP-Adresse wird vor der Speicherung anonymisiert.</p><table><thead><tr><th>Name</th><th>Zweck</th><th>Dauer</th></tr></thead><tbody><tr><td>_ga</td><td>Unterscheidet Nutzer in aggregierter und anonymisierter Form zur Zählung von Besuchern und Sitzungen.</td><td>Bis zu 2 Jahre</td></tr><tr><td>_ga_*</td><td>Speichert den Status der aktuellen Sitzung für Google Analytics 4.</td><td>Bis zu 2 Jahre</td></tr></tbody></table><p>Die von Google Analytics erfassten Daten werden von Google gemäß dessen <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noreferrer\">Datenschutzerklärung</a> und Aufbewahrungsfristen verarbeitet. Wenn Sie Ihre Einwilligung verweigern oder keine Einwilligung erteilen, wird Google Analytics niemals geladen und es werden keine Daten an Google übermittelt. Sie können Ihre Einwilligung jederzeit im Abschnitt <a href=\"#preferenze\">„Cookie-Einstellungen“</a> unten widerrufen oder <a href=\"https://tools.google.com/dlpage/gaoptout\" target=\"_blank\" rel=\"noreferrer\">das Add-on zur Deaktivierung von Google Analytics</a> für Ihren Browser installieren.</p>"
+        },
+        {
+          "heading": "7. Externe Quellen (Quellen)",
+          "body": "<p>Zur Darstellung der Schriftarten auf dieser Website werden Ressourcen von den Diensten <strong>Google Fonts</strong> und <strong>Fontshare</strong> geladen. Das Laden dieser Ressourcen führt aus technischen Gründen, die mit der Funktionsweise des HTTP-Protokolls zusammenhängen, zur Übermittlung der IP-Adresse des Geräts an die jeweiligen Anbieter, ohne dass dabei Tracking-Cookies zu Profiling-Zwecken gesetzt werden.</p>"
+        },
+        {
+          "heading": "8. Rechtsgrundlage",
+          "body": "<p>Die erforderlichen technischen Cookies werden auf der Grundlage der Notwendigkeit zur Erbringung der angeforderten Dienstleistung verarbeitet (Art. 122 Abs. 1 Datenschutzgesetz – keine Einwilligung erforderlich). Die anonyme Personalisierung und Google Analytics werden auf der Grundlage der <strong>freien, spezifischen und widerrufbaren Einwilligung</strong> des Nutzers verarbeitet (Art. 6 Abs. 1 Buchstabe a DSGVO), die über das Startbanner erteilt und jederzeit wie unter Punkt 10 beschrieben geändert werden kann.</p>"
+        },
+        {
+          "heading": "9. So verwalten Sie Cookies in Ihrem Browser",
+          "body": "<p>Zusätzlich zu den auf dieser Website angebotenen Funktionen kannst du Cookies direkt in den Einstellungen deines Browsers verwalten oder löschen. Das Deaktivieren technischer Cookies kann die ordnungsgemäße Funktion der Website beeinträchtigen. Offizielle Anleitungen: <a href=\"https://support.google.com/chrome/answer/95647\" target=\"_blank\" rel=\"noreferrer\">Chrome</a>, <a href=\"https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie\" target=\"_blank\" rel=\"noreferrer\">Firefox</a>, <a href=\"https://support.apple.com/it-it/guide/safari/sfri11471/mac\" target=\"_blank\" rel=\"noreferrer\">Safari</a>, <a href=\"https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09\" target=\"_blank\" rel=\"noreferrer\">Edge</a>.</p>"
+        },
+        {
+          "heading": "10. Einwilligung verwalten und widerrufen",
+          "body": "<p>Du kannst deine Auswahl jederzeit genauso einfach ändern, wie du sie ursprünglich getroffen hast – nutze dazu die untenstehenden Steuerelemente.</p>"
+        },
+        {
+          "heading": "11. Änderungen an dieser Datenschutzerklärung",
+          "body": "<p>Diese Cookie-Richtlinie kann im Laufe der Zeit aktualisiert werden, beispielsweise bei gesetzlichen Änderungen oder neuen Funktionen der Website. Das Datum der letzten Aktualisierung ist oben auf der Seite angegeben. Bei wesentlichen Änderungen, die neue Verarbeitungszwecke mit sich bringen, werden Sie um eine erneute Einwilligung gebeten.</p>"
+        },
+        {
+          "heading": "12. Ihre Rechte und Beschwerden bei der Datenschutzbehörde",
+          "body": "<p>Eine vollständige Auflistung der durch die DSGVO anerkannten Rechte sowie Informationen zur Ausübung dieser Rechte findest du in unserer <a href=\"/privacy-policy\">Datenschutzerklärung</a>. Wenn Sie der Ansicht sind, dass die Datenverarbeitung gegen die gesetzlichen Bestimmungen verstößt, haben Sie das Recht, eine Beschwerde bei der Datenschutzbehörde einzureichen – Piazza Venezia, 11, 00187 Rom, PEC <a href=\"mailto:protocollo@pec.gpdp.it\">protocollo@pec.gpdp.it</a>, Website <a href=\"https://www.garanteprivacy.it\" target=\"_blank\" rel=\"noreferrer\">www.garanteprivacy.it</a>.</p>"
+        },
+        {
+          "heading": "13. Kontakt",
+          "body": "<p>Bei Fragen zu dieser Cookie-Richtlinie schreiben Sie bitte an <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>.</p>"
+        }
+      ]
     }
   }
 }

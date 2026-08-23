@@ -48,11 +48,13 @@ function arrayify(node: Json): Json {
   return isArrayLike ? keys.map((k) => out[k]) : out;
 }
 
-// Nessuna chiave del catalogo contiene più tag incorporati da tradurre: testato che
-// DeepL riordina male tag "finti" senza contenuto attorno a loro in lingue con
-// struttura grammaticale molto diversa dall'italiano (arabo, giapponese) — i link
-// nel banner cookie sono composti a parte nel componente, non dentro una frase tradotta.
-const RICH_TEXT_KEYS = new Set<string>([]);
+// Le voci "legal.*" (privacy/cookie policy) contengono paragrafi con tag HTML reali
+// (<a href>, <strong>, <table>...), non i tag "finti" senza contenuto del banner cookie che
+// DeepL riordina male: qui il tag_handling HTML è il caso d'uso standard della modalità,
+// preserva i link e li traduce correttamente.
+function isRichTextKey(key: string): boolean {
+  return key.startsWith("legal.");
+}
 const NON_SPLITTING_TAGS: string[] = [];
 
 async function main() {
@@ -60,8 +62,8 @@ async function main() {
   const source = JSON.parse(readFileSync(path.join(messagesDir, "it.json"), "utf-8")) as Json;
   const entries = flatten(source);
 
-  const plainEntries = entries.filter(([k]) => !RICH_TEXT_KEYS.has(k));
-  const richEntries = entries.filter(([k]) => RICH_TEXT_KEYS.has(k));
+  const plainEntries = entries.filter(([k]) => !isRichTextKey(k));
+  const richEntries = entries.filter(([k]) => isRichTextKey(k));
 
   for (const locale of TARGET_LOCALES) {
     console.log(`Traduzione messaggi -> ${locale}...`);

@@ -117,19 +117,52 @@
       "popupDefaultMessage": "Ho visto il progetto \"{client}\" e vorrei richiedere una consulenza per un progetto simile.",
       "ctaVariants": {
         "web": [
-          { "title": "Vuoi un sito come questi?", "description": "Realizziamo siti, app ed e-commerce su misura per il tuo business." },
-          { "title": "Torni spesso a guardare questi progetti web. Ti piace quello che vedi?", "description": "Parliamone: possiamo costruire qualcosa di simile per te.", "ctaLabel": "Parliamone" },
-          { "title": "Continui a tornare su questi progetti. Forse è il momento di iniziare il tuo.", "description": "Scrivici oggi: vediamo insieme come realizzare il tuo prossimo sito.", "ctaLabel": "Scrivici ora" }
+          {
+            "title": "Vuoi un sito come questi?",
+            "description": "Realizziamo siti, app ed e-commerce su misura per il tuo business."
+          },
+          {
+            "title": "Torni spesso a guardare questi progetti web. Ti piace quello che vedi?",
+            "description": "Parliamone: possiamo costruire qualcosa di simile per te.",
+            "ctaLabel": "Parliamone"
+          },
+          {
+            "title": "Continui a tornare su questi progetti. Forse è il momento di iniziare il tuo.",
+            "description": "Scrivici oggi: vediamo insieme come realizzare il tuo prossimo sito.",
+            "ctaLabel": "Scrivici ora"
+          }
         ],
         "branding": [
-          { "title": "Vuoi un'identità come queste?", "description": "Strategy, naming e logo design per un brand che si distingue." },
-          { "title": "Torni spesso a guardare questi progetti di branding. Ti piace quello che vedi?", "description": "Parliamone: possiamo costruire un'identità simile per te.", "ctaLabel": "Parliamone" },
-          { "title": "Continui a tornare su questi progetti. Forse è il momento di iniziare il tuo.", "description": "Scrivici oggi: vediamo insieme come costruire il tuo brand.", "ctaLabel": "Scrivici ora" }
+          {
+            "title": "Vuoi un'identità come queste?",
+            "description": "Strategy, naming e logo design per un brand che si distingue."
+          },
+          {
+            "title": "Torni spesso a guardare questi progetti di branding. Ti piace quello che vedi?",
+            "description": "Parliamone: possiamo costruire un'identità simile per te.",
+            "ctaLabel": "Parliamone"
+          },
+          {
+            "title": "Continui a tornare su questi progetti. Forse è il momento di iniziare il tuo.",
+            "description": "Scrivici oggi: vediamo insieme come costruire il tuo brand.",
+            "ctaLabel": "Scrivici ora"
+          }
         ],
         "social": [
-          { "title": "Vuoi contenuti social come questi?", "description": "Gestiamo i tuoi canali con foto, video e una strategia coerente." },
-          { "title": "Torni spesso a guardare questi progetti social. Ti piace quello che vedi?", "description": "Parliamone: possiamo fare qualcosa di simile per i tuoi canali.", "ctaLabel": "Parliamone" },
-          { "title": "Continui a tornare su questi progetti. Forse è il momento di iniziare il tuo.", "description": "Scrivici oggi: vediamo insieme come far crescere i tuoi social.", "ctaLabel": "Scrivici ora" }
+          {
+            "title": "Vuoi contenuti social come questi?",
+            "description": "Gestiamo i tuoi canali con foto, video e una strategia coerente."
+          },
+          {
+            "title": "Torni spesso a guardare questi progetti social. Ti piace quello che vedi?",
+            "description": "Parliamone: possiamo fare qualcosa di simile per i tuoi canali.",
+            "ctaLabel": "Parliamone"
+          },
+          {
+            "title": "Continui a tornare su questi progetti. Forse è il momento di iniziare il tuo.",
+            "description": "Scrivici oggi: vediamo insieme come far crescere i tuoi social.",
+            "ctaLabel": "Scrivici ora"
+          }
         ]
       }
     },
@@ -150,19 +183,52 @@
       "ctaDescription": "Che tu debba costruire un brand da zero o far crescere quello che hai già, siamo qui per ascoltare.",
       "ctaVariants": {
         "web": [
-          { "title": "Hai bisogno di un sito su misura?", "description": "Parliamone: realizziamo siti, app ed e-commerce pensati per il tuo business." },
-          { "title": "Sembra che i siti web ti interessino particolarmente.", "description": "Raccontaci il tuo progetto: troviamo insieme la soluzione giusta.", "ctaLabel": "Parliamone" },
-          { "title": "Sei tornato più volte a trovarci. Forse è il momento di iniziare.", "description": "Scrivici oggi, senza impegno: parliamo del tuo sito.", "ctaLabel": "Scrivici ora" }
+          {
+            "title": "Hai bisogno di un sito su misura?",
+            "description": "Parliamone: realizziamo siti, app ed e-commerce pensati per il tuo business."
+          },
+          {
+            "title": "Sembra che i siti web ti interessino particolarmente.",
+            "description": "Raccontaci il tuo progetto: troviamo insieme la soluzione giusta.",
+            "ctaLabel": "Parliamone"
+          },
+          {
+            "title": "Sei tornato più volte a trovarci. Forse è il momento di iniziare.",
+            "description": "Scrivici oggi, senza impegno: parliamo del tuo sito.",
+            "ctaLabel": "Scrivici ora"
+          }
         ],
         "branding": [
-          { "title": "Hai bisogno di un'identità su misura?", "description": "Parliamone: diamo forma al tuo brand con strategy, naming e design." },
-          { "title": "Sembra che il branding ti interessi particolarmente.", "description": "Raccontaci il tuo progetto: troviamo insieme la soluzione giusta.", "ctaLabel": "Parliamone" },
-          { "title": "Sei tornato più volte a trovarci. Forse è il momento di iniziare.", "description": "Scrivici oggi, senza impegno: parliamo del tuo brand.", "ctaLabel": "Scrivici ora" }
+          {
+            "title": "Hai bisogno di un'identità su misura?",
+            "description": "Parliamone: diamo forma al tuo brand con strategy, naming e design."
+          },
+          {
+            "title": "Sembra che il branding ti interessi particolarmente.",
+            "description": "Raccontaci il tuo progetto: troviamo insieme la soluzione giusta.",
+            "ctaLabel": "Parliamone"
+          },
+          {
+            "title": "Sei tornato più volte a trovarci. Forse è il momento di iniziare.",
+            "description": "Scrivici oggi, senza impegno: parliamo del tuo brand.",
+            "ctaLabel": "Scrivici ora"
+          }
         ],
         "social": [
-          { "title": "Hai bisogno di una presenza social forte?", "description": "Parliamone: gestiamo i tuoi canali con contenuti e video di qualità." },
-          { "title": "Sembra che i social ti interessino particolarmente.", "description": "Raccontaci il tuo progetto: troviamo insieme la soluzione giusta.", "ctaLabel": "Parliamone" },
-          { "title": "Sei tornato più volte a trovarci. Forse è il momento di iniziare.", "description": "Scrivici oggi, senza impegno: parliamo dei tuoi social.", "ctaLabel": "Scrivici ora" }
+          {
+            "title": "Hai bisogno di una presenza social forte?",
+            "description": "Parliamone: gestiamo i tuoi canali con contenuti e video di qualità."
+          },
+          {
+            "title": "Sembra che i social ti interessino particolarmente.",
+            "description": "Raccontaci il tuo progetto: troviamo insieme la soluzione giusta.",
+            "ctaLabel": "Parliamone"
+          },
+          {
+            "title": "Sei tornato più volte a trovarci. Forse è il momento di iniziare.",
+            "description": "Scrivici oggi, senza impegno: parliamo dei tuoi social.",
+            "ctaLabel": "Scrivici ora"
+          }
         ]
       }
     },
@@ -199,27 +265,183 @@
       "ticker7": "Web, Branding e Social sotto lo stesso tetto",
       "ticker8": "un partner, non tre fornitori",
       "heroVariants": {
-        "web": ["vuoi un sito\nche converte?", "il tuo sito\nti aspetta", "creiamo il tuo\nsito, ora"],
-        "branding": ["costruiamo\nil tuo brand", "la tua identità\nti aspetta", "diamo forma al\ntuo brand, ora"],
-        "social": ["raccontiamo\ni tuoi social", "i tuoi contenuti\nti aspettano", "creiamo i tuoi\ncontenuti, ora"]
+        "web": [
+          "vuoi un sito\nche converte?",
+          "il tuo sito\nti aspetta",
+          "creiamo il tuo\nsito, ora"
+        ],
+        "branding": [
+          "costruiamo\nil tuo brand",
+          "la tua identità\nti aspetta",
+          "diamo forma al\ntuo brand, ora"
+        ],
+        "social": [
+          "raccontiamo\ni tuoi social",
+          "i tuoi contenuti\nti aspettano",
+          "creiamo i tuoi\ncontenuti, ora"
+        ]
       },
       "ctaVariants": {
         "web": [
-          { "title": "Vuoi un sito che converte davvero?", "description": "Dallo sviluppo all'e-commerce: realizziamo siti pensati per portare risultati." },
-          { "title": "Continui a tornare a curiosare tra i nostri siti web.", "description": "Raccontaci la tua idea: ne parliamo insieme, senza impegno.", "ctaLabel": "Parliamone" },
-          { "title": "Il tuo prossimo sito potrebbe già essere in lavorazione.", "description": "Bastano 15 minuti per iniziare: scrivici oggi stesso.", "ctaLabel": "Scrivici ora" }
+          {
+            "title": "Vuoi un sito che converte davvero?",
+            "description": "Dallo sviluppo all'e-commerce: realizziamo siti pensati per portare risultati."
+          },
+          {
+            "title": "Continui a tornare a curiosare tra i nostri siti web.",
+            "description": "Raccontaci la tua idea: ne parliamo insieme, senza impegno.",
+            "ctaLabel": "Parliamone"
+          },
+          {
+            "title": "Il tuo prossimo sito potrebbe già essere in lavorazione.",
+            "description": "Bastano 15 minuti per iniziare: scrivici oggi stesso.",
+            "ctaLabel": "Scrivici ora"
+          }
         ],
         "branding": [
-          { "title": "Vuoi un brand che si riconosce a colpo d'occhio?", "description": "Strategy, naming, logo e UI/UX in un unico percorso su misura per te." },
-          { "title": "Continui a tornare a vedere i nostri progetti di branding.", "description": "Raccontaci la tua idea: ne parliamo insieme, senza impegno.", "ctaLabel": "Parliamone" },
-          { "title": "La tua nuova identità potrebbe nascere questa settimana.", "description": "Bastano 15 minuti per iniziare: scrivici oggi stesso.", "ctaLabel": "Scrivici ora" }
+          {
+            "title": "Vuoi un brand che si riconosce a colpo d'occhio?",
+            "description": "Strategy, naming, logo e UI/UX in un unico percorso su misura per te."
+          },
+          {
+            "title": "Continui a tornare a vedere i nostri progetti di branding.",
+            "description": "Raccontaci la tua idea: ne parliamo insieme, senza impegno.",
+            "ctaLabel": "Parliamone"
+          },
+          {
+            "title": "La tua nuova identità potrebbe nascere questa settimana.",
+            "description": "Bastano 15 minuti per iniziare: scrivici oggi stesso.",
+            "ctaLabel": "Scrivici ora"
+          }
         ],
         "social": [
-          { "title": "Pronti a far crescere i tuoi canali social?", "description": "Content, foto, video e spot per raccontare il tuo brand con uno stile coerente." },
-          { "title": "Continui a tornare a vedere i nostri progetti social.", "description": "Raccontaci i tuoi canali: ne parliamo insieme, senza impegno.", "ctaLabel": "Parliamone" },
-          { "title": "I tuoi social potrebbero decollare da subito.", "description": "Bastano 15 minuti per iniziare: scrivici oggi stesso.", "ctaLabel": "Scrivici ora" }
+          {
+            "title": "Pronti a far crescere i tuoi canali social?",
+            "description": "Content, foto, video e spot per raccontare il tuo brand con uno stile coerente."
+          },
+          {
+            "title": "Continui a tornare a vedere i nostri progetti social.",
+            "description": "Raccontaci i tuoi canali: ne parliamo insieme, senza impegno.",
+            "ctaLabel": "Parliamone"
+          },
+          {
+            "title": "I tuoi social potrebbero decollare da subito.",
+            "description": "Bastano 15 minuti per iniziare: scrivici oggi stesso.",
+            "ctaLabel": "Scrivici ora"
+          }
         ]
       }
+    }
+  },
+  "legal": {
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Ultimo aggiornamento: 12 agosto 2026",
+      "intro": "<p>Questa informativa descrive come Omniaweb S.r.l.s tratta i dati personali degli utenti del sito omniamarketing.it, ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 (\"GDPR\") e del D.Lgs. 196/2003 come modificato dal D.Lgs. 101/2018 (\"Codice Privacy\").</p>",
+      "sections": [
+        {
+          "heading": "1. Titolare del trattamento",
+          "body": "<p>Il Titolare del trattamento dei dati è Omniaweb S.r.l.s, P.IVA 09553001216, con sede legale in Vico Bagnara, 4 — 80135 Napoli. Per qualsiasi richiesta relativa al trattamento dei dati personali è possibile scrivere a <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>. Data la dimensione dell'organizzazione, non è prevista la nomina obbligatoria di un Responsabile della Protezione dei Dati (DPO) ai sensi dell'art. 37 GDPR; le funzioni relative sono svolte direttamente dal Titolare.</p>"
+        },
+        {
+          "heading": "2. Quali dati raccogliamo",
+          "body": "<p>A seconda di come interagisci con il sito, possiamo raccogliere:</p><ul><li><strong>Dati di contatto</strong> — nome, email, telefono (facoltativo) e il contenuto del messaggio, quando compili il modulo contatti o il popup di richiesta informazioni.</li><li><strong>Dati di iscrizione alla newsletter</strong> — indirizzo email, quando ti iscrivi volontariamente per ricevere aggiornamenti dal nostro blog.</li><li><strong>Dati fiscali</strong> — indirizzo, CAP, città e codice fiscale, solo se necessari all'emissione di documenti contabili per un rapporto contrattuale in corso.</li><li><strong>Dati anonimi di personalizzazione</strong> — un identificativo generato casualmente, il nome che indichi facoltativamente e le categorie di contenuti che visiti, salvati solo sul tuo dispositivo e mai trasmessi ai nostri server. Dettagli completi nella <a href=\"/cookie-policy\">Cookie Policy</a>.</li><li><strong>Dati tecnici di navigazione</strong> — indirizzo IP, tipo di browser e dispositivo, pagine visitate, raccolti automaticamente dall'infrastruttura di hosting per finalità di sicurezza e corretto funzionamento del servizio, e conservati nei log di sistema per un periodo limitato.</li></ul>"
+        },
+        {
+          "heading": "3. Finalità e basi giuridiche del trattamento",
+          "body": "<table><thead><tr><th>Finalità</th><th>Base giuridica</th></tr></thead><tbody><tr><td>Rispondere a richieste di contatto o preventivo</td><td>Misure precontrattuali su tua richiesta (art. 6.1.b GDPR)</td></tr><tr><td>Erogare un servizio già commissionato</td><td>Esecuzione del contratto (art. 6.1.b GDPR)</td></tr><tr><td>Adempimenti contabili e fiscali</td><td>Obbligo legale (art. 6.1.c GDPR)</td></tr><tr><td>Invio della newsletter</td><td>Consenso (art. 6.1.a GDPR), revocabile in ogni momento</td></tr><tr><td>Personalizzazione anonima dei contenuti</td><td>Consenso (art. 6.1.a GDPR), revocabile in ogni momento</td></tr><tr><td>Sicurezza tecnica, prevenzione di abusi, log di sistema</td><td>Legittimo interesse del Titolare (art. 6.1.f GDPR)</td></tr></tbody></table>"
+        },
+        {
+          "heading": "4. Destinatari e responsabili esterni del trattamento",
+          "body": "<p>I tuoi dati possono essere trattati, per nostro conto e in qualità di responsabili del trattamento ai sensi dell'art. 28 GDPR, dai seguenti fornitori:</p><ul><li><strong>Supabase Inc.</strong> — hosting del database e dello storage dei file (immagini/video del portfolio). Fornisce un Data Processing Addendum conforme al GDPR.</li><li><strong>Resend</strong> — invio delle email transazionali e della newsletter. È certificato secondo il <strong>Data Privacy Framework UE-USA</strong>, il meccanismo di trasferimento riconosciuto adeguato dalla Commissione Europea con decisione del 10 luglio 2023.</li><li><strong>Fornitore di hosting dell'applicazione</strong> — esecuzione tecnica del sito e dei relativi log di sicurezza.</li></ul><p>Non vendiamo né cediamo i tuoi dati personali a terzi per finalità di marketing di soggetti diversi da noi.</p>"
+        },
+        {
+          "heading": "5. Trasferimento dei dati extra-UE",
+          "body": "<p>Alcuni dei fornitori indicati al punto 4 hanno sede o infrastrutture negli Stati Uniti. In questi casi, il trasferimento dei dati avviene sulla base di garanzie adeguate ai sensi del Capo V del GDPR: la partecipazione del fornitore al Data Privacy Framework UE-USA, oppure, in mancanza, l'adozione delle Clausole Contrattuali Standard approvate dalla Commissione Europea con decisione di esecuzione (UE) 2021/914.</p>"
+        },
+        {
+          "heading": "6. Periodo di conservazione",
+          "body": "<ul><li>Richieste di contatto: fino a 24 mesi dall'ultimo contatto, salvo diverso obbligo di legge.</li><li>Iscrizione alla newsletter: fino alla tua disiscrizione, sempre disponibile con un click in ogni email.</li><li>Dati contabili e fiscali: 10 anni, come previsto dalla normativa civilistica e fiscale.</li><li>Dati anonimi di personalizzazione: restano solo sul tuo dispositivo, mai sui nostri server; li cancelli in autonomia in qualsiasi momento (vedi punto 9).</li><li>Log tecnici di sistema: di norma non oltre 6 mesi, salvo comprovate esigenze di sicurezza o accertamento di reati.</li></ul>"
+        },
+        {
+          "heading": "7. Sicurezza dei dati",
+          "body": "<p>Adottiamo misure tecniche e organizzative adeguate a proteggere i dati da accesso non autorizzato, perdita o divulgazione: connessioni cifrate HTTPS, infrastrutture di hosting professionali, accesso all'area amministrativa protetto da autenticazione e limitato al personale autorizzato.</p>"
+        },
+        {
+          "heading": "8. Minori",
+          "body": "<p>Il sito non è rivolto a minori di 16 anni e non raccogliamo consapevolmente dati relativi a minori. Se ritieni che un minore ci abbia fornito dati personali, contattaci per la loro rimozione.</p>"
+        },
+        {
+          "heading": "9. Gestisci le tue preferenze",
+          "body": "<p>Per la personalizzazione anonima dei contenuti (basata sul consenso), puoi attivarla o disattivarla in qualsiasi momento direttamente da qui:</p>"
+        },
+        {
+          "heading": "10. I tuoi diritti",
+          "body": "<p>In qualsiasi momento, e senza necessità di motivazione, hai il diritto di:</p><ul><li>accedere ai tuoi dati personali (art. 15 GDPR);</li><li>richiederne la rettifica o l'aggiornamento (art. 16 GDPR);</li><li>richiederne la cancellazione (art. 17 GDPR);</li><li>richiederne la limitazione del trattamento (art. 18 GDPR);</li><li>opporti al trattamento (art. 21 GDPR);</li><li>richiedere la portabilità dei dati (art. 20 GDPR);</li><li>revocare il consenso precedentemente prestato, senza pregiudicare la liceità del trattamento svolto prima della revoca (art. 7.3 GDPR).</li></ul><p>Per esercitare questi diritti è sufficiente scrivere a <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>. Risponderemo entro 30 giorni, come previsto dall'art. 12 GDPR.</p><p>Se ritieni che il trattamento dei tuoi dati violi la normativa applicabile, hai diritto di proporre reclamo all'autorità di controllo competente: il Garante per la protezione dei dati personali — Piazza Venezia, 11, 00187 Roma, PEC <a href=\"mailto:protocollo@pec.gpdp.it\">protocollo@pec.gpdp.it</a>, sito <a href=\"https://www.garanteprivacy.it\" target=\"_blank\" rel=\"noreferrer\">www.garanteprivacy.it</a>.</p>"
+        },
+        {
+          "heading": "11. Modifiche a questa informativa",
+          "body": "<p>Questa informativa può essere aggiornata nel tempo, ad esempio in caso di modifiche normative o di nuovi servizi offerti dal sito. La data di ultimo aggiornamento è indicata in cima alla pagina.</p>"
+        }
+      ]
+    },
+    "cookiePolicy": {
+      "title": "Cookie Policy",
+      "lastUpdated": "Ultimo aggiornamento: 13 agosto 2026",
+      "sections": [
+        {
+          "heading": "1. Cosa sono i cookie e le tecnologie simili",
+          "body": "<p>I cookie sono piccoli file di testo che i siti visitati inviano al browser dell'utente, dove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla visita successiva. Esistono inoltre altre tecnologie con funzione analoga — come il <strong>localStorage</strong> del browser — che non sono tecnicamente cookie ma che, se usate per riconoscere un utente nel tempo, sono equiparate ai cookie ai fini della normativa applicabile (art. 122 del Codice Privacy italiano, che recepisce la Direttiva ePrivacy 2002/58/CE, e le Linee guida cookie e altri strumenti di tracciamento del Garante per la protezione dei dati personali del 10 giugno 2021). In questa pagina, quando parliamo di \"cookie\", intendiamo entrambe le categorie.</p>"
+        },
+        {
+          "heading": "2. Titolare del trattamento",
+          "body": "<p>Omniaweb S.r.l.s, P.IVA 09553001216, con sede legale in Vico Bagnara, 4 — 80135 Napoli — <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>.</p>"
+        },
+        {
+          "heading": "3. Cosa NON facciamo",
+          "body": "<p>Prima di entrare nel dettaglio, una premessa chiara: questo sito <strong>non utilizza cookie di profilazione a fini pubblicitari</strong> e <strong>non utilizza cookie di terze parti a scopo di marketing</strong>. Utilizza Google Analytics solo in forma aggregata e solo con il tuo consenso, come descritto al punto 6. Non c'è nessun cookie wall: puoi navigare e usare tutte le funzionalità principali del sito anche rifiutando ogni tracciamento facoltativo.</p>"
+        },
+        {
+          "heading": "4. Cookie tecnici necessari (nessun consenso richiesto)",
+          "body": "<p>Questi cookie sono indispensabili al funzionamento del sito o all'erogazione di un servizio esplicitamente richiesto e non richiedono consenso preventivo (art. 122, comma 1, Codice Privacy).</p><table><thead><tr><th>Nome</th><th>Finalità</th><th>Durata</th></tr></thead><tbody><tr><td>omnia_cookie_consent</td><td>Salva su localStorage la scelta espressa nel banner cookie (accettato / rifiutato), per non richiederla di nuovo ad ogni visita.</td><td>Fino a cancellazione manuale</td></tr><tr><td>Sessione area riservata</td><td>Cookie di autenticazione impostato solo per lo staff che accede all'area amministrativa (/admin). Non riguarda i visitatori del sito pubblico.</td><td>Durata della sessione</td></tr></tbody></table>"
+        },
+        {
+          "heading": "5. Personalizzazione anonima (richiede consenso)",
+          "body": "<p>Se accetti nel banner iniziale, il sito salva sul tuo dispositivo tramite localStorage le seguenti informazioni:</p><table><thead><tr><th>Nome</th><th>Contenuto</th><th>Finalità</th></tr></thead><tbody><tr><td>omnia_visitor_profile</td><td>Un identificativo anonimo generato casualmente, il numero di giorni in cui torni sul sito e le categorie di progetti/servizi che visiti o su cui clicchi.</td><td>Adattare i testi, l'ordine dei contenuti mostrati e i pulsanti di invito all'azione a ciò che sembra interessarti di più.</td></tr><tr><td>omnia_visitor_name</td><td>Il nome che scegli di indicarci nel popup di benvenuto (facoltativo).</td><td>Mostrare i testi del sito rivolgendoci a te per nome.</td></tr></tbody></table><p>L'identificativo anonimo e le categorie che visiti (omnia_visitor_profile) restano solo sul tuo dispositivo, non vengono mai trasmessi ai nostri server. Il nome che indichi nel popup di benvenuto, invece, viene salvato anche in un nostro database — insieme alla data, al solo identificativo anonimo (mai al tuo indirizzo email o ad altri dati che ti identifichino), alla città approssimativa dedotta dalla tua connessione (non salviamo mai il tuo indirizzo IP) e a un livello di interesse/coinvolgimento calcolato dalle pagine che visiti — così da poter sapere quante persone hanno lasciato il nome e dare priorità a chi mostra più interesse quando rispondiamo. In nessun caso queste informazioni sono incrociate con altri dati o condivise con terzi. Se rifiuti il consenso, o se non lo esprimi, nessuna di queste informazioni viene creata o salvata, e il sito mostra a tutti i visitatori gli stessi contenuti di default. Puoi cancellare in ogni momento sia i dati sul dispositivo sia quelli salvati sul server dalla sezione <a href=\"#preferenze\">Preferenze cookie</a> qui sotto.</p>"
+        },
+        {
+          "heading": "6. Google Analytics (richiede consenso)",
+          "body": "<p>Se accetti nel banner iniziale, il sito utilizza <strong>Google Analytics 4</strong>, un servizio di analisi statistica fornito da Google Ireland Limited (per gli utenti nell'Unione Europea), per capire in forma aggregata come viene usato il sito: quante persone lo visitano, quali pagine guardano, da dove arrivano e quanto tempo vi passano. Non usiamo funzionalità pubblicitarie di Google (Google Signals, remarketing) e l'indirizzo IP viene anonimizzato prima della memorizzazione.</p><table><thead><tr><th>Nome</th><th>Finalità</th><th>Durata</th></tr></thead><tbody><tr><td>_ga</td><td>Distingue gli utenti in forma aggregata e anonimizzata per il conteggio di visitatori e sessioni.</td><td>Fino a 2 anni</td></tr><tr><td>_ga_*</td><td>Mantiene lo stato della sessione corrente per Google Analytics 4.</td><td>Fino a 2 anni</td></tr></tbody></table><p>I dati raccolti da Google Analytics sono trattati da Google secondo la propria <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noreferrer\">informativa privacy</a> e i propri termini di conservazione. Se rifiuti il consenso, o se non lo esprimi, Google Analytics non viene mai caricato e nessun dato viene inviato a Google. Puoi revocare il consenso in qualsiasi momento dalla sezione <a href=\"#preferenze\">Preferenze cookie</a> qui sotto, oppure installare l'<a href=\"https://tools.google.com/dlpage/gaoptout\" target=\"_blank\" rel=\"noreferrer\">add-on di disattivazione di Google Analytics</a> per il tuo browser.</p>"
+        },
+        {
+          "heading": "7. Risorse esterne (font)",
+          "body": "<p>Per la visualizzazione dei caratteri tipografici del sito vengono caricate risorse dai servizi <strong>Google Fonts</strong> e <strong>Fontshare</strong>. Il caricamento di queste risorse comporta, per ragioni tecniche legate al funzionamento del protocollo HTTP, la trasmissione dell'indirizzo IP del dispositivo ai rispettivi fornitori, senza che venga impostato alcun cookie di tracciamento a fini di profilazione.</p>"
+        },
+        {
+          "heading": "8. Base giuridica",
+          "body": "<p>I cookie tecnici necessari sono trattati sulla base della necessità di erogare il servizio richiesto (art. 122, comma 1, Codice Privacy — nessun consenso necessario). La personalizzazione anonima e Google Analytics sono trattati sulla base del <strong>consenso libero, specifico e revocabile</strong> dell'utente (art. 6, par. 1, lett. a, GDPR), espresso tramite il banner iniziale e modificabile in qualsiasi momento come descritto al punto 10.</p>"
+        },
+        {
+          "heading": "9. Come gestire i cookie dal browser",
+          "body": "<p>Oltre agli strumenti offerti da questo sito, puoi gestire o eliminare i cookie direttamente dalle impostazioni del tuo browser. La disabilitazione dei cookie tecnici potrebbe compromettere il corretto funzionamento del sito. Guide ufficiali: <a href=\"https://support.google.com/chrome/answer/95647\" target=\"_blank\" rel=\"noreferrer\">Chrome</a>, <a href=\"https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie\" target=\"_blank\" rel=\"noreferrer\">Firefox</a>, <a href=\"https://support.apple.com/it-it/guide/safari/sfri11471/mac\" target=\"_blank\" rel=\"noreferrer\">Safari</a>, <a href=\"https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09\" target=\"_blank\" rel=\"noreferrer\">Edge</a>.</p>"
+        },
+        {
+          "heading": "10. Gestisci e revoca il consenso",
+          "body": "<p>Puoi cambiare la tua scelta in qualsiasi momento, con la stessa facilità con cui l'hai espressa la prima volta, usando i controlli qui sotto.</p>"
+        },
+        {
+          "heading": "11. Modifiche a questa informativa",
+          "body": "<p>Questa Cookie Policy può essere aggiornata nel tempo, ad esempio in caso di modifiche normative o di nuove funzionalità del sito. La data di ultimo aggiornamento è indicata in cima alla pagina. In caso di modifiche sostanziali che introducano nuove finalità di trattamento, ti verrà richiesto un nuovo consenso.</p>"
+        },
+        {
+          "heading": "12. I tuoi diritti e reclamo al Garante",
+          "body": "<p>Per l'elenco completo dei diritti riconosciuti dal GDPR e le modalità per esercitarli, consulta la nostra <a href=\"/privacy-policy\">Privacy Policy</a>. Se ritieni che il trattamento violi la normativa, hai diritto di proporre reclamo al Garante per la protezione dei dati personali — Piazza Venezia, 11, 00187 Roma, PEC <a href=\"mailto:protocollo@pec.gpdp.it\">protocollo@pec.gpdp.it</a>, sito <a href=\"https://www.garanteprivacy.it\" target=\"_blank\" rel=\"noreferrer\">www.garanteprivacy.it</a>.</p>"
+        },
+        {
+          "heading": "13. Contatti",
+          "body": "<p>Per qualsiasi domanda su questa Cookie Policy scrivi a <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>.</p>"
+        }
+      ]
     }
   }
 }

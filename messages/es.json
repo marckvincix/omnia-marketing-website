@@ -83,19 +83,19 @@
     },
     "branding": {
       "seoTitle": "Branding — Estrategia, elección de nombre, logotipo, UI/UX",
-      "seoDescription": "Damos forma a tu identidad visual: estrategia, creación de nombres, diseño de logotipos e UI/UX para una marca que emociona y destaca. Agencia de branding en Nápoles, que colabora con clientes de toda Italia.",
+      "seoDescription": "Damos forma a tu identidad visual: estrategia, creación de nombres, diseño de logotipos e UI/UX para una marca que emociona y destaca. Agencia de branding en Nápoles, al lado de clientes de toda Italia.",
       "scrollReveal": "Damos forma a tu identidad visual con un diseño pensado para emocionar y diferenciarte: desde la estrategia hasta el logotipo, creamos marcas capaces de dejar una huella imborrable.",
       "ctaTitle": "¿Quieres una identidad que se reconozca a primera vista?",
       "ctaDescription": "Hablemos de tu marca: estrategia, elección del nombre y diseño en un único proceso.",
       "popupTitle": "¿Te gusta nuestra forma de crear una marca?",
       "popupDescription": "Hablemos de tu identidad visual: solicita una consulta gratuita.",
-      "popupSubmitLabel": "Solicita asesoramiento",
+      "popupSubmitLabel": "Solicita una consulta",
       "popupDefaultMessage": "Me gustaría solicitar asesoramiento sobre la identidad de mi marca."
     },
     "social": {
       "seoTitle": "Redes sociales — SMM, fotografía, vídeo, anuncios",
       "seoDescription": "Gestión de redes sociales, fotografía, videografía y anuncios publicitarios con estilo cinematográfico para empresas de Nápoles y Campania que quieran destacar en las redes sociales.",
-      "scrollReveal": "Redes sociales cuidadas hasta el último detalle: gestionamos contenidos, creamos fotos y vídeos únicos y producimos anuncios para potenciar tu presencia digital.",
+      "scrollReveal": "Redes sociales cuidadas hasta el último detalle: gestionamos los contenidos, creamos fotos y vídeos únicos y producimos anuncios para potenciar tu presencia digital.",
       "ctaTitle": "¿Estás listo para dar a conocer tu marca en las redes sociales?",
       "ctaDescription": "Desde la estrategia editorial hasta la producción de vídeos: gestionamos tus canales con un diseño coherente.",
       "popupTitle": "¿Quieres una presencia en redes sociales que realmente genere conversiones?",
@@ -110,7 +110,7 @@
       "ctaTitle": "El próximo proyecto podría ser el tuyo.",
       "ctaDescription": "Cuéntanos tu idea: la convertiremos en una experiencia digital a medida.",
       "visitaIlSito": "Visita la página web",
-      "comeLoAbbiamoRealizzato": "Cómo lo hemos llevado a cabo",
+      "comeLoAbbiamoRealizzato": "Cómo lo hemos hecho",
       "popupTitle": "¿Te gustan los proyectos que llevamos a cabo?",
       "popupDescription": "Cuéntanos tu idea: podemos crear un proyecto a medida, tan cuidado en los detalles como este.",
       "popupSubmitLabel": "Solicita tu proyecto",
@@ -154,7 +154,7 @@
             "description": "Gestionamos tus canales con fotos, vídeos y una estrategia coherente."
           },
           {
-            "title": "¿Sueles volver a echar un vistazo a estos proyectos en redes sociales? ¿Te gusta lo que ves?",
+            "title": "¿Vuelves a mirar a menudo estos proyectos en redes sociales? ¿Te gusta lo que ves?",
             "description": "Hablemos de ello: podemos hacer algo parecido para tus canales.",
             "ctaLabel": "Hablemos de ello"
           },
@@ -168,7 +168,7 @@
     },
     "chiSiamo": {
       "seoTitle": "Quiénes somos — Agencia web y de imagen de marca en Nápoles",
-      "seoDescription": "Omnia Marketing es una agencia de diseño web, desarrollo de marca y gestión de redes sociales con sede en Nápoles que transforma las ideas en experiencias digitales únicas y marcas memorables, y que lleva muchos años colaborando con empresas de toda Italia.",
+      "seoDescription": "Omnia Marketing es una agencia de diseño web, imagen de marca y gestión de redes sociales con sede en Nápoles que transforma las ideas en experiencias digitales únicas y marcas memorables, y que lleva muchos años colaborando con empresas de toda Italia.",
       "scrollReveal": "Creemos en el diseño como herramienta de trabajo, no como decoración.",
       "quote": "El diseño no es solo cómo se ve, sino cómo funciona.",
       "quoteAuthor": "— Steve Jobs",
@@ -201,7 +201,7 @@
         "branding": [
           {
             "title": "¿Necesitas una identidad a medida?",
-            "description": "Hablemos de ello: demos forma a tu marca con estrategia, elección de nombre y diseño."
+            "description": "Hablemos de ello: damos forma a tu marca con estrategia, elección de nombre y diseño."
           },
           {
             "title": "Parece que te interesa especialmente el branding.",
@@ -234,7 +234,7 @@
     },
     "blog": {
       "seoTitle": "Blog — Consejos sobre Internet, imagen de marca y redes sociales",
-      "seoDescription": "Artículos de fondo sobre diseño, desarrollo web, imagen de marca y redes sociales, a cargo de Omnia Marketing, una agencia digital con sede en Nápoles que opera en toda Italia.",
+      "seoDescription": "Artículos de fondo sobre diseño, desarrollo web, imagen de marca y redes sociales, a cargo de Omnia Marketing, una agencia digital de Nápoles que opera en toda Italia.",
       "heroTitleEmpty": "Pronto publicaremos los primeros artículos.",
       "heroTitle": "Análisis en profundidad y novedades.",
       "heroDescriptionEmpty": "Estamos preparando contenidos sobre diseño, web, imagen de marca y redes sociales. Vuelve a visitarnos pronto.",
@@ -252,11 +252,11 @@
       "accediAreaClienti": "Accede al Área de clientes →"
     },
     "home": {
-      "seoTitle": "Omnia Marketing — Agencia de diseño web, branding y redes sociales en Nápoles",
+      "seoTitle": "Omnia Marketing — Agencia de diseño web, imagen de marca y redes sociales en Nápoles",
       "seoDescription": "Omnia Marketing: creemos en el diseño. Creamos páginas web, tiendas online, estrategias de marca y contenidos para redes sociales para empresas que quieren destacar. Agencia web en Nápoles, que lleva muchos años colaborando con empresas de toda Italia.",
       "ctaTitle": "Creemos en el diseño. Hablemos de tu proyecto.",
       "ctaDescription": "Cuéntanos tu idea: la convertiremos en una experiencia digital a medida.",
-      "ticker1": "Creamos páginas web que generan conversiones",
+      "ticker1": "Creamos páginas web que generan ventas",
       "ticker2": "damos forma a identidades que perduran en la memoria",
       "ticker3": "Contamos la historia de tu marca en las redes sociales",
       "ticker4": "Combinamos estrategia y creatividad",
@@ -284,7 +284,7 @@
       "ctaVariants": {
         "web": [
           {
-            "title": "¿Quieres una página web que realmente genere conversiones?",
+            "title": "¿Quieres una página web que realmente genere ventas?",
             "description": "Desde el desarrollo hasta el comercio electrónico: creamos sitios web diseñados para generar resultados."
           },
           {
@@ -301,7 +301,7 @@
         "branding": [
           {
             "title": "¿Quieres una marca que se reconozca a primera vista?",
-            "description": "Estrategia, nombre de marca, logotipo e UI/UX en un único proceso diseñado a tu medida."
+            "description": "Estrategia, nombre, logotipo e UI/UX en un único proceso diseñado a tu medida."
           },
           {
             "title": "Sigue visitando nuestra página para ver nuestros proyectos de imagen de marca.",
@@ -316,21 +316,132 @@
         ],
         "social": [
           {
-            "title": "¿Estás listo para hacer crecer tus redes sociales?",
+            "title": "¿Estás listo para hacer crecer tus canales en redes sociales?",
             "description": "Contenidos, fotos, vídeos y anuncios para dar a conocer tu marca con un estilo coherente."
           },
           {
-            "title": "No dejes de visitar nuestras redes sociales.",
+            "title": "No dejes de volver a echar un vistazo a nuestros proyectos en redes sociales.",
             "description": "Cuéntanos cuáles son tus canales: lo comentamos juntos, sin compromiso.",
             "ctaLabel": "Hablemos de ello"
           },
           {
-            "title": "Tus redes sociales podrían despegar de inmediato.",
+            "title": "Tus redes sociales podrían despegar desde ya mismo.",
             "description": "Solo necesitas 15 minutos para empezar: escríbenos hoy mismo.",
             "ctaLabel": "Escríbenos ahora"
           }
         ]
       }
+    }
+  },
+  "legal": {
+    "privacyPolicy": {
+      "title": "Política de privacidad",
+      "lastUpdated": "Última actualización: 12 de agosto de 2026",
+      "intro": "<p>La presente política de privacidad describe cómo Omniaweb S.r.l.s trata los datos personales de los usuarios del sitio web omniamarketing.it, de conformidad con los artículos 13 y 14 del Reglamento (UE) 2016/679 («RGPD») y del Decreto Legislativo 196/2003, modificado por el Decreto Legislativo 101/2018 («Código de Privacidad»).</p>",
+      "sections": [
+        {
+          "heading": "1. Responsable del tratamiento",
+          "body": "<p>El responsable del tratamiento de datos es Omniaweb S.r.l.s, con NIF 09553001216 y domicilio social en Vico Bagnara, 4 — 80135 Nápoles. Para cualquier consulta relacionada con el tratamiento de datos personales, puede escribir a <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>. Dado el tamaño de la organización, no está previsto el nombramiento obligatorio de un delegado de protección de datos (DPO) con arreglo al artículo 37 del RGPD; las funciones correspondientes las desempeña directamente el responsable del tratamiento.</p>"
+        },
+        {
+          "heading": "2. ¿Qué datos recopilamos?",
+          "body": "<p>Dependiendo de cómo interactúes con la web, podemos recopilar:</p><ul><li><strong>Datos de contacto</strong>: nombre, correo electrónico, teléfono (opcional) y el contenido del mensaje, cuando rellenas el formulario de contacto o la ventana emergente de solicitud de información.</li><li><strong>Datos de suscripción al boletín informativo</strong>: dirección de correo electrónico, cuando te suscribes voluntariamente para recibir actualizaciones de nuestro blog.</li><li><strong>Datos fiscales</strong>: dirección, código postal, ciudad y número de identificación fiscal, solo si son necesarios para la emisión de documentos contables en el marco de una relación contractual en curso.</li><li><strong>Datos anónimos de personalización</strong>: un identificador generado aleatoriamente, el nombre que indiques de forma opcional y las categorías de contenidos que visites, guardados únicamente en tu dispositivo y que nunca se transmiten a nuestros servidores. Encontrarás todos los detalles en <a href=\"/cookie-policy\">la Política de cookies</a>.</li><li><strong>Datos técnicos de navegación</strong>: dirección IP, tipo de navegador y dispositivo, páginas visitadas, recopilados automáticamente por la infraestructura de alojamiento con fines de seguridad y para el correcto funcionamiento del servicio, y conservados en los registros del sistema durante un periodo limitado.</li></ul>"
+        },
+        {
+          "heading": "3. Finalidades y fundamentos jurídicos del tratamiento",
+          "body": "<table><thead><tr><th>Finalidad</th><th>Base jurídica</th></tr></thead><tbody><tr><td>Responder a solicitudes de contacto o de presupuesto</td><td>Medidas precontractuales a petición suya (art. 6.1.b del RGPD)</td></tr><tr><td>Prestar un servicio ya solicitado</td><td>Ejecución del contrato (art. 6.1.b del RGPD)</td></tr><tr><td>Cumplimiento de obligaciones contables y fiscales</td><td>Obligación legal (art. 6.1.c del RGPD)</td></tr><tr><td>Envío del boletín informativo</td><td>Consentimiento (art. 6.1.a del RGPD), revocable en cualquier momento</td></tr><tr><td>Personalización anónima de los contenidos</td><td>Consentimiento (art. 6.1.a del RGPD), revocable en cualquier momento</td></tr><tr><td>Seguridad técnica, prevención de abusos, registros del sistema</td><td>Interés legítimo del responsable del tratamiento (art. 6.1.f del RGPD)</td></tr></tbody></table>"
+        },
+        {
+          "heading": "4. Destinatarios y encargados externos del tratamiento",
+          "body": "<p>Tus datos pueden ser tratados, por cuenta nuestra y en calidad de encargados del tratamiento, de conformidad con el artículo 28 del RGPD, por los siguientes proveedores:</p><ul><li><strong>Supabase Inc.</strong> — alojamiento de la base de datos y almacenamiento de archivos (imágenes y vídeos del portafolio). Proporciona un anexo de tratamiento de datos conforme al RGPD.</li><li><strong>Resend</strong> — envío de correos electrónicos transaccionales y del boletín informativo. Cuenta con la certificación del <strong>Marco de Protección de</strong> <strong>Datos UE-EE. UU.</strong>, el mecanismo de transferencia reconocido como adecuado por la Comisión Europea mediante decisión de 10 de julio de 2023.</li><li><strong>Proveedor de alojamiento de la aplicación</strong>: ejecución técnica del sitio web y de los correspondientes registros de seguridad.</li></ul><p>No vendemos ni cedemos tus datos personales a terceros con fines de marketing de entidades distintas a nosotros.</p>"
+        },
+        {
+          "heading": "5. Transferencia de datos fuera de la UE",
+          "body": "<p>Algunos de los proveedores mencionados en el punto 4 tienen su sede o infraestructuras en Estados Unidos. En estos casos, la transferencia de datos se realiza sobre la base de garantías adecuadas, de conformidad con el capítulo V del RGPD: la participación del proveedor en el Marco de Protección de Datos UE-EE. UU. o, en su defecto, la adopción de las Cláusulas Contractuales Tipo aprobadas por la Comisión Europea mediante la Decisión de Ejecución (UE) 2021/914.</p>"
+        },
+        {
+          "heading": "6. Plazo de conservación",
+          "body": "<ul><li>Solicitudes de contacto: hasta 24 meses desde el último contacto, salvo que la ley establezca lo contrario.</li><li>Suscripción al boletín informativo: hasta que te des de baja, lo cual puedes hacer en cualquier momento con un solo clic en cada correo electrónico.</li><li>Datos contables y fiscales: 10 años, tal y como establece la normativa civil y fiscal.</li><li>Datos anónimos de personalización: solo se almacenan en tu dispositivo, nunca en nuestros servidores; puedes eliminarlos por tu cuenta en cualquier momento (véase el punto 9).</li><li>Registros técnicos del sistema: por norma, no más de 6 meses, salvo que existan necesidades demostradas de seguridad o de investigación de delitos.</li></ul>"
+        },
+        {
+          "heading": "7. Seguridad de los datos",
+          "body": "<p>Adoptamos las medidas técnicas y organizativas adecuadas para proteger los datos contra el acceso no autorizado, la pérdida o la divulgación: conexiones HTTPS cifradas, infraestructuras de alojamiento profesionales y acceso al área administrativa protegido mediante autenticación y limitado al personal autorizado.</p>"
+        },
+        {
+          "heading": "8. Menores de edad",
+          "body": "<p>Esta página web no está dirigida a menores de 16 años y no recopilamos deliberadamente datos relativos a menores. Si crees que un menor nos ha facilitado datos personales, ponte en contacto con nosotros para que los eliminemos.</p>"
+        },
+        {
+          "heading": "9. Gestiona tus preferencias",
+          "body": "<p>Para la personalización anónima de los contenidos (basada en el consentimiento), puedes activarla o desactivarla en cualquier momento directamente desde aquí:</p>"
+        },
+        {
+          "heading": "10. Tus derechos",
+          "body": "<p>En cualquier momento, y sin necesidad de justificación, tienes derecho a:</p><ul><li>acceder a tus datos personales (art. 15 del RGPD);</li><li>solicitar su rectificación o actualización (art. 16 del RGPD);</li><li>solicitar su supresión (art. 17 del RGPD);</li><li>solicitar la limitación del tratamiento (art. 18 del RGPD);</li><li>oponerte al tratamiento (art. 21 del RGPD);</li><li>solicitar la portabilidad de los datos (art. 20 del RGPD);</li><li>revocar el consentimiento prestado anteriormente, sin que ello afecte a la licitud del tratamiento realizado antes de la revocación (art. 7.3 del RGPD).</li></ul><p>Para ejercer estos derechos, basta con escribir a <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>. Le responderemos en un plazo de 30 días, tal y como establece el artículo 12 del RGPD.</p><p>Si considera que el tratamiento de sus datos incumple la normativa aplicable, tiene derecho a presentar una reclamación ante la autoridad de control competente: la Autoridad de Protección de Datos Personales — Piazza Venezia, 11, 00187 Roma, correo electrónico certificado (PEC) <a href=\"mailto:protocollo@pec.gpdp.it\">protocollo@pec.gpdp.it</a>, sitio web <a href=\"https://www.garanteprivacy.it\" target=\"_blank\" rel=\"noreferrer\">www.garanteprivacy.it</a>.</p>"
+        },
+        {
+          "heading": "11. Modificaciones de esta política de privacidad",
+          "body": "<p>Esta política de privacidad puede actualizarse con el tiempo, por ejemplo, en caso de cambios normativos o de nuevos servicios ofrecidos por la web. La fecha de la última actualización figura en la parte superior de la página.</p>"
+        }
+      ]
+    },
+    "cookiePolicy": {
+      "title": "Política de cookies",
+      "lastUpdated": "Última actualización: 13 de agosto de 2026",
+      "sections": [
+        {
+          "heading": "1. ¿Qué son las cookies y las tecnologías similares?",
+          "body": "<p>Las cookies son pequeños archivos de texto que los sitios web visitados envían al navegador del usuario, donde se almacenan para ser posteriormente reenviados a esos mismos sitios en la siguiente visita. Existen, además, otras tecnologías con una función análoga —como el <strong>localStorage</strong> del navegador— que técnicamente no son cookies, pero que, si se utilizan para reconocer a un usuario a lo largo del tiempo, se equiparan a las cookies a efectos de la normativa aplicable (art. 122 del Código de Protección de Datos italiano, que transpone la Directiva ePrivacy 2002/58/CE, y las Directrices sobre cookies y otras herramientas de seguimiento de la Autoridad de Protección de Datos Personales, de 10 de junio de 2021). En esta página, cuando hablamos de «cookies», nos referimos a ambas categorías.</p>"
+        },
+        {
+          "heading": "2. Responsable del tratamiento",
+          "body": "<p>Omniaweb S.r.l.s, N.º de IVA 09553001216, con domicilio social en Vico Bagnara, 4 — 80135 Nápoles — <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>.</p>"
+        },
+        {
+          "heading": "3. Lo que NO hacemos",
+          "body": "<p>Antes de entrar en detalles, una aclaración: esta web <strong>no utiliza cookies de perfilado con fines publicitarios</strong> ni <strong>cookies de terceros con fines de marketing</strong>. Utiliza Google Analytics únicamente de forma agregada y solo con tu consentimiento, tal y como se describe en el punto 6. No hay ningún «cookie wall»: puedes navegar y utilizar todas las funciones principales del sitio web incluso si rechazas cualquier seguimiento opcional.</p>"
+        },
+        {
+          "heading": "4. Cookies técnicas necesarias (no se requiere consentimiento)",
+          "body": "<p>Estas cookies son imprescindibles para el funcionamiento de la página web o para la prestación de un servicio solicitado explícitamente y no requieren consentimiento previo (art. 122, apartado 1, del Código de Protección de Datos).</p><table><thead><tr><th>Nombre</th><th>Finalidad</th><th>Duración</th></tr></thead><tbody><tr><td>omnia_cookie_consent</td><td>Guarda en localStorage la elección expresada en el banner de cookies (aceptado/rechazado), para no volver a solicitarla en cada visita.</td><td>Hasta su eliminación manual</td></tr><tr><td>Sesión del área reservada</td><td>Cookie de autenticación configurada únicamente para el personal que accede al área administrativa (/admin). No afecta a los visitantes del sitio web público.</td><td>Duración de la sesión</td></tr></tbody></table>"
+        },
+        {
+          "heading": "5. Personalización anónima (requiere consentimiento)",
+          "body": "<p>Si aceptas en el banner inicial, la web guarda en tu dispositivo, a través de localStorage, la siguiente información:</p><table><thead><tr><th>Nombre</th><th>Contenido</th><th>Finalidad</th></tr></thead><tbody><tr><td>omnia_visitor_profile</td><td>Un identificador anónimo generado aleatoriamente, el número de días que vuelves a visitar la web y las categorías de proyectos/servicios que visitas o en los que haces clic.</td><td>Adaptar los textos, el orden de los contenidos mostrados y los botones de llamada a la acción a lo que parece interesarte más.</td></tr><tr><td>omnia_visitor_name</td><td>El nombre que elijas indicarnos en la ventana emergente de bienvenida (opcional).</td><td>Mostrar los textos del sitio web dirigiéndonos a ti por tu nombre.</td></tr></tbody></table><p>El identificador anónimo y las categorías que visitas (omnia_visitor_profile) permanecen únicamente en tu dispositivo; nunca se transmiten a nuestros servidores. El nombre que indiques en la ventana emergente de bienvenida, en cambio, se guarda también en nuestra base de datos —junto con la fecha, el identificador anónimo (nunca tu dirección de correo electrónico ni otros datos que te identifiquen), la ciudad aproximada deducida a partir de tu conexión (nunca guardamos tu dirección IP) y un nivel de interés o implicación calculado a partir de las páginas que visitas—, de modo que podamos saber cuántas personas han dejado su nombre y dar prioridad a quienes muestran mayor interés a la hora de responder. En ningún caso esta información se cruza con otros datos ni se comparte con terceros. Si rechazas el consentimiento, o si no lo expresas, no se crea ni se guarda ninguna de esta información, y la web muestra a todos los visitantes los mismos contenidos por defecto. Puedes borrar en cualquier momento tanto los datos del dispositivo como los guardados en el servidor desde la sección <a href=\"#preferenze\">«Preferencias de cookies»</a> que aparece a continuación.</p>"
+        },
+        {
+          "heading": "6. Google Analytics (requiere consentimiento)",
+          "body": "<p>Si aceptas en el banner inicial, la web utiliza <strong>Google Analytics 4</strong>, un servicio de análisis estadístico prestado por Google Ireland Limited (para los usuarios de la Unión Europea), con el fin de conocer, de forma agregada, cómo se utiliza la web: cuántas personas la visitan, qué páginas consultan, de dónde proceden y cuánto tiempo pasan en ella. No utilizamos las funciones publicitarias de Google (Google Signals, remarketing) y la dirección IP se anonimiza antes de su almacenamiento.</p><table><thead><tr><th>Nombre</th><th>Finalidad</th><th>Duración</th></tr></thead><tbody><tr><td>_ga</td><td>Distingue a los usuarios de forma agregada y anonimizada para el recuento de visitantes y sesiones.</td><td>Hasta 2 años</td></tr><tr><td>_ga_*</td><td>Mantiene el estado de la sesión actual para Google Analytics 4.</td><td>Hasta 2 años</td></tr></tbody></table><p>Los datos recopilados por Google Analytics son tratados por Google de acuerdo con su <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noreferrer\">política de privacidad</a> y sus plazos de conservación. Si rechazas el consentimiento, o si no lo expresas, Google Analytics nunca se carga y no se envía ningún dato a Google. Puedes revocar tu consentimiento en cualquier momento desde la sección <a href=\"#preferenze\">«Preferencias de cookies»</a> que aparece a continuación, o instalar <a href=\"https://tools.google.com/dlpage/gaoptout\" target=\"_blank\" rel=\"noreferrer\">el complemento de desactivación de Google Analytics</a> para tu navegador.</p>"
+        },
+        {
+          "heading": "7. Fuentes externas (font)",
+          "body": "<p>Para mostrar las fuentes tipográficas del sitio web, se cargan recursos de los servicios <strong>Google Fonts</strong> y <strong>Fontshare</strong>. La carga de estos recursos implica, por motivos técnicos relacionados con el funcionamiento del protocolo HTTP, la transmisión de la dirección IP del dispositivo a los respectivos proveedores, sin que se instale ninguna cookie de seguimiento con fines de elaboración de perfiles.</p>"
+        },
+        {
+          "heading": "8. Fundamento jurídico",
+          "body": "<p>Las cookies técnicas necesarias se tratan en función de la necesidad de prestar el servicio solicitado (art. 122, apartado 1, del Código de Protección de Datos —no se requiere consentimiento—). La personalización anónima y Google Analytics se tratan sobre la base del <strong>consentimiento libre, específico y revocable</strong> del usuario (art. 6, apartado 1, letra a), del RGPD), expresado a través del banner inicial y modificable en cualquier momento tal y como se describe en el punto 10.</p>"
+        },
+        {
+          "heading": "9. Cómo gestionar las cookies desde el navegador",
+          "body": "<p>Además de las herramientas que ofrece esta página web, puedes gestionar o eliminar las cookies directamente desde la configuración de tu navegador. Desactivar las cookies técnicas podría afectar al correcto funcionamiento de la página web. Guías oficiales: <a href=\"https://support.google.com/chrome/answer/95647\" target=\"_blank\" rel=\"noreferrer\">Chrome</a>, <a href=\"https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie\" target=\"_blank\" rel=\"noreferrer\">Firefox</a>, <a href=\"https://support.apple.com/it-it/guide/safari/sfri11471/mac\" target=\"_blank\" rel=\"noreferrer\">Safari</a>, <a href=\"https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09\" target=\"_blank\" rel=\"noreferrer\">Edge</a>.</p>"
+        },
+        {
+          "heading": "10. Gestiona y revoca el consentimiento",
+          "body": "<p>Puedes cambiar tu elección en cualquier momento, con la misma facilidad con la que la expresaste la primera vez, utilizando los controles que aparecen a continuación.</p>"
+        },
+        {
+          "heading": "11. Modificaciones de esta política de privacidad",
+          "body": "<p>Esta Política de cookies puede actualizarse con el tiempo, por ejemplo, en caso de cambios normativos o de nuevas funcionalidades del sitio web. La fecha de la última actualización aparece indicada en la parte superior de la página. En caso de modificaciones sustanciales que introduzcan nuevas finalidades del tratamiento, se te solicitará un nuevo consentimiento.</p>"
+        },
+        {
+          "heading": "12. Tus derechos y reclamaciones ante la Agencia de Protección de Datos",
+          "body": "<p>Para consultar la lista completa de los derechos reconocidos por el RGPD y cómo ejercerlos, consulta nuestra <a href=\"/privacy-policy\">Política de privacidad</a>. Si considera que el tratamiento incumple la normativa, tiene derecho a presentar una reclamación ante la Agencia Española de Protección de Datos — Plaza de Venezia, 11, 00187 Roma, correo electrónico certificado (PEC) <a href=\"mailto:protocollo@pec.gpdp.it\">protocollo@pec.gpdp.it</a>, sitio web <a href=\"https://www.garanteprivacy.it\" target=\"_blank\" rel=\"noreferrer\">www.garanteprivacy.it</a>.</p>"
+        },
+        {
+          "heading": "13. Contacto",
+          "body": "<p>Si tienes alguna pregunta sobre esta Política de cookies, escribe a <a href=\"mailto:info@omniamarketing.it\">info@omniamarketing.it</a>.</p>"
+        }
+      ]
     }
   }
 }

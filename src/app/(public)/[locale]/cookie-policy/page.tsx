@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Link } from "@/i18n/navigation";
-import { CookiePreferences } from "@/components/public/cookie-preferences";
+import { getTranslations } from "next-intl/server";
+import { LegalPageContent, type LegalSection } from "@/components/public/legal-page-content";
 import { buildAlternates } from "@/lib/i18n/metadata";
+import { DEFAULT_LOCALE } from "@/lib/i18n/locales";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -12,379 +13,33 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default function CookiePolicyPage() {
+// Stessa logica di privacy-policy/page.tsx: i link interni tra le due pagine legali sono
+// scritti senza prefisso lingua nel testo tradotto, li riscriviamo qui.
+function localizeInternalLinks(html: string, locale: string): string {
+  const prefix = locale === DEFAULT_LOCALE ? "" : `/${locale}`;
+  return html
+    .replaceAll('href="/cookie-policy"', `href="${prefix}/cookie-policy"`)
+    .replaceAll('href="/privacy-policy"', `href="${prefix}/privacy-policy"`);
+}
+
+export default async function CookiePolicyPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations("legal.cookiePolicy");
+  const sections = (t.raw("sections") as LegalSection[]).map((s) => ({
+    ...s,
+    body: localizeInternalLinks(s.body, locale),
+  }));
+
   return (
-    <article className="px-6 md:px-12 pt-20 pb-32 max-w-3xl mx-auto">
-      <h1 className="font-display font-black text-white text-4xl md:text-6xl mb-4">
-        Cookie Policy
-      </h1>
-      <p className="text-sm text-[#666666] mb-16">Ultimo aggiornamento: 13 agosto 2026</p>
-
-      <div className="flex flex-col gap-10 text-[#cccccc] leading-relaxed">
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">1. Cosa sono i cookie e le tecnologie simili</h2>
-          <p>
-            I cookie sono piccoli file di testo che i siti visitati inviano al browser
-            dell&apos;utente, dove vengono memorizzati per essere poi ritrasmessi agli stessi
-            siti alla visita successiva. Esistono inoltre altre tecnologie con funzione
-            analoga — come il <strong className="text-white">localStorage</strong> del
-            browser — che non sono tecnicamente cookie ma che, se usate per riconoscere un
-            utente nel tempo, sono equiparate ai cookie ai fini della normativa applicabile
-            (art. 122 del Codice Privacy italiano, che recepisce la Direttiva ePrivacy
-            2002/58/CE, e le Linee guida cookie e altri strumenti di tracciamento del
-            Garante per la protezione dei dati personali del 10 giugno 2021). In questa
-            pagina, quando parliamo di &quot;cookie&quot;, intendiamo entrambe le categorie.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">2. Titolare del trattamento</h2>
-          <p>
-            Omniaweb S.r.l.s, P.IVA 09553001216, con sede legale in Vico Bagnara, 4 — 80135
-            Napoli —{" "}
-            <a href="mailto:info@omniamarketing.it" className="text-white underline hover:text-[#2e9bd6]">
-              info@omniamarketing.it
-            </a>
-            .
-          </p>
-        </section>
-
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">
-            3. Cosa NON facciamo
-          </h2>
-          <p>
-            Prima di entrare nel dettaglio, una premessa chiara: questo sito{" "}
-            <strong className="text-white">non utilizza cookie di profilazione a fini pubblicitari</strong>{" "}
-            e <strong className="text-white">non utilizza cookie di terze parti a scopo di marketing</strong>.
-            Utilizza Google Analytics solo in forma aggregata e solo con il tuo consenso,
-            come descritto al punto 6. Non c&apos;è nessun cookie wall: puoi navigare e usare
-            tutte le funzionalità principali del sito anche rifiutando ogni tracciamento
-            facoltativo.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">
-            4. Cookie tecnici necessari (nessun consenso richiesto)
-          </h2>
-          <p>
-            Questi cookie sono indispensabili al funzionamento del sito o all&apos;erogazione
-            di un servizio esplicitamente richiesto e non richiedono consenso preventivo
-            (art. 122, comma 1, Codice Privacy).
-          </p>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-[#1a1a1a]">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-[#1a1a1a] text-left text-xs uppercase text-[#888888]">
-                  <th className="px-4 py-3 font-medium">Nome</th>
-                  <th className="px-4 py-3 font-medium">Finalità</th>
-                  <th className="px-4 py-3 font-medium">Durata</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-[#1a1a1a]">
-                  <td className="px-4 py-3 align-top text-white">omnia_cookie_consent</td>
-                  <td className="px-4 py-3 align-top">
-                    Salva su localStorage la scelta espressa nel banner cookie (accettato /
-                    rifiutato), per non richiederla di nuovo ad ogni visita.
-                  </td>
-                  <td className="px-4 py-3 align-top">Fino a cancellazione manuale</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 align-top text-white">Sessione area riservata</td>
-                  <td className="px-4 py-3 align-top">
-                    Cookie di autenticazione impostato solo per lo staff che accede
-                    all&apos;area amministrativa (<code className="text-xs">/admin</code>).
-                    Non riguarda i visitatori del sito pubblico.
-                  </td>
-                  <td className="px-4 py-3 align-top">Durata della sessione</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">
-            5. Personalizzazione anonima (richiede consenso)
-          </h2>
-          <p>
-            Se accetti nel banner iniziale, il sito salva sul tuo dispositivo tramite
-            localStorage le seguenti informazioni:
-          </p>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-[#1a1a1a]">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-[#1a1a1a] text-left text-xs uppercase text-[#888888]">
-                  <th className="px-4 py-3 font-medium">Nome</th>
-                  <th className="px-4 py-3 font-medium">Contenuto</th>
-                  <th className="px-4 py-3 font-medium">Finalità</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-[#1a1a1a]">
-                  <td className="px-4 py-3 align-top text-white">omnia_visitor_profile</td>
-                  <td className="px-4 py-3 align-top">
-                    Un identificativo anonimo generato casualmente, il numero di giorni in
-                    cui torni sul sito e le categorie di progetti/servizi che visiti o su
-                    cui clicchi.
-                  </td>
-                  <td className="px-4 py-3 align-top">
-                    Adattare i testi, l&apos;ordine dei contenuti mostrati e i pulsanti di
-                    invito all&apos;azione a ciò che sembra interessarti di più.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 align-top text-white">omnia_visitor_name</td>
-                  <td className="px-4 py-3 align-top">
-                    Il nome che scegli di indicarci nel popup di benvenuto (facoltativo).
-                  </td>
-                  <td className="px-4 py-3 align-top">
-                    Mostrare i testi del sito rivolgendoci a te per nome.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-4">
-            L&apos;identificativo anonimo e le categorie che visiti (omnia_visitor_profile)
-            restano solo sul tuo dispositivo, non vengono mai trasmessi ai nostri server. Il
-            nome che indichi nel popup di benvenuto, invece, viene salvato anche in un
-            nostro database — insieme alla data, al solo identificativo anonimo (mai al
-            tuo indirizzo email o ad altri dati che ti identifichino), alla città
-            approssimativa dedotta dalla tua connessione (non salviamo mai il tuo
-            indirizzo IP) e a un livello di interesse/coinvolgimento calcolato dalle
-            pagine che visiti — così da poter sapere quante persone hanno lasciato il
-            nome e dare priorità a chi mostra più interesse quando rispondiamo. In
-            nessun caso queste informazioni sono incrociate con altri dati o condivise
-            con terzi. Se rifiuti il consenso, o se non lo esprimi, nessuna di queste
-            informazioni viene creata o salvata, e il sito mostra a tutti i visitatori
-            gli stessi contenuti di default. Puoi cancellare in ogni momento sia i dati
-            sul dispositivo sia quelli salvati sul server dalla sezione{" "}
-            <a href="#preferenze" className="underline hover:text-white">
-              Preferenze cookie
-            </a>{" "}
-            qui sotto.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">
-            6. Google Analytics (richiede consenso)
-          </h2>
-          <p>
-            Se accetti nel banner iniziale, il sito utilizza{" "}
-            <strong className="text-white">Google Analytics 4</strong>, un servizio di
-            analisi statistica fornito da Google Ireland Limited (per gli utenti
-            nell&apos;Unione Europea), per capire in forma aggregata come viene usato il
-            sito: quante persone lo visitano, quali pagine guardano, da dove arrivano e
-            quanto tempo vi passano. Non usiamo funzionalità pubblicitarie di Google
-            (Google Signals, remarketing) e l&apos;indirizzo IP viene anonimizzato prima
-            della memorizzazione.
-          </p>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-[#1a1a1a]">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-[#1a1a1a] text-left text-xs uppercase text-[#888888]">
-                  <th className="px-4 py-3 font-medium">Nome</th>
-                  <th className="px-4 py-3 font-medium">Finalità</th>
-                  <th className="px-4 py-3 font-medium">Durata</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-[#1a1a1a]">
-                  <td className="px-4 py-3 align-top text-white">_ga</td>
-                  <td className="px-4 py-3 align-top">
-                    Distingue gli utenti in forma aggregata e anonimizzata per il conteggio
-                    di visitatori e sessioni.
-                  </td>
-                  <td className="px-4 py-3 align-top">Fino a 2 anni</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 align-top text-white">_ga_*</td>
-                  <td className="px-4 py-3 align-top">
-                    Mantiene lo stato della sessione corrente per Google Analytics 4.
-                  </td>
-                  <td className="px-4 py-3 align-top">Fino a 2 anni</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-4">
-            I dati raccolti da Google Analytics sono trattati da Google secondo la propria{" "}
-            <a
-              href="https://policies.google.com/privacy"
-              target="_blank"
-              rel="noreferrer"
-              className="text-white underline hover:text-[#2e9bd6]"
-            >
-              informativa privacy
-            </a>{" "}
-            e i propri termini di conservazione. Se rifiuti il consenso, o se non lo esprimi,
-            Google Analytics non viene mai caricato e nessun dato viene inviato a Google.
-            Puoi revocare il consenso in qualsiasi momento dalla sezione{" "}
-            <a href="#preferenze" className="underline hover:text-white">
-              Preferenze cookie
-            </a>{" "}
-            qui sotto, oppure installare l&apos;
-            <a
-              href="https://tools.google.com/dlpage/gaoptout"
-              target="_blank"
-              rel="noreferrer"
-              className="text-white underline hover:text-[#2e9bd6]"
-            >
-              add-on di disattivazione di Google Analytics
-            </a>{" "}
-            per il tuo browser.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">
-            7. Risorse esterne (font)
-          </h2>
-          <p>
-            Per la visualizzazione dei caratteri tipografici del sito vengono caricate
-            risorse dai servizi <strong className="text-white">Google Fonts</strong> e{" "}
-            <strong className="text-white">Fontshare</strong>. Il caricamento di queste
-            risorse comporta, per ragioni tecniche legate al funzionamento del protocollo
-            HTTP, la trasmissione dell&apos;indirizzo IP del dispositivo ai rispettivi
-            fornitori, senza che venga impostato alcun cookie di tracciamento a fini di
-            profilazione.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">
-            8. Base giuridica
-          </h2>
-          <p>
-            I cookie tecnici necessari sono trattati sulla base della necessità di erogare
-            il servizio richiesto (art. 122, comma 1, Codice Privacy — nessun consenso
-            necessario). La personalizzazione anonima e Google Analytics sono trattati
-            sulla base del{" "}
-            <strong className="text-white">consenso libero, specifico e revocabile</strong>{" "}
-            dell&apos;utente (art. 6, par. 1, lett. a, GDPR), espresso tramite il banner
-            iniziale e modificabile in qualsiasi momento come descritto al punto 10.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">
-            9. Come gestire i cookie dal browser
-          </h2>
-          <p>
-            Oltre agli strumenti offerti da questo sito, puoi gestire o eliminare i cookie
-            direttamente dalle impostazioni del tuo browser. La disabilitazione dei cookie
-            tecnici potrebbe compromettere il corretto funzionamento del sito. Guide
-            ufficiali:{" "}
-            <a
-              href="https://support.google.com/chrome/answer/95647"
-              target="_blank"
-              rel="noreferrer"
-              className="text-white underline hover:text-[#2e9bd6]"
-            >
-              Chrome
-            </a>
-            ,{" "}
-            <a
-              href="https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie"
-              target="_blank"
-              rel="noreferrer"
-              className="text-white underline hover:text-[#2e9bd6]"
-            >
-              Firefox
-            </a>
-            ,{" "}
-            <a
-              href="https://support.apple.com/it-it/guide/safari/sfri11471/mac"
-              target="_blank"
-              rel="noreferrer"
-              className="text-white underline hover:text-[#2e9bd6]"
-            >
-              Safari
-            </a>
-            ,{" "}
-            <a
-              href="https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09"
-              target="_blank"
-              rel="noreferrer"
-              className="text-white underline hover:text-[#2e9bd6]"
-            >
-              Edge
-            </a>
-            .
-          </p>
-        </section>
-
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">
-            10. Gestisci e revoca il consenso
-          </h2>
-          <p className="mb-4">
-            Puoi cambiare la tua scelta in qualsiasi momento, con la stessa facilità con cui
-            l&apos;hai espressa la prima volta, usando i controlli qui sotto.
-          </p>
-          <CookiePreferences />
-        </section>
-
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">
-            11. Modifiche a questa informativa
-          </h2>
-          <p>
-            Questa Cookie Policy può essere aggiornata nel tempo, ad esempio in caso di
-            modifiche normative o di nuove funzionalità del sito. La data di ultimo
-            aggiornamento è indicata in cima alla pagina. In caso di modifiche sostanziali
-            che introducano nuove finalità di trattamento, ti verrà richiesto un nuovo
-            consenso.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">
-            12. I tuoi diritti e reclamo al Garante
-          </h2>
-          <p>
-            Per l&apos;elenco completo dei diritti riconosciuti dal GDPR e le modalità per
-            esercitarli, consulta la nostra{" "}
-            <Link href="/privacy-policy" className="text-white underline hover:text-[#2e9bd6]">
-              Privacy Policy
-            </Link>
-            . Se ritieni che il trattamento violi la normativa, hai diritto di proporre
-            reclamo al Garante per la protezione dei dati personali — Piazza Venezia, 11,
-            00187 Roma, PEC{" "}
-            <a
-              href="mailto:protocollo@pec.gpdp.it"
-              className="text-white underline hover:text-[#2e9bd6]"
-            >
-              protocollo@pec.gpdp.it
-            </a>
-            , sito{" "}
-            <a
-              href="https://www.garanteprivacy.it"
-              target="_blank"
-              rel="noreferrer"
-              className="text-white underline hover:text-[#2e9bd6]"
-            >
-              www.garanteprivacy.it
-            </a>
-            .
-          </p>
-        </section>
-
-        <section>
-          <h2 className="font-display text-2xl text-white mb-3">13. Contatti</h2>
-          <p>
-            Per qualsiasi domanda su questa Cookie Policy scrivi a{" "}
-            <a href="mailto:info@omniamarketing.it" className="text-white underline hover:text-[#2e9bd6]">
-              info@omniamarketing.it
-            </a>
-            .
-          </p>
-        </section>
-      </div>
-    </article>
+    <LegalPageContent
+      title={t("title")}
+      lastUpdated={t("lastUpdated")}
+      sections={sections}
+      preferencesAfterIndex={9}
+    />
   );
 }
