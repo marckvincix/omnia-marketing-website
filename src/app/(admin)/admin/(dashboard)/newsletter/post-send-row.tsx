@@ -12,7 +12,15 @@ import {
   SheetTitle,
   SheetDescription,
 } from "@/components/ui/sheet";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { useMediaQuery } from "@/lib/use-media-query";
 import type { SegmentKey } from "@/lib/email/segment-labels";
 import { sendUpdateEmail } from "./actions";
 
@@ -30,6 +38,45 @@ export interface SegmentOptionData {
   count: number;
 }
 
+function SegmentOptionList({
+  segments,
+  selectedKey,
+  onSelect,
+}: {
+  segments: SegmentOptionData[];
+  selectedKey: SegmentKey;
+  onSelect: (key: SegmentKey) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-1.5 overflow-y-auto px-4 pb-4">
+      {segments.map((s) => (
+        <button
+          key={s.key}
+          type="button"
+          onClick={() => onSelect(s.key)}
+          className={cn(
+            "flex items-center justify-between gap-3 rounded-lg border p-3 text-left transition-colors",
+            s.key === selectedKey
+              ? "border-primary bg-primary/5"
+              : "border-border hover:bg-muted",
+          )}
+        >
+          <div className="min-w-0">
+            <p className="text-sm font-medium">{s.label}</p>
+            <p className="text-xs text-muted-foreground truncate">{s.description}</p>
+          </div>
+          <div className="flex shrink-0 items-center gap-2">
+            <Badge variant="secondary">
+              {s.count} {s.count === 1 ? "iscritto" : "iscritti"}
+            </Badge>
+            {s.key === selectedKey && <Check className="size-4 text-primary" />}
+          </div>
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function PostSendRow({
   post,
   subscriberCount,
@@ -44,8 +91,14 @@ export function PostSendRow({
   const [pickerOpen, setPickerOpen] = useState(false);
   const [segment, setSegment] = useState<SegmentKey>("all");
   const [result, setResult] = useState<string | null>(null);
+  const isDesktop = useMediaQuery("(min-width: 640px)");
 
   const selected = segments.find((s) => s.key === segment) ?? segments[0];
+
+  function handleSelect(key: SegmentKey) {
+    setSegment(key);
+    setPickerOpen(false);
+  }
 
   function handleSend() {
     setConfirming(false);
@@ -115,43 +168,27 @@ export function PostSendRow({
         )}
       </TableCell>
 
-      <Sheet open={pickerOpen} onOpenChange={setPickerOpen}>
-        <SheetContent side="bottom" className="mx-auto max-h-[80vh] sm:max-w-md">
-          <SheetHeader>
-            <SheetTitle>Scegli il segmento</SheetTitle>
-            <SheetDescription className="truncate">A chi inviare &quot;{post.title}&quot;</SheetDescription>
-          </SheetHeader>
-          <div className="flex flex-col gap-1.5 overflow-y-auto px-4 pb-4">
-            {segments.map((s) => (
-              <button
-                key={s.key}
-                type="button"
-                onClick={() => {
-                  setSegment(s.key);
-                  setPickerOpen(false);
-                }}
-                className={cn(
-                  "flex items-center justify-between gap-3 rounded-lg border p-3 text-left transition-colors",
-                  s.key === segment
-                    ? "border-primary bg-primary/5"
-                    : "border-border hover:bg-muted",
-                )}
-              >
-                <div className="min-w-0">
-                  <p className="text-sm font-medium">{s.label}</p>
-                  <p className="text-xs text-muted-foreground truncate">{s.description}</p>
-                </div>
-                <div className="flex shrink-0 items-center gap-2">
-                  <Badge variant="secondary">
-                    {s.count} {s.count === 1 ? "iscritto" : "iscritti"}
-                  </Badge>
-                  {s.key === segment && <Check className="size-4 text-primary" />}
-                </div>
-              </button>
-            ))}
-          </div>
-        </SheetContent>
-      </Sheet>
+      {isDesktop ? (
+        <Dialog open={pickerOpen} onOpenChange={setPickerOpen}>
+          <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-lg">
+            <DialogHeader>
+              <DialogTitle>Scegli il segmento</DialogTitle>
+              <DialogDescription className="truncate">A chi inviare &quot;{post.title}&quot;</DialogDescription>
+            </DialogHeader>
+            <SegmentOptionList segments={segments} selectedKey={segment} onSelect={handleSelect} />
+          </DialogContent>
+        </Dialog>
+      ) : (
+        <Sheet open={pickerOpen} onOpenChange={setPickerOpen}>
+          <SheetContent side="bottom" className="max-h-[80vh]">
+            <SheetHeader>
+              <SheetTitle>Scegli il segmento</SheetTitle>
+              <SheetDescription className="truncate">A chi inviare &quot;{post.title}&quot;</SheetDescription>
+            </SheetHeader>
+            <SegmentOptionList segments={segments} selectedKey={segment} onSelect={handleSelect} />
+          </SheetContent>
+        </Sheet>
+      )}
     </TableRow>
   );
 }
