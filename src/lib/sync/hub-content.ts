@@ -10,7 +10,10 @@ type HubContentRow = {
   body: string;
   image_url: string | null;
   published_at: string | null;
+  category: string | null;
 };
+
+const KNOWN_CATEGORY_SLUGS = new Set(["web", "branding", "social"]);
 
 function slugify(title: string) {
   return title
@@ -37,7 +40,7 @@ export async function syncHubBlogPosts() {
   const hub = createClient(hubUrl, hubKey);
   const { data, error } = await hub
     .from("content_updates")
-    .select("id, title, excerpt, body, image_url, published_at")
+    .select("id, title, excerpt, body, image_url, published_at, category")
     .eq("stato", "pubblicato")
     .eq("visibility", "tutti");
 
@@ -59,9 +62,11 @@ export async function syncHubBlogPosts() {
     const baseSlug = slugify(row.title) || row.id;
     const slug = existing?.slug ?? (await uniqueSlug(baseSlug));
 
-    // Hub non fornisce una categoria: la deduciamo dal testo. Se l'admin ha già assegnato
-    // una categoria a mano nell'editor del sito, non la sovrascriviamo a ogni risincronizzazione.
-    const guessedSlug = classifyCategory(`${row.title} ${row.excerpt ?? ""} ${row.body}`);
+    // Preferiamo la categoria assegnata da Hub, se presente e valida; altrimenti la deduciamo
+    // dal testo con il classificatore. Se l'admin ha già assegnato una categoria a mano
+    // nell'editor del sito, non la sovrascriviamo comunque a ogni risincronizzazione.
+    const hubSlug = row.category && KNOWN_CATEGORY_SLUGS.has(row.category) ? row.category : null;
+    const guessedSlug = hubSlug ?? classifyCategory(`${row.title} ${row.excerpt ?? ""} ${row.body}`);
     const guessedCategoryId = guessedSlug ? categoryIdBySlug.get(guessedSlug) : undefined;
 
     const basePostData = {
