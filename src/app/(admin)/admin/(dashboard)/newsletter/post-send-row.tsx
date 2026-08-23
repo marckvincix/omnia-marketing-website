@@ -1,17 +1,18 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Loader2, Send } from "lucide-react";
+import { Check, ChevronDown, Loader2, Send } from "lucide-react";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 import type { SegmentKey } from "@/lib/email/segment-labels";
 import { sendUpdateEmail } from "./actions";
 
@@ -26,6 +27,7 @@ export interface SegmentOptionData {
   key: SegmentKey;
   label: string;
   description: string;
+  count: number;
 }
 
 export function PostSendRow({
@@ -39,8 +41,11 @@ export function PostSendRow({
 }) {
   const [isPending, startTransition] = useTransition();
   const [confirming, setConfirming] = useState(false);
+  const [pickerOpen, setPickerOpen] = useState(false);
   const [segment, setSegment] = useState<SegmentKey>("all");
   const [result, setResult] = useState<string | null>(null);
+
+  const selected = segments.find((s) => s.key === segment) ?? segments[0];
 
   function handleSend() {
     setConfirming(false);
@@ -76,24 +81,25 @@ export function PostSendRow({
         {result ? (
           <span className="text-xs text-muted-foreground">{result}</span>
         ) : confirming ? (
-          <div className="flex items-center justify-end gap-2">
-            <Select value={segment} onValueChange={(v) => setSegment(v as SegmentKey)}>
-              <SelectTrigger className="w-56" size="sm">
-                <SelectValue placeholder="Segmento">
-                  {(v: string) => segments.find((s) => s.key === v)?.label ?? v}
-                </SelectValue>
-              </SelectTrigger>
-              <SelectContent>
-                {segments.map((s) => (
-                  <SelectItem key={s.key} value={s.key}>
-                    {s.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Button size="sm" variant="destructive" disabled={isPending} onClick={handleSend}>
-              {isPending ? <Loader2 className="size-4 animate-spin" /> : "Conferma invio"}
-            </Button>
+          <div className="flex flex-col items-end gap-1.5">
+            <div className="flex items-center justify-end gap-2">
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className="w-48 justify-between font-normal sm:w-56"
+                onClick={() => setPickerOpen(true)}
+              >
+                <span className="truncate">{selected?.label ?? "Segmento"}</span>
+                <ChevronDown className="size-4 shrink-0 text-muted-foreground" />
+              </Button>
+              <Button size="sm" variant="destructive" disabled={isPending} onClick={handleSend}>
+                {isPending ? <Loader2 className="size-4 animate-spin" /> : "Conferma invio"}
+              </Button>
+            </div>
+            <span className="text-xs text-muted-foreground">
+              Invio a {selected?.count ?? 0} {selected?.count === 1 ? "iscritto" : "iscritti"}
+            </span>
           </div>
         ) : (
           <Button
@@ -108,6 +114,44 @@ export function PostSendRow({
           </Button>
         )}
       </TableCell>
+
+      <Sheet open={pickerOpen} onOpenChange={setPickerOpen}>
+        <SheetContent side="bottom" className="mx-auto max-h-[80vh] sm:max-w-md">
+          <SheetHeader>
+            <SheetTitle>Scegli il segmento</SheetTitle>
+            <SheetDescription className="truncate">A chi inviare &quot;{post.title}&quot;</SheetDescription>
+          </SheetHeader>
+          <div className="flex flex-col gap-1.5 overflow-y-auto px-4 pb-4">
+            {segments.map((s) => (
+              <button
+                key={s.key}
+                type="button"
+                onClick={() => {
+                  setSegment(s.key);
+                  setPickerOpen(false);
+                }}
+                className={cn(
+                  "flex items-center justify-between gap-3 rounded-lg border p-3 text-left transition-colors",
+                  s.key === segment
+                    ? "border-primary bg-primary/5"
+                    : "border-border hover:bg-muted",
+                )}
+              >
+                <div className="min-w-0">
+                  <p className="text-sm font-medium">{s.label}</p>
+                  <p className="text-xs text-muted-foreground truncate">{s.description}</p>
+                </div>
+                <div className="flex shrink-0 items-center gap-2">
+                  <Badge variant="secondary">
+                    {s.count} {s.count === 1 ? "iscritto" : "iscritti"}
+                  </Badge>
+                  {s.key === segment && <Check className="size-4 text-primary" />}
+                </div>
+              </button>
+            ))}
+          </div>
+        </SheetContent>
+      </Sheet>
     </TableRow>
   );
 }

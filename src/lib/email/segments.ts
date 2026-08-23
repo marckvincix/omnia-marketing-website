@@ -9,6 +9,7 @@ export interface SegmentOption {
   key: SegmentKey;
   label: string;
   description: string;
+  count: number;
 }
 
 // Segmenti fissi (aperture/click/bounce) + un segmento per ogni categoria di articolo
@@ -17,18 +18,33 @@ export interface SegmentOption {
 // tutte, anche senza click ancora registrati, altrimenti il filtro resterebbe invisibile
 // finché qualcuno non clicca almeno un link — cosa che non può succedere se il filtro
 // stesso non è mai comparso per inviare una prima email mirata.
+//
+// Ogni opzione porta con sé anche il numero di iscritti attivi che rientrano nel segmento
+// (stessa logica di filtro usata dall'invio vero e proprio in send-newsletter.ts), così l'admin
+// vede subito a quante persone arriverebbe l'email prima di scegliere.
 export async function getSegmentOptions(): Promise<SegmentOption[]> {
-  const categories = await prisma.blogCategory.findMany({
-    orderBy: { name: "asc" },
-  });
+  const [categories, activeSubscribers] = await Promise.all([
+    prisma.blogCategory.findMany({ orderBy: { name: "asc" } }),
+    prisma.newsletterSubscriber.findMany({ where: { unsubscribedAt: null }, select: { id: true } }),
+  ]);
+  const activeIds = new Set(activeSubscribers.map((s) => s.id));
 
-  const categoryOptions: SegmentOption[] = categories.map((category) => ({
-    key: categorySegmentKey(category.id),
-    label: `Interessati: ${category.name}`,
-    description: `Ha cliccato almeno un articolo di categoria "${category.name}" in una newsletter precedente.`,
-  }));
+  const baseOptions: { key: SegmentKey; label: string; description: string }[] = [
+    ...FIXED_SEGMENTS,
+    ...categories.map((category) => ({
+      key: categorySegmentKey(category.id),
+      label: `Interessati: ${category.name}`,
+      description: `Ha cliccato almeno un articolo di categoria "${category.name}" in una newsletter precedente.`,
+    })),
+  ];
 
-  return [...FIXED_SEGMENTS, ...categoryOptions];
+  return Promise.all(
+    baseOptions.map(async (option) => {
+      const ids = await getSubscriberIdsForSegment(option.key);
+      const count = ids === null ? activeIds.size : ids.filter((id) => activeIds.has(id)).length;
+      return { ...option, count };
+    }),
+  );
 }
 
 export async function getSubscriberIdsForSegment(segment: SegmentKey): Promise<string[] | null> {
