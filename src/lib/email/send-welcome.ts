@@ -1,4 +1,4 @@
-import { resend, RESEND_FROM_EMAIL } from "./resend";
+import { sendTrackedEmail, RESEND_FROM_EMAIL } from "./resend";
 import { renderWelcomeEmail } from "./welcome-template";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -7,7 +7,7 @@ export async function sendWelcomeEmail(email: string, unsubscribeToken: string, 
   const unsubscribeUrl = `${SITE_URL}/disiscriviti?email=${encodeURIComponent(email)}&token=${unsubscribeToken}`;
   const html = await renderWelcomeEmail({ unsubscribeUrl, siteUrl: SITE_URL, locale });
 
-  const { error } = await resend.emails.send({
+  const { error } = await sendTrackedEmail({
     from: RESEND_FROM_EMAIL,
     to: email,
     subject: "Iscrizione confermata — Omnia Marketing",

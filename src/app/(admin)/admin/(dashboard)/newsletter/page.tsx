@@ -18,6 +18,8 @@ import {
 import { SubscriberRow, UnsubscribedRow } from "./subscriber-row";
 import { PostSendRow } from "./post-send-row";
 import { SyncMetricsButton } from "./sync-metrics-button";
+import { UsageDialog } from "./usage-dialog";
+import { ImportSubscribersDialog } from "./import-subscribers-dialog";
 
 export const metadata: Metadata = {
   title: "Newsletter",
@@ -61,7 +63,10 @@ export default async function AdminNewsletterPage() {
             title="Newsletter"
             description="Piattaforma di email marketing: invia aggiornamenti, segmenta gli iscritti e monitora le performance."
           />
-          <SyncMetricsButton />
+          <div className="flex items-center gap-2">
+            <UsageDialog />
+            <SyncMetricsButton />
+          </div>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
@@ -150,15 +155,19 @@ export default async function AdminNewsletterPage() {
       </div>
 
       <div>
-        <AdminPageHeader
-          title="Iscritti"
-          description={`${subscribers.length} ${subscribers.length === 1 ? "iscritto attivo" : "iscritti attivi"} alla newsletter.`}
-        />
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <AdminPageHeader
+            title="Iscritti"
+            description={`${subscribers.length} ${subscribers.length === 1 ? "iscritto attivo" : "iscritti attivi"} alla newsletter.`}
+          />
+          <ImportSubscribersDialog />
+        </div>
 
         <div className="rounded-xl border border-border bg-card overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow>
+                <TableHead>Nome</TableHead>
                 <TableHead>Email</TableHead>
                 <TableHead>Iscritto il</TableHead>
                 <TableHead>Coinvolgimento</TableHead>
@@ -174,6 +183,7 @@ export default async function AdminNewsletterPage() {
                     subscriber={{
                       id: subscriber.id,
                       email: subscriber.email,
+                      name: subscriber.name,
                       createdAt: subscriber.createdAt.toISOString(),
                       openedCount: stats?.openedCount ?? 0,
                       clickedCount: stats?.clickedCount ?? 0,
@@ -185,7 +195,7 @@ export default async function AdminNewsletterPage() {
               })}
               {subscribers.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={4} className="text-center text-muted-foreground py-8">
+                  <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
                     Nessun iscritto ancora.
                   </TableCell>
                 </TableRow>

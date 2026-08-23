@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { resend, RESEND_FROM_EMAIL } from "./resend";
+import { sendTrackedEmail, RESEND_FROM_EMAIL } from "./resend";
 import { renderNewsletterEmail } from "./newsletter-template";
 import { getSubscriberIdsForSegment, type SegmentKey } from "./segments";
 import { DEFAULT_LOCALE } from "@/lib/i18n/locales";
@@ -60,7 +60,7 @@ export async function sendNewsletterForPost(postId: string, segment: SegmentKey 
     });
 
     try {
-      const { data, error } = await resend.emails.send({
+      const { data, error } = await sendTrackedEmail({
         from: RESEND_FROM_EMAIL,
         to: subscriber.email,
         subject: title,

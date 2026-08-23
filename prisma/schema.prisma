@@ -484,6 +484,9 @@ model LegalPage {
 model NewsletterSubscriber {
   id               String    @id @default(cuid())
   email            String    @unique
+  // Valorizzato solo per gli iscritti aggiunti tramite import CSV/XLS da admin (il form di
+  // iscrizione pubblico non chiede il nome): opzionale, mai bloccante.
+  name             String?
   unsubscribeToken String    @unique @default(cuid())
   createdAt        DateTime  @default(now())
   unsubscribedAt   DateTime?
@@ -559,4 +562,17 @@ model EmailEvent {
 
   @@index([campaignId])
   @@index([subscriberId])
+}
+
+// Traccia ogni email inviata dal sito tramite Resend (newsletter, benvenuto, conferme di
+// contatto, risposte admin — qualunque chiamata a resend.emails.send), a differenza di
+// EmailEvent che segue solo gli invii di newsletter. Serve esclusivamente a calcolare in
+// admin/newsletter quanto del limite "Transactional" del piano Resend (giornaliero e
+// mensile) è già stato consumato: Resend non espone questo dato tramite API pubblica, solo
+// nella propria dashboard, quindi lo stimiamo qui con un conteggio interno.
+model EmailSendLog {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
 }

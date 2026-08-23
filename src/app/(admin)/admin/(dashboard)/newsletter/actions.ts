@@ -5,6 +5,8 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sendNewsletterForPost } from "@/lib/email/send-newsletter";
 import { syncEmailMetricsFromResend } from "@/lib/email/sync-metrics";
+import { getTransactionalUsage, type TransactionalUsage } from "@/lib/email/usage";
+import { importSubscribersFromFile as importSubscribersFromFileImpl, type ImportResult } from "@/lib/email/import-subscribers";
 import type { SegmentKey } from "@/lib/email/segments";
 
 async function requireAdmin() {
@@ -32,6 +34,22 @@ export async function sendUpdateEmail(postId: string, segment: SegmentKey) {
       error: error instanceof Error ? error.message : "Errore sconosciuto durante l'invio",
     };
   }
+}
+
+export async function getTransactionalUsageStats(): Promise<TransactionalUsage> {
+  await requireAdmin();
+  return getTransactionalUsage();
+}
+
+export async function importSubscribersFromFile(formData: FormData): Promise<ImportResult> {
+  await requireAdmin();
+  const file = formData.get("file");
+  if (!(file instanceof File) || file.size === 0) {
+    return { imported: 0, updated: 0, skipped: 0, invalid: 0, error: "Nessun file selezionato." };
+  }
+  const result = await importSubscribersFromFileImpl(file);
+  revalidatePath("/admin/newsletter");
+  return result;
 }
 
 export async function syncMetrics() {

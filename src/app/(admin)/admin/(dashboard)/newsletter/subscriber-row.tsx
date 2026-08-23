@@ -8,6 +8,7 @@ import { deleteSubscriber } from "./actions";
 export interface SubscriberRowData {
   id: string;
   email: string;
+  name: string | null;
   createdAt: string;
   openedCount: number;
   clickedCount: number;
@@ -18,6 +19,7 @@ export interface SubscriberRowData {
 export function SubscriberRow({ subscriber }: { subscriber: SubscriberRowData }) {
   return (
     <TableRow>
+      <TableCell className="text-muted-foreground">{subscriber.name || "—"}</TableCell>
       <TableCell className="font-medium">{subscriber.email}</TableCell>
       <TableCell className="text-muted-foreground text-sm whitespace-nowrap">
         {new Date(subscriber.createdAt).toLocaleDateString("it-IT", {

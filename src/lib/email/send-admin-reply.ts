@@ -1,4 +1,4 @@
-import { resend, RESEND_FROM_EMAIL } from "./resend";
+import { sendTrackedEmail, RESEND_FROM_EMAIL } from "./resend";
 import { renderAdminReplyEmail } from "./admin-reply-template";
 import { translateTexts, DeepLQuotaExceededError } from "@/lib/i18n/deepl";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/locales";
@@ -37,7 +37,7 @@ export async function sendAdminReplyEmail({
   }
 
   const html = await renderAdminReplyEmail({ body: translatedBody, siteUrl: SITE_URL, locale });
-  const { error } = await resend.emails.send({
+  const { error } = await sendTrackedEmail({
     from: RESEND_FROM_EMAIL,
     to,
     replyTo,
