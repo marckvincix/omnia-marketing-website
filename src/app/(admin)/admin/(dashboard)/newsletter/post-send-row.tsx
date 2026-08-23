@@ -48,14 +48,14 @@ function SegmentOptionList({
   onSelect: (key: SegmentKey) => void;
 }) {
   return (
-    <div className="flex flex-col gap-1.5 overflow-y-auto px-4 pb-4">
+    <div className="flex min-w-0 flex-col gap-1.5 overflow-y-auto px-4 pb-4">
       {segments.map((s) => (
         <button
           key={s.key}
           type="button"
           onClick={() => onSelect(s.key)}
           className={cn(
-            "flex items-center justify-between gap-3 rounded-lg border p-3 text-left transition-colors",
+            "flex w-full min-w-0 items-center justify-between gap-3 rounded-lg border p-3 text-left transition-colors",
             s.key === selectedKey
               ? "border-primary bg-primary/5"
               : "border-border hover:bg-muted",
@@ -170,10 +170,10 @@ export function PostSendRow({
 
       {isDesktop ? (
         <Dialog open={pickerOpen} onOpenChange={setPickerOpen}>
-          <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-lg">
-            <DialogHeader>
+          <DialogContent className="max-h-[85vh] min-w-0 overflow-y-auto sm:max-w-lg">
+            <DialogHeader className="min-w-0">
               <DialogTitle>Scegli il segmento</DialogTitle>
-              <DialogDescription className="truncate">A chi inviare &quot;{post.title}&quot;</DialogDescription>
+              <DialogDescription className="line-clamp-2">A chi inviare &quot;{post.title}&quot;</DialogDescription>
             </DialogHeader>
             <SegmentOptionList segments={segments} selectedKey={segment} onSelect={handleSelect} />
           </DialogContent>
@@ -183,7 +183,7 @@ export function PostSendRow({
           <SheetContent side="bottom" className="max-h-[80vh]">
             <SheetHeader>
               <SheetTitle>Scegli il segmento</SheetTitle>
-              <SheetDescription className="truncate">A chi inviare &quot;{post.title}&quot;</SheetDescription>
+              <SheetDescription className="line-clamp-2">A chi inviare &quot;{post.title}&quot;</SheetDescription>
             </SheetHeader>
             <SegmentOptionList segments={segments} selectedKey={segment} onSelect={handleSelect} />
           </SheetContent>
