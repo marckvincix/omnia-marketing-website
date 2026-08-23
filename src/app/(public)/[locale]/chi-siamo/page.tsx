@@ -9,17 +9,16 @@ import { CtaBand } from "@/components/public/cta-band";
 import { getGeneralFaqs } from "@/lib/data/faqs";
 import { buildAlternates } from "@/lib/i18n/metadata";
 
-const TITLE = "Chi Siamo — Agenzia Web e Branding a Napoli";
-const DESCRIPTION =
-  "Omnia Marketing è l'agenzia di web design, branding e social media management con sede a Napoli che trasforma visioni in esperienze digitali uniche e brand memorabili, al fianco di aziende in tutta Italia da molti anni.";
-
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations("pages.chiSiamo");
+  const title = t("seoTitle");
+  const description = t("seoDescription");
   return {
-    title: TITLE,
-    description: DESCRIPTION,
+    title,
+    description,
     alternates: buildAlternates("/chi-siamo", locale),
-    openGraph: { title: TITLE, description: DESCRIPTION, url: "/chi-siamo", type: "website" },
+    openGraph: { title, description, url: "/chi-siamo", type: "website" },
   };
 }
 
@@ -69,60 +68,7 @@ export default async function ChiSiamoPage() {
 
       <FaqSection items={generalFaqs} />
 
-      <CtaBand
-        title={t("ctaTitle")}
-        description={t("ctaDescription")}
-        variants={{
-          web: [
-            {
-              title: "Hai bisogno di un sito su misura?",
-              description: "Parliamone: realizziamo siti, app ed e-commerce pensati per il tuo business.",
-            },
-            {
-              title: "Sembra che i siti web ti interessino particolarmente.",
-              description: "Raccontaci il tuo progetto: troviamo insieme la soluzione giusta.",
-              ctaLabel: "Parliamone",
-            },
-            {
-              title: "Sei tornato più volte a trovarci. Forse è il momento di iniziare.",
-              description: "Scrivici oggi, senza impegno: parliamo del tuo sito.",
-              ctaLabel: "Scrivici ora",
-            },
-          ],
-          branding: [
-            {
-              title: "Hai bisogno di un'identità su misura?",
-              description: "Parliamone: diamo forma al tuo brand con strategy, naming e design.",
-            },
-            {
-              title: "Sembra che il branding ti interessi particolarmente.",
-              description: "Raccontaci il tuo progetto: troviamo insieme la soluzione giusta.",
-              ctaLabel: "Parliamone",
-            },
-            {
-              title: "Sei tornato più volte a trovarci. Forse è il momento di iniziare.",
-              description: "Scrivici oggi, senza impegno: parliamo del tuo brand.",
-              ctaLabel: "Scrivici ora",
-            },
-          ],
-          social: [
-            {
-              title: "Hai bisogno di una presenza social forte?",
-              description: "Parliamone: gestiamo i tuoi canali con contenuti e video di qualità.",
-            },
-            {
-              title: "Sembra che i social ti interessino particolarmente.",
-              description: "Raccontaci il tuo progetto: troviamo insieme la soluzione giusta.",
-              ctaLabel: "Parliamone",
-            },
-            {
-              title: "Sei tornato più volte a trovarci. Forse è il momento di iniziare.",
-              description: "Scrivici oggi, senza impegno: parliamo dei tuoi social.",
-              ctaLabel: "Scrivici ora",
-            },
-          ],
-        }}
-      />
+      <CtaBand title={t("ctaTitle")} description={t("ctaDescription")} variants={t.raw("ctaVariants")} />
     </>
   );
 }

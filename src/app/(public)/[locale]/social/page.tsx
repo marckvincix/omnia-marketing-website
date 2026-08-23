@@ -13,15 +13,11 @@ import { getFaqsByServiceSlug } from "@/lib/data/faqs";
 import { ServiceJsonLd } from "@/components/shared/json-ld";
 import { buildAlternates } from "@/lib/i18n/metadata";
 
-const DEFAULT_TITLE = "Social — SMM, Fotografia, Video, Spot";
-const DEFAULT_DESCRIPTION =
-  "Social media management, fotografia, videografia e spot pubblicitari dal taglio cinematografico per aziende a Napoli e in Campania che vogliono distinguersi sui social.";
-
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const service = await getServiceBySlug("social", locale);
-  const title = service?.seoTitle || DEFAULT_TITLE;
-  const description = service?.seoDescription || DEFAULT_DESCRIPTION;
+  const [service, t] = await Promise.all([getServiceBySlug("social", locale), getTranslations("pages.social")]);
+  const title = service?.seoTitle || t("seoTitle");
+  const description = service?.seoDescription || t("seoDescription");
 
   return {
     title,

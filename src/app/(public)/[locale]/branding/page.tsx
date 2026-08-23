@@ -13,15 +13,11 @@ import { getFaqsByServiceSlug } from "@/lib/data/faqs";
 import { ServiceJsonLd } from "@/components/shared/json-ld";
 import { buildAlternates } from "@/lib/i18n/metadata";
 
-const DEFAULT_TITLE = "Branding — Strategy, Naming, Logo, UI/UX";
-const DEFAULT_DESCRIPTION =
-  "Diamo forma alla tua identità visiva: strategy, naming, logo design e UI/UX per un brand che emoziona e distingue. Agenzia di branding a Napoli, al fianco di clienti in tutta Italia.";
-
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const service = await getServiceBySlug("branding", locale);
-  const title = service?.seoTitle || DEFAULT_TITLE;
-  const description = service?.seoDescription || DEFAULT_DESCRIPTION;
+  const [service, t] = await Promise.all([getServiceBySlug("branding", locale), getTranslations("pages.branding")]);
+  const title = service?.seoTitle || t("seoTitle");
+  const description = service?.seoDescription || t("seoDescription");
 
   return {
     title,

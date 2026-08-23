@@ -46,10 +46,12 @@
     "successoConNome": "{name}, your registration has been confirmed. Thank you!"
   },
   "common": {
-    "vaiAlContenuto": "Skip to main content"
+    "vaiAlContenuto": "Skip to main content",
+    "contattaci": "Contact Us",
+    "vediIlProgetto": "View the project"
   },
   "email": {
-    "footerUnsubscribeNote": "You received this email because you're subscribed to the Omnia Marketing newsletter.",
+    "footerUnsubscribeNote": "You received this email because you are subscribed to the Omnia Marketing newsletter.",
     "disiscriviti": "Unsubscribe",
     "newsletterEyebrow": "New Update",
     "newsletterCta": "Read the full article →",
@@ -59,7 +61,7 @@
     "welcomeCta": "Go to the blog →",
     "contactConfirmEyebrow": "Request Received",
     "contactConfirmHeading": "Thank you, {name}!",
-    "contactConfirmBody1": "We have received your request: our team is already processing it, and we will respond as soon as possible.",
+    "contactConfirmBody1": "We have received your request: our team is already working on it, and we will respond as soon as possible.",
     "contactConfirmBody2": "In the meantime, you can take a look at our most recent projects.",
     "contactConfirmCta": "View the portfolio →",
     "contactConfirmFooterNote": "This is an automated confirmation email for the request you submitted via the contact form.",
@@ -69,17 +71,21 @@
   },
   "pages": {
     "web": {
+      "seoTitle": "Web — Websites, Apps, and E-commerce",
+      "seoDescription": "We create websites, mobile apps, e-commerce sites, and digital platforms featuring minimalist design and cutting-edge technology. As a web agency based in Naples, we serve clients throughout Italy.",
       "scrollReveal": "Websites designed with meticulous attention to detail: we create modern designs, refine every visual element, and craft unique digital experiences for your brand.",
       "ctaTitle": "Do you have a web project in mind?",
-      "ctaDescription": "Tell us about your idea: we'll turn it into a custom website, app, or e-commerce site.",
+      "ctaDescription": "Tell us about your idea: we'll turn it into a custom website, app, or e-commerce platform.",
       "popupTitle": "Ready to take your business online?",
       "popupDescription": "Request a free consultation: let's talk about your website, e-commerce site, or app.",
       "popupSubmitLabel": "Request a consultation",
-      "popupDefaultMessage": "I would like to request a consultation to create a custom website."
+      "popupDefaultMessage": "I would like to request a consultation to have a custom website built."
     },
     "branding": {
+      "seoTitle": "Branding — Strategy, Naming, Logo, UI/UX",
+      "seoDescription": "We shape your visual identity: strategy, naming, logo design, and UI/UX for a brand that inspires and stands out. A branding agency in Naples, working with clients throughout Italy.",
       "scrollReveal": "We shape your visual identity with a design crafted to inspire and set you apart: from strategy to logo, we create brands that leave a lasting impression.",
-      "ctaTitle": "Do you want a brand identity that's instantly recognizable?",
+      "ctaTitle": "Do you want a brand identity that stands out at a glance?",
       "ctaDescription": "Let's talk about your brand: strategy, naming, and design—all in one process.",
       "popupTitle": "Do you like the way we build a brand?",
       "popupDescription": "Let's talk about your visual identity: request a free consultation.",
@@ -87,6 +93,8 @@
       "popupDefaultMessage": "I would like to request a consultation regarding my brand identity."
     },
     "social": {
+      "seoTitle": "Social Media — SMM, Photography, Video, Commercials",
+      "seoDescription": "Social media management, photography, videography, and cinematic-style commercials for companies in Naples and Campania that want to stand out on social media.",
       "scrollReveal": "Social media managed down to the last detail: we manage content, create unique photos and videos, and produce commercials to enhance your digital presence.",
       "ctaTitle": "Ready to tell your brand's story on social media?",
       "ctaDescription": "From editorial strategy to video production: we manage your channels with a consistent design.",
@@ -96,6 +104,8 @@
       "popupDefaultMessage": "I would like to request a consultation regarding the management of my social media channels."
     },
     "progetti": {
+      "seoTitle": "Portfolio — Web, Branding, and Social Media Projects in Naples",
+      "seoDescription": "Projects completed by Omnia Marketing: websites, e-commerce, branding, and social media for companies in Naples and throughout Italy that want to stand out.",
       "scrollReveal": "Every project begins with careful listening and is developed in collaboration with the client, from the initial brief to the final result.",
       "ctaTitle": "The next project could be yours.",
       "ctaDescription": "Tell us about your idea: we'll turn it into a custom digital experience.",
@@ -104,13 +114,65 @@
       "popupTitle": "Do you like the projects we work on?",
       "popupDescription": "Tell us about your idea: we can create a custom project, with the same attention to detail as this one.",
       "popupSubmitLabel": "Request Your Project",
-      "popupDefaultMessage": "I've seen the \"{client}\" project and would like to request a consultation for a similar project."
+      "popupDefaultMessage": "I've seen the \"{client}\" project and would like to request a consultation for a similar project.",
+      "ctaVariants": {
+        "web": [
+          {
+            "title": "Would you like a website like these?",
+            "description": "We create websites, apps, and e-commerce platforms tailored to your business."
+          },
+          {
+            "title": "Do you often go back and look at these web projects? Do you like what you see?",
+            "description": "Let's talk about it: we can build something like this for you.",
+            "ctaLabel": "Let's talk about it"
+          },
+          {
+            "title": "You keep coming back to these projects. Maybe it's time to start your own.",
+            "description": "Contact us today: let's work together to create your next website.",
+            "ctaLabel": "Contact us now"
+          }
+        ],
+        "branding": [
+          {
+            "title": "Would you like an identity like these?",
+            "description": "Strategy, naming, and logo design for a brand that stands out."
+          },
+          {
+            "title": "Do you often go back and look at these branding projects? Do you like what you see?",
+            "description": "Let's talk about it: we can create a similar identity for you.",
+            "ctaLabel": "Let's talk about it"
+          },
+          {
+            "title": "You keep coming back to these projects. Maybe it's time to start your own.",
+            "description": "Contact us today: let's work together to build your brand.",
+            "ctaLabel": "Contact us now"
+          }
+        ],
+        "social": [
+          {
+            "title": "Would you like social media content like this?",
+            "description": "We manage your social media channels with photos, videos, and a cohesive strategy."
+          },
+          {
+            "title": "Do you often go back and look at these social media projects? Do you like what you see?",
+            "description": "Let's talk about it: we can do something similar for your channels.",
+            "ctaLabel": "Let's talk about it"
+          },
+          {
+            "title": "You keep coming back to these projects. Maybe it's time to start your own.",
+            "description": "Contact us today: let's work together to grow your social media presence.",
+            "ctaLabel": "Contact us now"
+          }
+        ]
+      }
     },
     "chiSiamo": {
-      "scrollReveal": "We believe in design as a practical tool, not as decoration.",
+      "seoTitle": "About Us — Web and Branding Agency in Naples",
+      "seoDescription": "Omnia Marketing is a Naples-based web design, branding, and social media management agency that has been working alongside companies throughout Italy for many years to transform visions into unique digital experiences and memorable brands.",
+      "scrollReveal": "We believe in design as a tool for work, not as decoration.",
       "quote": "Design isn't just about how something looks, but how it works.",
       "quoteAuthor": "— Steve Jobs",
-      "intro": "Omnia Marketing is a web design, branding, and social media management agency based in Naples. For many years, we have been creating websites, e-commerce sites, and brand identities, and managing social media channels for companies throughout Italy, with a single team overseeing each project from strategy to final delivery.",
+      "intro": "Omnia Marketing is a web design, branding, and social media management agency based in Naples. For many years, we have been creating websites, e-commerce platforms, and brand identities, and managing social media channels for companies throughout Italy, with a single team overseeing each project from strategy to final result.",
       "closing": "Web, branding, and social media all under one roof: no handoffs between different vendors—just one team that knows your brand inside and out.",
       "keyword1": "STRATEGY",
       "keyword2": "DESIGN",
@@ -118,24 +180,80 @@
       "keyword4": "CONTENTS",
       "keyword5": "RESULTS",
       "ctaTitle": "Let's talk about your next project.",
-      "ctaDescription": "Whether you need to build a brand from scratch or grow the one you already have, we're here to listen."
+      "ctaDescription": "Whether you need to build a brand from scratch or grow the one you already have, we're here to listen.",
+      "ctaVariants": {
+        "web": [
+          {
+            "title": "Do you need a custom website?",
+            "description": "Let's talk about it: we build websites, apps, and e-commerce platforms tailored to your business."
+          },
+          {
+            "title": "It seems you're particularly interested in websites.",
+            "description": "Tell us about your project: let's work together to find the right solution.",
+            "ctaLabel": "Let's talk about it"
+          },
+          {
+            "title": "You've come back to visit us several times. Maybe it's time to get started.",
+            "description": "Contact us today—no obligation—and let's talk about your website.",
+            "ctaLabel": "Contact us now"
+          }
+        ],
+        "branding": [
+          {
+            "title": "Do you need a custom identity?",
+            "description": "Let's talk about it: we'll shape your brand through strategy, naming, and design."
+          },
+          {
+            "title": "It seems like you're particularly interested in branding.",
+            "description": "Tell us about your project: let's work together to find the right solution.",
+            "ctaLabel": "Let's talk about it"
+          },
+          {
+            "title": "You've come back to visit us several times. Maybe it's time to get started.",
+            "description": "Contact us today—no strings attached—and let's talk about your brand.",
+            "ctaLabel": "Contact us now"
+          }
+        ],
+        "social": [
+          {
+            "title": "Do you need a strong social media presence?",
+            "description": "Let's talk about it: we'll manage your channels with high-quality content and videos."
+          },
+          {
+            "title": "It seems like you're particularly interested in social media.",
+            "description": "Tell us about your project: let's work together to find the right solution.",
+            "ctaLabel": "Let's talk about it"
+          },
+          {
+            "title": "You've come back to visit us several times. Maybe it's time to get started.",
+            "description": "Contact us today—no obligation—and let's talk about your social media.",
+            "ctaLabel": "Contact us now"
+          }
+        ]
+      }
     },
     "blog": {
+      "seoTitle": "Blog — Tips on the Web, Branding, and Social Media",
+      "seoDescription": "In-depth articles on design, web development, branding, and social media by Omnia Marketing, a digital agency based in Naples that operates throughout Italy.",
       "heroTitleEmpty": "The first articles will be coming soon.",
       "heroTitle": "In-depth coverage and news.",
-      "heroDescriptionEmpty": "We're putting together content on design, the web, branding, and social media. Check back soon.",
-      "heroDescription": "Design, Web, Branding, and Social Media: Ideas and Case Studies from the Studio.",
-      "minutiLettura": "{minutes} min reading time",
+      "heroDescriptionEmpty": "We're currently working on content about design, the web, branding, and social media. Check back soon.",
+      "heroDescription": "Design, web, branding, and social media: ideas and case studies from the studio.",
+      "minutiLettura": "{minutes} min read",
       "ctaTitle": "In the meantime, let's talk about your project.",
       "ctaDescription": "Tell us about your idea: we'll turn it into a custom digital experience.",
       "torna": "← Blog"
     },
     "contatti": {
+      "seoTitle": "Contact Us — Request a Consultation in Naples",
+      "seoDescription": "Contact Omnia Marketing for your next web, branding, or social media project. We’re based in Naples and work with companies throughout Italy: request a free consultation.",
       "heroTitle": "Let's talk about your project.",
       "heroDescription": "Tell us about your idea: we'll get back to you as soon as possible.",
       "accediAreaClienti": "Log in to the Customer Area →"
     },
     "home": {
+      "seoTitle": "Omnia Marketing — Web, Branding, and Social Media Agency in Naples",
+      "seoDescription": "Omnia Marketing: We believe in design. We create websites, e-commerce platforms, branding, and social media content for companies that want to stand out. A web agency based in Naples, we’ve been supporting companies throughout Italy for many years.",
       "ctaTitle": "We believe in design. Let's talk about your project.",
       "ctaDescription": "Tell us about your idea: we'll turn it into a custom digital experience.",
       "ticker1": "We build websites that convert",
@@ -144,8 +262,75 @@
       "ticker4": "We combine strategy and creativity",
       "ticker5": "From the initial naming to the final pixel",
       "ticker6": "content that stops scrolling",
-      "ticker7": "Web, Branding, and Social Media Under One Roof",
-      "ticker8": "one partner, not three suppliers"
+      "ticker7": "Web, Branding, and Social Media All Under One Roof",
+      "ticker8": "one partner, not three suppliers",
+      "heroVariants": {
+        "web": [
+          "Do you want a website\nthat converts?",
+          "Your website\nis waiting for you",
+          "Let's create your\nwebsite, right now"
+        ],
+        "branding": [
+          "Let's build\nyour brand",
+          "Your identity\nis waiting for you",
+          "Let's shape\nyour brand, now"
+        ],
+        "social": [
+          "Let's tell\nthe story of your social media",
+          "Your content\nis waiting for you",
+          "Let's create your\ncontent, right now"
+        ]
+      },
+      "ctaVariants": {
+        "web": [
+          {
+            "title": "Do you want a website that really converts?",
+            "description": "From development to e-commerce: we build websites designed to deliver results."
+          },
+          {
+            "title": "Please keep coming back to browse our websites.",
+            "description": "Tell us about your idea: let's discuss it together, with no obligation.",
+            "ctaLabel": "Let's talk about it"
+          },
+          {
+            "title": "Your next website might already be in the works.",
+            "description": "It only takes 15 minutes to get started: contact us today.",
+            "ctaLabel": "Contact us now"
+          }
+        ],
+        "branding": [
+          {
+            "title": "Do you want a brand that’s instantly recognizable?",
+            "description": "Strategy, naming, logo, and UI/UX—all in a single, customized process designed just for you."
+          },
+          {
+            "title": "Please keep coming back to check out our branding projects.",
+            "description": "Tell us about your idea: let's discuss it together, with no obligation.",
+            "ctaLabel": "Let's talk about it"
+          },
+          {
+            "title": "Your new identity could emerge this week.",
+            "description": "It only takes 15 minutes to get started: contact us today.",
+            "ctaLabel": "Contact Us Now"
+          }
+        ],
+        "social": [
+          {
+            "title": "Ready to grow your social media channels?",
+            "description": "Content, photos, videos, and commercials to tell your brand's story in a consistent style."
+          },
+          {
+            "title": "Please keep coming back to check out our social media projects.",
+            "description": "Tell us about your channels: let's talk about them together, with no obligation.",
+            "ctaLabel": "Let's talk about it"
+          },
+          {
+            "title": "Your social media presence could take off right away.",
+            "description": "It only takes 15 minutes to get started: contact us today.",
+            "ctaLabel": "Contact us now"
+          }
+        ]
+      }
     }
   }
 }

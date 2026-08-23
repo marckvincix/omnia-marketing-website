@@ -46,7 +46,9 @@
     "successoConNome": "{name}, inscripción confirmada, ¡gracias!"
   },
   "common": {
-    "vaiAlContenuto": "Ir al contenido principal"
+    "vaiAlContenuto": "Ir al contenido principal",
+    "contattaci": "Ponte en contacto con nosotros",
+    "vediIlProgetto": "Ver el proyecto"
   },
   "email": {
     "footerUnsubscribeNote": "Has recibido este correo electrónico porque estás suscrito al boletín de Omnia Marketing.",
@@ -69,6 +71,8 @@
   },
   "pages": {
     "web": {
+      "seoTitle": "Web — Sitios web, aplicaciones y comercio electrónico",
+      "seoDescription": "Creamos páginas web, aplicaciones móviles, tiendas online y plataformas digitales con un diseño minimalista y tecnología de vanguardia. Somos una agencia web con sede en Nápoles y operamos en toda Italia.",
       "scrollReveal": "Páginas web diseñadas al detalle: creamos diseños modernos, cuidamos cada elemento visual y creamos experiencias digitales únicas para tu marca.",
       "ctaTitle": "¿Tienes algún proyecto web en mente?",
       "ctaDescription": "Cuéntanos tu idea: la convertiremos en una página web, una aplicación o una tienda online a medida.",
@@ -78,15 +82,19 @@
       "popupDefaultMessage": "Me gustaría solicitar asesoramiento para crear una página web a medida."
     },
     "branding": {
+      "seoTitle": "Branding — Estrategia, elección de nombre, logotipo, UI/UX",
+      "seoDescription": "Damos forma a tu identidad visual: estrategia, creación de nombres, diseño de logotipos e UI/UX para una marca que emociona y destaca. Agencia de branding en Nápoles, que colabora con clientes de toda Italia.",
       "scrollReveal": "Damos forma a tu identidad visual con un diseño pensado para emocionar y diferenciarte: desde la estrategia hasta el logotipo, creamos marcas capaces de dejar una huella imborrable.",
-      "ctaTitle": "¿Quieres una identidad que se reconozca a simple vista?",
+      "ctaTitle": "¿Quieres una identidad que se reconozca a primera vista?",
       "ctaDescription": "Hablemos de tu marca: estrategia, elección del nombre y diseño en un único proceso.",
       "popupTitle": "¿Te gusta nuestra forma de crear una marca?",
       "popupDescription": "Hablemos de tu identidad visual: solicita una consulta gratuita.",
-      "popupSubmitLabel": "Solicita una consulta",
+      "popupSubmitLabel": "Solicita asesoramiento",
       "popupDefaultMessage": "Me gustaría solicitar asesoramiento sobre la identidad de mi marca."
     },
     "social": {
+      "seoTitle": "Redes sociales — SMM, fotografía, vídeo, anuncios",
+      "seoDescription": "Gestión de redes sociales, fotografía, videografía y anuncios publicitarios con estilo cinematográfico para empresas de Nápoles y Campania que quieran destacar en las redes sociales.",
       "scrollReveal": "Redes sociales cuidadas hasta el último detalle: gestionamos contenidos, creamos fotos y vídeos únicos y producimos anuncios para potenciar tu presencia digital.",
       "ctaTitle": "¿Estás listo para dar a conocer tu marca en las redes sociales?",
       "ctaDescription": "Desde la estrategia editorial hasta la producción de vídeos: gestionamos tus canales con un diseño coherente.",
@@ -96,6 +104,8 @@
       "popupDefaultMessage": "Me gustaría solicitar asesoramiento para la gestión de mis redes sociales."
     },
     "progetti": {
+      "seoTitle": "Portafolio — Proyectos web, imagen de marca y redes sociales en Nápoles",
+      "seoDescription": "Los proyectos realizados por Omnia Marketing: páginas web, comercio electrónico, imagen de marca y redes sociales para empresas de Nápoles y de toda Italia que desean destacar.",
       "scrollReveal": "Cada proyecto surge de una escucha atenta y se desarrolla junto con el cliente, desde el primer briefing hasta el resultado final.",
       "ctaTitle": "El próximo proyecto podría ser el tuyo.",
       "ctaDescription": "Cuéntanos tu idea: la convertiremos en una experiencia digital a medida.",
@@ -104,9 +114,61 @@
       "popupTitle": "¿Te gustan los proyectos que llevamos a cabo?",
       "popupDescription": "Cuéntanos tu idea: podemos crear un proyecto a medida, tan cuidado en los detalles como este.",
       "popupSubmitLabel": "Solicita tu proyecto",
-      "popupDefaultMessage": "He visto el proyecto «{client}» y me gustaría solicitar asesoramiento para un proyecto similar."
+      "popupDefaultMessage": "He visto el proyecto «{client}» y me gustaría solicitar asesoramiento para un proyecto similar.",
+      "ctaVariants": {
+        "web": [
+          {
+            "title": "¿Quieres una página web como estas?",
+            "description": "Creamos páginas web, aplicaciones y tiendas online a medida para tu negocio."
+          },
+          {
+            "title": "¿Vuelves a mirar a menudo estos proyectos web? ¿Te gusta lo que ves?",
+            "description": "Hablemos de ello: podemos crear algo parecido para ti.",
+            "ctaLabel": "Hablemos de ello"
+          },
+          {
+            "title": "No dejas de volver a estos proyectos. Quizá sea el momento de empezar el tuyo propio.",
+            "description": "Escríbenos hoy mismo: veamos juntos cómo crear tu próxima página web.",
+            "ctaLabel": "Escríbenos ahora"
+          }
+        ],
+        "branding": [
+          {
+            "title": "¿Quieres una identidad como estas?",
+            "description": "Estrategia, elección del nombre y diseño del logotipo para una marca que destaca."
+          },
+          {
+            "title": "A menudo vuelves a mirar estos proyectos de imagen de marca. ¿Te gusta lo que ves?",
+            "description": "Hablemos de ello: podemos crear una identidad similar para ti.",
+            "ctaLabel": "Hablemos de ello"
+          },
+          {
+            "title": "No dejas de volver a estos proyectos. Quizá sea el momento de empezar el tuyo propio.",
+            "description": "Escríbenos hoy mismo: veamos juntos cómo construir tu marca.",
+            "ctaLabel": "Escríbenos ahora"
+          }
+        ],
+        "social": [
+          {
+            "title": "¿Te gustaría ver contenidos en redes sociales como estos?",
+            "description": "Gestionamos tus canales con fotos, vídeos y una estrategia coherente."
+          },
+          {
+            "title": "¿Sueles volver a echar un vistazo a estos proyectos en redes sociales? ¿Te gusta lo que ves?",
+            "description": "Hablemos de ello: podemos hacer algo parecido para tus canales.",
+            "ctaLabel": "Hablemos de ello"
+          },
+          {
+            "title": "No dejas de volver a estos proyectos. Quizá sea el momento de empezar el tuyo propio.",
+            "description": "Escríbenos hoy mismo: veamos juntos cómo hacer crecer tus redes sociales.",
+            "ctaLabel": "Escríbenos ahora"
+          }
+        ]
+      }
     },
     "chiSiamo": {
+      "seoTitle": "Quiénes somos — Agencia web y de imagen de marca en Nápoles",
+      "seoDescription": "Omnia Marketing es una agencia de diseño web, desarrollo de marca y gestión de redes sociales con sede en Nápoles que transforma las ideas en experiencias digitales únicas y marcas memorables, y que lleva muchos años colaborando con empresas de toda Italia.",
       "scrollReveal": "Creemos en el diseño como herramienta de trabajo, no como decoración.",
       "quote": "El diseño no es solo cómo se ve, sino cómo funciona.",
       "quoteAuthor": "— Steve Jobs",
@@ -118,9 +180,61 @@
       "keyword4": "CONTENIDOS",
       "keyword5": "RESULTADOS",
       "ctaTitle": "Hablemos de tu próximo proyecto.",
-      "ctaDescription": "Tanto si necesitas crear una marca desde cero como hacer crecer la que ya tienes, estamos aquí para escucharte."
+      "ctaDescription": "Tanto si necesitas crear una marca desde cero como si quieres hacer crecer la que ya tienes, estamos aquí para escucharte.",
+      "ctaVariants": {
+        "web": [
+          {
+            "title": "¿Necesitas una página web a medida?",
+            "description": "Hablemos de ello: creamos páginas web, aplicaciones y tiendas online diseñadas para tu negocio."
+          },
+          {
+            "title": "Parece que te interesan especialmente las páginas web.",
+            "description": "Cuéntanos tu proyecto: juntos encontraremos la solución adecuada.",
+            "ctaLabel": "Hablemos de ello"
+          },
+          {
+            "title": "Has vuelto a visitarnos varias veces. Quizá sea el momento de empezar.",
+            "description": "Escríbenos hoy mismo, sin compromiso: hablemos de tu página web.",
+            "ctaLabel": "Escríbenos ahora"
+          }
+        ],
+        "branding": [
+          {
+            "title": "¿Necesitas una identidad a medida?",
+            "description": "Hablemos de ello: demos forma a tu marca con estrategia, elección de nombre y diseño."
+          },
+          {
+            "title": "Parece que te interesa especialmente el branding.",
+            "description": "Cuéntanos tu proyecto: juntos encontraremos la solución adecuada.",
+            "ctaLabel": "Hablemos de ello"
+          },
+          {
+            "title": "Has vuelto a visitarnos varias veces. Quizá sea el momento de empezar.",
+            "description": "Escríbenos hoy mismo, sin compromiso: hablemos de tu marca.",
+            "ctaLabel": "Escríbenos ahora"
+          }
+        ],
+        "social": [
+          {
+            "title": "¿Necesitas una presencia sólida en las redes sociales?",
+            "description": "Hablemos de ello: gestionamos tus canales con contenidos y vídeos de calidad."
+          },
+          {
+            "title": "Parece que te interesan especialmente las redes sociales.",
+            "description": "Cuéntanos tu proyecto: juntos encontraremos la solución adecuada.",
+            "ctaLabel": "Hablemos de ello"
+          },
+          {
+            "title": "Has vuelto a visitarnos varias veces. Quizá sea el momento de empezar.",
+            "description": "Escríbenos hoy mismo, sin compromiso: hablemos de tus redes sociales.",
+            "ctaLabel": "Escríbenos ahora"
+          }
+        ]
+      }
     },
     "blog": {
+      "seoTitle": "Blog — Consejos sobre Internet, imagen de marca y redes sociales",
+      "seoDescription": "Artículos de fondo sobre diseño, desarrollo web, imagen de marca y redes sociales, a cargo de Omnia Marketing, una agencia digital con sede en Nápoles que opera en toda Italia.",
       "heroTitleEmpty": "Pronto publicaremos los primeros artículos.",
       "heroTitle": "Análisis en profundidad y novedades.",
       "heroDescriptionEmpty": "Estamos preparando contenidos sobre diseño, web, imagen de marca y redes sociales. Vuelve a visitarnos pronto.",
@@ -131,21 +245,92 @@
       "torna": "← Blog"
     },
     "contatti": {
+      "seoTitle": "Contacto — Solicita una consulta en Nápoles",
+      "seoDescription": "Ponte en contacto con Omnia Marketing para tu próximo proyecto web, de imagen de marca o en redes sociales. Estamos en Nápoles y trabajamos con empresas de toda Italia: solicita una consulta gratuita.",
       "heroTitle": "Hablemos de tu proyecto.",
       "heroDescription": "Cuéntanos tu idea: te responderemos lo antes posible.",
       "accediAreaClienti": "Accede al Área de clientes →"
     },
     "home": {
+      "seoTitle": "Omnia Marketing — Agencia de diseño web, branding y redes sociales en Nápoles",
+      "seoDescription": "Omnia Marketing: creemos en el diseño. Creamos páginas web, tiendas online, estrategias de marca y contenidos para redes sociales para empresas que quieren destacar. Agencia web en Nápoles, que lleva muchos años colaborando con empresas de toda Italia.",
       "ctaTitle": "Creemos en el diseño. Hablemos de tu proyecto.",
       "ctaDescription": "Cuéntanos tu idea: la convertiremos en una experiencia digital a medida.",
-      "ticker1": "Creamos sitios web que generan conversiones",
+      "ticker1": "Creamos páginas web que generan conversiones",
       "ticker2": "damos forma a identidades que perduran en la memoria",
       "ticker3": "Contamos la historia de tu marca en las redes sociales",
       "ticker4": "Combinamos estrategia y creatividad",
-      "ticker5": "desde la elección del nombre inicial hasta el último píxel",
+      "ticker5": "desde la primera elección del nombre hasta el último píxel",
       "ticker6": "contenidos que detienen el desplazamiento",
       "ticker7": "Web, imagen de marca y redes sociales bajo un mismo techo",
-      "ticker8": "un socio, no tres proveedores"
+      "ticker8": "un socio, no tres proveedores",
+      "heroVariants": {
+        "web": [
+          "¿Quieres una página web\nque genere ventas?",
+          "Tu página web\nte espera",
+          "Creamos tu\npágina web, ahora mismo"
+        ],
+        "branding": [
+          "Creamos\ntu marca",
+          "Tu identidad\nte espera",
+          "Damos forma a\ntu marca, ahora mismo"
+        ],
+        "social": [
+          "Contemos\ntus redes sociales",
+          "Tus contenidos\nte esperan",
+          "Creamos tus\ncontenidos, ahora mismo"
+        ]
+      },
+      "ctaVariants": {
+        "web": [
+          {
+            "title": "¿Quieres una página web que realmente genere conversiones?",
+            "description": "Desde el desarrollo hasta el comercio electrónico: creamos sitios web diseñados para generar resultados."
+          },
+          {
+            "title": "Sigue visitando nuestras páginas web de vez en cuando.",
+            "description": "Cuéntanos tu idea: lo comentamos juntos, sin compromiso.",
+            "ctaLabel": "Hablemos de ello"
+          },
+          {
+            "title": "Puede que tu próxima página web ya esté en proceso de creación.",
+            "description": "Solo necesitas 15 minutos para empezar: escríbenos hoy mismo.",
+            "ctaLabel": "Escríbenos ahora"
+          }
+        ],
+        "branding": [
+          {
+            "title": "¿Quieres una marca que se reconozca a primera vista?",
+            "description": "Estrategia, nombre de marca, logotipo e UI/UX en un único proceso diseñado a tu medida."
+          },
+          {
+            "title": "Sigue visitando nuestra página para ver nuestros proyectos de imagen de marca.",
+            "description": "Cuéntanos tu idea: lo comentamos juntos, sin compromiso.",
+            "ctaLabel": "Hablemos de ello"
+          },
+          {
+            "title": "Tu nueva identidad podría surgir esta semana.",
+            "description": "Solo necesitas 15 minutos para empezar: escríbenos hoy mismo.",
+            "ctaLabel": "Escríbenos ahora"
+          }
+        ],
+        "social": [
+          {
+            "title": "¿Estás listo para hacer crecer tus redes sociales?",
+            "description": "Contenidos, fotos, vídeos y anuncios para dar a conocer tu marca con un estilo coherente."
+          },
+          {
+            "title": "No dejes de visitar nuestras redes sociales.",
+            "description": "Cuéntanos cuáles son tus canales: lo comentamos juntos, sin compromiso.",
+            "ctaLabel": "Hablemos de ello"
+          },
+          {
+            "title": "Tus redes sociales podrían despegar de inmediato.",
+            "description": "Solo necesitas 15 minutos para empezar: escríbenos hoy mismo.",
+            "ctaLabel": "Escríbenos ahora"
+          }
+        ]
+      }
     }
   }
 }

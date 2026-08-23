@@ -63,7 +63,7 @@ type ProjectWithRelations = {
   externalUrl: string | null;
   seoTitle: string | null;
   seoDescription: string | null;
-  services: { service: { title: string; slug: string } }[];
+  services: { service: { title: string; slug: string; translations?: { title: string }[] } }[];
   media: { id: string; url: string; alt: string; type: "IMAGE" | "VIDEO" }[];
   translations?: ProjectTranslationFields[];
 };
@@ -82,7 +82,7 @@ function toView(p: ProjectWithRelations): ProjectView {
     slug: p.slug,
     client: p.client,
     category: p.category,
-    servicesRendered: p.services.map((s) => s.service.title),
+    servicesRendered: p.services.map((s) => s.service.translations?.[0]?.title || s.service.title),
     serviceSlugs: p.services.map((s) => s.service.slug),
     description,
     processText: processText ?? "",
@@ -98,25 +98,31 @@ function toView(p: ProjectWithRelations): ProjectView {
 }
 
 export async function getPublishedProjects(locale: string = DEFAULT_LOCALE): Promise<ProjectView[]> {
+  const isDefault = locale === DEFAULT_LOCALE;
   const projects = await prisma.project.findMany({
     where: { published: true },
     orderBy: { order: "asc" },
     include: {
-      services: { include: { service: true } },
+      services: {
+        include: { service: { include: { translations: isDefault ? false : { where: { locale } } } } },
+      },
       media: { orderBy: { order: "asc" } },
-      translations: locale === DEFAULT_LOCALE ? false : { where: { locale } },
+      translations: isDefault ? false : { where: { locale } },
     },
   });
   return projects.map(toView);
 }
 
 export async function getProjectBySlug(slug: string, locale: string = DEFAULT_LOCALE): Promise<ProjectView | null> {
+  const isDefault = locale === DEFAULT_LOCALE;
   const project = await prisma.project.findUnique({
     where: { slug },
     include: {
-      services: { include: { service: true } },
+      services: {
+        include: { service: { include: { translations: isDefault ? false : { where: { locale } } } } },
+      },
       media: { orderBy: { order: "asc" } },
-      translations: locale === DEFAULT_LOCALE ? false : { where: { locale } },
+      translations: isDefault ? false : { where: { locale } },
     },
   });
   if (!project || !project.published) return null;

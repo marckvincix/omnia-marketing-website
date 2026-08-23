@@ -46,7 +46,9 @@
     "successoConNome": "{name}, iscrizione confermata, grazie!"
   },
   "common": {
-    "vaiAlContenuto": "Vai al contenuto principale"
+    "vaiAlContenuto": "Vai al contenuto principale",
+    "contattaci": "Contattaci",
+    "vediIlProgetto": "Vedi il progetto"
   },
   "email": {
     "footerUnsubscribeNote": "Hai ricevuto questa email perché sei iscritto alla newsletter di Omnia Marketing.",
@@ -69,6 +71,8 @@
   },
   "pages": {
     "web": {
+      "seoTitle": "Web — Siti, App ed eCommerce",
+      "seoDescription": "Realizziamo siti web, app mobile, e-commerce e piattaforme digitali con design minimalista e tecnologia all'avanguardia. Web agency a Napoli, operiamo in tutta Italia.",
       "scrollReveal": "Siti web studiati nel dettaglio: realizziamo design moderni, curiamo ogni elemento visivo e creiamo esperienze digitali uniche per il tuo brand.",
       "ctaTitle": "Hai un progetto web in mente?",
       "ctaDescription": "Raccontaci la tua idea: la trasformiamo in un sito, un'app o un e-commerce su misura.",
@@ -78,6 +82,8 @@
       "popupDefaultMessage": "Vorrei richiedere una consulenza per realizzare un sito web su misura."
     },
     "branding": {
+      "seoTitle": "Branding — Strategy, Naming, Logo, UI/UX",
+      "seoDescription": "Diamo forma alla tua identità visiva: strategy, naming, logo design e UI/UX per un brand che emoziona e distingue. Agenzia di branding a Napoli, al fianco di clienti in tutta Italia.",
       "scrollReveal": "Diamo forma alla tua identità visiva con un design studiato per emozionare e distinguerti: dalla strategia al logo, creiamo brand capaci di lasciare un segno indelebile.",
       "ctaTitle": "Vuoi un'identità che si riconosce a colpo d'occhio?",
       "ctaDescription": "Parliamo del tuo brand: strategy, naming e design in un unico percorso.",
@@ -87,6 +93,8 @@
       "popupDefaultMessage": "Vorrei richiedere una consulenza per la mia identità di brand."
     },
     "social": {
+      "seoTitle": "Social — SMM, Fotografia, Video, Spot",
+      "seoDescription": "Social media management, fotografia, videografia e spot pubblicitari dal taglio cinematografico per aziende a Napoli e in Campania che vogliono distinguersi sui social.",
       "scrollReveal": "Social curati al dettaglio: gestiamo contenuti, realizziamo foto e video unici e produciamo spot per valorizzare la tua presenza digitale.",
       "ctaTitle": "Pronti a raccontare il tuo brand sui social?",
       "ctaDescription": "Dalla strategia editoriale alla produzione video: gestiamo i tuoi canali con un design coerente.",
@@ -96,6 +104,8 @@
       "popupDefaultMessage": "Vorrei richiedere una consulenza per la gestione dei miei canali social."
     },
     "progetti": {
+      "seoTitle": "Portfolio — Progetti Web, Branding e Social a Napoli",
+      "seoDescription": "I progetti realizzati da Omnia Marketing: siti web, e-commerce, branding e social per aziende a Napoli e in tutta Italia che vogliono distinguersi.",
       "scrollReveal": "Ogni progetto nasce da un ascolto attento e si costruisce insieme al cliente, dal primo brief al risultato finale.",
       "ctaTitle": "Il prossimo progetto potrebbe essere il tuo.",
       "ctaDescription": "Raccontaci la tua idea: la trasformiamo in un'esperienza digitale su misura.",
@@ -104,9 +114,28 @@
       "popupTitle": "Ti piacciono i progetti che realizziamo?",
       "popupDescription": "Raccontaci la tua idea: possiamo realizzare un progetto su misura, curato nei dettagli come questo.",
       "popupSubmitLabel": "Richiedi il tuo progetto",
-      "popupDefaultMessage": "Ho visto il progetto \"{client}\" e vorrei richiedere una consulenza per un progetto simile."
+      "popupDefaultMessage": "Ho visto il progetto \"{client}\" e vorrei richiedere una consulenza per un progetto simile.",
+      "ctaVariants": {
+        "web": [
+          { "title": "Vuoi un sito come questi?", "description": "Realizziamo siti, app ed e-commerce su misura per il tuo business." },
+          { "title": "Torni spesso a guardare questi progetti web. Ti piace quello che vedi?", "description": "Parliamone: possiamo costruire qualcosa di simile per te.", "ctaLabel": "Parliamone" },
+          { "title": "Continui a tornare su questi progetti. Forse è il momento di iniziare il tuo.", "description": "Scrivici oggi: vediamo insieme come realizzare il tuo prossimo sito.", "ctaLabel": "Scrivici ora" }
+        ],
+        "branding": [
+          { "title": "Vuoi un'identità come queste?", "description": "Strategy, naming e logo design per un brand che si distingue." },
+          { "title": "Torni spesso a guardare questi progetti di branding. Ti piace quello che vedi?", "description": "Parliamone: possiamo costruire un'identità simile per te.", "ctaLabel": "Parliamone" },
+          { "title": "Continui a tornare su questi progetti. Forse è il momento di iniziare il tuo.", "description": "Scrivici oggi: vediamo insieme come costruire il tuo brand.", "ctaLabel": "Scrivici ora" }
+        ],
+        "social": [
+          { "title": "Vuoi contenuti social come questi?", "description": "Gestiamo i tuoi canali con foto, video e una strategia coerente." },
+          { "title": "Torni spesso a guardare questi progetti social. Ti piace quello che vedi?", "description": "Parliamone: possiamo fare qualcosa di simile per i tuoi canali.", "ctaLabel": "Parliamone" },
+          { "title": "Continui a tornare su questi progetti. Forse è il momento di iniziare il tuo.", "description": "Scrivici oggi: vediamo insieme come far crescere i tuoi social.", "ctaLabel": "Scrivici ora" }
+        ]
+      }
     },
     "chiSiamo": {
+      "seoTitle": "Chi Siamo — Agenzia Web e Branding a Napoli",
+      "seoDescription": "Omnia Marketing è l'agenzia di web design, branding e social media management con sede a Napoli che trasforma visioni in esperienze digitali uniche e brand memorabili, al fianco di aziende in tutta Italia da molti anni.",
       "scrollReveal": "Crediamo nel design come strumento di lavoro, non come decorazione.",
       "quote": "Il design non è solo come appare, ma come funziona.",
       "quoteAuthor": "— Steve Jobs",
@@ -118,9 +147,28 @@
       "keyword4": "CONTENUTI",
       "keyword5": "RISULTATI",
       "ctaTitle": "Parliamo del tuo prossimo progetto.",
-      "ctaDescription": "Che tu debba costruire un brand da zero o far crescere quello che hai già, siamo qui per ascoltare."
+      "ctaDescription": "Che tu debba costruire un brand da zero o far crescere quello che hai già, siamo qui per ascoltare.",
+      "ctaVariants": {
+        "web": [
+          { "title": "Hai bisogno di un sito su misura?", "description": "Parliamone: realizziamo siti, app ed e-commerce pensati per il tuo business." },
+          { "title": "Sembra che i siti web ti interessino particolarmente.", "description": "Raccontaci il tuo progetto: troviamo insieme la soluzione giusta.", "ctaLabel": "Parliamone" },
+          { "title": "Sei tornato più volte a trovarci. Forse è il momento di iniziare.", "description": "Scrivici oggi, senza impegno: parliamo del tuo sito.", "ctaLabel": "Scrivici ora" }
+        ],
+        "branding": [
+          { "title": "Hai bisogno di un'identità su misura?", "description": "Parliamone: diamo forma al tuo brand con strategy, naming e design." },
+          { "title": "Sembra che il branding ti interessi particolarmente.", "description": "Raccontaci il tuo progetto: troviamo insieme la soluzione giusta.", "ctaLabel": "Parliamone" },
+          { "title": "Sei tornato più volte a trovarci. Forse è il momento di iniziare.", "description": "Scrivici oggi, senza impegno: parliamo del tuo brand.", "ctaLabel": "Scrivici ora" }
+        ],
+        "social": [
+          { "title": "Hai bisogno di una presenza social forte?", "description": "Parliamone: gestiamo i tuoi canali con contenuti e video di qualità." },
+          { "title": "Sembra che i social ti interessino particolarmente.", "description": "Raccontaci il tuo progetto: troviamo insieme la soluzione giusta.", "ctaLabel": "Parliamone" },
+          { "title": "Sei tornato più volte a trovarci. Forse è il momento di iniziare.", "description": "Scrivici oggi, senza impegno: parliamo dei tuoi social.", "ctaLabel": "Scrivici ora" }
+        ]
+      }
     },
     "blog": {
+      "seoTitle": "Blog — Consigli su Web, Branding e Social",
+      "seoDescription": "Approfondimenti su design, sviluppo web, branding e social media a cura di Omnia Marketing, agenzia digitale a Napoli attiva in tutta Italia.",
       "heroTitleEmpty": "Presto i primi articoli.",
       "heroTitle": "Approfondimenti e novità.",
       "heroDescriptionEmpty": "Stiamo preparando contenuti su design, web, branding e social. Torna a trovarci a breve.",
@@ -131,11 +179,15 @@
       "torna": "← Blog"
     },
     "contatti": {
+      "seoTitle": "Contatti — Richiedi una Consulenza a Napoli",
+      "seoDescription": "Contatta Omnia Marketing per il tuo prossimo progetto web, di branding o social. Siamo a Napoli e lavoriamo con aziende in tutta Italia: richiedi una consulenza gratuita.",
       "heroTitle": "Parliamo del tuo progetto.",
       "heroDescription": "Raccontaci la tua idea: ti rispondiamo il prima possibile.",
       "accediAreaClienti": "Accedi all'Area Clienti →"
     },
     "home": {
+      "seoTitle": "Omnia Marketing — Agenzia web, branding e social a Napoli",
+      "seoDescription": "Omnia Marketing: crediamo nel design. Realizziamo siti web, e-commerce, branding e contenuti social per aziende che vogliono distinguersi. Agenzia web a Napoli, al fianco di aziende in tutta Italia da molti anni.",
       "ctaTitle": "Crediamo nel design. Parliamo del tuo progetto.",
       "ctaDescription": "Raccontaci la tua idea: la trasformiamo in un'esperienza digitale su misura.",
       "ticker1": "costruiamo siti che convertono",
@@ -145,7 +197,29 @@
       "ticker5": "dal primo naming al pixel finale",
       "ticker6": "contenuti che fermano lo scroll",
       "ticker7": "Web, Branding e Social sotto lo stesso tetto",
-      "ticker8": "un partner, non tre fornitori"
+      "ticker8": "un partner, non tre fornitori",
+      "heroVariants": {
+        "web": ["vuoi un sito\nche converte?", "il tuo sito\nti aspetta", "creiamo il tuo\nsito, ora"],
+        "branding": ["costruiamo\nil tuo brand", "la tua identità\nti aspetta", "diamo forma al\ntuo brand, ora"],
+        "social": ["raccontiamo\ni tuoi social", "i tuoi contenuti\nti aspettano", "creiamo i tuoi\ncontenuti, ora"]
+      },
+      "ctaVariants": {
+        "web": [
+          { "title": "Vuoi un sito che converte davvero?", "description": "Dallo sviluppo all'e-commerce: realizziamo siti pensati per portare risultati." },
+          { "title": "Continui a tornare a curiosare tra i nostri siti web.", "description": "Raccontaci la tua idea: ne parliamo insieme, senza impegno.", "ctaLabel": "Parliamone" },
+          { "title": "Il tuo prossimo sito potrebbe già essere in lavorazione.", "description": "Bastano 15 minuti per iniziare: scrivici oggi stesso.", "ctaLabel": "Scrivici ora" }
+        ],
+        "branding": [
+          { "title": "Vuoi un brand che si riconosce a colpo d'occhio?", "description": "Strategy, naming, logo e UI/UX in un unico percorso su misura per te." },
+          { "title": "Continui a tornare a vedere i nostri progetti di branding.", "description": "Raccontaci la tua idea: ne parliamo insieme, senza impegno.", "ctaLabel": "Parliamone" },
+          { "title": "La tua nuova identità potrebbe nascere questa settimana.", "description": "Bastano 15 minuti per iniziare: scrivici oggi stesso.", "ctaLabel": "Scrivici ora" }
+        ],
+        "social": [
+          { "title": "Pronti a far crescere i tuoi canali social?", "description": "Content, foto, video e spot per raccontare il tuo brand con uno stile coerente." },
+          { "title": "Continui a tornare a vedere i nostri progetti social.", "description": "Raccontaci i tuoi canali: ne parliamo insieme, senza impegno.", "ctaLabel": "Parliamone" },
+          { "title": "I tuoi social potrebbero decollare da subito.", "description": "Bastano 15 minuti per iniziare: scrivici oggi stesso.", "ctaLabel": "Scrivici ora" }
+        ]
+      }
     }
   }
 }

@@ -31,7 +31,7 @@
   },
   "cookieBanner": {
     "titolo": "Cookies und Datenschutz",
-    "testo": "Wir verwenden technische Cookies, die für den Betrieb der Website erforderlich sind, und – nur wenn du dem zustimmst – anonyme Daten, die auf deinem Gerät gespeichert werden, um die Inhalte entsprechend deinen Besuchen anzupassen.",
+    "testo": "Wir verwenden technische Cookies, die für den Betrieb der Website erforderlich sind, und – sofern du dem zustimmst – anonyme Daten, die auf deinem Gerät gespeichert werden, um die Inhalte anhand deiner Besuche anzupassen.",
     "maggioriInfo": "Weitere Informationen:",
     "accetta": "Akzeptieren",
     "rifiuta": "Ablehnen"
@@ -46,7 +46,9 @@
     "successoConNome": "{name}, deine Anmeldung wurde bestätigt, vielen Dank!"
   },
   "common": {
-    "vaiAlContenuto": "Zum Hauptinhalt springen"
+    "vaiAlContenuto": "Zum Hauptinhalt springen",
+    "contattaci": "Kontaktieren Sie uns",
+    "vediIlProgetto": "Das Projekt ansehen"
   },
   "email": {
     "footerUnsubscribeNote": "Du hast diese E-Mail erhalten, weil du den Newsletter von Omnia Marketing abonniert hast.",
@@ -69,16 +71,20 @@
   },
   "pages": {
     "web": {
+      "seoTitle": "Web – Websites, Apps und E-Commerce",
+      "seoDescription": "Wir entwickeln Websites, mobile Apps, E-Commerce-Lösungen und digitale Plattformen mit minimalistischem Design und modernster Technologie. Als Webagentur mit Sitz in Neapel sind wir in ganz Italien tätig.",
       "scrollReveal": "Bis ins Detail durchdachte Websites: Wir entwickeln moderne Designs, achten auf jedes visuelle Detail und schaffen einzigartige digitale Erlebnisse für Ihre Marke.",
       "ctaTitle": "Hast du ein Webprojekt im Sinn?",
       "ctaDescription": "Erzählen Sie uns von Ihrer Idee: Wir setzen sie in eine maßgeschneiderte Website, App oder einen Online-Shop um.",
       "popupTitle": "Sind Sie bereit, Ihr Unternehmen online zu bringen?",
       "popupDescription": "Fordern Sie eine kostenlose Beratung an: Lassen Sie uns über Ihre Website, Ihren Online-Shop oder Ihre App sprechen.",
       "popupSubmitLabel": "Beratung anfordern",
-      "popupDefaultMessage": "Ich möchte eine Beratung zur Erstellung einer maßgeschneiderten Website anfordern."
+      "popupDefaultMessage": "Ich möchte eine Beratung zur Erstellung einer maßgeschneiderten Website anfragen."
     },
     "branding": {
-      "scrollReveal": "Wir gestalten Ihre visuelle Identität mit einem Design, das Emotionen weckt und Sie von anderen abhebt: Von der Strategie bis zum Logo schaffen wir Marken, die einen bleibenden Eindruck hinterlassen.",
+      "seoTitle": "Branding – Strategie, Namensfindung, Logo, UI/UX",
+      "seoDescription": "Wir gestalten Ihre visuelle Identität: Strategie, Namensfindung, Logodesign und UI/UX für eine Marke, die begeistert und sich von anderen abhebt. Branding-Agentur in Neapel, die Kunden in ganz Italien begleitet.",
+      "scrollReveal": "Wir gestalten Ihre visuelle Identität mit einem Design, das Emotionen weckt und Sie von anderen abhebt: Von der Strategie bis zum Logo – wir schaffen Marken, die einen bleibenden Eindruck hinterlassen.",
       "ctaTitle": "Möchtest du ein Erscheinungsbild, das man auf den ersten Blick erkennt?",
       "ctaDescription": "Sprechen wir über Ihre Marke: Strategie, Namensfindung und Design in einem einzigen Prozess.",
       "popupTitle": "Gefällt dir unsere Art, eine Marke aufzubauen?",
@@ -87,26 +93,82 @@
       "popupDefaultMessage": "Ich möchte eine Beratung zu meiner Markenidentität anfragen."
     },
     "social": {
+      "seoTitle": "Soziale Medien – SMM, Fotografie, Video, Werbespots",
+      "seoDescription": "Social-Media-Management, Fotografie, Videoproduktion und kinoreife Werbespots für Unternehmen in Neapel und Kampanien, die sich in den sozialen Medien von der Masse abheben möchten.",
       "scrollReveal": "Sorgfältig gestaltete Social-Media-Kanäle: Wir verwalten Inhalte, erstellen einzigartige Fotos und Videos und produzieren Werbespots, um Ihre digitale Präsenz optimal zur Geltung zu bringen.",
       "ctaTitle": "Bist du bereit, deine Marke in den sozialen Medien zu präsentieren?",
       "ctaDescription": "Von der redaktionellen Strategie bis zur Videoproduktion: Wir betreuen Ihre Kanäle mit einem einheitlichen Design.",
-      "popupTitle": "Möchtest du eine Social-Media-Präsenz, die wirklich zum Erfolg führt?",
+      "popupTitle": "Möchtest du eine Social-Media-Präsenz, die wirklich Ergebnisse bringt?",
       "popupDescription": "Fordern Sie eine kostenlose Beratung zu Ihrer Social-Media-Strategie an.",
       "popupSubmitLabel": "Beratung anfordern",
       "popupDefaultMessage": "Ich möchte eine Beratung zur Verwaltung meiner Social-Media-Kanäle anfragen."
     },
     "progetti": {
+      "seoTitle": "Portfolio – Webprojekte, Branding und Social Media in Neapel",
+      "seoDescription": "Die von Omnia Marketing umgesetzten Projekte: Websites, E-Commerce, Branding und Social-Media-Auftritte für Unternehmen in Neapel und ganz Italien, die sich von der Masse abheben möchten.",
       "scrollReveal": "Jedes Projekt entsteht aus aufmerksamer Zuhörbereitschaft und wird gemeinsam mit dem Kunden entwickelt – vom ersten Briefing bis zum Endergebnis.",
       "ctaTitle": "Das nächste Projekt könnte dein Projekt sein.",
       "ctaDescription": "Erzählen Sie uns von Ihrer Idee: Wir verwandeln sie in ein maßgeschneidertes digitales Erlebnis.",
       "visitaIlSito": "Besuchen Sie die Website",
       "comeLoAbbiamoRealizzato": "Wie wir das umgesetzt haben",
       "popupTitle": "Gefallen dir die Projekte, die wir umsetzen?",
-      "popupDescription": "Erzählen Sie uns von Ihrer Idee: Wir können ein maßgeschneidertes Projekt umsetzen, das ebenso bis ins Detail durchdacht ist wie dieses.",
+      "popupDescription": "Erzählen Sie uns von Ihrer Idee: Wir können ein maßgeschneidertes Projekt realisieren, das ebenso bis ins Detail durchdacht ist wie dieses.",
       "popupSubmitLabel": "Fordern Sie Ihr Projekt an",
-      "popupDefaultMessage": "Ich habe mir das Projekt „{client}“ angesehen und würde gerne eine Beratung für ein ähnliches Projekt anfragen."
+      "popupDefaultMessage": "Ich habe mir das Projekt „{client}“ angesehen und würde gerne eine Beratung für ein ähnliches Projekt anfragen.",
+      "ctaVariants": {
+        "web": [
+          {
+            "title": "Möchtest du eine Website wie diese?",
+            "description": "Wir erstellen maßgeschneiderte Websites, Apps und Online-Shops für Ihr Unternehmen."
+          },
+          {
+            "title": "Du schaust dir diese Webprojekte oft noch einmal an. Gefällt dir, was du siehst?",
+            "description": "Lass uns darüber reden: Wir können etwas Ähnliches für dich entwickeln.",
+            "ctaLabel": "Lass uns darüber reden"
+          },
+          {
+            "title": "Du kommst immer wieder auf diese Projekte zurück. Vielleicht ist es an der Zeit, dein eigenes zu starten.",
+            "description": "Schreiben Sie uns noch heute: Lassen Sie uns gemeinsam besprechen, wie wir Ihre nächste Website umsetzen können.",
+            "ctaLabel": "Schreiben Sie uns jetzt"
+          }
+        ],
+        "branding": [
+          {
+            "title": "Möchtest du einen Ausweis wie diesen?",
+            "description": "Strategie, Namensfindung und Logodesign für eine Marke, die sich von anderen abhebt."
+          },
+          {
+            "title": "Du schaust dir diese Branding-Entwürfe oft noch einmal an. Gefällt dir, was du siehst?",
+            "description": "Lass uns darüber sprechen: Wir können eine ähnliche Identität für dich entwickeln.",
+            "ctaLabel": "Lass uns darüber reden"
+          },
+          {
+            "title": "Du kommst immer wieder auf diese Projekte zurück. Vielleicht ist es an der Zeit, dein eigenes zu starten.",
+            "description": "Schreib uns noch heute: Lass uns gemeinsam herausfinden, wie wir deine Marke aufbauen können.",
+            "ctaLabel": "Schreiben Sie uns jetzt"
+          }
+        ],
+        "social": [
+          {
+            "title": "Möchtest du solche Social-Media-Beiträge?",
+            "description": "Wir betreuen deine Kanäle mit Fotos, Videos und einer einheitlichen Strategie."
+          },
+          {
+            "title": "Du schaust dir diese Social-Media-Projekte oft an. Gefällt dir, was du siehst?",
+            "description": "Lass uns darüber reden: Wir können etwas Ähnliches für deine Kanäle machen.",
+            "ctaLabel": "Lass uns darüber reden"
+          },
+          {
+            "title": "Du kommst immer wieder auf diese Projekte zurück. Vielleicht ist es an der Zeit, dein eigenes zu starten.",
+            "description": "Schreib uns noch heute: Lass uns gemeinsam herausfinden, wie wir deine Social-Media-Präsenz ausbauen können.",
+            "ctaLabel": "Schreiben Sie uns jetzt"
+          }
+        ]
+      }
     },
     "chiSiamo": {
+      "seoTitle": "Über uns – Web- und Branding-Agentur in Neapel",
+      "seoDescription": "Omnia Marketing ist eine Agentur für Webdesign, Branding und Social-Media-Management mit Sitz in Neapel, die seit vielen Jahren gemeinsam mit Unternehmen in ganz Italien Visionen in einzigartige digitale Erlebnisse und einprägsame Marken verwandelt.",
       "scrollReveal": "Wir glauben daran, dass Design ein Arbeitsinstrument ist und keine Dekoration.",
       "quote": "Beim Design geht es nicht nur darum, wie etwas aussieht, sondern auch darum, wie es funktioniert.",
       "quoteAuthor": "— Steve Jobs",
@@ -118,11 +180,63 @@
       "keyword4": "INHALT",
       "keyword5": "ERGEBNISSE",
       "ctaTitle": "Lass uns über dein nächstes Projekt sprechen.",
-      "ctaDescription": "Ganz gleich, ob Sie eine Marke von Grund auf neu aufbauen oder Ihre bestehende Marke weiterentwickeln möchten – wir haben ein offenes Ohr für Sie."
+      "ctaDescription": "Ganz gleich, ob Sie eine Marke von Grund auf neu aufbauen oder Ihre bestehende Marke weiterentwickeln möchten – wir haben ein offenes Ohr für Sie.",
+      "ctaVariants": {
+        "web": [
+          {
+            "title": "Brauchst du eine maßgeschneiderte Website?",
+            "description": "Lassen Sie uns darüber sprechen: Wir entwickeln Websites, Apps und E-Commerce-Lösungen, die speziell auf Ihr Unternehmen zugeschnitten sind."
+          },
+          {
+            "title": "Es scheint, als würden dich Websites besonders interessieren.",
+            "description": "Erzählen Sie uns von Ihrem Projekt: Gemeinsam finden wir die richtige Lösung.",
+            "ctaLabel": "Lass uns darüber reden"
+          },
+          {
+            "title": "Du hast uns schon mehrmals besucht. Vielleicht ist es an der Zeit, anzufangen.",
+            "description": "Schreiben Sie uns noch heute, ganz unverbindlich: Lassen Sie uns über Ihre Website sprechen.",
+            "ctaLabel": "Schreiben Sie uns jetzt"
+          }
+        ],
+        "branding": [
+          {
+            "title": "Brauchst du ein maßgeschneidertes Erscheinungsbild?",
+            "description": "Lassen Sie uns darüber sprechen: Wir gestalten Ihre Marke mit Strategie, Namensfindung und Design."
+          },
+          {
+            "title": "Es scheint, als würdest du dich besonders für Branding interessieren.",
+            "description": "Erzählen Sie uns von Ihrem Projekt: Gemeinsam finden wir die richtige Lösung.",
+            "ctaLabel": "Lass uns darüber reden"
+          },
+          {
+            "title": "Du hast uns schon mehrmals besucht. Vielleicht ist es an der Zeit, anzufangen.",
+            "description": "Schreib uns noch heute, ganz unverbindlich: Lass uns über deine Marke sprechen.",
+            "ctaLabel": "Schreiben Sie uns jetzt"
+          }
+        ],
+        "social": [
+          {
+            "title": "Brauchst du eine starke Präsenz in den sozialen Medien?",
+            "description": "Lassen Sie uns darüber sprechen: Wir betreuen Ihre Kanäle mit hochwertigen Inhalten und Videos."
+          },
+          {
+            "title": "Es scheint, als würdest du dich besonders für soziale Medien interessieren.",
+            "description": "Erzählen Sie uns von Ihrem Projekt: Gemeinsam finden wir die richtige Lösung.",
+            "ctaLabel": "Lass uns darüber reden"
+          },
+          {
+            "title": "Du hast uns schon mehrmals besucht. Vielleicht ist es an der Zeit, anzufangen.",
+            "description": "Schreib uns noch heute, ganz unverbindlich: Lass uns über deine sozialen Medien sprechen.",
+            "ctaLabel": "Schreiben Sie uns jetzt"
+          }
+        ]
+      }
     },
     "blog": {
-      "heroTitleEmpty": "Bald gibt es die ersten Artikel.",
-      "heroTitle": "Hintergrundinformationen und Neuigkeiten.",
+      "seoTitle": "Blog – Tipps zu Web, Branding und sozialen Medien",
+      "seoDescription": "Einblicke in die Bereiche Design, Webentwicklung, Branding und Social Media, zusammengestellt von Omnia Marketing, einer in ganz Italien tätigen Digitalagentur mit Sitz in Neapel.",
+      "heroTitleEmpty": "Bald folgen die ersten Artikel.",
+      "heroTitle": "Hintergrundberichte und Neuigkeiten.",
       "heroDescriptionEmpty": "Wir bereiten gerade Inhalte zu den Themen Design, Web, Branding und Social Media vor. Schau bald wieder vorbei.",
       "heroDescription": "Design, Web, Branding und Social Media: Ideen und Fallstudien aus unserem Studio.",
       "minutiLettura": "{minutes} Minuten Lesezeit",
@@ -131,11 +245,15 @@
       "torna": "← Blog"
     },
     "contatti": {
+      "seoTitle": "Kontakt — Vereinbaren Sie einen Beratungstermin in Neapel",
+      "seoDescription": "Wenden Sie sich für Ihr nächstes Web-, Branding- oder Social-Media-Projekt an Omnia Marketing. Wir haben unseren Sitz in Neapel und arbeiten mit Unternehmen in ganz Italien zusammen: Fordern Sie eine kostenlose Beratung an.",
       "heroTitle": "Lass uns über dein Projekt sprechen.",
       "heroDescription": "Schildere uns deine Idee: Wir melden uns so schnell wie möglich bei dir.",
       "accediAreaClienti": "Zum Kundenbereich →"
     },
     "home": {
+      "seoTitle": "Omnia Marketing – Agentur für Webdesign, Branding und Social Media in Neapel",
+      "seoDescription": "Omnia Marketing: Wir glauben an Design. Wir erstellen Websites, E-Commerce-Lösungen, Branding und Social-Media-Inhalte für Unternehmen, die sich von der Masse abheben möchten. Als Webagentur in Neapel stehen wir seit vielen Jahren Unternehmen in ganz Italien zur Seite.",
       "ctaTitle": "Wir glauben an Design. Lassen Sie uns über Ihr Projekt sprechen.",
       "ctaDescription": "Erzählen Sie uns von Ihrer Idee: Wir verwandeln sie in ein maßgeschneidertes digitales Erlebnis.",
       "ticker1": "Wir erstellen Websites, die zu Conversions führen",
@@ -145,7 +263,74 @@
       "ticker5": "vom ersten Namensvorschlag bis zum letzten Pixel",
       "ticker6": "Inhalte, die das Scrollen unterbrechen",
       "ticker7": "Web, Branding und Social Media unter einem Dach",
-      "ticker8": "ein Partner, nicht drei Lieferanten"
+      "ticker8": "ein Partner, nicht drei Lieferanten",
+      "heroVariants": {
+        "web": [
+          "Möchtest du eine Website,\ndie Besucher zu Kunden macht?",
+          "Deine Website\nwartet auf dich",
+          "Wir erstellen deine\nWebsite – jetzt"
+        ],
+        "branding": [
+          "Wir gestalten\ndeine Marke",
+          "Deine Identität\nwartet auf dich",
+          "Wir gestalten\ndeine Marke – jetzt"
+        ],
+        "social": [
+          "Wir erzählen\ndeine Social-Media-Geschichten",
+          "Deine Inhalte\nwarten auf dich",
+          "Wir erstellen Ihre\nInhalte – jetzt"
+        ]
+      },
+      "ctaVariants": {
+        "web": [
+          {
+            "title": "Möchtest du eine Website, die wirklich Besucher zu Kunden macht?",
+            "description": "Von der Entwicklung bis zum E-Commerce: Wir erstellen Websites, die darauf ausgelegt sind, Ergebnisse zu erzielen."
+          },
+          {
+            "title": "Schau doch immer wieder mal auf unseren Webseiten vorbei.",
+            "description": "Erzählen Sie uns von Ihrer Idee: Wir besprechen sie gemeinsam, ganz unverbindlich.",
+            "ctaLabel": "Lass uns darüber reden"
+          },
+          {
+            "title": "Deine nächste Website könnte bereits in Arbeit sein.",
+            "description": "In nur 15 Minuten kannst du loslegen: Schreib uns noch heute.",
+            "ctaLabel": "Schreiben Sie uns jetzt"
+          }
+        ],
+        "branding": [
+          {
+            "title": "Möchtest du eine Marke, die man auf den ersten Blick erkennt?",
+            "description": "Strategie, Namensfindung, Logo und UI/UX in einem einzigen, speziell auf dich zugeschnittenen Prozess."
+          },
+          {
+            "title": "Schauen Sie sich unsere Branding-Projekte immer wieder an.",
+            "description": "Erzählen Sie uns von Ihrer Idee: Wir besprechen sie gemeinsam, ganz unverbindlich.",
+            "ctaLabel": "Lass uns darüber reden"
+          },
+          {
+            "title": "Deine neue Identität könnte diese Woche entstehen.",
+            "description": "In nur 15 Minuten kannst du loslegen: Schreib uns noch heute.",
+            "ctaLabel": "Schreiben Sie uns jetzt"
+          }
+        ],
+        "social": [
+          {
+            "title": "Bist du bereit, deine Social-Media-Kanäle auszubauen?",
+            "description": "Inhalte, Fotos, Videos und Werbespots, um Ihre Marke in einem einheitlichen Stil zu präsentieren."
+          },
+          {
+            "title": "Schau dir unsere Social-Media-Projekte weiterhin regelmäßig an.",
+            "description": "Erzähl uns von deinen Kanälen: Wir sprechen gemeinsam darüber, ganz unverbindlich.",
+            "ctaLabel": "Lass uns darüber reden"
+          },
+          {
+            "title": "Deine Social-Media-Kanäle könnten sofort durchstarten.",
+            "description": "In nur 15 Minuten kannst du loslegen: Schreib uns noch heute.",
+            "ctaLabel": "Schreiben Sie uns jetzt"
+          }
+        ]
+      }
     }
   }
 }

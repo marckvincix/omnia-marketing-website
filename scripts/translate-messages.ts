@@ -7,34 +7,45 @@ import path from "node:path";
 import { TARGET_LOCALES } from "../src/lib/i18n/locales";
 import { translateTexts } from "../src/lib/i18n/deepl";
 
-type MessageTree = { [key: string]: string | MessageTree };
+type Json = string | Json[] | { [key: string]: Json };
 
-function flatten(tree: MessageTree, prefix = ""): [string, string][] {
-  const out: [string, string][] = [];
-  for (const [key, value] of Object.entries(tree)) {
-    const fullKey = prefix ? `${prefix}.${key}` : key;
-    if (typeof value === "string") {
-      out.push([fullKey, value]);
-    } else {
-      out.push(...flatten(value, fullKey));
-    }
+// Percorre sia oggetti che array (le varianti Hero/CtaBand sono elenchi di stringhe o di
+// {title, description, ctaLabel}): ogni indice di array diventa un segmento numerico nel
+// percorso, es. "pages.home.heroVariants.web.0".
+function flatten(node: Json, prefix = ""): [string, string][] {
+  if (typeof node === "string") return [[prefix, node]];
+  if (Array.isArray(node)) {
+    return node.flatMap((item, i) => flatten(item, prefix ? `${prefix}.${i}` : String(i)));
   }
-  return out;
+  return Object.entries(node).flatMap(([key, value]) =>
+    flatten(value, prefix ? `${prefix}.${key}` : key),
+  );
 }
 
-function unflatten(pairs: [string, string][]): MessageTree {
-  const root: MessageTree = {};
+function unflatten(pairs: [string, string][]): Json {
+  const root: Record<string, Json> = {};
   for (const [key, value] of pairs) {
     const parts = key.split(".");
     let node = root;
     for (let i = 0; i < parts.length - 1; i++) {
       const part = parts[i];
-      if (typeof node[part] !== "object") node[part] = {};
-      node = node[part] as MessageTree;
+      if (typeof node[part] !== "object" || node[part] === null) node[part] = {};
+      node = node[part] as Record<string, Json>;
     }
     node[parts[parts.length - 1]] = value;
   }
-  return root;
+  return arrayify(root);
+}
+
+// Un oggetto le cui chiavi sono esattamente "0","1","2"... in ordine diventa un array vero,
+// altrimenti resta un oggetto — ricorsivo, per gli array annidati dentro altri oggetti.
+function arrayify(node: Json): Json {
+  if (typeof node !== "object" || node === null || Array.isArray(node)) return node;
+  const out: Record<string, Json> = {};
+  for (const key of Object.keys(node)) out[key] = arrayify(node[key]);
+  const keys = Object.keys(out);
+  const isArrayLike = keys.length > 0 && keys.every((k, i) => k === String(i));
+  return isArrayLike ? keys.map((k) => out[k]) : out;
 }
 
 // Nessuna chiave del catalogo contiene più tag incorporati da tradurre: testato che
@@ -46,7 +57,7 @@ const NON_SPLITTING_TAGS: string[] = [];
 
 async function main() {
   const messagesDir = path.join(process.cwd(), "messages");
-  const source = JSON.parse(readFileSync(path.join(messagesDir, "it.json"), "utf-8")) as MessageTree;
+  const source = JSON.parse(readFileSync(path.join(messagesDir, "it.json"), "utf-8")) as Json;
   const entries = flatten(source);
 
   const plainEntries = entries.filter(([k]) => !RICH_TEXT_KEYS.has(k));

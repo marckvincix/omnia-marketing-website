@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useVisitorName } from "@/lib/visitor-name-context";
@@ -31,12 +32,14 @@ interface CtaBandProps {
 export function CtaBand({
   title,
   description,
-  ctaLabel = "Contattaci",
+  ctaLabel,
   variants,
 }: CtaBandProps) {
   const { name } = useVisitorName();
   const { hydrated, topInterest, tier } = useVisitorTracking();
   const sectionRef = useRef<HTMLDivElement>(null);
+  const tCommon = useTranslations("common");
+  const resolvedCtaLabel = ctaLabel ?? tCommon("contattaci");
 
   // Una volta rilevato un interesse resta valido finché non ne emerge uno diverso: non
   // dipende da isReturning/contacted, il testo di base è riservato solo a chi non ha
@@ -47,7 +50,7 @@ export function CtaBand({
 
   const activeTitle = variant?.title ?? title;
   const activeDescription = variant?.description ?? description;
-  const activeCtaLabel = variant?.ctaLabel ?? ctaLabel;
+  const activeCtaLabel = variant?.ctaLabel ?? resolvedCtaLabel;
 
   const displayTitle = name
     ? `${name}, ${activeTitle.charAt(0).toLowerCase()}${activeTitle.slice(1)}`

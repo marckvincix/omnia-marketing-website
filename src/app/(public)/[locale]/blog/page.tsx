@@ -10,17 +10,16 @@ import { buildAlternates } from "@/lib/i18n/metadata";
 import { localize } from "@/lib/i18n/localize";
 import { DEFAULT_LOCALE } from "@/lib/i18n/locales";
 
-const TITLE = "Blog — Consigli su Web, Branding e Social";
-const DESCRIPTION =
-  "Approfondimenti su design, sviluppo web, branding e social media a cura di Omnia Marketing, agenzia digitale a Napoli attiva in tutta Italia.";
-
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations("pages.blog");
+  const title = t("seoTitle");
+  const description = t("seoDescription");
   return {
-    title: TITLE,
-    description: DESCRIPTION,
+    title,
+    description,
     alternates: buildAlternates("/blog", locale),
-    openGraph: { title: TITLE, description: DESCRIPTION, url: "/blog", type: "website" },
+    openGraph: { title, description, url: "/blog", type: "website" },
   };
 }
 

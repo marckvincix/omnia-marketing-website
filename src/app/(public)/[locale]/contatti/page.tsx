@@ -9,17 +9,16 @@ import { CLIENTS_AREA_URL } from "@/lib/nav";
 import { getPublishedServices } from "@/lib/data/services";
 import { buildAlternates } from "@/lib/i18n/metadata";
 
-const TITLE = "Contatti — Richiedi una Consulenza a Napoli";
-const DESCRIPTION =
-  "Contatta Omnia Marketing per il tuo prossimo progetto web, di branding o social. Siamo a Napoli e lavoriamo con aziende in tutta Italia: richiedi una consulenza gratuita.";
-
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations("pages.contatti");
+  const title = t("seoTitle");
+  const description = t("seoDescription");
   return {
-    title: TITLE,
-    description: DESCRIPTION,
+    title,
+    description,
     alternates: buildAlternates("/contatti", locale),
-    openGraph: { title: TITLE, description: DESCRIPTION, url: "/contatti", type: "website" },
+    openGraph: { title, description, url: "/contatti", type: "website" },
   };
 }
 

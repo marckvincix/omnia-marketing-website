@@ -13,15 +13,11 @@ import { getFaqsByServiceSlug } from "@/lib/data/faqs";
 import { ServiceJsonLd } from "@/components/shared/json-ld";
 import { buildAlternates } from "@/lib/i18n/metadata";
 
-const DEFAULT_TITLE = "Web — Siti, App ed eCommerce";
-const DEFAULT_DESCRIPTION =
-  "Realizziamo siti web, app mobile, e-commerce e piattaforme digitali con design minimalista e tecnologia all'avanguardia. Web agency a Napoli, operiamo in tutta Italia.";
-
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const service = await getServiceBySlug("web", locale);
-  const title = service?.seoTitle || DEFAULT_TITLE;
-  const description = service?.seoDescription || DEFAULT_DESCRIPTION;
+  const [service, t] = await Promise.all([getServiceBySlug("web", locale), getTranslations("pages.web")]);
+  const title = service?.seoTitle || t("seoTitle");
+  const description = service?.seoDescription || t("seoDescription");
 
   return {
     title,

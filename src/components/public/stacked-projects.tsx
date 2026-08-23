@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import type { ProjectView } from "@/lib/data/projects";
 import { useVisitorTracking } from "@/lib/visitor-tracking-context";
 import { useInterestTracking } from "@/lib/use-interest-tracking";
@@ -10,6 +11,7 @@ import { StackingCards } from "./stacking-cards";
 
 function ProjectCard({ project, index, total }: { project: ProjectView; index: number; total: number }) {
   const { onClick, onMouseEnter, onMouseLeave } = useInterestTracking(project.serviceSlugs);
+  const t = useTranslations("common");
 
   return (
     <article
@@ -79,7 +81,7 @@ function ProjectCard({ project, index, total }: { project: ProjectView; index: n
             )}
 
             <LightBeamButton href={`/progetti/${project.slug}`} onClick={onClick}>
-              Vedi il progetto <ArrowUpRight className="size-4" aria-hidden="true" />
+              {t("vediIlProgetto")} <ArrowUpRight className="size-4" aria-hidden="true" />
             </LightBeamButton>
           </div>
         </div>
