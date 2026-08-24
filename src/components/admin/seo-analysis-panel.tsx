@@ -5,29 +5,10 @@ import { CircleCheck, CircleAlert, CircleX, Loader2, Search } from "lucide-react
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { analyzeSeo, analyzeReadability, type SeoAnalysis, type SeoScore } from "@/lib/seo/analyze";
+import { SeoScoreBadge as ScoreBadge } from "@/components/admin/seo-score-badge";
+import { analyzeSeo, analyzeReadability, type SeoAnalysis } from "@/lib/seo/analyze";
 import { fetchRelatedKeywords } from "@/lib/seo/actions";
 import type { RelatedKeywordsResult } from "@/lib/seo/trends";
-
-const SCORE_STYLES: Record<SeoScore, string> = {
-  green: "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-  orange: "border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400",
-  red: "border-red-500/30 bg-red-500/10 text-red-600 dark:text-red-400",
-};
-
-const SCORE_LABEL: Record<SeoScore, string> = {
-  green: "Buono",
-  orange: "Da migliorare",
-  red: "Insufficiente",
-};
-
-function ScoreBadge({ score }: { score: SeoScore }) {
-  return (
-    <span className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium ${SCORE_STYLES[score]}`}>
-      {SCORE_LABEL[score]}
-    </span>
-  );
-}
 
 function CheckList({ analysis }: { analysis: SeoAnalysis }) {
   return (

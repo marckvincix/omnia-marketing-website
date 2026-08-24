@@ -11,15 +11,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { SeoScoreDot } from "@/components/admin/seo-score-badge";
 import { DeleteButton } from "@/components/admin/delete-button";
+import type { SeoScore } from "@/lib/seo/analyze";
 import { deleteBlogPost } from "./actions";
 
 export interface PostRow {
   id: string;
   title: string;
-  slug: string;
   categoryName: string | null;
   published: boolean;
+  seoScore: SeoScore;
 }
 
 export function PostTable({ posts }: { posts: PostRow[] }) {
@@ -30,7 +32,7 @@ export function PostTable({ posts }: { posts: PostRow[] }) {
           <TableRow>
             <TableHead>Titolo</TableHead>
             <TableHead>Categoria</TableHead>
-            <TableHead>Slug</TableHead>
+            <TableHead className="w-12">SEO</TableHead>
             <TableHead>Stato</TableHead>
             <TableHead className="w-24 text-right">Azioni</TableHead>
           </TableRow>
@@ -40,7 +42,9 @@ export function PostTable({ posts }: { posts: PostRow[] }) {
             <TableRow key={post.id}>
               <TableCell className="font-medium">{post.title}</TableCell>
               <TableCell className="text-muted-foreground">{post.categoryName ?? "—"}</TableCell>
-              <TableCell className="text-muted-foreground">/blog/{post.slug}</TableCell>
+              <TableCell>
+                <SeoScoreDot score={post.seoScore} />
+              </TableCell>
               <TableCell>
                 <Badge variant={post.published ? "default" : "secondary"}>
                   {post.published ? "Pubblicato" : "Bozza"}

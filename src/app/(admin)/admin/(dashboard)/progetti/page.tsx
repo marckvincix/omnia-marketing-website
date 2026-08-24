@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
+import { analyzeSeo } from "@/lib/seo/analyze";
 import { ProjectTable } from "./project-table";
 
 export const metadata: Metadata = {
@@ -21,8 +22,15 @@ export default async function AdminProjectsPage() {
           id: p.id,
           client: p.client,
           category: p.category,
-          slug: p.slug,
           published: p.published,
+          seoScore: analyzeSeo({
+            focusKeyword: p.focusKeyword ?? "",
+            seoTitle: p.seoTitle ?? "",
+            fallbackTitle: p.title,
+            seoDescription: p.seoDescription ?? "",
+            slug: p.slug,
+            content: [p.description, p.processText, p.resultsText, p.testimonialQuote].filter(Boolean).join("\n\n"),
+          }).score,
         }))}
       />
     </div>

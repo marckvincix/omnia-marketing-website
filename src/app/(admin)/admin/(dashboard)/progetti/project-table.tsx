@@ -12,15 +12,17 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SeoScoreDot } from "@/components/admin/seo-score-badge";
 import { DeleteButton } from "@/components/admin/delete-button";
+import type { SeoScore } from "@/lib/seo/analyze";
 import { deleteProject } from "./actions";
 
 export interface ProjectRowData {
   id: string;
   client: string;
   category: string[];
-  slug: string;
   published: boolean;
+  seoScore: SeoScore;
 }
 
 export function ProjectTable({ projects }: { projects: ProjectRowData[] }) {
@@ -38,7 +40,7 @@ export function ProjectTable({ projects }: { projects: ProjectRowData[] }) {
             <TableRow>
               <TableHead>Cliente</TableHead>
               <TableHead>Categoria</TableHead>
-              <TableHead>Slug</TableHead>
+              <TableHead className="w-12">SEO</TableHead>
               <TableHead>Stato</TableHead>
               <TableHead className="w-24 text-right">Azioni</TableHead>
             </TableRow>
@@ -48,7 +50,9 @@ export function ProjectTable({ projects }: { projects: ProjectRowData[] }) {
               <TableRow key={project.id}>
                 <TableCell className="font-medium">{project.client}</TableCell>
                 <TableCell className="text-muted-foreground">{project.category.join(" · ")}</TableCell>
-                <TableCell className="text-muted-foreground">/progetti/{project.slug}</TableCell>
+                <TableCell>
+                  <SeoScoreDot score={project.seoScore} />
+                </TableCell>
                 <TableCell>
                   <Badge variant={project.published ? "default" : "secondary"}>
                     {project.published ? "Pubblicato" : "Bozza"}
