@@ -30,6 +30,8 @@ const empty: BlogPostInput = {
   published: false,
   seoTitle: "",
   seoDescription: "",
+  geoTitle: "",
+  geoDescription: "",
   focusKeyword: "",
 };
 
@@ -45,6 +47,14 @@ export function PostEditor({
   const [form, setForm] = useState<BlogPostInput>(initial ?? empty);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+
+  function handleGenerateGeo() {
+    setForm({
+      ...form,
+      geoTitle: form.title,
+      geoDescription: form.excerpt.trim() || form.title,
+    });
+  }
 
   function handleSubmit() {
     setError(null);
@@ -175,6 +185,33 @@ export function PostEditor({
         slug={form.slug}
         content={form.content}
       />
+
+      <div className="border-t border-border pt-4">
+        <div className="flex items-center justify-between mb-1">
+          <Label className="block">GEO — per i motori generativi/AI</Label>
+          <Button type="button" variant="outline" size="sm" onClick={handleGenerateGeo}>
+            Compila automaticamente
+          </Button>
+        </div>
+        <p className="text-xs text-muted-foreground mb-3">
+          Testo chiaro e fattuale pensato per essere citato da ChatGPT, Perplexity, Google AI Overview e simili.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <Label htmlFor="b-geoTitle">Titolo GEO</Label>
+            <Input id="b-geoTitle" value={form.geoTitle} onChange={(e) => setForm({ ...form, geoTitle: e.target.value })} />
+          </div>
+          <div>
+            <Label htmlFor="b-geoDescription">Descrizione GEO</Label>
+            <Textarea
+              id="b-geoDescription"
+              rows={2}
+              value={form.geoDescription}
+              onChange={(e) => setForm({ ...form, geoDescription: e.target.value })}
+            />
+          </div>
+        </div>
+      </div>
 
       {error && <p className="text-sm text-destructive">{error}</p>}
 

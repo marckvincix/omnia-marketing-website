@@ -37,6 +37,7 @@ export interface ProjectView {
   gradient: string;
   seoTitle: string;
   seoDescription: string;
+  geoDescription: string;
   gallery: ProjectGalleryItem[];
 }
 
@@ -48,6 +49,7 @@ type ProjectTranslationFields = {
   testimonialQuote: string | null;
   seoTitle: string | null;
   seoDescription: string | null;
+  geoDescription: string | null;
 };
 
 type ProjectWithRelations = {
@@ -63,6 +65,7 @@ type ProjectWithRelations = {
   externalUrl: string | null;
   seoTitle: string | null;
   seoDescription: string | null;
+  geoDescription: string | null;
   services: { service: { title: string; slug: string; translations?: { title: string }[] } }[];
   media: { id: string; url: string; alt: string; type: "IMAGE" | "VIDEO" }[];
   translations?: ProjectTranslationFields[];
@@ -76,6 +79,7 @@ function toView(p: ProjectWithRelations): ProjectView {
   const testimonialQuote = t?.testimonialQuote || p.testimonialQuote;
   const seoTitle = t?.seoTitle || p.seoTitle;
   const seoDescription = t?.seoDescription || p.seoDescription;
+  const geoDescription = t?.geoDescription || p.geoDescription;
 
   return {
     id: p.id,
@@ -93,6 +97,7 @@ function toView(p: ProjectWithRelations): ProjectView {
     gradient: gradientForSlug(p.slug),
     seoTitle: seoTitle ?? `${p.client} — Case Study`,
     seoDescription: seoDescription ?? description,
+    geoDescription: geoDescription || seoDescription || description,
     gallery: p.media.map((m) => ({ id: m.id, url: m.url, alt: m.alt, type: m.type })),
   };
 }

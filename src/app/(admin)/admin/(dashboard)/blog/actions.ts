@@ -33,6 +33,8 @@ export async function saveBlogPost(input: BlogPostInput) {
       publishedAt: data.published ? new Date() : null,
       seoTitle: data.seoTitle || null,
       seoDescription: data.seoDescription || null,
+      geoTitle: data.geoTitle || null,
+      geoDescription: data.geoDescription || null,
       focusKeyword: data.focusKeyword || null,
     },
     update: {
@@ -46,6 +48,8 @@ export async function saveBlogPost(input: BlogPostInput) {
       published: data.published,
       seoTitle: data.seoTitle || null,
       seoDescription: data.seoDescription || null,
+      geoTitle: data.geoTitle || null,
+      geoDescription: data.geoDescription || null,
       focusKeyword: data.focusKeyword || null,
     },
   });

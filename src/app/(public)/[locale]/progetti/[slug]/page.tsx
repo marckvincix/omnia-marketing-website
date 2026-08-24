@@ -83,7 +83,7 @@ export default async function ProjectDetailPage({
       />
       <CreativeWorkJsonLd
         name={project.client}
-        description={project.description}
+        description={project.geoDescription || project.description}
         url={`/progetti/${project.slug}`}
         client={project.client}
       />

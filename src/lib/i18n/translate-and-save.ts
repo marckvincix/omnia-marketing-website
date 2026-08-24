@@ -46,12 +46,14 @@ export async function translateAndSaveBlogPost(postId: string) {
       content: post.content,
       seoTitle: post.seoTitle,
       seoDescription: post.seoDescription,
+      geoTitle: post.geoTitle,
+      geoDescription: post.geoDescription,
     },
     (locale, t) =>
       prisma.blogPostTranslation.upsert({
         where: { postId_locale: { postId, locale } },
-        create: { postId, locale, title: t.title, excerpt: t.excerpt, content: t.content, seoTitle: t.seoTitle, seoDescription: t.seoDescription },
-        update: { title: t.title, excerpt: t.excerpt, content: t.content, seoTitle: t.seoTitle, seoDescription: t.seoDescription },
+        create: { postId, locale, ...t } as never,
+        update: { ...t },
       }),
   );
 }

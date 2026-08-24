@@ -376,6 +376,11 @@ model BlogPost {
   seoDescription String?
   ogImage        String?
 
+  // Testo pensato per i motori generativi/AI (GEO), distinto dalla meta description SEO
+  // tradizionale — stesso pattern già in uso su Project.
+  geoTitle       String?
+  geoDescription String?
+
   // Parola/frase chiave principale su cui è ottimizzato l'articolo: usata dall'analizzatore
   // SEO in admin (stile Yoast) per calcolare punteggio e checklist, non mostrata sul sito.
   focusKeyword String?
@@ -398,6 +403,8 @@ model BlogPostTranslation {
   content        String
   seoTitle       String?
   seoDescription String?
+  geoTitle       String?
+  geoDescription String?
   updatedAt      DateTime @updatedAt
 
   @@unique([postId, locale])

@@ -20,7 +20,15 @@ async function getLocalizedPost(slug: string, locale: string) {
     },
   });
   if (!post) return null;
-  return localize(post, post.translations?.[0], ["title", "excerpt", "content", "seoTitle", "seoDescription"]);
+  return localize(post, post.translations?.[0], [
+    "title",
+    "excerpt",
+    "content",
+    "seoTitle",
+    "seoDescription",
+    "geoTitle",
+    "geoDescription",
+  ]);
 }
 
 export async function generateMetadata({
@@ -69,7 +77,7 @@ export default async function BlogPostPage({
       <BreadcrumbJsonLd items={[{ name: tNav("blog"), url: "/blog" }, { name: post.title, url: `/blog/${post.slug}` }]} />
       <ArticleJsonLd
         title={post.title}
-        description={post.seoDescription || post.excerpt}
+        description={post.geoDescription || post.seoDescription || post.excerpt}
         url={`/blog/${post.slug}`}
         datePublished={(post.publishedAt ?? post.createdAt).toISOString()}
         dateModified={post.updatedAt.toISOString()}
