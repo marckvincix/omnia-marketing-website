@@ -41,15 +41,20 @@ function DialogOverlay({
 
 function DialogContent({
   className,
+  overlayClassName,
   children,
   showCloseButton = true,
   ...props
 }: DialogPrimitive.Popup.Props & {
   showCloseButton?: boolean
+  // Il trigger di questo dialog può vivere dentro un elemento con z-index molto alto (es.
+  // il dock di navigazione fisso): permette di alzare lo z-index anche di overlay+contenuto
+  // in quei casi, senza toccare i valori di default usati ovunque altrove.
+  overlayClassName?: string
 }) {
   return (
     <DialogPortal>
-      <DialogOverlay />
+      <DialogOverlay className={overlayClassName} />
       <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={cn(

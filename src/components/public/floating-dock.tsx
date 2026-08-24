@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { Check } from "lucide-react";
@@ -8,12 +9,7 @@ import { DOCK_ITEMS, DOCK_CTA_ICON, CLIENTS_AREA_ICON, CLIENTS_AREA_URL } from "
 import { useVisitorTracking } from "@/lib/visitor-tracking-context";
 import { INTEREST_CLICK_WEIGHT } from "@/lib/use-interest-tracking";
 import { LOCALES, LOCALE_META, type Locale } from "@/lib/i18n/locales";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { LightBeamButton } from "./light-beam-button";
 
 const SERVICE_SLUGS = new Set(["web", "branding", "social"]);
@@ -32,32 +28,47 @@ function LanguageSwitcher() {
   const pathname = usePathname();
   const router = useRouter();
   const t = useTranslations("nav");
+  const [open, setOpen] = useState(false);
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger
         title={t("lingua")}
         className="shrink-0 rounded-xl p-2.5 text-white/70 transition-all hover:bg-white/10 hover:text-white md:rounded-xl md:p-2.5"
       >
         <FlagIcon locale={locale} className="h-4 w-6 md:h-3.5 md:w-5" />
         <span className="sr-only">{t("lingua")}</span>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent side="top" align="start" className="min-w-40">
-        {LOCALES.map((l) => (
-          <DropdownMenuItem
-            key={l}
-            onClick={() => router.replace(pathname, { locale: l })}
-            className="justify-between"
-          >
-            <span className="flex items-center gap-2">
-              <FlagIcon locale={l} className="h-3.5 w-5" />
-              {LOCALE_META[l].label}
-            </span>
-            {l === locale && <Check className="size-4" aria-hidden="true" />}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </DialogTrigger>
+      <DialogContent
+        className="z-[120] max-h-[85vh] overflow-y-auto sm:max-w-xs"
+        overlayClassName="z-[120]"
+      >
+        <DialogHeader>
+          <DialogTitle>{t("lingua")}</DialogTitle>
+        </DialogHeader>
+        <div className="flex flex-col gap-1">
+          {LOCALES.map((l) => (
+            <button
+              key={l}
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                router.replace(pathname, { locale: l });
+              }}
+              className={`flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors hover:bg-accent ${
+                l === locale ? "bg-accent" : ""
+              }`}
+            >
+              <span className="flex items-center gap-2.5">
+                <FlagIcon locale={l} className="h-4 w-6" />
+                {LOCALE_META[l].label}
+              </span>
+              {l === locale && <Check className="size-4" aria-hidden="true" />}
+            </button>
+          ))}
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }
 
