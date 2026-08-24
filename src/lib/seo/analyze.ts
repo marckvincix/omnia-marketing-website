@@ -96,7 +96,10 @@ export function analyzeSeo(input: SeoAnalysisInput): SeoAnalysis {
   );
 
   checks.push(
-    containsKeyword(input.slug, keyword)
+    // Lo slug usa i trattini al posto degli spazi: senza questa sostituzione una keyword
+    // multi-parola ("tornei sportivi") non avrebbe mai trovato corrispondenza in
+    // "tornei-sportivi", anche quando concettualmente lo slug la conteneva davvero.
+    containsKeyword(input.slug.replace(/-/g, " "), keyword)
       ? { id: "keywordInSlug", status: "good", message: "La parola chiave compare nello slug (URL)." }
       : { id: "keywordInSlug", status: "bad", message: "Lo slug (URL) non contiene la parola chiave." },
   );
