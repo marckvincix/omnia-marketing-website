@@ -25,6 +25,7 @@ const empty: BlogPostInput = {
   excerpt: "",
   content: "",
   coverImage: "",
+  coverImageAlt: "",
   categoryId: "",
   tagIds: [],
   published: false,
@@ -103,9 +104,20 @@ export function PostEditor({
         </p>
       </div>
 
-      <div>
-        <Label htmlFor="b-cover">URL immagine di copertina</Label>
-        <Input id="b-cover" value={form.coverImage} onChange={(e) => setForm({ ...form, coverImage: e.target.value })} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <Label htmlFor="b-cover">URL immagine di copertina</Label>
+          <Input id="b-cover" value={form.coverImage} onChange={(e) => setForm({ ...form, coverImage: e.target.value })} />
+        </div>
+        <div>
+          <Label htmlFor="b-cover-alt">Testo alternativo (ALT) copertina</Label>
+          <Input
+            id="b-cover-alt"
+            placeholder="Se vuoto, usa il titolo dell'articolo"
+            value={form.coverImageAlt}
+            onChange={(e) => setForm({ ...form, coverImageAlt: e.target.value })}
+          />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

@@ -109,6 +109,7 @@ export const blogPostSchema = z.object({
   excerpt: z.string().trim().min(1, "Estratto obbligatorio"),
   content: z.string().trim().min(1, "Contenuto obbligatorio"),
   coverImage: z.string().trim().optional().or(z.literal("")),
+  coverImageAlt: z.string().trim().optional().or(z.literal("")),
   categoryId: z.string().optional().or(z.literal("")),
   tagIds: z.array(z.string()).default([]),
   published: z.boolean().default(false),

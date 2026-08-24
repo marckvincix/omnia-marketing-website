@@ -35,6 +35,7 @@ export default async function EditBlogPostPage({
           excerpt: post.excerpt,
           content: post.content,
           coverImage: post.coverImage ?? "",
+          coverImageAlt: post.coverImageAlt ?? "",
           categoryId: post.categoryId ?? "",
           tagIds: post.tags.map((t) => t.tagId),
           published: post.published,

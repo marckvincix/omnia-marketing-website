@@ -44,6 +44,7 @@ export async function translateAndSaveBlogPost(postId: string) {
       title: post.title,
       excerpt: post.excerpt,
       content: post.content,
+      coverImageAlt: post.coverImageAlt,
       seoTitle: post.seoTitle,
       seoDescription: post.seoDescription,
       geoTitle: post.geoTitle,

@@ -360,6 +360,10 @@ model BlogPost {
   externalId String? @unique
 
   coverImage        String?
+  // Testo alternativo dell'immagine di copertina: se vuoto, il sito ricade sul titolo
+  // dell'articolo (non è mai un'immagine senza ALT, ma un ALT dedicato descrive l'immagine
+  // stessa invece del titolo, meglio per SEO/accessibilità quando i due differiscono).
+  coverImageAlt      String?
   categoryId         String?
   category           BlogCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   authorId           String?
@@ -401,6 +405,7 @@ model BlogPostTranslation {
   title          String
   excerpt        String
   content        String
+  coverImageAlt  String?
   seoTitle       String?
   seoDescription String?
   geoTitle       String?

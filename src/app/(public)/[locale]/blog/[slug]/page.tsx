@@ -24,6 +24,7 @@ async function getLocalizedPost(slug: string, locale: string) {
     "title",
     "excerpt",
     "content",
+    "coverImageAlt",
     "seoTitle",
     "seoDescription",
     "geoTitle",
@@ -101,7 +102,7 @@ export default async function BlogPostPage({
 
       {post.coverImage && (
         <div className="relative mx-6 md:mx-auto md:max-w-4xl aspect-video rounded-2xl overflow-hidden">
-          <Image src={post.coverImage} alt={post.title} fill sizes="(max-width: 896px) 100vw, 896px" className="object-cover" priority />
+          <Image src={post.coverImage} alt={post.coverImageAlt || post.title} fill sizes="(max-width: 896px) 100vw, 896px" className="object-cover" priority />
         </div>
       )}
 
