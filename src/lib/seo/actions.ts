@@ -2,6 +2,7 @@
 
 import { auth } from "@/lib/auth";
 import { getRelatedKeywords, type RelatedKeywordsResult } from "./trends";
+import { getSearchConsolePageInsights, isSearchConsoleConfigured } from "./search-console";
 
 async function requireAdmin() {
   const session = await auth();
@@ -13,4 +14,14 @@ export async function fetchRelatedKeywords(
 ): Promise<{ ok: true; data: RelatedKeywordsResult } | { ok: false; error: string }> {
   await requireAdmin();
   return getRelatedKeywords(seed);
+}
+
+export async function fetchPageSearchConsoleInsights(pagePath: string) {
+  await requireAdmin();
+  if (!isSearchConsoleConfigured()) {
+    return { ok: false as const, error: "Google Search Console non è ancora collegata (vedi la pagina Analytics)." };
+  }
+  const result = await getSearchConsolePageInsights(pagePath);
+  if ("error" in result) return { ok: false as const, error: result.error };
+  return { ok: true as const, data: result };
 }

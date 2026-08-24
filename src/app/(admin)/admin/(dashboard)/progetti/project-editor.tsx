@@ -435,6 +435,7 @@ export function ProjectEditor({
           seoDescription={form.seoDescription ?? ""}
           slug={form.slug}
           content={seoContent}
+          pagePath={`/progetti/${form.slug}`}
         />
       </div>
 

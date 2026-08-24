@@ -184,6 +184,7 @@ export function PostEditor({
         seoDescription={form.seoDescription ?? ""}
         slug={form.slug}
         content={form.content}
+        pagePath={`/blog/${form.slug}`}
       />
 
       <div className="border-t border-border pt-4">
