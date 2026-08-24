@@ -93,6 +93,17 @@ async function querySearchAnalytics(
   return res.json();
 }
 
+// Le pagine tornano come URL assoluti (es. "https://www.omniamarketing.it/blog/slug"): nelle
+// tabelle mostriamo solo il percorso, altrimenti ogni riga tronca allo stesso identico prefisso
+// "https://www.omniam…" ed è impossibile distinguere una pagina dall'altra.
+function pathFromUrl(url: string): string {
+  try {
+    return new URL(url).pathname;
+  } catch {
+    return url;
+  }
+}
+
 function comparison(current: number, previous: number): SearchConsoleMetricComparison {
   const changePercent = previous > 0 ? ((current - previous) / previous) * 100 : null;
   return { current, previous, changePercent };
@@ -159,7 +170,7 @@ export async function getSearchConsoleReport(period: string = "30d"): Promise<Se
     }));
 
     const topPages: SearchConsolePageRow[] = (pagesRes.rows ?? []).map((r) => ({
-      page: r.keys?.[0] ?? "—",
+      page: r.keys?.[0] ? pathFromUrl(r.keys[0]) : "—",
       clicks: r.clicks ?? 0,
       impressions: r.impressions ?? 0,
       ctr: r.ctr ?? 0,
@@ -208,13 +219,7 @@ export async function getAllPagesPerformance(period: string = "30d"): Promise<Ma
     for (const row of res.rows ?? []) {
       const url = row.keys?.[0];
       if (!url) continue;
-      let path: string;
-      try {
-        path = new URL(url).pathname;
-      } catch {
-        path = url;
-      }
-      map.set(path, { clicks: row.clicks ?? 0, impressions: row.impressions ?? 0 });
+      map.set(pathFromUrl(url), { clicks: row.clicks ?? 0, impressions: row.impressions ?? 0 });
     }
     return map;
   } catch (error) {
