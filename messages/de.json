@@ -249,7 +249,22 @@
       "seoDescription": "Wenden Sie sich für Ihr nächstes Web-, Branding- oder Social-Media-Projekt an Omnia Marketing. Wir haben unseren Sitz in Neapel und arbeiten mit Unternehmen in ganz Italien zusammen: Fordern Sie eine kostenlose Beratung an.",
       "heroTitle": "Lass uns über dein Projekt sprechen.",
       "heroDescription": "Schildere uns deine Idee: Wir melden uns so schnell wie möglich bei dir.",
-      "accediAreaClienti": "Zum Kundenbereich →"
+      "accediAreaClienti": "Zum Kundenbereich →",
+      "form": {
+        "nome": "Name",
+        "email": "E-Mail",
+        "telefono": "Telefon",
+        "servizioDiInteresse": "Gewünschte Dienstleistung",
+        "selezionaUnServizio": "Wählen Sie einen Dienst aus",
+        "messaggio": "Nachricht",
+        "invioInCorso": "Wird gesendet…",
+        "inviaMessaggio": "Nachricht senden",
+        "errNome": "Gib deinen Namen ein",
+        "errEmail": "Gib eine gültige E-Mail-Adresse ein",
+        "errTelefono": "Gib deine Telefonnummer ein",
+        "errMessaggio": "Die Nachricht muss mindestens 10 Zeichen enthalten.",
+        "errServizio": "Wählen Sie einen Dienst aus"
+      }
     },
     "home": {
       "seoTitle": "Omnia Marketing – Agentur für Webdesign, Branding und Social Media in Neapel",

@@ -1,9 +1,9 @@
 "use server";
 
 import { redirect } from "@/i18n/navigation";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
-import { contactSchema } from "@/lib/validation/contact";
+import { getContactSchema } from "@/lib/validation/contact";
 import { sendContactConfirmationEmail, sendContactNotificationEmail } from "@/lib/email/send-contact-notifications";
 
 export type ContactActionState = {
@@ -21,6 +21,9 @@ export async function submitContact(
   if (formData.get("website")) {
     return redirect({ href: "/grazie", locale });
   }
+
+  const t = await getTranslations("pages.contatti.form");
+  const contactSchema = getContactSchema(t);
 
   // formData.get() ritorna null (non undefined) per i campi assenti dal form.
   const parsed = contactSchema.safeParse({

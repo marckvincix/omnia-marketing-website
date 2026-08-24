@@ -249,7 +249,22 @@
       "seoDescription": "Contatta Omnia Marketing per il tuo prossimo progetto web, di branding o social. Siamo a Napoli e lavoriamo con aziende in tutta Italia: richiedi una consulenza gratuita.",
       "heroTitle": "Parliamo del tuo progetto.",
       "heroDescription": "Raccontaci la tua idea: ti rispondiamo il prima possibile.",
-      "accediAreaClienti": "Accedi all'Area Clienti →"
+      "accediAreaClienti": "Accedi all'Area Clienti →",
+      "form": {
+        "nome": "Nome",
+        "email": "Email",
+        "telefono": "Telefono",
+        "servizioDiInteresse": "Servizio richiesto",
+        "selezionaUnServizio": "Seleziona un servizio",
+        "messaggio": "Messaggio",
+        "invioInCorso": "Invio in corso…",
+        "inviaMessaggio": "Invia messaggio",
+        "errNome": "Inserisci il tuo nome",
+        "errEmail": "Inserisci un'email valida",
+        "errTelefono": "Inserisci il tuo numero di telefono",
+        "errMessaggio": "Il messaggio deve contenere almeno 10 caratteri",
+        "errServizio": "Seleziona un servizio"
+      }
     },
     "home": {
       "seoTitle": "Omnia Marketing — Agenzia web, branding e social a Napoli",

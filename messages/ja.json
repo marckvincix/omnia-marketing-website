@@ -249,7 +249,22 @@
       "seoDescription": "次回のウェブ、ブランディング、またはソーシャルメディアのプロジェクトについては、オムニア・マーケティングまでお問い合わせください。当社はナポリに拠点を置き、イタリア全土の企業様と提携しております。無料コンサルティングをご依頼ください。",
       "heroTitle": "あなたのプロジェクトについてお話ししましょう。",
       "heroDescription": "ご提案をお聞かせください。できるだけ早くご返信いたします。",
-      "accediAreaClienti": "「お客様専用ページ」にアクセス →"
+      "accediAreaClienti": "「お客様専用ページ」にアクセス →",
+      "form": {
+        "nome": "名前",
+        "email": "Eメール",
+        "telefono": "電話番号",
+        "servizioDiInteresse": "ご希望のサービス",
+        "selezionaUnServizio": "サービスを選択してください",
+        "messaggio": "メッセージ",
+        "invioInCorso": "送信中…",
+        "inviaMessaggio": "メッセージを送信",
+        "errNome": "お名前を入力してください",
+        "errEmail": "有効なメールアドレスを入力してください",
+        "errTelefono": "電話番号を入力してください",
+        "errMessaggio": "メッセージは10文字以上でなければなりません",
+        "errServizio": "サービスを選択してください"
+      }
     },
     "home": {
       "seoTitle": "Omnia Marketing — ナポリのウェブ・ブランディング・ソーシャルメディア専門エージェンシー",

@@ -249,7 +249,22 @@
       "seoDescription": "Ponte en contacto con Omnia Marketing para tu próximo proyecto web, de imagen de marca o en redes sociales. Estamos en Nápoles y trabajamos con empresas de toda Italia: solicita una consulta gratuita.",
       "heroTitle": "Hablemos de tu proyecto.",
       "heroDescription": "Cuéntanos tu idea: te responderemos lo antes posible.",
-      "accediAreaClienti": "Accede al Área de clientes →"
+      "accediAreaClienti": "Accede al Área de clientes →",
+      "form": {
+        "nome": "Nombre",
+        "email": "Correo electrónico",
+        "telefono": "Teléfono",
+        "servizioDiInteresse": "Servicio solicitado",
+        "selezionaUnServizio": "Selecciona un servicio",
+        "messaggio": "Mensaje",
+        "invioInCorso": "Enviando…",
+        "inviaMessaggio": "Enviar mensaje",
+        "errNome": "Escribe tu nombre",
+        "errEmail": "Introduce una dirección de correo electrónico válida",
+        "errTelefono": "Introduce tu número de teléfono",
+        "errMessaggio": "El mensaje debe contener al menos 10 caracteres",
+        "errServizio": "Selecciona un servicio"
+      }
     },
     "home": {
       "seoTitle": "Omnia Marketing — Agencia de diseño web, imagen de marca y redes sociales en Nápoles",

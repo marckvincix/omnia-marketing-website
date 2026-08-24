@@ -249,7 +249,22 @@
       "seoDescription": "如需开展下一个网站建设、品牌推广或社交媒体项目，请联系Omnia Marketing。我们位于那不勒斯，服务范围覆盖全意大利各地的企业：欢迎申请免费咨询。",
       "heroTitle": "我们来谈谈你的项目吧。",
       "heroDescription": "请告诉我们您的想法：我们会尽快回复您。",
-      "accediAreaClienti": "登录客户专区 →"
+      "accediAreaClienti": "登录客户专区 →",
+      "form": {
+        "nome": "姓名",
+        "email": "电子邮件",
+        "telefono": "电话",
+        "servizioDiInteresse": "所需服务",
+        "selezionaUnServizio": "选择一项服务",
+        "messaggio": "消息",
+        "invioInCorso": "正在发送……",
+        "inviaMessaggio": "发送消息",
+        "errNome": "请输入您的姓名",
+        "errEmail": "请输入一个有效的电子邮箱地址",
+        "errTelefono": "请输入您的电话号码",
+        "errMessaggio": "消息必须至少包含10个字符",
+        "errServizio": "选择一项服务"
+      }
     },
     "home": {
       "seoTitle": "Omnia Marketing — 那不勒斯的网站建设、品牌推广及社交媒体营销机构",

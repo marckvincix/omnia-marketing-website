@@ -249,7 +249,22 @@
       "seoDescription": "Contact Omnia Marketing for your next web, branding, or social media project. We’re based in Naples and work with companies throughout Italy: request a free consultation.",
       "heroTitle": "Let's talk about your project.",
       "heroDescription": "Tell us about your idea: we'll get back to you as soon as possible.",
-      "accediAreaClienti": "Log in to the Customer Area →"
+      "accediAreaClienti": "Log in to the Customer Area →",
+      "form": {
+        "nome": "Name",
+        "email": "Email",
+        "telefono": "Phone",
+        "servizioDiInteresse": "Service Requested",
+        "selezionaUnServizio": "Select a service",
+        "messaggio": "Message",
+        "invioInCorso": "Sending...",
+        "inviaMessaggio": "Send a message",
+        "errNome": "Enter your name",
+        "errEmail": "Enter a valid email address",
+        "errTelefono": "Enter your phone number",
+        "errMessaggio": "The message must contain at least 10 characters",
+        "errServizio": "Select a service"
+      }
     },
     "home": {
       "seoTitle": "Omnia Marketing — Web, branding, and social media agency in Naples",
