@@ -175,6 +175,56 @@ export async function getSearchConsoleReport(period: string = "30d"): Promise<Se
   }
 }
 
+export interface PagePerformance {
+  clicks: number;
+  impressions: number;
+}
+
+// Click e impression di TUTTE le pagine in un'unica chiamata (invece di una per riga),
+// usato nelle tabelle elenco blog/progetti per mostrare la colonna Performance senza fare
+// una query Search Console per ogni singolo articolo/progetto. Mappa per percorso (es.
+// "/blog/il-mio-slug"), non per URL completo, così il confronto non dipende dal formato
+// esatto della proprietà (prefisso URL o dominio).
+export async function getAllPagesPerformance(period: string = "30d"): Promise<Map<string, PagePerformance> | { error: string }> {
+  const auth = getAuth();
+  const siteUrl = process.env.GOOGLE_SEARCH_CONSOLE_SITE_URL;
+  if (!auth || !siteUrl) return { error: "Google Search Console non è ancora configurato." };
+
+  const { current } = resolvePeriod(period);
+
+  try {
+    const client = await auth.getClient();
+    const { token } = await client.getAccessToken();
+    if (!token) return { error: "Impossibile ottenere un token di accesso Google." };
+
+    const res = await querySearchAnalytics(token, siteUrl, {
+      startDate: current.startDate,
+      endDate: current.endDate,
+      dimensions: ["page"],
+      rowLimit: 5000,
+    });
+
+    const map = new Map<string, PagePerformance>();
+    for (const row of res.rows ?? []) {
+      const url = row.keys?.[0];
+      if (!url) continue;
+      let path: string;
+      try {
+        path = new URL(url).pathname;
+      } catch {
+        path = url;
+      }
+      map.set(path, { clicks: row.clicks ?? 0, impressions: row.impressions ?? 0 });
+    }
+    return map;
+  } catch (error) {
+    console.error("Errore lettura performance pagine Search Console", error);
+    return {
+      error: error instanceof Error ? error.message : "Errore sconosciuto durante la lettura di Search Console",
+    };
+  }
+}
+
 // Query e posizione media per una singola pagina, usato nel pannello SEO dell'editor
 // (blog/progetti) per mostrare come sta andando davvero quel contenuto su Google, non solo
 // la checklist statica dell'analizzatore.

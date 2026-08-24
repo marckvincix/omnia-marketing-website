@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { SeoScoreDot } from "@/components/admin/seo-score-badge";
 import { DeleteButton } from "@/components/admin/delete-button";
 import type { SeoScore } from "@/lib/seo/analyze";
+import type { PagePerformance } from "@/lib/seo/search-console";
 import { deleteProject } from "./actions";
 
 export interface ProjectRowData {
@@ -23,6 +24,7 @@ export interface ProjectRowData {
   category: string[];
   published: boolean;
   seoScore: SeoScore;
+  performance: PagePerformance | null;
 }
 
 export function ProjectTable({ projects }: { projects: ProjectRowData[] }) {
@@ -35,23 +37,33 @@ export function ProjectTable({ projects }: { projects: ProjectRowData[] }) {
       </div>
 
       <div className="rounded-xl border border-border bg-card overflow-hidden">
-        <Table>
+        <Table className="table-fixed">
           <TableHeader>
             <TableRow>
-              <TableHead>Cliente</TableHead>
-              <TableHead>Categoria</TableHead>
+              <TableHead className="w-auto">Cliente</TableHead>
+              <TableHead className="w-32">Categoria</TableHead>
               <TableHead className="w-12">SEO</TableHead>
-              <TableHead>Stato</TableHead>
-              <TableHead className="w-24 text-right">Azioni</TableHead>
+              <TableHead className="w-32">Performance</TableHead>
+              <TableHead className="w-24">Stato</TableHead>
+              <TableHead className="w-16 text-right">Azioni</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {projects.map((project) => (
               <TableRow key={project.id}>
-                <TableCell className="font-medium">{project.client}</TableCell>
-                <TableCell className="text-muted-foreground">{project.category.join(" · ")}</TableCell>
+                <TableCell className="font-medium truncate" title={project.client}>
+                  {project.client}
+                </TableCell>
+                <TableCell className="text-muted-foreground truncate" title={project.category.join(" · ")}>
+                  {project.category.join(" · ")}
+                </TableCell>
                 <TableCell>
                   <SeoScoreDot score={project.seoScore} />
+                </TableCell>
+                <TableCell className="text-xs text-muted-foreground whitespace-nowrap">
+                  {project.performance
+                    ? `${project.performance.clicks} clic · ${project.performance.impressions} impr.`
+                    : "—"}
                 </TableCell>
                 <TableCell>
                   <Badge variant={project.published ? "default" : "secondary"}>
@@ -74,7 +86,7 @@ export function ProjectTable({ projects }: { projects: ProjectRowData[] }) {
             ))}
             {projects.length === 0 && (
               <TableRow>
-                <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
+                <TableCell colSpan={6} className="text-center text-muted-foreground py-8">
                   Nessun progetto ancora.
                 </TableCell>
               </TableRow>

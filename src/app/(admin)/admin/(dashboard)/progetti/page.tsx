@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { analyzeSeo } from "@/lib/seo/analyze";
+import { getAllPagesPerformance, isSearchConsoleConfigured } from "@/lib/seo/search-console";
 import { ProjectTable } from "./project-table";
 
 export const metadata: Metadata = {
@@ -10,9 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminProjectsPage() {
-  const projects = await prisma.project.findMany({
-    orderBy: { order: "asc" },
-  });
+  const [projects, performance] = await Promise.all([
+    prisma.project.findMany({ orderBy: { order: "asc" } }),
+    isSearchConsoleConfigured() ? getAllPagesPerformance() : Promise.resolve(null),
+  ]);
+  const performanceMap = performance && !("error" in performance) ? performance : null;
 
   return (
     <div>
@@ -31,6 +34,7 @@ export default async function AdminProjectsPage() {
             slug: p.slug,
             content: [p.description, p.processText, p.resultsText, p.testimonialQuote].filter(Boolean).join("\n\n"),
           }).score,
+          performance: performanceMap?.get(`/progetti/${p.slug}`) ?? null,
         }))}
       />
     </div>

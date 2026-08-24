@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { AdminPageHeader } from "@/components/admin/admin-page-header";
 import { Button } from "@/components/ui/button";
 import { analyzeSeo } from "@/lib/seo/analyze";
+import { getAllPagesPerformance, isSearchConsoleConfigured } from "@/lib/seo/search-console";
 import { PostTable } from "./post-table";
 
 export const metadata: Metadata = {
@@ -13,10 +14,14 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminBlogPage() {
-  const posts = await prisma.blogPost.findMany({
-    orderBy: { createdAt: "desc" },
-    include: { category: true },
-  });
+  const [posts, performance] = await Promise.all([
+    prisma.blogPost.findMany({
+      orderBy: { createdAt: "desc" },
+      include: { category: true },
+    }),
+    isSearchConsoleConfigured() ? getAllPagesPerformance() : Promise.resolve(null),
+  ]);
+  const performanceMap = performance && !("error" in performance) ? performance : null;
 
   return (
     <div>
@@ -51,6 +56,7 @@ export default async function AdminBlogPage() {
             slug: p.slug,
             content: p.content,
           }).score,
+          performance: performanceMap?.get(`/blog/${p.slug}`) ?? null,
         }))}
       />
     </div>

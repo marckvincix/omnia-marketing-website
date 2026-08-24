@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { SeoScoreDot } from "@/components/admin/seo-score-badge";
 import { DeleteButton } from "@/components/admin/delete-button";
 import type { SeoScore } from "@/lib/seo/analyze";
+import type { PagePerformance } from "@/lib/seo/search-console";
 import { deleteBlogPost } from "./actions";
 
 export interface PostRow {
@@ -22,28 +23,37 @@ export interface PostRow {
   categoryName: string | null;
   published: boolean;
   seoScore: SeoScore;
+  performance: PagePerformance | null;
 }
 
 export function PostTable({ posts }: { posts: PostRow[] }) {
   return (
     <div className="rounded-xl border border-border bg-card overflow-hidden">
-      <Table>
+      <Table className="table-fixed">
         <TableHeader>
           <TableRow>
-            <TableHead>Titolo</TableHead>
-            <TableHead>Categoria</TableHead>
+            <TableHead className="w-auto">Titolo</TableHead>
+            <TableHead className="w-24">Categoria</TableHead>
             <TableHead className="w-12">SEO</TableHead>
-            <TableHead>Stato</TableHead>
-            <TableHead className="w-24 text-right">Azioni</TableHead>
+            <TableHead className="w-32">Performance</TableHead>
+            <TableHead className="w-24">Stato</TableHead>
+            <TableHead className="w-16 text-right">Azioni</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {posts.map((post) => (
             <TableRow key={post.id}>
-              <TableCell className="font-medium">{post.title}</TableCell>
-              <TableCell className="text-muted-foreground">{post.categoryName ?? "—"}</TableCell>
+              <TableCell className="font-medium truncate" title={post.title}>
+                {post.title}
+              </TableCell>
+              <TableCell className="text-muted-foreground truncate">{post.categoryName ?? "—"}</TableCell>
               <TableCell>
                 <SeoScoreDot score={post.seoScore} />
+              </TableCell>
+              <TableCell className="text-xs text-muted-foreground whitespace-nowrap">
+                {post.performance
+                  ? `${post.performance.clicks} clic · ${post.performance.impressions} impr.`
+                  : "—"}
               </TableCell>
               <TableCell>
                 <Badge variant={post.published ? "default" : "secondary"}>
@@ -62,7 +72,7 @@ export function PostTable({ posts }: { posts: PostRow[] }) {
           ))}
           {posts.length === 0 && (
             <TableRow>
-              <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
+              <TableCell colSpan={6} className="text-center text-muted-foreground py-8">
                 Nessun articolo ancora.
               </TableCell>
             </TableRow>
