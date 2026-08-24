@@ -102,19 +102,22 @@ export async function getSubscriberIdsForSegment(segment: SegmentKey): Promise<s
   return null;
 }
 
-// Categoria con più click per ciascun iscritto, da mostrare nella lista Iscritti così l'admin
-// vede a colpo d'occhio di cosa si interessa davvero ognuno.
-export async function getSubscriberTopInterestMap(): Promise<Map<string, string>> {
+// TUTTE le categorie su cui un iscritto ha cliccato almeno un articolo, non solo quella con
+// più click: un iscritto può comparire in più segmenti "Interessati: X" contemporaneamente
+// (getSubscriberIdsForSegment li conta tutti), quindi la lista Iscritti deve mostrarli tutti
+// — mostrarne solo uno nascondeva perché qualcuno risultava in un segmento senza comparire
+// lì con quell'interesse. Ordinate per click decrescenti, la più cliccata per prima.
+export async function getSubscriberInterestsMap(): Promise<Map<string, string[]>> {
   const interests = await prisma.subscriberInterest.findMany({
     select: { subscriberId: true, clickCount: true, category: { select: { name: true } } },
     orderBy: { clickCount: "desc" },
   });
 
-  const map = new Map<string, string>();
+  const map = new Map<string, string[]>();
   for (const interest of interests) {
-    if (!map.has(interest.subscriberId)) {
-      map.set(interest.subscriberId, interest.category.name);
-    }
+    const list = map.get(interest.subscriberId) ?? [];
+    list.push(interest.category.name);
+    map.set(interest.subscriberId, list);
   }
   return map;
 }

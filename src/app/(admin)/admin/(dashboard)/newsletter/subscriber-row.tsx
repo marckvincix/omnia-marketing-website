@@ -13,7 +13,7 @@ export interface SubscriberRowData {
   openedCount: number;
   clickedCount: number;
   bouncedCount: number;
-  topInterest: string | null;
+  interests: string[];
 }
 
 export function SubscriberRow({ subscriber }: { subscriber: SubscriberRowData }) {
@@ -39,12 +39,15 @@ export function SubscriberRow({ subscriber }: { subscriber: SubscriberRowData })
           {subscriber.bouncedCount > 0 && (
             <Badge variant="destructive">rimbalzata</Badge>
           )}
-          {subscriber.topInterest && (
-            <Badge variant="outline">Interessato: {subscriber.topInterest}</Badge>
-          )}
-          {subscriber.openedCount === 0 && subscriber.clickedCount === 0 && subscriber.bouncedCount === 0 && (
-            <span className="text-xs text-muted-foreground">—</span>
-          )}
+          {subscriber.interests.map((interest) => (
+            <Badge key={interest} variant="outline">Interessato: {interest}</Badge>
+          ))}
+          {subscriber.openedCount === 0 &&
+            subscriber.clickedCount === 0 &&
+            subscriber.bouncedCount === 0 &&
+            subscriber.interests.length === 0 && (
+              <span className="text-xs text-muted-foreground">—</span>
+            )}
         </div>
       </TableCell>
       <TableCell className="text-right">

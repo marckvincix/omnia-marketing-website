@@ -13,7 +13,7 @@ import { getEmailMetrics } from "@/lib/email/metrics";
 import {
   getSegmentOptions,
   getSubscriberEngagementMap,
-  getSubscriberTopInterestMap,
+  getSubscriberInterestsMap,
 } from "@/lib/email/segments";
 import { SubscriberRow, UnsubscribedRow } from "./subscriber-row";
 import { PostSendRow } from "./post-send-row";
@@ -36,7 +36,7 @@ function MetricCard({ label, value }: { label: string; value: string | number })
 }
 
 export default async function AdminNewsletterPage() {
-  const [allSubscribers, posts, metrics, engagement, segmentOptions, topInterest] = await Promise.all([
+  const [allSubscribers, posts, metrics, engagement, segmentOptions, interests] = await Promise.all([
     prisma.newsletterSubscriber.findMany({ orderBy: { createdAt: "desc" } }),
     prisma.blogPost.findMany({
       where: { published: true },
@@ -46,7 +46,7 @@ export default async function AdminNewsletterPage() {
     getEmailMetrics(),
     getSubscriberEngagementMap(),
     getSegmentOptions(),
-    getSubscriberTopInterestMap(),
+    getSubscriberInterestsMap(),
   ]);
 
   const subscribers = allSubscribers.filter((s) => !s.unsubscribedAt);
@@ -188,7 +188,7 @@ export default async function AdminNewsletterPage() {
                       openedCount: stats?.openedCount ?? 0,
                       clickedCount: stats?.clickedCount ?? 0,
                       bouncedCount: stats?.bouncedCount ?? 0,
-                      topInterest: topInterest.get(subscriber.id) ?? null,
+                      interests: interests.get(subscriber.id) ?? [],
                     }}
                   />
                 );
