@@ -194,6 +194,10 @@ model Project {
   geoTitle       String?
   geoDescription String?
 
+  // Parola/frase chiave principale su cui è ottimizzata la pagina: usata dall'analizzatore
+  // SEO in admin (stile Yoast) per calcolare punteggio e checklist, non mostrata sul sito.
+  focusKeyword String?
+
   media       ProjectMedia[]
   services    ProjectService[]
   testimonials Testimonial[]
@@ -371,6 +375,10 @@ model BlogPost {
   seoTitle       String?
   seoDescription String?
   ogImage        String?
+
+  // Parola/frase chiave principale su cui è ottimizzato l'articolo: usata dall'analizzatore
+  // SEO in admin (stile Yoast) per calcolare punteggio e checklist, non mostrata sul sito.
+  focusKeyword String?
 
   tags BlogPostTag[]
   emailCampaigns EmailCampaign[]

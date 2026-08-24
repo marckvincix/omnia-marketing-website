@@ -44,6 +44,7 @@ export async function saveProject(input: ProjectInput) {
       seoDescription: data.seoDescription || null,
       geoTitle: data.geoTitle || null,
       geoDescription: data.geoDescription || null,
+      focusKeyword: data.focusKeyword || null,
     },
     update: {
       title: data.title,
@@ -64,6 +65,7 @@ export async function saveProject(input: ProjectInput) {
       seoDescription: data.seoDescription || null,
       geoTitle: data.geoTitle || null,
       geoDescription: data.geoDescription || null,
+      focusKeyword: data.focusKeyword || null,
     },
   });
 

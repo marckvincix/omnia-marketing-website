@@ -40,6 +40,7 @@ export default async function EditBlogPostPage({
           published: post.published,
           seoTitle: post.seoTitle ?? "",
           seoDescription: post.seoDescription ?? "",
+          focusKeyword: post.focusKeyword ?? "",
         }}
         categoryOptions={categories}
         tagOptions={tags}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useMemo, useState, useTransition } from "react";
 import { Plus, X, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
 import { VideoUploadField } from "@/components/admin/video-upload-field";
+import { SeoAnalysisPanel } from "@/components/admin/seo-analysis-panel";
 import type { ProjectInput } from "@/lib/validation/admin";
 import { saveProject, createProjectMediaUploadSlot } from "./actions";
 
@@ -31,6 +32,7 @@ const emptyProject: ProjectInput = {
   seoDescription: "",
   geoTitle: "",
   geoDescription: "",
+  focusKeyword: "",
   serviceIds: [],
   media: [],
 };
@@ -48,6 +50,13 @@ export function ProjectEditor({
   const [newCategory, setNewCategory] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+
+  // L'analizzatore SEO lavora su un unico testo: il progetto non ha un campo "contenuto"
+  // come il blog, quindi uniamo i testi che compaiono davvero nella pagina pubblica.
+  const seoContent = useMemo(
+    () => [form.description, form.processText, form.resultsText, form.testimonialQuote].filter(Boolean).join("\n\n"),
+    [form.description, form.processText, form.resultsText, form.testimonialQuote],
+  );
 
   function addCategory(name: string) {
     const trimmed = name.trim();
@@ -417,6 +426,16 @@ export function ProjectEditor({
             <Input id="p-seoDescription" value={form.seoDescription} onChange={(e) => setForm({ ...form, seoDescription: e.target.value })} />
           </div>
         </div>
+
+        <SeoAnalysisPanel
+          focusKeyword={form.focusKeyword ?? ""}
+          onFocusKeywordChange={(v) => setForm({ ...form, focusKeyword: v })}
+          seoTitle={form.seoTitle ?? ""}
+          fallbackTitle={form.title}
+          seoDescription={form.seoDescription ?? ""}
+          slug={form.slug}
+          content={seoContent}
+        />
       </div>
 
       <div className="border-t border-border pt-4">

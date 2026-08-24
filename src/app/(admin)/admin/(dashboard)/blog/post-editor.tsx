@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SeoAnalysisPanel } from "@/components/admin/seo-analysis-panel";
 import type { BlogPostInput } from "@/lib/validation/admin";
 import { computeReadingTime } from "@/lib/reading-time";
 import { saveBlogPost } from "./actions";
@@ -29,6 +30,7 @@ const empty: BlogPostInput = {
   published: false,
   seoTitle: "",
   seoDescription: "",
+  focusKeyword: "",
 };
 
 export function PostEditor({
@@ -163,6 +165,16 @@ export function PostEditor({
           <Input id="b-seoDescription" value={form.seoDescription} onChange={(e) => setForm({ ...form, seoDescription: e.target.value })} />
         </div>
       </div>
+
+      <SeoAnalysisPanel
+        focusKeyword={form.focusKeyword ?? ""}
+        onFocusKeywordChange={(v) => setForm({ ...form, focusKeyword: v })}
+        seoTitle={form.seoTitle ?? ""}
+        fallbackTitle={form.title}
+        seoDescription={form.seoDescription ?? ""}
+        slug={form.slug}
+        content={form.content}
+      />
 
       {error && <p className="text-sm text-destructive">{error}</p>}
 

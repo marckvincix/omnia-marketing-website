@@ -50,6 +50,7 @@ export const projectSchema = z.object({
   seoDescription: z.string().trim().optional().or(z.literal("")),
   geoTitle: z.string().trim().optional().or(z.literal("")),
   geoDescription: z.string().trim().optional().or(z.literal("")),
+  focusKeyword: z.string().trim().optional().or(z.literal("")),
   serviceIds: z.array(z.string()).default([]),
   media: z.array(projectMediaSchema).default([]),
 });
@@ -113,6 +114,7 @@ export const blogPostSchema = z.object({
   published: z.boolean().default(false),
   seoTitle: z.string().trim().optional().or(z.literal("")),
   seoDescription: z.string().trim().optional().or(z.literal("")),
+  focusKeyword: z.string().trim().optional().or(z.literal("")),
 });
 export type BlogPostInput = z.infer<typeof blogPostSchema>;
 

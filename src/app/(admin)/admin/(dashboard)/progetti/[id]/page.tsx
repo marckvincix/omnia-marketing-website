@@ -52,6 +52,7 @@ export default async function EditProjectPage({
           seoDescription: project.seoDescription ?? "",
           geoTitle: project.geoTitle ?? "",
           geoDescription: project.geoDescription ?? "",
+          focusKeyword: project.focusKeyword ?? "",
           serviceIds: project.services.map((s) => s.serviceId),
           media: project.media.map((m) => ({ id: m.id, url: m.url, alt: m.alt, type: m.type })),
         }}
