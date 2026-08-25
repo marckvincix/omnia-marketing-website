@@ -2,8 +2,13 @@ import { createClient } from "@supabase/supabase-js";
 
 export const MEDIA_BUCKET = "media";
 
+// Chiave service_role, non anon: le operazioni qui (firma URL di upload, cancellazione
+// file) girano solo lato server dietro requireAdmin(), quindi possono e devono bypassare
+// RLS invece di dipendere da policy pubbliche su storage.objects — altrimenti chiunque
+// avesse la chiave anon (pubblica per design, usata anche nel browser per l'upload vero
+// e proprio) potrebbe caricare o cancellare file senza passare da qui.
 export function getStorageClient() {
-  return createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!);
+  return createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
 }
 
 export interface UploadSlot {
