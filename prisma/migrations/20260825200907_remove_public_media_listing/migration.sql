@@ -1,0 +1,13 @@
+-- Segnalato dal Security Advisor di Supabase ("Public Bucket Allows Listing"): la policy
+-- SELECT su storage.objects per il bucket "media" era aperta a chiunque (ruolo public,
+-- nessuna restrizione oltre bucket_id), permettendo di enumerare/elencare tutti i file
+-- caricati tramite l'API storage (supabase.storage.from('media').list()) o interrogando
+-- direttamente la tabella storage.objects.
+--
+-- Rimossa senza sostituirla con nient'altro: il bucket "media" è già pubblico
+-- (storage.buckets.public = true), quindi il download dei singoli file tramite il loro URL
+-- pubblico (usato in ogni <img>/<video> del sito) NON dipende da questa policy — è gestito
+-- direttamente dal flag "public" del bucket, non dalle policy RLS su storage.objects.
+-- Verificato inoltre che il codice del sito non chiama mai .list() né interroga
+-- storage.objects: nessun impatto sulle funzionalità esistenti.
+DROP POLICY IF EXISTS "Public read media" ON storage.objects;
