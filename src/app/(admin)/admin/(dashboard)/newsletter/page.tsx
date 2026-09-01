@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getEmailMetrics } from "@/lib/email/metrics";
+import { getEmailMetrics, getEmailStatsByPost } from "@/lib/email/metrics";
 import {
   getSegmentOptions,
   getSubscriberEngagementMap,
@@ -36,7 +36,7 @@ function MetricCard({ label, value }: { label: string; value: string | number })
 }
 
 export default async function AdminNewsletterPage() {
-  const [allSubscribers, posts, metrics, engagement, segmentOptions, interests] = await Promise.all([
+  const [allSubscribers, posts, metrics, engagement, segmentOptions, interests, postEmailStats] = await Promise.all([
     prisma.newsletterSubscriber.findMany({ orderBy: { createdAt: "desc" } }),
     prisma.blogPost.findMany({
       where: { published: true },
@@ -47,6 +47,7 @@ export default async function AdminNewsletterPage() {
     getSubscriberEngagementMap(),
     getSegmentOptions(),
     getSubscriberInterestsMap(),
+    getEmailStatsByPost(),
   ]);
 
   const subscribers = allSubscribers.filter((s) => !s.unsubscribedAt);
@@ -125,6 +126,7 @@ export default async function AdminNewsletterPage() {
                 <TableHead>Articolo</TableHead>
                 <TableHead>Pubblicato</TableHead>
                 <TableHead>Invio</TableHead>
+                <TableHead>Statistiche</TableHead>
                 <TableHead className="text-right">Azioni</TableHead>
               </TableRow>
             </TableHeader>
@@ -140,11 +142,12 @@ export default async function AdminNewsletterPage() {
                   }}
                   subscriberCount={subscribers.length}
                   segments={segmentOptions}
+                  emailStats={postEmailStats.get(post.id) ?? null}
                 />
               ))}
               {posts.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={4} className="text-center text-muted-foreground py-8">
+                  <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
                     Nessun articolo pubblicato ancora.
                   </TableCell>
                 </TableRow>

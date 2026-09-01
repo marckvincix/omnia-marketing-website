@@ -22,6 +22,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/lib/use-media-query";
 import type { SegmentKey } from "@/lib/email/segment-labels";
+import type { PostEmailStats } from "@/lib/email/metrics";
 import { sendUpdateEmail } from "./actions";
 
 export interface PostSendRowData {
@@ -81,10 +82,12 @@ export function PostSendRow({
   post,
   subscriberCount,
   segments,
+  emailStats,
 }: {
   post: PostSendRowData;
   subscriberCount: number;
   segments: SegmentOptionData[];
+  emailStats: PostEmailStats | null;
 }) {
   const [isPending, startTransition] = useTransition();
   const [confirming, setConfirming] = useState(false);
@@ -128,6 +131,21 @@ export function PostSendRow({
           </Badge>
         ) : (
           <Badge variant="outline">Non inviata</Badge>
+        )}
+      </TableCell>
+      <TableCell className="text-xs text-muted-foreground whitespace-nowrap">
+        {emailStats && emailStats.sentCount > 0 ? (
+          <div className="flex flex-col gap-0.5">
+            <span>
+              {emailStats.openedCount} apert. ({emailStats.openRate}%) · {emailStats.clickedCount} clic (
+              {emailStats.clickRate}%)
+            </span>
+            {emailStats.bouncedCount > 0 && (
+              <span className="text-destructive">{emailStats.bouncedCount} rimbalzate</span>
+            )}
+          </div>
+        ) : (
+          "—"
         )}
       </TableCell>
       <TableCell className="text-right">
