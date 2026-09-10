@@ -5,6 +5,7 @@ import Image from "next/image";
 import { marked } from "marked";
 import { prisma } from "@/lib/prisma";
 import { BreadcrumbJsonLd, ArticleJsonLd } from "@/components/shared/json-ld";
+import { LightBeamButton } from "@/components/public/light-beam-button";
 import { buildAlternates } from "@/lib/i18n/metadata";
 import { getTranslations } from "next-intl/server";
 import { localize } from "@/lib/i18n/localize";
@@ -60,10 +61,11 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string; locale: string }>;
 }) {
   const { slug, locale } = await params;
-  const [post, t, tNav] = await Promise.all([
+  const [post, t, tNav, tCommon] = await Promise.all([
     getLocalizedPost(slug, locale),
     getTranslations("pages.blog"),
     getTranslations("nav"),
+    getTranslations("common"),
   ]);
 
   if (!post || !post.published) notFound();
@@ -116,6 +118,10 @@ export default async function BlogPostPage({
           [&_blockquote]:border-l-2 [&_blockquote]:border-[#2e9bd6] [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-[#999999]"
         dangerouslySetInnerHTML={{ __html: contentHtml }}
       />
+
+      <div className="px-6 md:px-12 pb-16 max-w-3xl mx-auto">
+        <LightBeamButton href="/contatti">{tCommon("contattaci")}</LightBeamButton>
+      </div>
 
       {post.tags.length > 0 && (
         <div className="px-6 md:px-12 pb-16 max-w-3xl mx-auto flex flex-wrap gap-2">
