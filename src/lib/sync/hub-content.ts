@@ -32,6 +32,16 @@ function estimateReadingTime(body: string) {
   return Math.max(1, Math.round(words / 200));
 }
 
+// Confronto "senza accenti né spazi": minuscolo, diacritici rimossi, spazi normalizzati.
+function normalizeForCompare(s: string) {
+  return s
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export async function syncHubBlogPosts() {
   const hubUrl = process.env.HUB_SUPABASE_URL;
   const hubKey = process.env.HUB_SUPABASE_ANON_KEY;
@@ -82,6 +92,19 @@ export async function syncHubBlogPosts() {
     };
 
     if (existing) {
+      // Se title/excerpt/content sul sito differiscono da quelli di Hub SOLO per accenti o
+      // spazi, qualcuno li ha corretti a mano (Hub a volte consegna testo italiano senza
+      // accenti) e la correzione va tenuta. Se invece il testo di Hub è cambiato davvero,
+      // Hub resta la fonte e sovrascrive.
+      const preservedText: Partial<Pick<typeof basePostData, "title" | "excerpt" | "content">> = {};
+      for (const field of ["title", "excerpt", "content"] as const) {
+        const dbValue = existing[field];
+        const hubValue = basePostData[field];
+        if (dbValue !== hubValue && normalizeForCompare(dbValue) === normalizeForCompare(hubValue)) {
+          preservedText[field] = dbValue;
+        }
+      }
+
       // Non tocchiamo publishedAt di un articolo già pubblicato se Hub non fornisce una
       // data (published_at nullo): altrimenti ogni risincronizzazione settimanale lo
       // "ripubblicherebbe" con la data odierna, facendolo risalire in cima al blog e al
@@ -90,6 +113,7 @@ export async function syncHubBlogPosts() {
         where: { id: existing.id },
         data: {
           ...basePostData,
+          ...preservedText,
           ...(row.published_at ? { publishedAt: new Date(row.published_at) } : {}),
           ...(existing.categoryId ? {} : { categoryId: guessedCategoryId }),
         },
