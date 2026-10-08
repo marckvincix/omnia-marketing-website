@@ -205,8 +205,8 @@ export default async function ProjectDetailPage({
 
       {project.testimonialQuote && (
         <>
-          <ProjectTestimonial quote={project.testimonialQuote} author={project.client} />
-          <ReviewJsonLd author={project.client} quote={project.testimonialQuote} />
+          <ProjectTestimonial quote={project.testimonialQuote} author={project.testimonialAuthor} />
+          <ReviewJsonLd author={project.testimonialAuthor} quote={project.testimonialQuote} />
         </>
       )}
 

@@ -40,6 +40,9 @@ export interface ProjectView {
   coverImage: string | null;
   results: string[];
   testimonialQuote: string;
+  // Chi firma la testimonianza: di norma coincide con `client`, ma può differire quando
+  // il progetto porta il nome del prodotto e non dell'azienda (es. Uropp Hub / Uropp Finance).
+  testimonialAuthor: string;
   externalUrl: string;
   gradient: string;
   seoTitle: string;
@@ -73,6 +76,7 @@ type ProjectWithRelations = {
   coverImage: string | null;
   resultsText: string | null;
   testimonialQuote: string | null;
+  testimonialAuthor: string | null;
   externalUrl: string | null;
   seoTitle: string | null;
   seoDescription: string | null;
@@ -110,6 +114,8 @@ function toView(p: ProjectWithRelations): ProjectView {
     coverImage: p.coverImage,
     results: resultsText ? resultsText.split(" · ").filter(Boolean) : [],
     testimonialQuote: testimonialQuote ?? "",
+    // Nome proprio: si usa sempre l'originale, mai la versione passata dal traduttore.
+    testimonialAuthor: p.testimonialAuthor || p.client,
     externalUrl: p.externalUrl ?? "#",
     gradient: gradientForSlug(p.slug),
     seoTitle: seoTitle ?? `${p.client} — Case Study`,
