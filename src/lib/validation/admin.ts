@@ -30,6 +30,22 @@ export const projectMediaSchema = z.object({
   type: z.enum(["IMAGE", "VIDEO"]).default("IMAGE"),
 });
 
+// Galleria con titolo (es. "Area Clienti"): solo foto, i video restano nella galleria classica.
+export const projectGallerySectionSchema = z.object({
+  id: z.string().optional(),
+  title: z.string().trim().min(1, "Titolo della galleria obbligatorio"),
+  description: z.string().trim().optional().or(z.literal("")),
+  media: z
+    .array(
+      z.object({
+        id: z.string().optional(),
+        url: z.string().trim().min(1, "URL obbligatorio"),
+        alt: z.string().trim().min(1, "Testo alternativo obbligatorio"),
+      }),
+    )
+    .default([]),
+});
+
 export const projectSchema = z.object({
   id: z.string().optional(),
   title: z.string().trim().min(1, "Titolo obbligatorio"),
@@ -53,6 +69,7 @@ export const projectSchema = z.object({
   focusKeyword: z.string().trim().optional().or(z.literal("")),
   serviceIds: z.array(z.string()).default([]),
   media: z.array(projectMediaSchema).default([]),
+  gallerySections: z.array(projectGallerySectionSchema).default([]),
 });
 export type ProjectInput = z.infer<typeof projectSchema>;
 

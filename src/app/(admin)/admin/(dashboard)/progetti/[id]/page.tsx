@@ -20,7 +20,11 @@ export default async function EditProjectPage({
   const [project, services, categoryOptions] = await Promise.all([
     prisma.project.findUnique({
       where: { id },
-      include: { media: { orderBy: { order: "asc" } }, services: true },
+      include: {
+        media: { orderBy: { order: "asc" } },
+        gallerySections: { orderBy: { order: "asc" } },
+        services: true,
+      },
     }),
     prisma.service.findMany({ select: { id: true, title: true }, orderBy: { order: "asc" } }),
     getProjectCategoryOptions(),
@@ -54,7 +58,17 @@ export default async function EditProjectPage({
           geoDescription: project.geoDescription ?? "",
           focusKeyword: project.focusKeyword ?? "",
           serviceIds: project.services.map((s) => s.serviceId),
-          media: project.media.map((m) => ({ id: m.id, url: m.url, alt: m.alt, type: m.type })),
+          media: project.media
+            .filter((m) => !m.sectionId)
+            .map((m) => ({ id: m.id, url: m.url, alt: m.alt, type: m.type })),
+          gallerySections: project.gallerySections.map((section) => ({
+            id: section.id,
+            title: section.title,
+            description: section.description ?? "",
+            media: project.media
+              .filter((m) => m.sectionId === section.id)
+              .map((m) => ({ id: m.id, url: m.url, alt: m.alt })),
+          })),
         }}
         serviceOptions={services}
         categoryOptions={categoryOptions}

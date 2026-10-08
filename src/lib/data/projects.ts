@@ -21,6 +21,13 @@ export interface ProjectGalleryItem {
   type: "IMAGE" | "VIDEO";
 }
 
+export interface ProjectGallerySectionView {
+  id: string;
+  title: string;
+  description: string;
+  items: ProjectGalleryItem[];
+}
+
 export interface ProjectView {
   id: string;
   slug: string;
@@ -38,7 +45,11 @@ export interface ProjectView {
   seoTitle: string;
   seoDescription: string;
   geoDescription: string;
+  // Foto e video della galleria "classica" (senza sezione).
   gallery: ProjectGalleryItem[];
+  // Gallerie con titolo (es. "Area Clienti", "Area Admin"): caricate solo nella pagina
+  // del singolo progetto, vuote negli elenchi.
+  gallerySections: ProjectGallerySectionView[];
 }
 
 type ProjectTranslationFields = {
@@ -67,7 +78,13 @@ type ProjectWithRelations = {
   seoDescription: string | null;
   geoDescription: string | null;
   services: { service: { title: string; slug: string; translations?: { title: string }[] } }[];
-  media: { id: string; url: string; alt: string; type: "IMAGE" | "VIDEO" }[];
+  media: { id: string; url: string; alt: string; type: "IMAGE" | "VIDEO"; sectionId: string | null }[];
+  gallerySections?: {
+    id: string;
+    title: string;
+    description: string | null;
+    translations?: { title: string; description: string | null }[];
+  }[];
   translations?: ProjectTranslationFields[];
 };
 
@@ -98,7 +115,22 @@ function toView(p: ProjectWithRelations): ProjectView {
     seoTitle: seoTitle ?? `${p.client} — Case Study`,
     seoDescription: seoDescription ?? description,
     geoDescription: geoDescription || seoDescription || description,
-    gallery: p.media.map((m) => ({ id: m.id, url: m.url, alt: m.alt, type: m.type })),
+    gallery: p.media
+      .filter((m) => !m.sectionId)
+      .map((m) => ({ id: m.id, url: m.url, alt: m.alt, type: m.type })),
+    gallerySections: (p.gallerySections ?? [])
+      .map((section) => {
+        const st = section.translations?.[0];
+        return {
+          id: section.id,
+          title: st?.title || section.title,
+          description: st?.description || section.description || "",
+          items: p.media
+            .filter((m) => m.sectionId === section.id && m.type === "IMAGE")
+            .map((m) => ({ id: m.id, url: m.url, alt: m.alt, type: m.type })),
+        };
+      })
+      .filter((section) => section.items.length > 0),
   };
 }
 
@@ -127,6 +159,10 @@ export async function getProjectBySlug(slug: string, locale: string = DEFAULT_LO
         include: { service: { include: { translations: isDefault ? false : { where: { locale } } } } },
       },
       media: { orderBy: { order: "asc" } },
+      gallerySections: {
+        orderBy: { order: "asc" },
+        include: { translations: isDefault ? false : { where: { locale } } },
+      },
       translations: isDefault ? false : { where: { locale } },
     },
   });

@@ -12,7 +12,10 @@ export const metadata: Metadata = {
 
 export default async function AdminProjectsPage() {
   const [projects, performance] = await Promise.all([
-    prisma.project.findMany({ orderBy: { order: "asc" } }),
+    prisma.project.findMany({
+      orderBy: { order: "asc" },
+      include: { gallerySections: { orderBy: { order: "asc" }, select: { title: true, description: true } } },
+    }),
     isSearchConsoleConfigured() ? getAllPagesPerformance() : Promise.resolve(null),
   ]);
   const performanceMap = performance && !("error" in performance) ? performance : null;
@@ -32,7 +35,15 @@ export default async function AdminProjectsPage() {
             fallbackTitle: p.title,
             seoDescription: p.seoDescription ?? "",
             slug: p.slug,
-            content: [p.description, p.processText, p.resultsText, p.testimonialQuote].filter(Boolean).join("\n\n"),
+            content: [
+              p.description,
+              p.processText,
+              p.resultsText,
+              ...p.gallerySections.flatMap((s) => [s.title, s.description]),
+              p.testimonialQuote,
+            ]
+              .filter(Boolean)
+              .join("\n\n"),
           }).score,
           performance: performanceMap?.get(`/progetti/${p.slug}`) ?? null,
         }))}

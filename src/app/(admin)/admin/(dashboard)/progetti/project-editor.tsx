@@ -35,6 +35,7 @@ const emptyProject: ProjectInput = {
   focusKeyword: "",
   serviceIds: [],
   media: [],
+  gallerySections: [],
 };
 
 export function ProjectEditor({
@@ -54,9 +55,25 @@ export function ProjectEditor({
   // L'analizzatore SEO lavora su un unico testo: il progetto non ha un campo "contenuto"
   // come il blog, quindi uniamo i testi che compaiono davvero nella pagina pubblica.
   const seoContent = useMemo(
-    () => [form.description, form.processText, form.resultsText, form.testimonialQuote].filter(Boolean).join("\n\n"),
-    [form.description, form.processText, form.resultsText, form.testimonialQuote],
+    () =>
+      [
+        form.description,
+        form.processText,
+        form.resultsText,
+        ...form.gallerySections.flatMap((s) => [s.title, s.description]),
+        form.testimonialQuote,
+      ]
+        .filter(Boolean)
+        .join("\n\n"),
+    [form.description, form.processText, form.resultsText, form.gallerySections, form.testimonialQuote],
   );
+
+  function updateSection(index: number, patch: Partial<ProjectInput["gallerySections"][number]>) {
+    setForm((f) => ({
+      ...f,
+      gallerySections: f.gallerySections.map((s, i) => (i === index ? { ...s, ...patch } : s)),
+    }));
+  }
 
   function addCategory(name: string) {
     const trimmed = name.trim();
@@ -410,6 +427,110 @@ export function ProjectEditor({
           ))}
           {form.media.length === 0 && (
             <p className="text-sm text-muted-foreground">Nessuna immagine o video ancora.</p>
+          )}
+        </div>
+      </div>
+
+      <div className="border-t border-border pt-4">
+        <div className="flex items-center justify-between mb-1">
+          <Label>Gallerie con titolo</Label>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() =>
+              setForm({
+                ...form,
+                gallerySections: [...form.gallerySections, { title: "", description: "", media: [] }],
+              })
+            }
+          >
+            <Plus className="size-4" /> Aggiungi galleria
+          </Button>
+        </div>
+        <p className="text-xs text-muted-foreground mb-3">
+          Per dividere le foto in più sezioni, ognuna con il suo titolo e un testo breve (es.
+          &quot;Area Clienti&quot; e &quot;Area Admin&quot;). Compaiono nella pagina progetto prima della
+          galleria qui sopra, con il testo ALT mostrato come didascalia sotto ogni foto. Foto in
+          formato verticale 4:5, almeno 1200×1500px.
+        </p>
+        <div className="flex flex-col gap-4">
+          {form.gallerySections.map((section, si) => (
+            <div key={section.id ?? si} className="rounded-lg border border-border p-3">
+              <div className="flex gap-2 items-start mb-3">
+                <div className="flex-1 flex flex-col gap-2">
+                  <Input
+                    placeholder="Titolo della galleria (es. Area Clienti)"
+                    value={section.title}
+                    onChange={(e) => updateSection(si, { title: e.target.value })}
+                  />
+                  <Textarea
+                    placeholder="Testo breve di presentazione (facoltativo)"
+                    rows={2}
+                    value={section.description}
+                    onChange={(e) => updateSection(si, { description: e.target.value })}
+                  />
+                </div>
+                <button
+                  type="button"
+                  aria-label="Elimina galleria"
+                  onClick={() =>
+                    setForm({ ...form, gallerySections: form.gallerySections.filter((_, j) => j !== si) })
+                  }
+                  className="text-muted-foreground hover:text-destructive mt-1"
+                >
+                  <X className="size-4" />
+                </button>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {section.media.map((m, mi) => (
+                  <div key={m.id ?? mi} className="flex gap-2 items-start rounded-lg border border-border p-3">
+                    <div className="flex-1 flex flex-col gap-2">
+                      <ImageUploadField
+                        value={m.url}
+                        onChange={(url) =>
+                          updateSection(si, {
+                            media: section.media.map((x, j) => (j === mi ? { ...x, url } : x)),
+                          })
+                        }
+                        uploadAction={createProjectMediaUploadSlot}
+                        helperText=""
+                        compact
+                      />
+                      <Input
+                        placeholder="Testo alternativo (ALT) / didascalia"
+                        value={m.alt}
+                        onChange={(e) =>
+                          updateSection(si, {
+                            media: section.media.map((x, j) => (j === mi ? { ...x, alt: e.target.value } : x)),
+                          })
+                        }
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      aria-label="Elimina foto"
+                      onClick={() => updateSection(si, { media: section.media.filter((_, j) => j !== mi) })}
+                      className="text-muted-foreground hover:text-destructive mt-1"
+                    >
+                      <X className="size-4" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="mt-3"
+                onClick={() => updateSection(si, { media: [...section.media, { url: "", alt: "" }] })}
+              >
+                <Plus className="size-4" /> Aggiungi foto
+              </Button>
+            </div>
+          ))}
+          {form.gallerySections.length === 0 && (
+            <p className="text-sm text-muted-foreground">Nessuna galleria con titolo.</p>
           )}
         </div>
       </div>

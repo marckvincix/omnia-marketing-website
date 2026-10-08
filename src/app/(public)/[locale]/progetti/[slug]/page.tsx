@@ -7,7 +7,8 @@ import { ArrowUpRight, Check } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { getProjectBySlug, getPublishedProjects } from "@/lib/data/projects";
 import { getPublishedServices } from "@/lib/data/services";
-import { ProjectGallery } from "@/components/public/project-gallery";
+import { ProjectGallery, ProjectGallerySection } from "@/components/public/project-gallery";
+import { LinkedText } from "@/components/public/linked-text";
 import { ProjectVideoCarousel } from "@/components/public/project-video-carousel";
 import { ProjectTestimonial } from "@/components/public/project-testimonial";
 import { StackedProjects } from "@/components/public/stacked-projects";
@@ -180,12 +181,21 @@ export default async function ProjectDetailPage({
           <div className="md:columns-2 md:gap-x-16">
             {processParagraphs.map((paragraph, i) => (
               <p key={i} className="mb-6 text-lg md:text-xl text-[#cccccc] leading-relaxed">
-                {paragraph}
+                <LinkedText text={paragraph} />
               </p>
             ))}
           </div>
         </section>
       )}
+
+      {project.gallerySections.map((section) => (
+        <ProjectGallerySection
+          key={section.id}
+          title={section.title}
+          description={section.description}
+          items={section.items}
+        />
+      ))}
 
       <ProjectGallery items={photos} />
 

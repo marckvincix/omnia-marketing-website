@@ -16,11 +16,13 @@ function wait(ms: number) {
  * chiamare un'API che rifiuterebbe comunque le richieste successive. La pausa tra una
  * lingua e l'altra evita di sforare il rate limit per-secondo di DeepL quando si
  * traducono più contenuti in sequenza (es. lo script di backfill iniziale).
+ * Restituisce false se si è fermata per quota esaurita, così chi la chiama può evitare
+ * di tentare altre traduzioni destinate a fallire allo stesso modo.
  */
 async function translateAndSaveAllLocales(
   fields: Record<string, string | null | undefined>,
   saveTranslation: (locale: TargetLocale, translated: Record<string, string>) => Promise<unknown>,
-): Promise<void> {
+): Promise<boolean> {
   for (const locale of TARGET_LOCALES) {
     try {
       const translated = await translateEntityFields(fields, locale);
@@ -28,12 +30,13 @@ async function translateAndSaveAllLocales(
     } catch (err) {
       if (err instanceof DeepLQuotaExceededError) {
         console.error(`[i18n] Quota DeepL esaurita: traduzione interrotta a "${locale}".`);
-        return;
+        return false;
       }
       console.error(`[i18n] Errore traduzione verso "${locale}"`, err);
     }
     await wait(350);
   }
+  return true;
 }
 
 export async function translateAndSaveBlogPost(postId: string) {
@@ -60,9 +63,12 @@ export async function translateAndSaveBlogPost(postId: string) {
 }
 
 export async function translateAndSaveProject(projectId: string) {
-  const project = await prisma.project.findUnique({ where: { id: projectId } });
+  const project = await prisma.project.findUnique({
+    where: { id: projectId },
+    include: { gallerySections: true },
+  });
   if (!project) return;
-  await translateAndSaveAllLocales(
+  const completed = await translateAndSaveAllLocales(
     {
       title: project.title,
       description: project.description,
@@ -83,6 +89,20 @@ export async function translateAndSaveProject(projectId: string) {
         update: { ...t },
       }),
   );
+  if (!completed) return;
+
+  for (const section of project.gallerySections) {
+    const sectionCompleted = await translateAndSaveAllLocales(
+      { title: section.title, description: section.description },
+      (locale, t) =>
+        prisma.projectGallerySectionTranslation.upsert({
+          where: { sectionId_locale: { sectionId: section.id, locale } },
+          create: { sectionId: section.id, locale, title: t.title, description: t.description },
+          update: { title: t.title, description: t.description },
+        }),
+    );
+    if (!sectionCompleted) return;
+  }
 }
 
 export async function translateAndSaveService(serviceId: string) {

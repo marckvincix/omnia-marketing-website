@@ -74,9 +74,15 @@ export async function saveProject(input: ProjectInput) {
     await prisma.projectService.create({ data: { projectId: project.id, serviceId } });
   }
 
+  // Solo la galleria classica (sectionId nullo): le foto delle gallerie con titolo sono
+  // gestite più sotto, sezione per sezione, e qui non vanno toccate.
   const keepMediaIds = data.media.filter((m) => m.id).map((m) => m.id!);
   await prisma.projectMedia.deleteMany({
-    where: { projectId: project.id, id: { notIn: keepMediaIds.length ? keepMediaIds : ["__none__"] } },
+    where: {
+      projectId: project.id,
+      sectionId: null,
+      id: { notIn: keepMediaIds.length ? keepMediaIds : ["__none__"] },
+    },
   });
   for (const [i, media] of data.media.entries()) {
     if (media.id) {
@@ -88,6 +94,39 @@ export async function saveProject(input: ProjectInput) {
       await prisma.projectMedia.create({
         data: { projectId: project.id, url: media.url, alt: media.alt, type: media.type, order: i },
       });
+    }
+  }
+
+  // Gallerie con titolo: le sezioni tolte dall'editor vengono cancellate insieme alle loro
+  // foto (cascade); quelle rimaste vengono aggiornate e le loro foto riallineate.
+  const keepSectionIds = data.gallerySections.filter((s) => s.id).map((s) => s.id!);
+  await prisma.projectGallerySection.deleteMany({
+    where: { projectId: project.id, id: { notIn: keepSectionIds.length ? keepSectionIds : ["__none__"] } },
+  });
+  for (const [sectionIndex, section] of data.gallerySections.entries()) {
+    const sectionData = { title: section.title, description: section.description || null, order: sectionIndex };
+    const saved = section.id
+      ? await prisma.projectGallerySection.update({ where: { id: section.id }, data: sectionData })
+      : await prisma.projectGallerySection.create({ data: { projectId: project.id, ...sectionData } });
+
+    const keepSectionMediaIds = section.media.filter((m) => m.id).map((m) => m.id!);
+    await prisma.projectMedia.deleteMany({
+      where: {
+        sectionId: saved.id,
+        id: { notIn: keepSectionMediaIds.length ? keepSectionMediaIds : ["__none__"] },
+      },
+    });
+    for (const [i, media] of section.media.entries()) {
+      if (media.id) {
+        await prisma.projectMedia.update({
+          where: { id: media.id },
+          data: { url: media.url, alt: media.alt, order: i },
+        });
+      } else {
+        await prisma.projectMedia.create({
+          data: { projectId: project.id, sectionId: saved.id, url: media.url, alt: media.alt, type: "IMAGE", order: i },
+        });
+      }
     }
   }
 
