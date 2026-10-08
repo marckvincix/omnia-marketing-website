@@ -451,8 +451,7 @@ export function ProjectEditor({
         <p className="text-xs text-muted-foreground mb-3">
           Per dividere le foto in più sezioni, ognuna con il suo titolo e un testo breve (es.
           &quot;Area Clienti&quot; e &quot;Area Admin&quot;). Compaiono nella pagina progetto prima della
-          galleria qui sopra, con il testo ALT mostrato come didascalia sotto ogni foto. Foto in
-          formato verticale 4:5, almeno 1200×1500px.
+          galleria qui sopra. Foto in formato verticale 4:5, almeno 1200×1500px.
         </p>
         <div className="flex flex-col gap-4">
           {form.gallerySections.map((section, si) => (
@@ -498,7 +497,7 @@ export function ProjectEditor({
                         compact
                       />
                       <Input
-                        placeholder="Testo alternativo (ALT) / didascalia"
+                        placeholder="Testo alternativo (ALT)"
                         value={m.alt}
                         onChange={(e) =>
                           updateSection(si, {

@@ -14,6 +14,7 @@ import { ProjectTestimonial } from "@/components/public/project-testimonial";
 import { StackedProjects } from "@/components/public/stacked-projects";
 import { TrackInterest } from "@/components/public/track-interest";
 import { RequestInfoPopup } from "@/components/public/request-info-popup";
+import { ContactForm } from "@/components/public/contact-form";
 import { BreadcrumbJsonLd, CreativeWorkJsonLd, ReviewJsonLd } from "@/components/shared/json-ld";
 import { buildAlternates } from "@/lib/i18n/metadata";
 
@@ -72,6 +73,7 @@ export default async function ProjectDetailPage({
 
   const matchingServices = services.filter((s) => project.serviceSlugs.includes(s.slug));
   const defaultServiceId = matchingServices.length === 1 ? matchingServices[0].id : undefined;
+  const requestMessage = t("popupDefaultMessage", { client: project.client });
 
   return (
     <>
@@ -208,8 +210,27 @@ export default async function ProjectDetailPage({
         </>
       )}
 
+      <section className="px-6 md:px-12 py-20 md:py-28 border-t border-[#1a1a1a]">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+          <div>
+            <h2 className="font-display font-black text-white text-4xl md:text-6xl leading-[0.95] tracking-tight">
+              {t("ctaTitle")}
+            </h2>
+            <p className="mt-6 max-w-md text-lg text-[#999999]">{t("ctaDescription")}</p>
+          </div>
+          <div className="rounded-[2rem] border border-[#1f1f1f] bg-[#0a0a0a] p-6 md:p-10">
+            <ContactForm
+              fixedServiceId={matchingServices[0]?.id ?? services[0]?.id}
+              defaultMessage={requestMessage}
+              submitLabel={t("popupSubmitLabel")}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Il popup di richiesta informazioni scatta qui, non alla fine della pagina: chi ha
-          visto il progetto e la recensione ha già abbastanza per farsi un'idea. */}
+          visto il progetto e ha superato il modulo senza scriverci ha già abbastanza per
+          farsi un'idea. */}
       <div id="request-info-trigger" aria-hidden="true" />
 
       <StackedProjects projects={otherProjects} sectionClassName="px-6 md:px-12 py-20" />
@@ -218,7 +239,7 @@ export default async function ProjectDetailPage({
         title={t("popupTitle")}
         description={t("popupDescription")}
         submitLabel={t("popupSubmitLabel")}
-        defaultMessage={t("popupDefaultMessage", { client: project.client })}
+        defaultMessage={requestMessage}
         serviceOptions={services.map((s) => ({ id: s.id, title: s.title }))}
         defaultServiceId={defaultServiceId}
       />

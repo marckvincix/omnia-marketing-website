@@ -9,12 +9,12 @@ import { LightBeamButton } from "./light-beam-button";
 
 const initialState: ContactActionState = {};
 
-function SubmitButton() {
+function SubmitButton({ label }: { label?: string }) {
   const { pending } = useFormStatus();
   const t = useTranslations("pages.contatti.form");
   return (
     <LightBeamButton type="submit" disabled={pending} className="w-full py-4">
-      {pending ? t("invioInCorso") : t("inviaMessaggio")}
+      {pending ? t("invioInCorso") : (label ?? t("inviaMessaggio"))}
     </LightBeamButton>
   );
 }
@@ -22,9 +22,17 @@ function SubmitButton() {
 export function ContactForm({
   serviceOptions = [],
   defaultServiceId,
+  fixedServiceId,
+  defaultMessage,
+  submitLabel,
 }: {
   serviceOptions?: { id: string; title: string }[];
   defaultServiceId?: string;
+  // Versione "semplice" del modulo (es. in fondo alle pagine progetto): il servizio non
+  // viene chiesto ma inviato comunque, perché submitContact lo richiede.
+  fixedServiceId?: string;
+  defaultMessage?: string;
+  submitLabel?: string;
 }) {
   const [state, formAction] = useActionState(submitContact, initialState);
   const { name } = useVisitorName();
@@ -91,7 +99,9 @@ export function ContactForm({
         )}
       </div>
 
-      {serviceOptions.length > 0 && (
+      {fixedServiceId && <input type="hidden" name="serviceId" value={fixedServiceId} />}
+
+      {!fixedServiceId && serviceOptions.length > 0 && (
         <div>
           <label htmlFor="serviceId" className="block text-xs font-bold uppercase tracking-normal text-[#888888] mb-2">
             {t("servizioDiInteresse")}
@@ -125,6 +135,7 @@ export function ContactForm({
           name="message"
           rows={5}
           required
+          defaultValue={defaultMessage}
           className="w-full rounded-xl bg-[#111111] border border-[#2a2a2a] px-4 py-3 text-white focus:outline-none focus:border-[#2e9bd6] transition-colors resize-none"
         />
         {state.fieldErrors?.message && (
@@ -134,7 +145,7 @@ export function ContactForm({
 
       {state.error && <p className="text-sm text-[#2e9bd6]">{state.error}</p>}
 
-      <SubmitButton />
+      <SubmitButton label={submitLabel} />
     </form>
   );
 }

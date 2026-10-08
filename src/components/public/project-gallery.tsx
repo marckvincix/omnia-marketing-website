@@ -13,8 +13,7 @@ const MAX_DIM_OPACITY = 0.65;
 const MAX_SCALE_DOWN = 0.03;
 
 // Le gallerie con titolo hanno molte più foto di quella classica (10+ per sezione): con lo
-// scarto pieno di 28px l'ultima card si fermerebbe così in basso da uscire dallo schermo,
-// e la sua didascalia verrebbe coperta dalla successiva prima di essere mai visibile.
+// scarto pieno di 28px l'ultima card si fermerebbe così in basso da uscire dallo schermo.
 // Lo scarto si restringe quindi in modo che l'intera pila occupi al massimo questa altezza.
 const MAX_STACK_SPREAD_DESKTOP = 140;
 const MAX_STACK_SPREAD_MOBILE = 96;
@@ -23,12 +22,10 @@ function GalleryColumn({
   items,
   className,
   maxSpread,
-  captions = false,
 }: {
   items: ProjectGalleryItem[];
   className?: string;
   maxSpread?: number;
-  captions?: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const step = maxSpread
@@ -108,23 +105,14 @@ function GalleryColumn({
           className="sticky mb-4 md:mb-6 md:w-[85%]"
           style={{ top: `${TOP_BASE + i * step}px`, zIndex: i + 1 }}
         >
-          <div className="relative overflow-hidden rounded-2xl md:rounded-[2rem] border border-white/10 bg-[#0a0a0a]">
-            <div className="relative aspect-[4/5]">
-              <Image
-                src={item.url}
-                alt={item.alt}
-                fill
-                sizes="(max-width: 768px) 50vw, 25vw"
-                className="object-cover"
-              />
-            </div>
-            {/* La didascalia ripete l'ALT della foto: nascosta agli screen reader per non
-                farla leggere due volte. */}
-            {captions && (
-              <p aria-hidden="true" className="px-4 py-3 md:px-5 md:py-4 text-sm leading-snug text-[#cccccc]">
-                {item.alt}
-              </p>
-            )}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl md:rounded-[2rem] border border-white/10">
+            <Image
+              src={item.url}
+              alt={item.alt}
+              fill
+              sizes="(max-width: 768px) 50vw, 25vw"
+              className="object-cover"
+            />
             <div
               data-stack-overlay
               aria-hidden="true"
@@ -145,25 +133,16 @@ function GalleryColumns({ items, titled = false }: { items: ProjectGalleryItem[]
     <>
       {/* Mobile: una sola colonna, tutte le foto, nessuno sfasamento. */}
       <div className="md:hidden">
-        <GalleryColumn
-          items={items}
-          captions={titled}
-          maxSpread={titled ? MAX_STACK_SPREAD_MOBILE : undefined}
-        />
+        <GalleryColumn items={items} maxSpread={titled ? MAX_STACK_SPREAD_MOBILE : undefined} />
       </div>
 
       {/* Desktop: due colonne affiancate e ravvicinate, centrate in pagina, la destra sfasata più in basso. */}
       <div className="hidden md:grid md:grid-cols-2 md:gap-4 md:max-w-4xl md:mx-auto">
-        <GalleryColumn
-          items={left}
-          captions={titled}
-          maxSpread={titled ? MAX_STACK_SPREAD_DESKTOP : undefined}
-        />
+        <GalleryColumn items={left} maxSpread={titled ? MAX_STACK_SPREAD_DESKTOP : undefined} />
         {right.length > 0 && (
           <GalleryColumn
             items={right}
             className="md:mt-40"
-            captions={titled}
             maxSpread={titled ? MAX_STACK_SPREAD_DESKTOP : undefined}
           />
         )}
@@ -183,7 +162,7 @@ export function ProjectGallery({ items }: { items: ProjectGalleryItem[] }) {
 }
 
 // Galleria con titolo e testo breve (es. "Area Clienti", "Area Admin"): stesse foto 4:5
-// impilate della galleria classica, con in più la didascalia sotto ogni foto.
+// impilate della galleria classica.
 export function ProjectGallerySection({
   title,
   description,
